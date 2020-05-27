@@ -7,11 +7,11 @@ Waventure est le premier service de streaming 100% gratuit de saga mp3
 [FR/ Waventure](https://www.waventure.fr)
 
 ## Contributor
-Valentin Cellier: Student in Fullstack Web Developper
+Valentin Cellier: Student in Fullstack Web Developpement
 
-Charles Decodin: Student in Fullstack Web Developper
+Charles Decodin: Student in Fullstack Web Developpement
 
-Boris Jerrar: Student in Fullstack Web Developper
+Boris Jerrar: Student in Fullstack Web Developpement
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
