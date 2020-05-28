@@ -1,9 +1,13 @@
-![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo/wavelogodark.svg)
+![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo:mockup/wavelogodark.svg)
 
 
 # Waventure
 
 Waventure est le premier service de streaming 100% gratuit de saga mp3
+
+# Mockup
+![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo:mockup/smartmockups_kaqpgeb1.jpg)
+![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo:mockup/smartmockups_kaqpfn9z.jpg)
 
 ## Website:
 
