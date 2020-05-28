@@ -3,7 +3,7 @@
 
 # Waventure
 
-Waventure est le premier service de streaming 100% gratuit de saga mp3
+**Waventure est le premier service de streaming 100% gratuit de saga mp3**
 
 # Mockup
 ![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo:mockup/smartmockups_kaqpgeb1.jpg)
@@ -14,11 +14,11 @@ Waventure est le premier service de streaming 100% gratuit de saga mp3
 [FR/ Waventure](https://www.waventure.fr)
 
 ## Contributor
-Valentin Cellier: Student in Fullstack Web Developpement
+Valentin Cellier: Student in Fullstack Web Developpement 🖥
 
-Charles Decodin: Student in Fullstack Web Developpement
+Charles Decodin: Student in Fullstack Web Developpement 🖥
 
-Boris Jerrar: Student in Fullstack Web Developpement
+[Boris Jerrar](https://www.borisjerrar.fr): Student in Fullstack Web Developpement 🖥
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
