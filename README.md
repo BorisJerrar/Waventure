@@ -1,4 +1,6 @@
-![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo/wavelogodark.svg)
+![Waventure Logo]()
+Format: ![Waventure Logo](https://github.com/BorisJerrar/waventure/blob/master/logo/wavelogodark.svg)
+
 
 # Waventure
 
