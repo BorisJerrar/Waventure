@@ -3,7 +3,7 @@ const connect = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'waventure',
-  password: 'root',
+  password: '',
   port: 5432,
 })
 
