@@ -5,6 +5,8 @@ const port = process.env.port|| 4000
 const app = express()
 const db = require('../db/database')
 
+const queries = require('./queries/saisons')
+
 app.use(bodyParser.json())
 app.use(cors())
 
@@ -27,12 +29,14 @@ app.get('/', (request, response) => {
     res.status(200).json(result.rows)
   })
  })
- /*
+
+/*
 app.get('/categories', getCategories)
 app.get('/episodes', getEpisodes)
 app.get('/favorites', getFavorites)
 app.get('/listen', getListen)
 app.get('/role', getRole)
+
 app.get('/saisons', getSaisons)
 app.get('/series', getSeries)
 app.get('/series_actors', getSeriesActors)
@@ -41,6 +45,7 @@ app.get('/synopsis', getSynopsis)
 app.get('/users', getUsers) */
 
 
+app.get('/saisons', queries.getSaisons)
 
 
 
