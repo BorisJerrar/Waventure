@@ -10,6 +10,19 @@ const getEpisodes = (request, response) => {
   })
 }
 
+const getEpisodesById = (request, response) => {
+    const episodes_id = parseInt(request.params.episodes_id)
+
+    db.query('SELECT * FROM episodes WHERE episodes_id = $1', [episodes_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+
 module.exports = {
-    getEpisodes
+    getEpisodes,
+    getEpisodesById
 }

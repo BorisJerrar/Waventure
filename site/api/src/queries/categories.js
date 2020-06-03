@@ -8,7 +8,20 @@ const getCategories = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
-  
+
+const getCategoriesById = (request, response) => {
+    const categories_id = parseInt(request.params.categories_id)
+
+    db.query('SELECT * FROM categories WHERE categories_id = $1', [categories_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+
   module.exports = {
-      getCategories
+      getCategories,
+      getCategoriesById
   }

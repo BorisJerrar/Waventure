@@ -10,6 +10,19 @@ const getFavorites = (request, response) => {
   })
 }
 
+const getFavoritesById = (request, response) => {
+    const favorites_id = parseInt(request.params.favorites_id)
+
+    db.query('SELECT * FROM favorites WHERE favorites_id = $1', [favorites_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+
 module.exports = {
-    getFavorites
+    getFavorites,
+    getFavoritesById
 }

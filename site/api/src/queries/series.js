@@ -9,6 +9,20 @@ const getSeries = (request, response) => {
     })
 }
 
+const getSerieById = (request, response) => {
+    const series_id = parseInt(request.params.series_id)
+
+    db.query('SELECT * FROM series WHERE series_id = $1', [series_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+
 module.exports = {
-    getSeries
+    getSeries,
+    getSerieById
+
 }
