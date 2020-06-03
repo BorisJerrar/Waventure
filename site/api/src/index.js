@@ -3,9 +3,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const port = process.env.port|| 4000
 const app = express()
+const db = require('../db/database')
 
-
-app.use(express.json())
+app.use(bodyParser.json())
 app.use(cors())
 
 app.use(
@@ -19,7 +19,15 @@ app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 
-/* app.get('/actors', getActors)
+ app.get('/actors', (req, res) => {
+  db.query("SELECT * FROM series", (error, result) => {
+    if (error){
+      throw new Error('somting went wrong')
+    }
+    res.status(200).json(result.rows)
+  })
+ })
+ /*
 app.get('/categories', getCategories)
 app.get('/episodes', getEpisodes)
 app.get('/favorites', getFavorites)
