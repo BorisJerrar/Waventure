@@ -5,7 +5,12 @@ const port = process.env.port|| 4000
 const app = express()
 const db = require('../db/database')
 
-const queries = require('./queries/saisons')
+const saisonsQueries = require('./queries/saisons')
+const seriesQueries = require('./queries/series')
+const seriesActorQueries = require('./queries/series_actors')
+const seriesCategoriesQueries = require('./queries/series_categories')
+const synopsisQueries = require('./queries/synopsis')
+const usersQueries = require('./queries/users')
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -43,11 +48,17 @@ app.get('/series_actors', getSeriesActors)
 app.get('/series_categories', getSeriesCategories)
 app.get('/synopsis', getSynopsis)
 app.get('/users', getUsers) */
+app.get('/saisons', saisonsQueries.getSaisons)
 
+app.get('/series', seriesQueries.getSeries)
 
-app.get('/saisons', queries.getSaisons)
+app.get('/series_actors', seriesActorQueries.getSeriesActors)
 
+app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
 
+app.get('/synopsis', synopsisQueries.getSynopsis)
+
+app.get('/users', usersQueries.getUsers)
 
 app.listen(port, () => {
     console.log("Running on port " + port);
