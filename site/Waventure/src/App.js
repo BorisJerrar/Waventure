@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import Categorie from './components/Categorie.jsx'
+
 
 function App() {
   return (
     <div className='App'>
-<img className='App-logo' src='./img/wavelogodark.svg' alt='waventure Logo' />
+<>
+    <Categorie/>
+</>
     </div>
   );
 }
