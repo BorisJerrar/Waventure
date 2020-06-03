@@ -12,8 +12,11 @@ const favoritesQueries = require('./queries/favorites')
 const listenQueries = require('./queries/listen')
 const roleQueries = require('./queries/role')
 const actorsQueries = require('./queries/actors')
-
-
+const seriesQueries = require('./queries/series')
+const seriesActorQueries = require('./queries/series_actors')
+const seriesCategoriesQueries = require('./queries/series_categories')
+const synopsisQueries = require('./queries/synopsis')
+const usersQueries = require('./queries/users')
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -47,7 +50,9 @@ app.get('/series_actors', getSeriesActors)
 app.get('/series_categories', getSeriesCategories)
 app.get('/synopsis', getSynopsis)
 app.get('/users', getUsers) */
+app.get('/saisons', saisonsQueries.getSaisons)
 
+app.get('/series', seriesQueries.getSeries)
 
 app.get('/saisons', saisonsQueries.getSaisons)
 app.get('/categories', categoriesQueries.getCategories)
@@ -56,9 +61,10 @@ app.get('/favorites', favoritesQueries.getFavorites)
 app.get('/listen', listenQueries.getListen)
 app.get('/role', roleQueries.getRole)
 app.get('/actors', actorsQueries.getActors)
-
-
-
+app.get('/series_actors', seriesActorQueries.getSeriesActors)
+app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
+app.get('/synopsis', synopsisQueries.getSynopsis)
+app.get('/users', usersQueries.getUsers)
 
 app.listen(port, () => {
     console.log("Running on port " + port);
