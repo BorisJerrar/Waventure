@@ -137,7 +137,7 @@ name varchar(100)
 INSERT INTO actors(name)
 VALUES(
 'jean phil'
-)
+);
 
 CREATE TABLE role(
 roles_id SERIAL NOT NULL PRIMARY KEY ,   
@@ -148,7 +148,7 @@ FOREIGN KEY (actorID) REFERENCES actors (actors_id)
 INSERT INTO role(character)
 VALUES(
 'poisson rouge'
-)
+);
 
 CREATE TABLE series_actors(
 series_actors_id SERIAL NOT NULL PRIMARY KEY ,   
