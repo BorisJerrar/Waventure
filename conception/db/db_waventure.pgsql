@@ -86,6 +86,7 @@ CREATE TABLE synopsis (
       body text,
       FOREIGN KEY (serieID) REFERENCES series (series_id)
 );
+
 CREATE TABLE actors (
       actors_id serial NOT NULL PRIMARY KEY,
       name varchar(100)
@@ -122,11 +123,5 @@ CREATE TABLE LISTEN (
 );
 
 INSERT INTO series (title, image, imageLg, saison, autor, duration, uploadDate, creationDate)
-      VALUES ('Clyde Vanilla', '/img/clydevanilla.jpg', '/img/clydevanillaLg.jpg', '1', 'Antoine Daniel', '00:03:11.00', '2020-06-03', '2017-09-17'),
-      ('Le Donjon de Naheulbeuk', '/img/ledonjondenaheulbeuk.jpg', '/img/ledonjondenaheulbeukLg.jpg', '4', 'Pen of Chaos', '00:04:53.00', '2020-06-03', '2001-01-01'),
-      ('Adoprixtoxis', '/img/adoprixtoxis.jpg', '/img/adoprixtoxisLg.jpg', '1', 'Nico et Matt', '00:03:44.00', '2020-06-03', '2002-01-01'),
-      ('La légende de Xantah', '/img/Xantah.jpg', '/img/XantahLg.jpg', '1', 'Nico et Matt', '00:03:36.39', '2020-06-03', '2010-01-01'),
-      ('Reflets d'Acide', '/img/rda.jpg', '/img/rdaLg.jpg', '1', 'JBX', '00:09:14.00', '2020-06-03', '2002-12-01'),
-      ('Les Aventuriers du NHL2987 Survivaure', '/img/survivaure.jpg', '/img/survivaureLg.jpg', '1', 'Knarf', '00:03:26.41', '2020-06-03', '2001-12-24'),
-      ('Agent 0', '/img/agent0.jpg', '/img/agent0Lg.jpg', '1', 'Flo', '00:03:31.00', '2020-06-03', '2006-08-25'),
-      ('Trimoria', '/img/trimoria.jpg', '/img/trimoriaLg.jpg', '1', 'Flo', '00:02:07.35', '2020-06-03', '2008-03-19'); 
+      VALUES ('Clyde Vanilla', '/img/clydevanilla.jpg', '/img/clydevanillaLg.jpg', '1', 'Antoine Daniel', '00:03:11.00', '2020-06-03', '2017-09-17'), ('Le Donjon de Naheulbeuk', '/img/ledonjondenaheulbeuk.jpg', '/img/ledonjondenaheulbeukLg.jpg', '4', 'Pen of Chaos', '00:04:53.00', '2020-06-03', '2001-01-01'), ('Adoprixtoxis', '/img/adoprixtoxis.jpg', '/img/adoprixtoxisLg.jpg', '1', 'Nico et Matt', '00:03:44.00', '2020-06-03', '2002-01-01'), ('La légende de Xantah', '/img/Xantah.jpg', '/img/XantahLg.jpg', '1', 'Nico et Matt', '00:03:36.39', '2020-06-03', '2010-01-01'), ('Reflets d''Acide', '/img/rda.jpg', '/img/rdaLg.jpg', '1', 'JBX', '00:09:14.00', '2020-06-03', '2002-12-01'), ('Les Aventuriers du NHL2987 Survivaure', '/img/survivaure.jpg', '/img/survivaureLg.jpg', '1', 'Knarf', '00:03:26.41', '2020-06-03', '2001-12-24'), ('Agent 0', '/img/agent0.jpg', '/img/agent0Lg.jpg', '1', 'Flo', '00:03:31.00', '2020-06-03', '2006-08-25'), ('Trimoria', '/img/trimoria.jpg', '/img/trimoriaLg.jpg', '1', 'Flo', '00:02:07.35', '2020-06-03', '2008-03-19');
+
