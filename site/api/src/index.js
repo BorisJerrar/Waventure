@@ -5,7 +5,15 @@ const port = process.env.port|| 4000
 const app = express()
 const db = require('../db/database')
 
-const queries = require('./queries/saisons')
+const saisonsQueries = require('./queries/saisons')
+const categoriesQueries = require('./queries/categories')
+const episodesQueries = require('./queries/episodes')
+const favoritesQueries = require('./queries/favorites')
+const listenQueries = require('./queries/listen')
+const roleQueries = require('./queries/role')
+const actorsQueries = require('./queries/actors')
+
+
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -31,13 +39,9 @@ app.get('/', (request, response) => {
  })
 
 /*
-app.get('/categories', getCategories)
-app.get('/episodes', getEpisodes)
-app.get('/favorites', getFavorites)
-app.get('/listen', getListen)
+
 app.get('/role', getRole)
 
-app.get('/saisons', getSaisons)
 app.get('/series', getSeries)
 app.get('/series_actors', getSeriesActors)
 app.get('/series_categories', getSeriesCategories)
@@ -45,7 +49,14 @@ app.get('/synopsis', getSynopsis)
 app.get('/users', getUsers) */
 
 
-app.get('/saisons', queries.getSaisons)
+app.get('/saisons', saisonsQueries.getSaisons)
+app.get('/categories', categoriesQueries.getCategories)
+app.get('/episodes', episodesQueries.getEpisodes)
+app.get('/favorites', favoritesQueries.getFavorites)
+app.get('/listen', listenQueries.getListen)
+app.get('/role', roleQueries.getRole)
+app.get('/actors', actorsQueries.getActors)
+
 
 
 

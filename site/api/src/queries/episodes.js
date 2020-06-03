@@ -1,8 +1,8 @@
 const db = require('../../db/database')
 
 
-const getSaisons = (request, response) => {
-  db.query('SELECT * FROM saisons ORDER BY saisons_id ASC', (error, results) => {
+const getEpisodes = (request, response) => {
+  db.query('SELECT * FROM episodes ORDER BY episodes_id ASC', (error, results) => {
     if (error) {
       throw error
     }
@@ -11,5 +11,5 @@ const getSaisons = (request, response) => {
 }
 
 module.exports = {
-    getSaisons
+    getEpisodes
 }
