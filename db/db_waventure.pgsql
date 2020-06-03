@@ -1,9 +1,6 @@
 
-
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 CREATE TABLE users(
-id uuid DEFAULT uuid_generate_v4(),
+users_id SERIAL NOT NULL PRIMARY KEY ,
 userName varchar(25),
 firstName varchar(25),
 lastName varchar(25),
@@ -13,10 +10,10 @@ password varchar(64)
         );
 
 CREATE TABLE series(
-id uuid DEFAULT uuid_generate_v4(),
+series_id SERIAL NOT NULL PRIMARY KEY ,
 title varchar(100),
 image varchar(150),
-saison int,
+saison smallint,
 autor varchar(60),
 duration time,
 uploadDate DATE,
@@ -24,66 +21,81 @@ creationDate DATE
             );
 
 CREATE TABLE favorites(
-id uuid DEFAULT uuid_generate_v4(),
-userID varchar(36),
-serieID varchar(36)
+favorites_id SERIAL NOT NULL PRIMARY KEY ,
+userID serial,
+serieID serial,
+FOREIGN KEY (userID) REFERENCES users (users_id),
+FOREIGN KEY (serieID) REFERENCES series (series_id)
         );
 
 CREATE TABLE saisons(
-id uuid DEFAULT uuid_generate_v4(),
-serieID varchar(36),
+saisons_id SERIAL NOT NULL PRIMARY KEY ,
+serieID serial,
 title varchar(100),
-quantite int
+saison_number smallint,
+quantite smallint,
+FOREIGN KEY (serieID) REFERENCES series (series_id)
             );
 
 CREATE TABLE episodes(
-id uuid DEFAULT uuid_generate_v4(),
-saisonID varchar(36),
+episodes_id SERIAL NOT NULL PRIMARY KEY ,
+saisonID serial,
 title varchar(100),
+episode_number smallint,
 duration time,
-mp3File varchar(255)
+mp3File varchar(255),
+FOREIGN KEY (saisonID) REFERENCES saisons (saisons_id)
         );
 
-CREATE TABLE series_categories(
-id uuid DEFAULT uuid_generate_v4(),
-serieID varchar(36),
-categoryID varchar(36)
-        );
 
 CREATE TABLE categories(
-id uuid DEFAULT uuid_generate_v4(),
+categories_id SERIAL NOT NULL PRIMARY KEY ,
 name varchar(100)
             );
 
+CREATE TABLE series_categories(
+series_id SERIAL NOT NULL PRIMARY KEY ,
+serieID serial,
+categoryID serial,
+FOREIGN KEY (serieID) REFERENCES series (series_id),
+FOREIGN KEY (categoryID) REFERENCES categories (categories_id)
+        );
+        
 CREATE TABLE synopsis(
-id uuid DEFAULT uuid_generate_v4(),   
-serieID varchar(36),
-body TEXT
+synopsis_id SERIAL NOT NULL PRIMARY KEY ,   
+serieID serial,
+body TEXT,
+FOREIGN KEY (serieID) REFERENCES series (series_id)
             );
 
 CREATE TABLE actors(
-id uuid DEFAULT uuid_generate_v4(),   
+actors_id SERIAL NOT NULL PRIMARY KEY ,   
 name varchar(100)
             );
 
 CREATE TABLE role(
-id uuid DEFAULT uuid_generate_v4(),   
-actorID varchar(36),
-character varchar(100)
+roles_id SERIAL NOT NULL PRIMARY KEY ,   
+actorID serial,
+character varchar(100),
+FOREIGN KEY (actorID) REFERENCES actors (actors_id)
             );
 
 CREATE TABLE series_actors(
-id uuid DEFAULT uuid_generate_v4(),   
-serieID varchar(36),
-actorID varchar(36)
+series_actors_id SERIAL NOT NULL PRIMARY KEY ,   
+serieID serial,
+actorID serial,
+FOREIGN KEY (serieID) REFERENCES series (series_id),
+FOREIGN KEY (actorID) REFERENCES actors (actors_id)
             );
 
 
 CREATE TABLE listen(
-id uuid DEFAULT uuid_generate_v4(),
-userID varchar(36),
-episodeID varchar(36),
-duration time
+listen_id SERIAL NOT NULL PRIMARY KEY ,
+userID serial,
+episodeID serial,
+duration time,
+FOREIGN KEY (userID) REFERENCES users (users_id),
+FOREIGN KEY (episodeID) REFERENCES episodes (episodes_id)
         );
 
 
