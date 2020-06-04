@@ -332,7 +332,7 @@ app.delete('/series/:series_id', seriesQueries.deleteSeries)
  * /series_actors:
  *  get:
  *      tags:
- *          - series
+ *          - series_actors
  *      description: Use to request all series_actors
  *      responses:
  *          '200':
@@ -345,7 +345,7 @@ app.get('/series_actors', seriesActorQueries.getSeriesActors)
  * /series_actors/{series_actors_id}:
  *  get:
  *      tags:
- *          - series
+ *          - series_actors
  *      description: Use to request series_actors by id
  *      parameters:
  *        - name: 'series_actors_id'
@@ -366,7 +366,7 @@ app.get('/series_actors/:series_actors_id',seriesActorQueries.getSeriesActorsByI
  * /series_actors:
  *  post:
  *      tags:
- *          - series
+ *          - series_actors
  *      description: Use to create series_actors relation
  *      consumes:
  *        - application/json
@@ -388,7 +388,7 @@ app.post('/series_actors', seriesActorQueries.createSeriesActors)
  * /series_actors/{series_actors_id}:
  *  put:
  *      tags:
- *          - series
+ *          - series_actors
  *      description: Use to update series_actors relation
  *      consumes:
  *          - application/json
@@ -417,7 +417,7 @@ app.put('/series_actors/:series_actors_id', seriesActorQueries.updateSeriesActor
  * /series_actors/{series_actors_id}:
  *  delete:
  *      tags:
- *          - series
+ *          - series_actors
  *      description: Use to delete series_actors relation by id
  *      parameters:
  *        - name: 'series_actors_id'
@@ -438,7 +438,7 @@ app.delete('/series_actors/:series_actors_id', seriesActorQueries.deleteSeriesAc
  * /series_categories:
  *  get:
  *      tags:
- *          - series
+ *          - series_categories
  *      description: Use to request all series_categories
  *      responses:
  *          '200':
@@ -451,7 +451,7 @@ app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
  * /series_categories/{series_categories_id}:
  *  get:
  *      tags:
- *          - series
+ *          - series_categories
  *      description: Use to request series_categories by id
  *      parameters:
  *        - name: 'series_categories_id'
@@ -466,6 +466,78 @@ app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
  *              description: successful operation
  */
 app.get('/series_categories/:series_categories_id',seriesCategoriesQueries.getSeriesCategoriesById)
+
+/**
+ * @swagger
+ * /series_categories:
+ *  post:
+ *      tags:
+ *          - series_categories
+ *      description: Use to create series_categories relation
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: serieid
+ *          in: query
+ *          type: int
+ *        - name: categoryid
+ *          in: query
+ *          type: int
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/series_categories', seriesCategoriesQueries.createSeriesCategories)
+
+/**
+ * @swagger
+ * /series_categories/{series_categories_id}:
+ *  put:
+ *      tags:
+ *          - series_categories
+ *      description: Use to update series_categories relation
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: series_categories_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: serieid
+ *            in: query
+ *            type: int
+ *          - name: categoryid
+ *            in: query
+ *            type: int
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/series_categories/:series_categories_id', seriesCategoriesQueries.updateSeriesCategories)
+
+/**
+ * @swagger
+ * /series_categories/{series_categories_id}:
+ *  delete:
+ *      tags:
+ *          - series_categories
+ *      description: Use to delete series_categories relation by id
+ *      parameters:
+ *        - name: 'series_categories_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/series_categories/:series_categories_id', seriesCategoriesQueries.deleteSeriesCategories)
 
 /**
  * @swagger
@@ -503,6 +575,94 @@ app.get('/saisons/:saisons_id', saisonsQueries.getSaisonById)
 
 /**
  * @swagger
+ * /saisons:
+ *  post:
+ *      tags:
+ *          - saisons
+ *      description: Use to create saisons
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: serieid
+ *          type: int
+ *          in: query
+ *        - name: saisons
+ *          in: body
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  title:
+ *                      type: string
+ *                  saison_number:
+ *                      type: integer
+ *                  quantite:
+ *                      type: integer
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/saisons', saisonsQueries.createSaisons)
+
+/**
+ * @swagger
+ * /saisons/{saisons_id}:
+ *  put:
+ *      tags:
+ *          - saisons
+ *      description: Use to update saisons
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: saisons_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: serieid
+ *            type: int
+ *            in: query
+ *          - name: saisons
+ *            in: body
+ *            schema:
+ *              type: object
+ *              properties:
+ *                  title:
+ *                      type: string
+ *                  saison_number:
+ *                      type: integer
+ *                  quantite:
+ *                      type: integer
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/saisons/:saisons_id', saisonsQueries.updateSaisons)
+
+/**
+ * @swagger
+ * /saisons/{saisons_id}:
+ *  delete:
+ *      tags:
+ *          - saisons
+ *      description: Use to delete saisons by id
+ *      parameters:
+ *        - name: 'saisons_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/saisons/:saisons_id', saisonsQueries.deleteSaisons)
+
+/**
+ * @swagger
  * /episodes:
  *  get:
  *      tags:
@@ -537,6 +697,98 @@ app.get('/episodes/:episodes_id', episodesQueries.getEpisodesById)
 
 /**
  * @swagger
+ * /episodes:
+ *  post:
+ *      tags:
+ *          - episodes
+ *      description: Use to create episodes
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: saisonid
+ *          type: int
+ *          in: query
+ *        - name: episodes
+ *          in: body
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  title:
+ *                      type: string
+ *                  episode_number:
+ *                      type: integer
+ *                  duration:
+ *                      type: string
+ *                  mp3file:
+ *                      type string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/episodes', episodesQueries.createEpisodes)
+
+/**
+ * @swagger
+ * /episodes/{episodes_id}:
+ *  put:
+ *      tags:
+ *          - episodes
+ *      description: Use to update episodes
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: episodes_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: saisonid
+ *            type: int
+ *            in: query
+ *          - name: episodes
+ *            in: body
+ *            schema:
+ *              type: object
+ *              properties:
+ *                  title:
+ *                      type: string
+ *                  episode_number:
+ *                      type: integer
+ *                  duration:
+ *                      type: string
+ *                  mp3file:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/episodes/:episodes_id', episodesQueries.updateEpisodes)
+
+/**
+ * @swagger
+ * /episodes/{episodes_id}:
+ *  delete:
+ *      tags:
+ *          - episodes
+ *      description: Use to delete episodes by id
+ *      parameters:
+ *        - name: 'episodes_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/episodes/:episodes_id', episodesQueries.deleteEpisodes)
+
+/**
+ * @swagger
  * /synopsis:
  *  get:
  *      tags:
@@ -568,6 +820,78 @@ app.get('/synopsis', synopsisQueries.getSynopsis)
  *              description: successful operation
  */
 app.get('/synopsis/:synopsis_id', synopsisQueries.getSynopsisById)
+
+/**
+ * @swagger
+ * /synopsis:
+ *  post:
+ *      tags:
+ *          - synopsis
+ *      description: Use to create synopsis
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: serieid
+ *          type: int
+ *          in: query
+ *        - name: body
+ *          in: query
+ *          type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/synopsis', synopsisQueries.createSynopsis)
+
+/**
+ * @swagger
+ * /synopsis/{synopsis_id}:
+ *  put:
+ *      tags:
+ *          - synopsis
+ *      description: Use to update synopsis
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: synopsis_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: serieid
+ *            type: int
+ *            in: query
+ *          - name: body
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/synopsis/:synopsis_id', synopsisQueries.updateSynopsis)
+
+/**
+ * @swagger
+ * /synopsis/{synopsis_id}:
+ *  delete:
+ *      tags:
+ *          - synopsis
+ *      description: Use to delete synopsis by id
+ *      parameters:
+ *        - name: 'synopsis_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/synopsis/:synopsis_id', synopsisQueries.deleteSynopsis)
 
 /**
  * @swagger
