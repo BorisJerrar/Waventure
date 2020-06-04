@@ -1,12 +1,15 @@
-import React from "react";
-import Header from "./components/Header";
-import "./App.css";
+import React from 'react';
+import './App.css';
+import Categorie from './components/Categorie.jsx'
+
 
 function App() {
   return (
-    <>
-      <Header />
-    </>
+    <div className='App'>
+<>
+    <Categorie/>
+</>
+    </div>
   );
 }
 
