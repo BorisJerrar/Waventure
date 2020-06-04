@@ -49,6 +49,13 @@ header {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+.waventureLogo a{
+opacity: 0;
+position: absolute;
+width: 100%;
+height: 100%;
 }
 .waventureLogo h1 {
   font-weight: 400;
@@ -70,8 +77,10 @@ nav ul,
 nav ul li {
   width: 100%;
   cursor: pointer;
+  padding: 10px 0px;
+  transition: .2s ease-in-out background-color;
 }
-nav ul li:hover,  .categoriesFetch p:hover{
+.categoriesParagraph:hover{
 background-color: #4e4e4e;
 }
 li {
@@ -83,6 +92,10 @@ li {
 .category{
     position: relative;
     text-align: center;
+}
+.categoriesParagraph{
+width: 100%;
+transition: .2s ease-in-out background-color;
 }
 .categoriesFetch{
   width: 100%;
