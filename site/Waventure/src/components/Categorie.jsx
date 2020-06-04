@@ -2,63 +2,52 @@ import React, { useState, useEffect } from 'react'
 
 export default function Categorie() {
     const [image, setImage] = useState([])
-    const [imageUrlSeries, setImageUrlSeries]= useState([])
+    const [series, setSeries]= useState([])
 
     const fetchSeries = async() =>{
         const reponse = await fetch(`http://localhost:4000/series`)
-        const data = await reponse.json()     
-        setImageUrlSeries([...imageUrlSeries, data.map((each)=>{return(each.image)})])
-        console.log(data); 
-    }
-    console.log(imageUrlSeries);
-
-
-     const fetchImages = async() =>{
-         for(let i = 0; i < imageUrlSeries.length; i++){
-             setImage(...image, 'http://localhost:4000/test?url=')
-         }
-            try{
-                const reponse = Promise.all(image.map((item, index)=>{
-                    fetch(item + imageUrlSeries[index]).then(resp => resp.json())
-                
-                })).then(json=>{
-                    console.log(json);
-                })
-            } catch (e){
-                console.log(e);
-                
-            }
-      /*         console.log(imageUrlSeries[i]);
-        const reponse = await fetch(`http://localhost:4000/test?url=${imageUrlSeries[i]}`)
+        const data = await reponse.json()
+        console.log(data);
+        
+}
+ /*
+    const fetchImages = async() =>{
+        const reponse = await fetch(`http://localhost:4000/test?url=survivaure`)
         const data = await reponse.blob()
-        setImage([...image, URL.createObjectURL(data)])
-        console.log(data); */
-         
-       
+        setImage(URL.createObjectURL(data))
 
+        
+    }*/
+    
+/* 
+    const fetchImages = async()=>{
+        fetch(`http://localhost:4000/series`)
+        .then(response=> response.json())
+        .then(data=>{
+            console.log(data);
+            const tabimages = data.map(i => `http://localhost:4000/images/${i.image}`)
+            console.log(tabimages);
+            
+            return data;
+        }) */
+        /* .then(async data =>{
+            await Promise.all(data.map((item)=>{
+                return fetch(`http://localhost:4000/test?url=survivaure`)
+                .then(response => response.blob())
+                .then(data=>{
+                    console.log(URL.createObjectURL(data));
+                    setImage([...image, URL.createObjectURL(data)])
+                    
+                }) */
+           /*  })) */
+        /* }) */
+    }
 
-} 
-
-
-/* videoUrls= async () => {
-    let i=0;
-    let urllist=[]
-    for(i;i< this.state.data.length;i++){
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.data[i].name}&key=xxxxxxxxxxx0`)
-        const json = await response.json()
-        urllist.push(json.items[0])
-        console.log({urllist})
-      }
-   } */
-
+    console.log(image);
+    
 useEffect(()=>{
-    fetchSeries()
-   
-}, [])
-
-useEffect(()=>{
-    fetchImages()
-}, [imageUrlSeries])
+        fetchImages()
+    }, []) 
 
  
      return(
@@ -77,4 +66,5 @@ useEffect(()=>{
     </div>
 )    
 
-    }
+ }   
+
