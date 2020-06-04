@@ -1,8 +1,16 @@
-import React from "react";
+import React ,{useState} from "react";
 import "../style/Header.css";
 
 export default function Header() {
-  const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
+    const [titleArray, setTitleArray] = useState([])
+    const [trigger, setTrigger] = useState(false)
+    const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
+    const categories = async () => {
+        setTrigger(!trigger)
+        const data = await fetch('http://localhost:4000/categories')
+        const json = await data.json()
+        setTitleArray(json.map( each => { return each.name}))
+    }
   return (
     <header>
       <div className="leftHeaderSide">
@@ -18,11 +26,16 @@ export default function Header() {
         </div>
         <nav>
           <ul>
-            <li>
+            <li className='category' onClick={categories}>
               Categories
               <i>
                 <img src={`${pathImg}/arrow.svg`} alt="Arrow Icon" className='arrowCategories'/>
               </i>
+              <div className='categoriesFetch'>
+              <p className='categoriesParagraph' style=
+              {trigger?{'padding': '8px', 'display' : 'block'}:{'display':'none'}}
+              >{trigger?titleArray.map( each => {return (each) }):''}</p>
+              </div>
             </li>
             <li>Nouveautés</li>
             <li>Coup de coeur</li>
