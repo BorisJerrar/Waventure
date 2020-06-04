@@ -54,10 +54,13 @@ app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 
-app.get('/test', (req, res) => {
-  let data = req.query.url
+app.get('/images/:image', (req, res) => {
+  let image = req.params.image
+  
+  console.log(image);
+  
 
-  let read = fs.createReadStream(`./src/img/${data}.jpg`);
+  let read = fs.createReadStream(`./src/img/${image}`);
   read.on('open', ()=>{
     res.set('Content-Type', 'image/jpeg')
     read.pipe(res)
