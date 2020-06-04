@@ -100,6 +100,100 @@ app.get('/users/:users_id', usersQueries.getUsersById)
 
 /**
  * @swagger
+ * /users:
+ *  post:
+ *      tags:
+ *          - users
+ *      description: Use to create users
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: users
+ *          in: body
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  username:
+ *                      type: string
+ *                  firstname:
+ *                      type: string
+ *                  lastname:
+ *                      type: string
+ *                  email:
+ *                      type: string
+ *                  birthdate:
+ *                      type: string
+ *                  password:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/users', usersQueries.createUsers)
+
+/**
+ * @swagger
+ * /users/{users_id}:
+ *  put:
+ *      tags:
+ *          - users
+ *      description: Use to update users
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: users_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: users
+ *            in: body
+ *            schema:
+ *              type: object
+ *              properties:
+ *                  username:
+ *                      type: string
+ *                  firstname:
+ *                      type: string
+ *                  lastname:
+ *                      type: string
+ *                  email:
+ *                      type: string
+ *                  birthdate:
+ *                      type: string
+ *                  password:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/users/:users_id', usersQueries.updateUsers)
+
+/**
+ * @swagger
+ * /users/{users_id}:
+ *  delete:
+ *      tags:
+ *          - users
+ *      description: Use to delete users by id
+ *      parameters:
+ *        - name: 'users_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/users/:users_id', usersQueries.deleteUsers)
+
+/**
+ * @swagger
  * /series:
  *  get:
  *      tags:
@@ -134,6 +228,104 @@ app.get('/series/:series_id', seriesQueries.getSerieById)
 
 /**
  * @swagger
+ * /series:
+ *  post:
+ *      tags:
+ *          - series
+ *      description: Use to create series
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: series
+ *          in: body
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  title:
+ *                      type: string
+ *                  image:
+ *                      type: string
+ *                  imagelg:
+ *                      type: string
+ *                  autor:
+ *                      type: string
+ *                  duration:
+ *                      type: string
+ *                  uploaddate:
+ *                      type: string
+ *                  creationdate:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/series', seriesQueries.createSeries)
+
+/**
+ * @swagger
+ * /series/{series_id}:
+ *  put:
+ *      tags:
+ *          - series
+ *      description: Use to update series
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: series_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: users
+ *            in: body
+ *            schema:
+ *              type: object
+ *              properties:
+ *                  title:
+ *                      type: string
+ *                  image:
+ *                      type: string
+ *                  imagelg:
+ *                      type: string
+ *                  autor:
+ *                      type: string
+ *                  duration:
+ *                      type: string
+ *                  uploaddate:
+ *                      type: string
+ *                  creationdate:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/series/:series_id', seriesQueries.updateSeries)
+
+/**
+ * @swagger
+ * /series/{series_id}:
+ *  delete:
+ *      tags:
+ *          - series
+ *      description: Use to delete series by id
+ *      parameters:
+ *        - name: 'series_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/series/:series_id', seriesQueries.deleteSeries)
+
+/**
+ * @swagger
  * /series_actors:
  *  get:
  *      tags:
@@ -165,6 +357,78 @@ app.get('/series_actors', seriesActorQueries.getSeriesActors)
  *              description: successful operation
  */
 app.get('/series_actors/:series_actors_id',seriesActorQueries.getSeriesActorsById)
+
+/**
+ * @swagger
+ * /series_actors:
+ *  post:
+ *      tags:
+ *          - series
+ *      description: Use to create series_actors relation
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: serieid
+ *          in: query
+ *          type: int
+ *        - name: actorid
+ *          in: query
+ *          type: int
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/series_actors', seriesActorQueries.createSeriesActors)
+
+/**
+ * @swagger
+ * /series_actors/{series_actors_id}:
+ *  put:
+ *      tags:
+ *          - series
+ *      description: Use to update series_actors relation
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: series_actors_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: serieid
+ *            in: query
+ *            type: int
+ *          - name: actorid
+ *            in: query
+ *            type: int
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/series_actors/:series_actors_id', seriesActorQueries.updateSeriesActors)
+
+/**
+ * @swagger
+ * /series_actors/{series_actors_id}:
+ *  delete:
+ *      tags:
+ *          - series
+ *      description: Use to delete series_actors relation by id
+ *      parameters:
+ *        - name: 'series_actors_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/series_actors/:series_actors_id', seriesActorQueries.deleteSeriesActors)
 
 /**
  * @swagger
