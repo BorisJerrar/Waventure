@@ -3,19 +3,22 @@ import React, { useState, useEffect } from 'react'
 export default function Categorie() {
     const [series, setSeries] = useState([])
     const fetchSeries = async() =>{
-        const reponse = await fetch(`http://localhost:4000/series`)
-        const data = await reponse.json()
-        setSeries(data)
+        const reponse = await fetch(`http://localhost:4000/test?url=survivaure`)
+        const data = await reponse.blob()
+        console.log(data);
+        
+        setSeries(URL.createObjectURL(data))
+
+        
     }
     useEffect(()=>{
         fetchSeries()
     }, [])
-    
-console.log(series[0] && series[0].image);
+
 
  
      return(
-    <div className="container">
+    /* <div className="container">
         {series.map((item, index)=>{
             return(
             <div key={index}>
@@ -24,7 +27,11 @@ console.log(series[0] && series[0].image);
             </div>
             )
         })}
-    </div>
+    </div> */
+<>
+    <div>yoyoyoyyo</div>
+    <img src={series} alt=""/>
+    </>
 )    
 
  }   
