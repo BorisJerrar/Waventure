@@ -20,8 +20,50 @@ const getSynopsisById = (request, response) => {
   })
 }
 
+const createSynopsis = (request, response) => {
+    const serieid = request.query.serieid
+    const body = request.query.body
+
+    db.query('INSERT INTO synopsis ( serieid, body ) VALUES ($1, $2)', [ serieid, body ], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(201).send(`synopsis added with ID: ${results.insertId}`)
+    })
+}
+
+const updateSynopsis = (request, response) => {
+    const synopsis_id = parseInt(request.params.synopsis_id)
+    const serieid = request.query.serieid
+    const body = request.query.body
+
+    db.query(
+        'UPDATE synopsis SET serieid = $1, body = $2 WHERE synopsis_id = $3', [serieid, body, synopsis_id],
+        (error, results) => {
+            if (error) {
+                throw error
+            }
+            response.status(200).send(`Synopsis modified with ID: ${synopsis_id}`)
+        }
+    )
+}
+
+const deleteSynopsis = (request, response) => {
+    const synopsis_id = parseInt(request.params.synopsis_id)
+
+    db.query('DELETE FROM synopsis WHERE synopsis_id = $1', [synopsis_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).send(`Synopsis deleted with ID: ${synopsis_id}`)
+    })
+}
+
 
 module.exports = {
     getSynopsis,
-    getSynopsisById
+    getSynopsisById,
+    createSynopsis,
+    updateSynopsis,
+    deleteSynopsis
 }
