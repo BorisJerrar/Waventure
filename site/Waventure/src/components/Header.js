@@ -9,8 +9,9 @@ export default function Header() {
         setTrigger(!trigger)
         const data = await fetch('http://localhost:4000/categories')
         const json = await data.json()
-        setTitleArray(json.map( each => { return each.name}))
+        setTitleArray(json)
     }
+    
   return (
     <header>
       <div className="leftHeaderSide">
@@ -32,9 +33,8 @@ export default function Header() {
                 <img src={`${pathImg}/arrow.svg`} alt="Arrow Icon" className='arrowCategories'/>
               </i>
               <div className='categoriesFetch'>
-              <p className='categoriesParagraph' style=
-              {trigger?{'padding': '8px', 'display' : 'block'}:{'display':'none'}}
-              >{trigger?titleArray.map( each => {return (each) }):''}</p>
+              {trigger?titleArray.map((each, key) => {return (<p key={key} className='categoriesParagraph' style=
+              {trigger?{'padding': '8px', 'display' : 'block'}:{'display':'none'}}>{each.name}</p>) }):''}
               </div>
             </li>
             <li>Nouveautés</li>
