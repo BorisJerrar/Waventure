@@ -55,26 +55,26 @@ app.get('/', (request, response) => {
 
 /**
  * @swagger
- * /saisons:
+ * /users:
  *  get:
  *      tags:
- *          - saisons
- *      description: Use to request all saisons
+ *          - users
+ *      description: Use to request all users
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/saisons', saisonsQueries.getSaisons)
+app.get('/users', usersQueries.getUsers)
 
 /**
  * @swagger
- * /saisons/{saisons_id}:
+ * /users/{users_id}:
  *  get:
  *      tags:
- *          - saisons
- *      description: Use to request saisons by id
+ *          - users
+ *      description: Use to request users by id
  *      parameters:
- *        - name: 'saisons_id'
+ *        - name: 'users_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -85,7 +85,7 @@ app.get('/saisons', saisonsQueries.getSaisons)
  *          '200':
  *              description: successful operation
  */
-app.get('/saisons/:saisons_id', saisonsQueries.getSaisonById)
+app.get('/users/:users_id', usersQueries.getUsersById)
 
 /**
  * @swagger
@@ -123,26 +123,26 @@ app.get('/series/:series_id', seriesQueries.getSerieById)
 
 /**
  * @swagger
- * /categories:
+ * /series_actors:
  *  get:
  *      tags:
- *          - categories
- *      description: Use to request all episodes
+ *          - series
+ *      description: Use to request all series_actors
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/categories', categoriesQueries.getCategories)
+app.get('/series_actors', seriesActorQueries.getSeriesActors)
 
 /**
  * @swagger
- * /categories/{categories_id}:
+ * /series_actors/{series_actors_id}:
  *  get:
  *      tags:
- *          - categories
- *      description: Use to request categories by id
+ *          - series
+ *      description: Use to request series_actors by id
  *      parameters:
- *        - name: 'categories_id'
+ *        - name: 'series_actors_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -153,7 +153,75 @@ app.get('/categories', categoriesQueries.getCategories)
  *          '200':
  *              description: successful operation
  */
-app.get('/categories/:categories_id', categoriesQueries.getCategoriesById)
+app.get('/series_actors/:series_actors_id',seriesActorQueries.getSeriesActorsById)
+
+/**
+ * @swagger
+ * /series_categories:
+ *  get:
+ *      tags:
+ *          - series
+ *      description: Use to request all series_categories
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
+
+/**
+ * @swagger
+ * /series_categories/{series_categories_id}:
+ *  get:
+ *      tags:
+ *          - series
+ *      description: Use to request series_categories by id
+ *      parameters:
+ *        - name: 'series_categories_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/series_categories/:series_categories_id',seriesCategoriesQueries.getSeriesCategoriesById)
+
+/**
+ * @swagger
+ * /saisons:
+ *  get:
+ *      tags:
+ *          - saisons
+ *      description: Use to request all saisons
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get('/saisons', saisonsQueries.getSaisons)
+
+/**
+ * @swagger
+ * /saisons/{saisons_id}:
+ *  get:
+ *      tags:
+ *          - saisons
+ *      description: Use to request saisons by id
+ *      parameters:
+ *        - name: 'saisons_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/saisons/:saisons_id', saisonsQueries.getSaisonById)
 
 /**
  * @swagger
@@ -188,6 +256,74 @@ app.get('/episodes', episodesQueries.getEpisodes)
  *              description: successful operation
  */
 app.get('/episodes/:episodes_id', episodesQueries.getEpisodesById)
+
+/**
+ * @swagger
+ * /synopsis:
+ *  get:
+ *      tags:
+ *          - synopsis
+ *      description: Use to request all synopsis
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get('/synopsis', synopsisQueries.getSynopsis)
+
+/**
+ * @swagger
+ * /synopsis/{synopsis_id}:
+ *  get:
+ *      tags:
+ *          - synopsis
+ *      description: Use to request synopsis by id
+ *      parameters:
+ *        - name: 'synopsis_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/synopsis/:synopsis_id', synopsisQueries.getSynopsisById)
+
+/**
+ * @swagger
+ * /categories:
+ *  get:
+ *      tags:
+ *          - categories
+ *      description: Use to request all episodes
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get('/categories', categoriesQueries.getCategories)
+
+/**
+ * @swagger
+ * /categories/{categories_id}:
+ *  get:
+ *      tags:
+ *          - categories
+ *      description: Use to request categories by id
+ *      parameters:
+ *        - name: 'categories_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/categories/:categories_id', categoriesQueries.getCategoriesById)
 
 /**
  * @swagger
@@ -238,6 +374,27 @@ app.get('/listen', listenQueries.getListen)
 
 /**
  * @swagger
+ * /listen/{listen_id}:
+ *  get:
+ *      tags:
+ *          - listen
+ *      description: Use to request listen by id
+ *      parameters:
+ *        - name: 'listen_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/listen/:listen_id', listenQueries.getListenById)
+
+/**
+ * @swagger
  * /role:
  *  get:
  *      tags:
@@ -251,10 +408,31 @@ app.get('/role', roleQueries.getRole)
 
 /**
  * @swagger
+ * /role/{roles_id}:
+ *  get:
+ *      tags:
+ *          - role
+ *      description: Use to request role by id
+ *      parameters:
+ *        - name: 'roles_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/role/:roles_id', roleQueries.getRoleById)
+
+/**
+ * @swagger
  * /actors:
  *  get:
  *      tags:
- *          - actor
+ *          - actors
  *      description: Use to request all actors
  *      responses:
  *          '200':
@@ -264,55 +442,24 @@ app.get('/actors', actorsQueries.getActors)
 
 /**
  * @swagger
- * /series_actors:
+ * /actors/{actors_id}:
  *  get:
  *      tags:
- *          - series
- *      description: Use to request all series_actors
+ *          - actors
+ *      description: Use to request actors by id
+ *      parameters:
+ *        - name: 'actors_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
  *      responses:
  *          '200':
- *              description: results rows
+ *              description: successful operation
  */
-app.get('/series_actors', seriesActorQueries.getSeriesActors)
-
-/**
- * @swagger
- * /series_categories:
- *  get:
- *      tags:
- *          - series
- *      description: Use to request all series_categories
- *      responses:
- *          '200':
- *              description: results rows
- */
-app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
-
-/**
- * @swagger
- * /synopsis:
- *  get:
- *      tags:
- *          - synopsis
- *      description: Use to request all synopsis
- *      responses:
- *          '200':
- *              description: results rows
- */
-app.get('/synopsis', synopsisQueries.getSynopsis)
-
-/**
- * @swagger
- * /users:
- *  get:
- *      tags:
- *          - users
- *      description: Use to request all users
- *      responses:
- *          '200':
- *              description: results rows
- */
-app.get('/users', usersQueries.getUsers)
+app.get('/actors/:actors_id', actorsQueries.getActorById)
 
 app.listen(port, () => {
     console.log("Running on port " + port);
