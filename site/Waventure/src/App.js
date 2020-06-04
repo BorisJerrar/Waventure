@@ -1,24 +1,27 @@
 import React ,{useState} from "react";
 import './App.css';
-import Categorie from './components/Categorie.jsx'
 import  Header from './components/Header'
 
 
 function App() {
-  const [trigger, setTrigger] = useState(false)
-  const triggering = () => {
-    if(trigger){
-    setTrigger(!trigger)
+  const [categoriesTrigger, setCategoriesTrigger] = useState(false)
+  const [accountTrigger, setAccountTriggerTrigger] = useState(false)
+  const triggeringCategory = () => {
+    if(categoriesTrigger){
+      setCategoriesTrigger(!categoriesTrigger)
+    } else if(accountTrigger){
+      setAccountTriggerTrigger(!accountTrigger)
     }
   }
   return (
-    <div className='App' onClick={triggering}>
+    <div className='App' onClick={triggeringCategory}>
 <>
     <Header
-    trigger={trigger}
-    setTrigger={setTrigger}
+    categoriesTrigger={categoriesTrigger}
+    setCategoriesTrigger={setCategoriesTrigger}
+    accountTrigger={accountTrigger}
+    setAccountTriggerTrigger={setAccountTriggerTrigger}
     />
-    <Categorie/>
 </>
     </div>
   );
