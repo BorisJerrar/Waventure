@@ -4,6 +4,7 @@ const cors = require('cors')
 const port = process.env.port|| 4000
 const app = express()
 const db = require('../db/database')
+const fs = require('fs')
 
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
@@ -51,6 +52,16 @@ app.use(
 
 app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
+})
+
+app.get('/test', (req, res) => {
+  let data = req.query.url
+
+  let read = fs.createReadStream(`./src/img/${data}.jpg`);
+  read.on('open', ()=>{
+    res.set('Content-Type', 'image/jpeg')
+    read.pipe(res)
+  })
 })
 
 /**
