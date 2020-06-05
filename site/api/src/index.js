@@ -70,7 +70,7 @@ app.get('/sound/:sound', (req, res) => {
 
   let read = fs.createReadStream(`./src/sound/${sound}.mp3`);
   read.on('open', ()=>{
-    res.set('Content-Type', 'audio/mpeg')
+    res.writeHead(206,{'Content-Type': 'audio/mpeg'})
     read.pipe(res)
   })
 })
