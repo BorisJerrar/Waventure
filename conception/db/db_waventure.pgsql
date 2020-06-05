@@ -46,7 +46,7 @@ CREATE TABLE saisons (
 );
 
 INSERT INTO saisons (serieID, title, saison_number, quantite)
-      VALUES ('1', 'saison 1', '1', '13');
+      VALUES ('2', 'saison 1', '1', '13');
 
 CREATE TABLE episodes (
       episodes_id serial NOT NULL PRIMARY KEY,
@@ -59,7 +59,7 @@ CREATE TABLE episodes (
 );
 
 INSERT INTO episodes (saisonID, title, episode_number, duration, mp3File)
-      VALUES ('1', 'first aventure', '1', '00:06:49.00', '/mp3Files/file.mp3');
+      VALUES ('2', 'first aventure', '1', '00:06:49.00', 'titletest');
 
 CREATE TABLE categories (
       categories_id serial NOT NULL PRIMARY KEY,

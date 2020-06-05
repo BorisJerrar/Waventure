@@ -20,6 +20,17 @@ const getEpisodesById = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
+const getEpisodesByEpisodeNumber = (request, response) => {
+    const episodes_number = parseInt(request.params.episodes_number)
+   console. log(parseInt(request.params.episodes_number))
+
+    db.query('SELECT * FROM episodes WHERE episode_number = $1', [episodes_number], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 
 const createEpisodes = (request, response) => {
     const saisonid = request.query.saisonid
@@ -65,6 +76,7 @@ const deleteEpisodes = (request, response) => {
 module.exports = {
     getEpisodes,
     getEpisodesById,
+    getEpisodesByEpisodeNumber,
     createEpisodes,
     updateEpisodes,
     deleteEpisodes

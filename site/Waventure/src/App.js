@@ -1,6 +1,7 @@
 import React ,{useState} from "react";
 import './App.css';
 import  Header from './components/Header'
+import  Player from './components/Player'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     setAccountTriggerTrigger={setAccountTriggerTrigger}
     />
 </>
+<Player />
     </div>
   );
 }

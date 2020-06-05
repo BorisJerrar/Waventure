@@ -56,13 +56,20 @@ app.get('/', (request, response) => {
 
 app.get('/images/:image', (req, res) => {
   let image = req.params.image
-  
-  console.log(image);
-  
 
   let read = fs.createReadStream(`./src/img/${image}`);
   read.on('open', ()=>{
     res.set('Content-Type', 'image/jpeg')
+    read.pipe(res)
+  })
+})
+
+app.get('/sound/:sound', (req, res) => {
+  let sound = req.params.sound
+
+  let read = fs.createReadStream(`./src/sound/${sound}.mp3`);
+  read.on('open', ()=>{
+    res.set('Content-Type', 'audio/mpeg')
     read.pipe(res)
   })
 })
@@ -694,6 +701,26 @@ app.get('/episodes', episodesQueries.getEpisodes)
  *              description: successful operation
  */
 app.get('/episodes/:episodes_id', episodesQueries.getEpisodesById)
+/**
+ * @swagger
+ * /episodesNumber/{episodes_number}:
+ *  get:
+ *      tags:
+ *          - episodes
+ *      description: Use to request episodes by episode number
+ *      parameters:
+ *        - name: 'episodes_number'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get('/episodesNumber/:episodes_number', episodesQueries.getEpisodesByEpisodeNumber)
 
 /**
  * @swagger
