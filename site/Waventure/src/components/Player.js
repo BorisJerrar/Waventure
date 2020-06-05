@@ -1,35 +1,60 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
+import AudioPlayer from 'react-h5-audio-player';
+import "../style/Player.css";
 
 export default function Player() {
     const serverPath = process.env.REACT_APP_SERVER_PATH
 
-    const [episodeNumber, setEpisodeNumber] = useState(2)
+    const [episodeNumber, setEpisodeNumber] = useState(1)
+    const [episodeInfos, setEpisodeInfos] = useState({})
     const [urlAudio, setUrlAudio] = useState(``)
-    const [audioFile, setAudioFile] = useState()
-    const [playing, setPlaying] = useState(false)
     useEffect(() => {
         const fetchingAudio = async() => {
             const track = await fetch(`${serverPath}/episodesNumber/${episodeNumber}`)
             const data = await track.json()
+            await setEpisodeInfos(...data)
+            console.log(...data);
+            
             await setUrlAudio(`${serverPath}/sound/${data[0].mp3file}`)
         }
         fetchingAudio()
     },[episodeNumber,serverPath])
-    const audioRef = useRef(new Audio())
-        const playFunction = async() => {
-            setPlaying(!playing)
- if(!playing){
-audioRef.current.src = urlAudio
-audioRef.current.play()
- } else {
-    audioRef.current.pause()
- }
-}
+    const nextSaga = () => {
+        console.log(episodeInfos);
+        
+        return setEpisodeNumber(episodeNumber + 1)
+    }
+    const prevSaga = () => {
+        return setEpisodeNumber(episodeNumber - 1)
+    }
+    const header = () => {
+return(
+    <>
+    <p>Episode 1 | La Legende</p>
+    <p>Nico {'&'} Matt</p>
+    </>
+)
+    }
+    const footer = () => {
+return(
+    <>
+    <p>La Legende de Xantah</p>
+    <p>Synopsys</p>
+    <p>En savoir plus</p>
+    </>
+)
+    }
     return (
-        <div>
-            <button onClick={() => setEpisodeNumber(episodeNumber - 1)}>Precedent</button>
-            <button onClick={() => setEpisodeNumber(episodeNumber + 1)}>Suivant</button>
-            <button onClick={playFunction}>Play</button>
-        </div>
+        <AudioPlayer
+        header={header()}
+        footer={footer()}
+        src={urlAudio}
+        onPlay={e => console.log(e)}
+        showSkipControls={true}
+        showJumpControls={false}
+        onClickPrevious={() => {prevSaga()}}
+        onClickNext={() => {nextSaga()}}
+        onEnded={() => {nextSaga()}}
+      />
     )
 }
