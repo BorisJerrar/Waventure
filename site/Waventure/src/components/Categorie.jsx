@@ -7,13 +7,13 @@ export default function Categorie({title}) {
     const slider = useRef(null)
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
     const pathImg= process.env.REACT_APP_STATIC_IMG_PATH
-    console.log(pathImg);
+   
     
 
     const fetchSeries = async() =>{
         const reponse = await fetch(`http://localhost:4000/series`)
         const data = await reponse.json()
-        console.log(data);
+       
         setSeries(data)
 }
 
@@ -29,7 +29,7 @@ export default function Categorie({title}) {
         slider.current.style.marginLeft = position + "px"
     }
 
-    console.log(series);
+
     
 useEffect(()=>{
         fetchSeries()

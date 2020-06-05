@@ -1,11 +1,9 @@
 import React ,{useState} from "react";
 import './App.css';
 import  Header from './components/Header'
-<<<<<<< HEAD
 import  Player from './components/Player'
-=======
 import Banner from './components/Banner'
->>>>>>> charlesTest
+import Categorie from './components/Categorie'
 
 
 function App() {
@@ -27,8 +25,6 @@ function App() {
     accountTrigger={accountTrigger}
     setAccountTriggerTrigger={setAccountTriggerTrigger}
     />
-<<<<<<< HEAD
-=======
     <Banner/>
     <Categorie
     title={"Les classiques"}
@@ -40,9 +36,7 @@ function App() {
     title={"Aventure Spatiale"}
     />
     
->>>>>>> charlesTest
 </>
-<Player />
     </div>
   );
 }
