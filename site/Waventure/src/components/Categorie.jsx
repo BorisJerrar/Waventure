@@ -1,68 +1,59 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import "../style/Categorie.css";
 
-export default function Categorie() {
-    const [image, setImage] = useState([])
-    const [series, setSeries]= useState([])
+export default function Categorie({title}) {
+    const [series, setSeries] = useState([])
+    const [toggle, setToggle] = useState(false)
+    const slider = useRef(null)
+    const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
+    const pathImg= process.env.REACT_APP_STATIC_IMG_PATH
+    console.log(pathImg);
+    
 
     const fetchSeries = async() =>{
         const reponse = await fetch(`http://localhost:4000/series`)
         const data = await reponse.json()
         console.log(data);
-        
+        setSeries(data)
 }
- /*
-    const fetchImages = async() =>{
-        const reponse = await fetch(`http://localhost:4000/test?url=survivaure`)
-        const data = await reponse.blob()
-        setImage(URL.createObjectURL(data))
 
+    const slideCoverLeft = e =>{
+        const position = slider.current.offsetLeft - 300
+        slider.current.style.marginLeft = position + "px"
+          setToggle(true)  
+      
         
-    }*/
-    
-/* 
-    const fetchImages = async()=>{
-        fetch(`http://localhost:4000/series`)
-        .then(response=> response.json())
-        .then(data=>{
-            console.log(data);
-            const tabimages = data.map(i => `http://localhost:4000/images/${i.image}`)
-            console.log(tabimages);
-            
-            return data;
-        }) */
-        /* .then(async data =>{
-            await Promise.all(data.map((item)=>{
-                return fetch(`http://localhost:4000/test?url=survivaure`)
-                .then(response => response.blob())
-                .then(data=>{
-                    console.log(URL.createObjectURL(data));
-                    setImage([...image, URL.createObjectURL(data)])
-                    
-                }) */
-           /*  })) */
-        /* }) */
+    }
+    const slideCoverRight = e =>{
+        const position = slider.current.offsetLeft + 300
+        slider.current.style.marginLeft = position + "px"
     }
 
-    console.log(image);
+    console.log(series);
     
 useEffect(()=>{
-        fetchImages()
+        fetchSeries()
     }, []) 
 
  
      return(
-    /* <div className="container">
-        {series.map((item, index)=>{
+    <div className="catalog">
+        <h2 className="catalogTitle">{title}</h2>
+        
+        <div className="catalogCoverContainer">
+            <div ref={slider} className="sliderCover">
+                 {series.map((item, index)=>{
             return(
-            <div key={index}>
-                <img src={item.image} alt=""/>
-                <p>{item.title}</p>
+                <img key={index} className='catalogCover'src={`${url}/${item.image}`} alt=""/>
+                )    
+        })} 
             </div>
-            )
-        })}
-    </div> */
-    <div>
-    <img src={image} style={{'width': '300px'}} alt=""/>
+           
+        <img className="arrowCatalogFront" onClick={slideCoverLeft} src={`${pathImg}/arrowCatalog.svg`} alt=""/>
+        <img className="arrowCatalogBack" onClick={slideCoverRight} style={toggle? {display: "block"} : {display: "none"}} src={`${pathImg}/arrowCatalog.svg`} alt=""/>
+        </div>
+       
+    
     </div>
 )    
 

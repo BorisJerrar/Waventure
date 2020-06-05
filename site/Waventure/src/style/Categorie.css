@@ -1,0 +1,55 @@
+.catalog{
+    background-color: #242424;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin-top: 70px ;
+    overflow-x: hidden;
+}
+
+.catalogTitle{
+    font-family: 'Pontano Sans', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.catalogCoverContainer{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+.catalogCover{
+    margin-right: 25px;
+    width: 167px;
+}
+
+.arrowCatalogFront{
+    background: linear-gradient(to right, rgba(36,36,36,0), rgba(25,25,25,1));
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    padding: 10px;
+    right: 0;
+    top: 0;
+}
+.arrowCatalogBack{
+    background: linear-gradient(to right, rgba(36,36,36,0), rgba(25,25,25,1));
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    padding: 10px;
+    Left: 0;
+    top: 0;
+    transform: rotate(180deg);
+}
+.sliderCover{
+    display: flex;
+    flex-wrap: nowrap;
+    transition: 2s ease-in-out margin-left;
+}
+

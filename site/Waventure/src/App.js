@@ -2,6 +2,7 @@ import React ,{useState} from "react";
 import './App.css';
 import Categorie from './components/Categorie.jsx'
 import  Header from './components/Header'
+import Banner from './components/Banner'
 
 
 function App() {
@@ -18,7 +19,17 @@ function App() {
     trigger={trigger}
     setTrigger={setTrigger}
     />
-    <Categorie/>
+    <Banner/>
+    <Categorie
+    title={"Les classiques"}
+    />
+    <Categorie
+    title={"Aventure Médiéval"}
+    />
+    <Categorie
+    title={"Aventure Spatiale"}
+    />
+    
 </>
     </div>
   );
