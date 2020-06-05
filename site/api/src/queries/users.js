@@ -23,13 +23,14 @@ const getUsersById = (request, response) => {
 const createUsers = (request, response) => {
     const { username, firstname, lastname, email, birthdate, password } = request.body
 
-    db.query('INSERT INTO users ( username, firstname, lastname, email, birthdate,  password ) VALUES ($1, $2, $3, $4, $5, $6)', [username, firstname, lastname, email, birthdate, password], (error, results) => {
+    db.query('INSERT INTO users ( username, firstname, lastname, email, birthdate, password ) VALUES ($1, $2, $3, $4, $5, crypt($6, gen_salt(\'md5\')))', [username, firstname, lastname, email, birthdate, password], (error, results) => {
         if (error) {
             throw error
         }
         response.status(201).send(`User added with ID: ${results.insertId}`)
     })
 }
+
 const updateUsers = (request, response) => {
     const users_id = parseInt(request.params.users_id)
     const { username, firstname, lastname, email, birthdate,  password } = request.body
