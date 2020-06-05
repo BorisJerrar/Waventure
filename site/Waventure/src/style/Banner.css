@@ -10,7 +10,20 @@
 
 .wedetteCover{
     width: 30%;
+    position: relative;
 }
+
+.wedetteCoverImage{
+    width: 100%;
+}
+
+.btnPlay{
+    position: absolute;
+    width: 60px;
+    right: 40px;
+    bottom: 35px;
+}
+
 
 .wedetteIndicator{
     padding: 2%;
