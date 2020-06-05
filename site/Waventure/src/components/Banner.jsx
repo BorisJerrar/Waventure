@@ -15,9 +15,17 @@ export default function Banner() {
     }, [])
     return (
         <div className="wedetteContainer">
-            <img className="wedetteCover" src={`${url}/clydevanilla.jpg`} alt="" />
-            <h2 className="wedetteIndicator">Wedette</h2>
+            <div className="wedetteCover">
+              <img className="wedetteCoverImage" src={`${url}/clydevanilla.jpg`} alt="" />  
+              <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
+            </div>
+            <div className="wedetteLogoContainer">
+            <span><img src="./img/logoWedette.svg" alt="W"/></span>
+            <h2 className="wedetteIndicator">edette</h2>
+            </div>
+            
             <div className="wedetteDescription">
+                
                 <h3 className="wedetteTitle">CLYDE VANILLA</h3>
                 <p className="wedetteSynopsis">Le jeune garçon Clyde part en quête de la pierre du Destin à travers l’univers.
                 Il rencontrera notamment le sergent Moustachios, fondateur de la guilde des chasseurs de trésors,
@@ -33,3 +41,4 @@ export default function Banner() {
         </div>
     )
 }
+

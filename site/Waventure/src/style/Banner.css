@@ -10,11 +10,29 @@
 
 .wedetteCover{
     width: 30%;
+    position: relative;
+}
+
+.wedetteCoverImage{
+    width: 100%;
+    opacity: 0.80;
+}
+
+.btnPlay{
+    position: absolute;
+    width: 60px;
+    right: 40px;
+    bottom: 35px;
+}
+
+.wedetteLogoContainer{
+    display: flex;
+    padding: 2%;
+    margin-top: 10px;
 }
 
 .wedetteIndicator{
-    padding: 2%;
-    margin-top: 10px;
+    margin-left: -12px;
 }
 
 .wedetteDescription{
