@@ -26,6 +26,7 @@ const swaggerOptions = {
 
 
 /* import queries */
+const mainQueries = require('./queries/main')
 const saisonsQueries = require('./queries/saisons')
 const categoriesQueries = require('./queries/categories')
 const episodesQueries = require('./queries/episodes')
@@ -73,6 +74,27 @@ app.get('/sound/:sound', (req, res) => {
     read.pipe(res)
   })
 })
+
+/* MAIN */
+/**
+ * @swagger
+ * /sagaInfo/{series_id}:
+ *  get:
+ *      tags:
+ *          - main
+ *      description: Use to request all info on saga with episode_number
+ *      parameters:
+ *          - name: 'series_id'
+ *            in: 'path'
+ *            type: integer
+ *            minimum: 1
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get('/sagaInfo/:series_id', mainQueries.getSagaInfosBySerieId)
+
+
 
 /**
  * @swagger
