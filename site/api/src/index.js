@@ -701,6 +701,7 @@ app.get('/episodes', episodesQueries.getEpisodes)
  *              description: successful operation
  */
 app.get('/episodes/:episodes_id', episodesQueries.getEpisodesById)
+
 /**
  * @swagger
  * /episodesNumber/{episodes_number}:
@@ -956,6 +957,72 @@ app.get('/categories/:categories_id', categoriesQueries.getCategoriesById)
 
 /**
  * @swagger
+ * /categories:
+ *  post:
+ *      tags:
+ *          - categories
+ *      description: Use to create categories
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: name
+ *          in: query
+ *          type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/categories', categoriesQueries.createCategories)
+
+/**
+ * @swagger
+ * /categories/{categories_id}:
+ *  put:
+ *      tags:
+ *          - categories
+ *      description: Use to update categories
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: categories_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: name
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.put('/categories/:categories_id', categoriesQueries.updateCategories)
+
+/**
+ * @swagger
+ * /categories/{categories_id}:
+ *  delete:
+ *      tags:
+ *          - categories
+ *      description: Use to delete categories by id
+ *      parameters:
+ *        - name: 'categories_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/categories/:categories_id', categoriesQueries.deleteCategories)
+
+/**
+ * @swagger
  * /favorites:
  *  get:
  *      tags:
@@ -987,6 +1054,78 @@ app.get('/favorites', favoritesQueries.getFavorites)
  *              description: successful operation
  */
 app.get('/favorites/:favorites_id', favoritesQueries.getFavoritesById)
+
+/**
+ * @swagger
+ * /favorites:
+ *  post:
+ *      tags:
+ *          - favorites
+ *      description: Use to create favorites
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: userid
+ *            in: query
+ *            type: string
+ *          - name: serieid
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.post('/favorites', favoritesQueries.createFavorites)
+
+/**
+ * @swagger
+ * /favorites/{favorites_id}:
+ *  put:
+ *      tags:
+ *          - favorites
+ *      description: Use to update favorites
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: favorites_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: userid
+ *            in: query
+ *            type: string
+ *          - name: serieid
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.put('/favorites/:favorites_id', favoritesQueries.updateFavorites)
+
+/**
+ * @swagger
+ * /favorites/{favorites_id}:
+ *  delete:
+ *      tags:
+ *          - favorites
+ *      description: Use to delete favorites by id
+ *      parameters:
+ *        - name: 'favorites_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/favorites/:favorites_id', favoritesQueries.deleteFavorites)
 
 /**
  * @swagger
@@ -1024,6 +1163,84 @@ app.get('/listen/:listen_id', listenQueries.getListenById)
 
 /**
  * @swagger
+ * /listen:
+ *  post:
+ *      tags:
+ *          - listen
+ *      description: Use to create listen
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: userid
+ *            in: query
+ *            type: integer
+ *          - name: episodeid
+ *            in: query
+ *            type: integer
+ *          - name: duration
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.post('/listen', listenQueries.createListen)
+
+/**
+ * @swagger
+ * /listen/{listen_id}:
+ *  put:
+ *      tags:
+ *          - listen
+ *      description: Use to update listen
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: listen_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: userid
+ *            in: query
+ *            type: integer
+ *          - name: episodeid
+ *            in: query
+ *            type: integer
+ *          - name: duration
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.put('/listen/:listen_id', listenQueries.updateListen)
+
+/**
+ * @swagger
+ * /listen/{listen_id}:
+ *  delete:
+ *      tags:
+ *          - listen
+ *      description: Use to delete listen by id
+ *      parameters:
+ *        - name: 'listen_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/listen/:listen_id', listenQueries.deleteListen)
+
+/**
+ * @swagger
  * /role:
  *  get:
  *      tags:
@@ -1058,6 +1275,78 @@ app.get('/role/:roles_id', roleQueries.getRoleById)
 
 /**
  * @swagger
+ * /role:
+ *  post:
+ *      tags:
+ *          - role
+ *      description: Use to create role
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: actorid
+ *            in: query
+ *            type: integer
+ *          - name: character
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.post('/role', roleQueries.createRole)
+
+/**
+ * @swagger
+ * /role/{roles_id}:
+ *  put:
+ *      tags:
+ *          - role
+ *      description: Use to update role
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: roles_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: actorid
+ *            in: query
+ *            type: integer
+ *          - name: character
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.put('/role/:roles_id', roleQueries.updateRole)
+
+/**
+ * @swagger
+ * /role/{roles_id}:
+ *  delete:
+ *      tags:
+ *          - role
+ *      description: Use to delete role by id
+ *      parameters:
+ *        - name: 'roles_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/role/:roles_id', roleQueries.deleteRole)
+
+/**
+ * @swagger
  * /actors:
  *  get:
  *      tags:
@@ -1089,6 +1378,72 @@ app.get('/actors', actorsQueries.getActors)
  *              description: successful operation
  */
 app.get('/actors/:actors_id', actorsQueries.getActorById)
+
+/**
+ * @swagger
+ * /actors:
+ *  post:
+ *      tags:
+ *          - actors
+ *      description: Use to create actors
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: name
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.post('/actors', actorsQueries.createActors)
+
+/**
+ * @swagger
+ * /actors/{actors_id}:
+ *  put:
+ *      tags:
+ *          - actors
+ *      description: Use to update actors
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *          - name: actors_id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *          - name: name
+ *            in: query
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.put('/actors/:actors_id', actorsQueries.updateActors)
+
+/**
+ * @swagger
+ * /actors/{actors_id}:
+ *  delete:
+ *      tags:
+ *          - actors
+ *      description: Use to delete actors by id
+ *      parameters:
+ *        - name: 'actors_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.delete('/actors/:actors_id', actorsQueries.deleteActors)
 
 app.listen(port, () => {
     console.log("Running on port " + port);
