@@ -44,7 +44,7 @@ useEffect(()=>{
             <div ref={slider} className="sliderCover">
                  {series.map((item, index)=>{
             return(
-                <img key={index} className='catalogCover'src={`${url}/${item.image}`} alt=""/>
+                <img key={index} onClick={() => console.log(series)} className='catalogCover'src={`${url}/${item.image}`} alt=""/>
                 )    
         })} 
             </div>

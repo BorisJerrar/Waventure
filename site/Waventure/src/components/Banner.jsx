@@ -4,22 +4,15 @@ import "../style/Banner.css";
 export default function Banner() {
     const [wedette, setWedette] = useState({})
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
-    console.log(url);
-
     const fetchWedette = async () => {
         const reponse = await fetch(`http://localhost:4000/series/1`)
         const data = await reponse.json()
-        console.log(data);
         setWedette(data[0].image)
     }
 
     useEffect(() => {
         fetchWedette()
     }, [])
-
-    console.log(wedette);
-
-
     return (
         <div className="wedetteContainer">
             <img className="wedetteCover" src={`${url}/clydevanilla.jpg`} alt="" />

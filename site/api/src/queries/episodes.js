@@ -22,8 +22,6 @@ const getEpisodesById = (request, response) => {
 }
 const getEpisodesByEpisodeNumber = (request, response) => {
     const episodes_number = parseInt(request.params.episodes_number)
-   console. log(parseInt(request.params.episodes_number))
-
     db.query('SELECT * FROM episodes WHERE episode_number = $1', [episodes_number], (error, results) => {
         if (error) {
             throw error

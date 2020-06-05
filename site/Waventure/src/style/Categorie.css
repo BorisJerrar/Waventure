@@ -49,6 +49,6 @@
 .sliderCover{
     display: flex;
     flex-wrap: nowrap;
-    transition: 2s ease-in-out margin-left;
+    transition: .3s ease-in-out margin-left;
 }
 
