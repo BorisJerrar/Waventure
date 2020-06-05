@@ -9,6 +9,32 @@
   background-color: #1B1B1B;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 }
+.playerWarper{
+  display: flex;
+  width: 100%;
+  user-select: none;
+}
+.playerHeader{
+  padding-top: 50px;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  user-select: none;
+}
+.playerFooter{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  padding: 40px;
+  user-select: none;
+}
+.playerWarper img{
+  background-color: #1B1B1B;
+  width: 20%;
+  height: auto;
+  padding: 30px;
+}
 .rhap_container:focus:not(:focus-visible) {
   outline: 0;
 }
@@ -123,6 +149,7 @@
 
 .rhap_controls-section {
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
@@ -161,8 +188,9 @@ display: none;
 
 .rhap_volume-controls {
   display: flex;
+  width: 100%;
   flex: 1 0 auto;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
