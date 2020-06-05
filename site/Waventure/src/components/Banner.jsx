@@ -26,9 +26,9 @@ export default function Banner() {
               <img className="wedetteCoverImage" src={`${url}/clydevanilla.jpg`} alt="" />  
               <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
             </div>
-            <div >
+            <div className="wedetteLogoContainer">
             <span><img src="./img/logoWedette.svg" alt="W"/></span>
-            <h2 className="wedetteIndicator">Wedette</h2>
+            <h2 className="wedetteIndicator">edette</h2>
             </div>
             
             <div className="wedetteDescription">

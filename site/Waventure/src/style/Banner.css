@@ -15,6 +15,7 @@
 
 .wedetteCoverImage{
     width: 100%;
+    opacity: 0.80;
 }
 
 .btnPlay{
@@ -24,10 +25,14 @@
     bottom: 35px;
 }
 
-
-.wedetteIndicator{
+.wedetteLogoContainer{
+    display: flex;
     padding: 2%;
     margin-top: 10px;
+}
+
+.wedetteIndicator{
+    margin-left: -12px;
 }
 
 .wedetteDescription{
