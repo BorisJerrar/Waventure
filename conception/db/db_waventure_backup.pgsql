@@ -17,12 +17,13 @@ CREATE TABLE series (
       series_id serial NOT NULL PRIMARY KEY,
       title varchar(100),
       image varchar(150),
-      imageLg varchar(150),
-      saison smallint,
-      autor varchar(60),
+      image_lg varchar(150),
+      image_bg varchar(150),
+      season smallint,
+      author varchar(60),
       duration time,
-      uploadDate date,
-      creationDate date
+      upload_date date,
+      creation-date date
 );
 
 CREATE TABLE favorites (
