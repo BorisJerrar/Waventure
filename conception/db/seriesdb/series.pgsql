@@ -14,4 +14,4 @@ CREATE TABLE series (
 
 
 COPY series(title,image,image_lg,image_bg,season,author,duration,upload_date,creation_date)
-FROM '/Users/borisjerrar/Desktop/series.csv' DELIMITER ';' CSV HEADER;
+FROM '/Users/borisjerrar/waventure/conception/db/seriesdb/series.csv' DELIMITER ';' CSV HEADER;
