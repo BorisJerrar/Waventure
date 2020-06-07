@@ -21,9 +21,9 @@ const getSerieById = (request, response) => {
 }
 
 const createSerie = (request, response) => {
-    const { title, image, imagelg, autor, duration, uploaddate, creationdate } = request.body
+    const { title, image, image_lg, author, duration, upload_date, creation_date } = request.body
 
-    db.query('INSERT INTO serie ( title, image, imagelg, autor, duration, uploaddate, creationdate ) VALUES ($1, $2, $3, $4, $5, $6, $7)', [title, image, imagelg, autor, duration, uploaddate, creationdate], (error, results) => {
+    db.query('INSERT INTO serie ( title, image, image_lg, author, duration, upload_date, creation_date ) VALUES ($1, $2, $3, $4, $5, $6, $7)', [title, image, image_lg, author, duration, upload_date, creation_date], (error, results) => {
         if (error) {
             throw error
         }
@@ -33,10 +33,10 @@ const createSerie = (request, response) => {
 
 const updateSerie = (request, response) => {
     const serie_id = parseInt(request.params.serie_id)
-    const { title, image, imagelg, autor, duration, uploaddate, creationdate } = request.body
+    const { title, image, image_lg, author, duration, upload_date, creation_date } = request.body
 
     db.query(
-        'UPDATE serie SET title = $1, image = $2, imagelg = $3, autor = $4, duration = $5, uploaddate = $6, creationdate = $7 WHERE serie_id = $8', [title, image, imagelg, autor, duration, uploaddate, creationdate, serie_id],
+        'UPDATE serie SET title = $1, image = $2, image_lg = $3, author = $4, duration = $5, upload_date = $6, creation_date = $7 WHERE serie_id = $8', [title, image, image_lg, author, duration, upload_date, creation_date, serie_id],
         (error, results) => {
             if (error) {
                 throw error
