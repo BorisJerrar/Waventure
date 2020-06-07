@@ -11,7 +11,7 @@ const getActor = (request, response) => {
 }
 
 const getActorById = (request, response) => {
-  const actor_id = parseInt(request.params.actors_id)
+  const actor_id = parseInt(request.params.actor_id)
   db.query('SELECT * FROM actor WHERE actor_id = $1', [actor_id], (error, results) => {
     if (error) {
       throw error
@@ -40,7 +40,7 @@ const updateActor = (request, response) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`actors modified with ID: ${actor_id}`)
+            response.status(200).send(`actor modified with ID: ${actor_id}`)
         }
     )
 }
@@ -52,7 +52,7 @@ const deleteActor = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`actors deleted with ID: ${actor_id}`)
+        response.status(200).send(`actor deleted with ID: ${actor_id}`)
     })
 }
 

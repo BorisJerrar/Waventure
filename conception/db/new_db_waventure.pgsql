@@ -86,7 +86,7 @@ CREATE TABLE actor (
 INSERT INTO actor (name)
       VALUES ('jean phil');
 
-CREATE TABLE ROLE (
+CREATE TABLE role (
       role_id serial NOT NULL PRIMARY KEY,
       actor_id serial,
       character varchar(100),

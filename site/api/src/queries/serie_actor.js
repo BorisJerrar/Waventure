@@ -1,8 +1,8 @@
 const db = require('../../db/database')
 
 
-const getSeriesActors = (request, response) => {
-  db.query('SELECT * FROM series_actors ORDER BY series_actors_id ASC', (error, results) => {
+const getSerieActor = (request, response) => {
+  db.query('SELECT * FROM serie_actor ORDER BY serie_actor_id ASC', (error, results) => {
     if (error) {
       throw error
     }
@@ -10,9 +10,9 @@ const getSeriesActors = (request, response) => {
   })
 }
 
-const getSeriesActorsById = (request, response) => {
-  const series_actors_id = parseInt(request.params.series_actors_id)
-  db.query('SELECT * FROM series_actors WHERE series_actors_id = $1', [series_actors_id], (error, results) => {
+const getSerieActorById = (request, response) => {
+  const serie_actor_id = parseInt(request.params.serie_actor_id)
+  db.query('SELECT * FROM serie_actor WHERE serie_actor_id = $1', [serie_actor_id], (error, results) => {
     if (error) {
       throw error
     }
@@ -20,51 +20,51 @@ const getSeriesActorsById = (request, response) => {
   })
 }
 
-const createSeriesActors = (request, response) => {
-    const serieid = request.query.serieid
-    const actorid = request.query.actorid
+const createSerieActor = (request, response) => {
+    const serie_id = request.query.serie_id
+    const actor_id = request.query.actor_id
 
-    db.query('INSERT INTO series_actors ( serieid, actorid ) VALUES ($1, $2)', [ serieid, actorid ], (error, results) => {
+    db.query('INSERT INTO serie_actor ( serie_id, actor_id ) VALUES ($1, $2)', [ serie_id, actor_id ], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`Series_actors added with ID: ${results.insertId}`)
+        response.status(201).send(`Series_actor added with ID: ${results.insertId}`)
     })
 }
 
-const updateSeriesActors = (request, response) => {
-    const series_actors_id = parseInt(request.params.series_actors_id)
-    const serieid = request.query.serieid
-    const actorid = request.query.actorid
+const updateSerieActor = (request, response) => {
+    const serie_actor_id = parseInt(request.params.serie_actor_id)
+    const serie_id = request.query.serie_id
+    const actor_id = request.query.actor_id
 
     db.query(
-        'UPDATE series_actors SET serieid = $1, actorid = $2 WHERE series_actors_id = $3', [serieid, actorid, series_actors_id],
+        'UPDATE serie_actor SET serie_id = $1, actor_id = $2 WHERE serie_actor_id = $3', [serie_id, actor_id, serie_actor_id],
         (error, results) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`Series_actors modified with ID: ${series_actors_id}`)
+            response.status(200).send(`Series_actor modified with ID: ${serie_actor_id}`)
         }
     )
 }
 
-const deleteSeriesActors = (request, response) => {
-    const series_actors_id = parseInt(request.params.series_actors_id)
+const deleteSerieActor = (request, response) => {
+    const serie_actor_id = parseInt(request.params.serie_actor_id)
 
-    db.query('DELETE FROM series_actors WHERE series_actors_id = $1', [series_actors_id], (error, results) => {
+    db.query('DELETE FROM serie_actor WHERE serie_actor_id = $1', [serie_actor_id], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`Series_actors deleted with ID: ${series_actors_id}`)
+        response.status(200).send(`Series_actor deleted with ID: ${serie_actor_id}`)
     })
 }
 
 
 
 module.exports = {
-    getSeriesActors,
-    getSeriesActorsById,
-    createSeriesActors,
-    updateSeriesActors,
-    deleteSeriesActors
+    getSerieActor,
+    getSerieActorById,
+    createSerieActor,
+    updateSerieActor,
+    deleteSerieActor
 }

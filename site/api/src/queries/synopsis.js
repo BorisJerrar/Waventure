@@ -21,10 +21,10 @@ const getSynopsisById = (request, response) => {
 }
 
 const createSynopsis = (request, response) => {
-    const serieid = request.query.serieid
+    const serie_id = request.query.serie_id
     const body = request.query.body
 
-    db.query('INSERT INTO synopsis ( serieid, body ) VALUES ($1, $2)', [ serieid, body ], (error, results) => {
+    db.query('INSERT INTO synopsis ( serie_id, body ) VALUES ($1, $2)', [ serie_id, body ], (error, results) => {
         if (error) {
             throw error
         }
@@ -34,11 +34,11 @@ const createSynopsis = (request, response) => {
 
 const updateSynopsis = (request, response) => {
     const synopsis_id = parseInt(request.params.synopsis_id)
-    const serieid = request.query.serieid
+    const serie_id = request.query.serie_id
     const body = request.query.body
 
     db.query(
-        'UPDATE synopsis SET serieid = $1, body = $2 WHERE synopsis_id = $3', [serieid, body, synopsis_id],
+        'UPDATE synopsis SET serie_id = $1, body = $2 WHERE synopsis_id = $3', [serie_id, body, synopsis_id],
         (error, results) => {
             if (error) {
                 throw error

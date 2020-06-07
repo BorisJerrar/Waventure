@@ -2,7 +2,7 @@ const db = require('../../db/database')
 
 
 const getRole = (request, response) => {
-  db.query('SELECT * FROM role ORDER BY roles_id ASC', (error, results) => {
+  db.query('SELECT * FROM role ORDER BY role_id ASC', (error, results) => {
     if (error) {
       throw error
     }
@@ -11,8 +11,8 @@ const getRole = (request, response) => {
 }
 
 const getRoleById = (request, response) => {
-  const roles_id = parseInt(request.params.roles_id)
-  db.query('SELECT * FROM role WHERE roles_id = $1 ', [roles_id], (error, results) => {
+  const role_id = parseInt(request.params.role_id)
+  db.query('SELECT * FROM role WHERE role_id = $1 ', [role_id], (error, results) => {
     if (error) {
       throw error
     }
@@ -21,10 +21,10 @@ const getRoleById = (request, response) => {
 }
 
 const createRole = (request, response) => {
-    const actorid = request.query.actorid
+    const actor_id = request.query.actor_id
     const character = request.query.character
 
-    db.query('INSERT INTO role ( actorid, character ) VALUES ($1, $2)', [ actorid, character ], (error, results) => {
+    db.query('INSERT INTO role ( actor_id, character ) VALUES ($1, $2)', [ actor_id, character ], (error, results) => {
         if (error) {
             throw error
         }
@@ -33,29 +33,29 @@ const createRole = (request, response) => {
 }
 
 const updateRole = (request, response) => {
-    const roles_id = parseInt(request.params.roles_id)
-    const actorid = request.query.actorid
+    const role_id = parseInt(request.params.role_id)
+    const actor_id = request.query.actor_id
     const character = request.query.character
 
     db.query(
-        'UPDATE role SET actorid = $1, character = $2 WHERE roles_id = $3', [actorid, character, roles_id],
+        'UPDATE role SET actor_id = $1, character = $2 WHERE role_id = $3', [actor_id, character, role_id],
         (error, results) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`Role modified with ID: ${roles_id}`)
+            response.status(200).send(`Role modified with ID: ${role_id}`)
         }
     )
 }
 
 const deleteRole = (request, response) => {
-    const roles_id = parseInt(request.params.roles_id)
+    const role_id = parseInt(request.params.role_id)
 
-    db.query('DELETE FROM role WHERE roles_id = $1', [roles_id], (error, results) => {
+    db.query('DELETE FROM role WHERE role_id = $1', [role_id], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`role deleted with ID: ${roles_id}`)
+        response.status(200).send(`role deleted with ID: ${role_id}`)
     })
 }
 

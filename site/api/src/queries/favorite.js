@@ -23,9 +23,9 @@ const getFavoritesById = (request, response) => {
 
 const createFavorites = (request, response) => {
     const userid = request.query.userid
-    const serieid = request.query.serieid
+    const serie_id = request.query.serie_id
 
-    db.query('INSERT INTO favorites ( userid, serieid ) VALUES ($1, $2)', [ userid, serieid ], (error, results) => {
+    db.query('INSERT INTO favorites ( userid, serie_id ) VALUES ($1, $2)', [ userid, serie_id ], (error, results) => {
         if (error) {
             throw error
         }
@@ -37,9 +37,9 @@ const createFavorites = (request, response) => {
 const updateFavorites = (request, response) => {
     const favorites_id = parseInt(request.params.favorites_id)
     const userid = request.query.userid
-    const serieid = request.query.serieid
+    const serie_id = request.query.serie_id
     db.query(
-        'UPDATE favorites SET userid = $1, serieid = $2 WHERE favorites_id = $3', [userid, serieid, favorites_id],
+        'UPDATE favorites SET userid = $1, serie_id = $2 WHERE favorites_id = $3', [userid, serie_id, favorites_id],
         (error, results) => {
             if (error) {
                 throw error

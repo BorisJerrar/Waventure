@@ -147,13 +147,13 @@ app.get('/account/:account_id', accountQueries.getAccountById)
  *              properties:
  *                  username:
  *                      type: string
- *                  firstname:
+ *                  first_name:
  *                      type: string
- *                  lastname:
+ *                  last_name:
  *                      type: string
  *                  email:
  *                      type: string
- *                  birthdate:
+ *                  birth_date:
  *                      type: string
  *                  password:
  *                      type: string
@@ -187,13 +187,13 @@ app.post('/account', accountQueries.createAccount)
  *              properties:
  *                  username:
  *                      type: string
- *                  firstname:
+ *                  first_name:
  *                      type: string
- *                  lastname:
+ *                  last_name:
  *                      type: string
  *                  email:
  *                      type: string
- *                  birthdate:
+ *                  birth_date:
  *                      type: string
  *                  password:
  *                      type: string

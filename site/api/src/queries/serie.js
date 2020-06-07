@@ -1,7 +1,7 @@
 const db = require('../../db/database')
 
-const getSeries = (request, response) => {
-    db.query('SELECT * FROM series ORDER BY series_id ASC', (error, results) => {
+const getSerie = (request, response) => {
+    db.query('SELECT * FROM serie ORDER BY serie_id ASC', (error, results) => {
         if (error) {
             throw error
         }
@@ -10,9 +10,9 @@ const getSeries = (request, response) => {
 }
 
 const getSerieById = (request, response) => {
-    const series_id = parseInt(request.params.series_id)
+    const serie_id = parseInt(request.params.serie_id)
 
-    db.query('SELECT * FROM series WHERE series_id = $1', [series_id], (error, results) => {
+    db.query('SELECT * FROM serie WHERE serie_id = $1', [serie_id], (error, results) => {
         if (error) {
             throw error
         }
@@ -20,10 +20,10 @@ const getSerieById = (request, response) => {
     })
 }
 
-const createSeries = (request, response) => {
+const createSerie = (request, response) => {
     const { title, image, imagelg, autor, duration, uploaddate, creationdate } = request.body
 
-    db.query('INSERT INTO series ( title, image, imagelg, autor, duration, uploaddate, creationdate ) VALUES ($1, $2, $3, $4, $5, $6, $7)', [title, image, imagelg, autor, duration, uploaddate, creationdate], (error, results) => {
+    db.query('INSERT INTO serie ( title, image, imagelg, autor, duration, uploaddate, creationdate ) VALUES ($1, $2, $3, $4, $5, $6, $7)', [title, image, imagelg, autor, duration, uploaddate, creationdate], (error, results) => {
         if (error) {
             throw error
         }
@@ -31,36 +31,36 @@ const createSeries = (request, response) => {
     })
 }
 
-const updateSeries = (request, response) => {
-    const series_id = parseInt(request.params.series_id)
+const updateSerie = (request, response) => {
+    const serie_id = parseInt(request.params.serie_id)
     const { title, image, imagelg, autor, duration, uploaddate, creationdate } = request.body
 
     db.query(
-        'UPDATE series SET title = $1, image = $2, imagelg = $3, autor = $4, duration = $5, uploaddate = $6, creationdate = $7 WHERE series_id = $8', [title, image, imagelg, autor, duration, uploaddate, creationdate, series_id],
+        'UPDATE serie SET title = $1, image = $2, imagelg = $3, autor = $4, duration = $5, uploaddate = $6, creationdate = $7 WHERE serie_id = $8', [title, image, imagelg, autor, duration, uploaddate, creationdate, serie_id],
         (error, results) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`User modified with ID: ${series_id}`)
+            response.status(200).send(`User modified with ID: ${serie_id}`)
         }
     )
 }
 
-const deleteSeries = (request, response) => {
-    const series_id = parseInt(request.params.series_id)
+const deleteSerie = (request, response) => {
+    const serie_id = parseInt(request.params.serie_id)
 
-    db.query('DELETE FROM series WHERE series_id = $1', [series_id], (error, results) => {
+    db.query('DELETE FROM serie WHERE serie_id = $1', [serie_id], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`User deleted with ID: ${series_id}`)
+        response.status(200).send(`User deleted with ID: ${serie_id}`)
     })
 }
 
 module.exports = {
-    getSeries,
+    getSerie,
     getSerieById,
-    createSeries,
-    updateSeries,
-    deleteSeries
+    createSerie,
+    updateSerie,
+    deleteSerie
 }
