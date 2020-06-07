@@ -2,7 +2,7 @@ const db = require('../../db/database')
 
 
 const getFavorites = (request, response) => {
-  db.query('SELECT * FROM favorites ORDER BY favorites_id ASC', (error, results) => {
+  db.query('SELECT * FROM favorite ORDER BY favorite_id ASC', (error, results) => {
     if (error) {
       throw error
     }
@@ -11,9 +11,9 @@ const getFavorites = (request, response) => {
 }
 
 const getFavoritesById = (request, response) => {
-    const favorites_id = parseInt(request.params.favorites_id)
+    const favorite_id = parseInt(request.params.favorite_id)
 
-    db.query('SELECT * FROM favorites WHERE favorites_id = $1', [favorites_id], (error, results) => {
+    db.query('SELECT * FROM favorite WHERE favorite_id = $1', [favorite_id], (error, results) => {
         if (error) {
             throw error
         }
@@ -22,41 +22,41 @@ const getFavoritesById = (request, response) => {
 }
 
 const createFavorites = (request, response) => {
-    const userid = request.query.userid
+    const account_id = request.query.account_id
     const serie_id = request.query.serie_id
 
-    db.query('INSERT INTO favorites ( userid, serie_id ) VALUES ($1, $2)', [ userid, serie_id ], (error, results) => {
+    db.query('INSERT INTO favorite ( account_id, serie_id ) VALUES ($1, $2)', [ account_id, serie_id ], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`favorites added with ID: ${results.insertId}`)
+        response.status(201).send(`favorite added with ID: ${results.insertId}`)
     })
 }
 
 
 const updateFavorites = (request, response) => {
-    const favorites_id = parseInt(request.params.favorites_id)
-    const userid = request.query.userid
+    const favorite_id = parseInt(request.params.favorite_id)
+    const account_id = request.query.account_id
     const serie_id = request.query.serie_id
     db.query(
-        'UPDATE favorites SET userid = $1, serie_id = $2 WHERE favorites_id = $3', [userid, serie_id, favorites_id],
+        'UPDATE favorite SET account_id = $1, serie_id = $2 WHERE favorite_id = $3', [account_id, serie_id, favorite_id],
         (error, results) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`favorites modified with ID: ${favorites_id}`)
+            response.status(200).send(`favorite modified with ID: ${favorite_id}`)
         }
     )
 }
 
 const deleteFavorites = (request, response) => {
-    const favorites_id = parseInt(request.params.favorites_id)
+    const favorite_id = parseInt(request.params.favorite_id)
 
-    db.query('DELETE FROM favorites WHERE favorites_id = $1', [favorites_id], (error, results) => {
+    db.query('DELETE FROM favorite WHERE favorite_id = $1', [favorite_id], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`favorites deleted with ID: ${favorites_id}`)
+        response.status(200).send(`favorite deleted with ID: ${favorite_id}`)
     })
 }
 

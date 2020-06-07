@@ -1087,7 +1087,7 @@ app.get('/favorite/:favorite_id', favoriteQueries.getFavoritesById)
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: userid
+ *          - name: account_id
  *            in: query
  *            type: string
  *          - name: serie_id
@@ -1116,7 +1116,7 @@ app.post('/favorite', favoriteQueries.createFavorites)
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: userid
+ *          - name: account_id
  *            in: query
  *            type: string
  *          - name: serie_id
@@ -1193,7 +1193,7 @@ app.get('/listen/:listen_id', listenQueries.getListenById)
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: userid
+ *          - name: account_id
  *            in: query
  *            type: integer
  *          - name: episodeid
@@ -1225,7 +1225,7 @@ app.post('/listen', listenQueries.createListen)
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: userid
+ *          - name: account_id
  *            in: query
  *            type: integer
  *          - name: episodeid
