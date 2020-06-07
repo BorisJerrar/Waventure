@@ -1,7 +1,7 @@
 const db = require('../../db/database')
 
-const getCategories = (request, response) => {
-    db.query('select * from categories ORDER BY categories_id ASC;', (error, results) => {
+const getcategory = (request, response) => {
+    db.query('select * from category ORDER BY category_id ASC;', (error, results) => {
       if (error) {
         throw error
       }
@@ -9,10 +9,10 @@ const getCategories = (request, response) => {
     })
   }
 
-const getCategoriesById = (request, response) => {
-    const categories_id = parseInt(request.params.categories_id)
+const getcategoryById = (request, response) => {
+    const category_id = parseInt(request.params.category_id)
 
-    db.query('SELECT * FROM categories WHERE categories_id = $1', [categories_id], (error, results) => {
+    db.query('SELECT * FROM category WHERE category_id = $1', [category_id], (error, results) => {
         if (error) {
             throw error
         }
@@ -20,48 +20,48 @@ const getCategoriesById = (request, response) => {
     })
 }
 
-const createCategories = (request, response) => {
+const createcategory = (request, response) => {
     const name = request.query.name
 
-    db.query('INSERT INTO categories ( name ) VALUES ($1)', [ name ], (error, results) => {
+    db.query('INSERT INTO category ( name ) VALUES ($1)', [ name ], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`categories added with ID: ${results.insertId}`)
+        response.status(201).send(`category added with ID: ${results.insertId}`)
     })
 }
 
-const updateCategories = (request, response) => {
-    const categories_id = parseInt(request.params.categories_id)
+const updatecategory = (request, response) => {
+    const category_id = parseInt(request.params.category_id)
     const name = request.query.name
 
     db.query(
-        'UPDATE categories SET name = $1 WHERE categories_id = $2', [name, categories_id],
+        'UPDATE category SET name = $1 WHERE category_id = $2', [name, category_id],
         (error, results) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`categories modified with ID: ${categories_id}`)
+            response.status(200).send(`category modified with ID: ${category_id}`)
         }
     )
 }
 
-const deleteCategories = (request, response) => {
-    const categories_id = parseInt(request.params.categories_id)
+const deletecategory = (request, response) => {
+    const category_id = parseInt(request.params.category_id)
 
-    db.query('DELETE FROM categories WHERE categories_id = $1', [categories_id], (error, results) => {
+    db.query('DELETE FROM category WHERE category_id = $1', [category_id], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`categories deleted with ID: ${categories_id}`)
+        response.status(200).send(`category deleted with ID: ${category_id}`)
     })
 }
 
 
   module.exports = {
-      getCategories,
-      getCategoriesById,
-      createCategories,
-      updateCategories,
-      deleteCategories
+      getcategory,
+      getcategoryById,
+      createcategory,
+      updatecategory,
+      deletecategory
   }
