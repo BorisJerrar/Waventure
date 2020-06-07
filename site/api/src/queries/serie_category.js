@@ -22,9 +22,9 @@ const getSerieCategoryById = (request, response) => {
 
 const createSerieCategory = (request, response) => {
     const serie_id = request.query.serie_id
-    const categoryid = request.query.categoryid
+    const category_id = request.query.category_id
 
-    db.query('INSERT INTO serie_category ( serie_id, categoryid ) VALUES ($1, $2)', [ serie_id, categoryid ], (error, results) => {
+    db.query('INSERT INTO serie_category ( serie_id, category_id ) VALUES ($1, $2)', [ serie_id, category_id ], (error, results) => {
         if (error) {
             throw error
         }
@@ -35,10 +35,10 @@ const createSerieCategory = (request, response) => {
 const updateSerieCategory = (request, response) => {
     const serie_category_id = parseInt(request.params.serie_category_id)
     const serie_id = request.query.serie_id
-    const categoryid = request.query.categoryid
+    const category_id = request.query.category_id
 
     db.query(
-        'UPDATE serie_category SET serie_id = $1, categoryid = $2 WHERE serie_id = $3', [serie_id, categoryid, serie_category_id],
+        'UPDATE serie_category SET serie_id = $1, category_id = $2 WHERE serie_id = $3', [serie_id, category_id, serie_category_id],
         (error, results) => {
             if (error) {
                 throw error

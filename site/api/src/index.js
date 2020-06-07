@@ -277,15 +277,15 @@ app.get('/serie/:serie_id', serieQueries.getSerieById)
  *                      type: string
  *                  image:
  *                      type: string
- *                  imagelg:
+ *                  image_lg:
  *                      type: string
- *                  autor:
+ *                  author:
  *                      type: string
  *                  duration:
  *                      type: string
- *                  uploaddate:
+ *                  upload_date:
  *                      type: string
- *                  creationdate:
+ *                  creation_date:
  *                      type: string
  *      responses:
  *          '201':
@@ -319,15 +319,15 @@ app.post('/serie', serieQueries.createSerie)
  *                      type: string
  *                  image:
  *                      type: string
- *                  imagelg:
+ *                  image_lg:
  *                      type: string
- *                  autor:
+ *                  author:
  *                      type: string
  *                  duration:
  *                      type: string
- *                  uploaddate:
+ *                  upload_date:
  *                      type: string
- *                  creationdate:
+ *                  creation_date:
  *                      type: string
  *      responses:
  *          '201':
