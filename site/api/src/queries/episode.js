@@ -1,7 +1,7 @@
 const db = require('../../db/database')
 
 
-const getepisode = (request, response) => {
+const getEpisode = (request, response) => {
   db.query('SELECT * FROM episode ORDER BY episode_id ASC', (error, results) => {
     if (error) {
       throw error
@@ -10,7 +10,7 @@ const getepisode = (request, response) => {
   })
 }
 
-const getepisodeById = (request, response) => {
+const getEpisodeById = (request, response) => {
     const episode_id = parseInt(request.params.episode_id)
 
     db.query('SELECT * FROM episode WHERE episode_id = $1', [episode_id], (error, results) => {
@@ -20,7 +20,7 @@ const getepisodeById = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
-const getepisodeByEpisodeNumber = (request, response) => {
+const getEpisodeByEpisodeNumber = (request, response) => {
     const episode_number = parseInt(request.params.episode_number)
     db.query('SELECT * FROM episode WHERE episode_number = $1', [episode_number], (error, results) => {
         if (error) {
@@ -30,7 +30,7 @@ const getepisodeByEpisodeNumber = (request, response) => {
     })
 }
 
-const createepisode = (request, response) => {
+const createEpisode = (request, response) => {
     const saison_id = request.query.saisonid
     const { title, episode_nb, duration, mp3file } = request.body
 
@@ -42,7 +42,7 @@ const createepisode = (request, response) => {
     })
 }
 
-const updateepisode = (request, response) => {
+const updateEpisode = (request, response) => {
     const episode_id = parseInt(request.params.episode_id)
     const saison_id = request.query.saisonid
     const { title, episode_nb, duration, mp3file } = request.body
@@ -58,7 +58,7 @@ const updateepisode = (request, response) => {
     )
 }
 
-const deleteepisode = (request, response) => {
+const deleteEpisode = (request, response) => {
     const episode_id = parseInt(request.params.episode_id)
 
     db.query('DELETE FROM episode WHERE episode_id = $1', [episode_id], (error, results) => {
@@ -72,10 +72,10 @@ const deleteepisode = (request, response) => {
 
 
 module.exports = {
-    getepisode,
-    getepisodeById,
-    getepisodeByEpisodeNumber,
-    createepisode,
-    updateepisode,
-    deleteepisode
+    getEpisode,
+    getEpisodeById,
+    getEpisodeByEpisodeNumber,
+    createEpisode,
+    updateEpisode,
+    deleteEpisode
 }

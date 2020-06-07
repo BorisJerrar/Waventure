@@ -1,6 +1,6 @@
 const db = require('../../db/database')
 
-const getcategory = (request, response) => {
+const getCategory = (request, response) => {
     db.query('select * from category ORDER BY category_id ASC;', (error, results) => {
       if (error) {
         throw error
@@ -9,7 +9,7 @@ const getcategory = (request, response) => {
     })
   }
 
-const getcategoryById = (request, response) => {
+const getCategoryById = (request, response) => {
     const category_id = parseInt(request.params.category_id)
 
     db.query('SELECT * FROM category WHERE category_id = $1', [category_id], (error, results) => {
@@ -20,7 +20,7 @@ const getcategoryById = (request, response) => {
     })
 }
 
-const createcategory = (request, response) => {
+const createCategory = (request, response) => {
     const name = request.query.name
 
     db.query('INSERT INTO category ( name ) VALUES ($1)', [ name ], (error, results) => {
@@ -31,7 +31,7 @@ const createcategory = (request, response) => {
     })
 }
 
-const updatecategory = (request, response) => {
+const updateCategory = (request, response) => {
     const category_id = parseInt(request.params.category_id)
     const name = request.query.name
 
@@ -46,7 +46,7 @@ const updatecategory = (request, response) => {
     )
 }
 
-const deletecategory = (request, response) => {
+const deleteCategory = (request, response) => {
     const category_id = parseInt(request.params.category_id)
 
     db.query('DELETE FROM category WHERE category_id = $1', [category_id], (error, results) => {
@@ -59,9 +59,9 @@ const deletecategory = (request, response) => {
 
 
   module.exports = {
-      getcategory,
-      getcategoryById,
-      createcategory,
-      updatecategory,
-      deletecategory
+      getCategory,
+      getCategoryById,
+      createCategory,
+      updateCategory,
+      deleteCategory
   }

@@ -27,18 +27,18 @@ const swaggerOptions = {
 
 /* import queries */
 const mainQueries = require('./queries/main')
-const saisonsQueries = require('./queries/saisons')
-const categoriesQueries = require('./queries/categories')
-const episodesQueries = require('./queries/episodes')
-const favoritesQueries = require('./queries/favorites')
+const seasonQueries = require('./queries/season')
+const categoryQueries = require('./queries/category')
+const episodeQueries = require('./queries/episode')
+const favoritesQueries = require('./queries/favorite')
 const listenQueries = require('./queries/listen')
 const roleQueries = require('./queries/role')
-const actorsQueries = require('./queries/actors')
-const seriesQueries = require('./queries/series')
-const seriesActorQueries = require('./queries/series_actors')
-const seriesCategoriesQueries = require('./queries/series_categories')
+const actorQueries = require('./queries/actor')
+const serieQueries = require('./queries/serie')
+const serieActorQueries = require('./queries/serie_actor')
+const seriecategoryQueries = require('./queries/serie_category')
 const synopsisQueries = require('./queries/synopsis')
-const usersQueries = require('./queries/users')
+const accountQueries = require('./queries/account')
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 app.use(bodyParser.json())
@@ -78,13 +78,13 @@ app.get('/sound/:sound', (req, res) => {
 /* MAIN */
 /**
  * @swagger
- * /sagaInfo/{series_id}:
+ * /sagaInfo/{serie_id}:
  *  get:
  *      tags:
  *          - main
- *      description: Use to request all info on saga with episode_number
+ *      description: Use to request all info on saga with episode_nb
  *      parameters:
- *          - name: 'series_id'
+ *          - name: 'serie_id'
  *            in: 'path'
  *            type: integer
  *            minimum: 1
@@ -92,32 +92,32 @@ app.get('/sound/:sound', (req, res) => {
  *          '200':
  *              description: results rows
  */
-app.get('/sagaInfo/:series_id', mainQueries.getSagaInfosBySerieId)
+app.get('/sagaInfo/:serie_id', mainQueries.getSagaInfosBySerieId)
 
 
 
 /**
  * @swagger
- * /users:
+ * /account:
  *  get:
  *      tags:
- *          - users
- *      description: Use to request all users
+ *          - account
+ *      description: Use to request all account
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/users', usersQueries.getUsers)
+app.get('/account', accountQueries.getAccount)
 
 /**
  * @swagger
- * /users/{users_id}:
+ * /account/{account_id}:
  *  get:
  *      tags:
- *          - users
- *      description: Use to request users by id
+ *          - account
+ *      description: Use to request account by id
  *      parameters:
- *        - name: 'users_id'
+ *        - name: 'account_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -128,19 +128,19 @@ app.get('/users', usersQueries.getUsers)
  *          '200':
  *              description: successful operation
  */
-app.get('/users/:users_id', usersQueries.getUsersById)
+app.get('/account/:account_id', accountQueries.getAccountById)
 
 /**
  * @swagger
- * /users:
+ * /account:
  *  post:
  *      tags:
- *          - users
- *      description: Use to create users
+ *          - account
+ *      description: Use to create account
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: users
+ *        - name: account
  *          in: body
  *          schema:
  *              type: object
@@ -161,26 +161,26 @@ app.get('/users/:users_id', usersQueries.getUsersById)
  *          '201':
  *              description: successful operation
  */
-app.post('/users', usersQueries.createUsers)
+app.post('/account', accountQueries.createAccount)
 
 /**
  * @swagger
- * /users/{users_id}:
+ * /account/{account_id}:
  *  put:
  *      tags:
- *          - users
- *      description: Use to update users
+ *          - account
+ *      description: Use to update account
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: users_id
+ *          - name: account_id
  *            in: path
  *            required: true
  *            schema:
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: users
+ *          - name: account
  *            in: body
  *            schema:
  *              type: object
@@ -201,17 +201,17 @@ app.post('/users', usersQueries.createUsers)
  *          '201':
  *              description: successful operation
  */
-app.put('/users/:users_id', usersQueries.updateUsers)
+app.put('/account/:account_id', accountQueries.updateAccount)
 
 /**
  * @swagger
- * /users/{users_id}:
+ * /account/{account_id}:
  *  delete:
  *      tags:
- *          - users
- *      description: Use to delete users by id
+ *          - account
+ *      description: Use to delete account by id
  *      parameters:
- *        - name: 'users_id'
+ *        - name: 'account_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -222,30 +222,30 @@ app.put('/users/:users_id', usersQueries.updateUsers)
  *          '200':
  *              description: successful operation
  */
-app.delete('/users/:users_id', usersQueries.deleteUsers)
+app.delete('/account/:account_id', accountQueries.deleteAccount)
 
 /**
  * @swagger
- * /series:
+ * /serie:
  *  get:
  *      tags:
- *          - series
- *      description: Use to request all series
+ *          - serie
+ *      description: Use to request all serie
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/series', seriesQueries.getSeries)
+app.get('/serie', serieQueries.getSerie)
 
 /**
  * @swagger
- * /series/{series_id}:
+ * /serie/{serie_id}:
  *  get:
  *      tags:
- *          - series
- *      description: Use to request series by id
+ *          - serie
+ *      description: Use to request serie by id
  *      parameters:
- *        - name: 'series_id'
+ *        - name: 'serie_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -256,19 +256,19 @@ app.get('/series', seriesQueries.getSeries)
  *          '200':
  *              description: successful operation
  */
-app.get('/series/:series_id', seriesQueries.getSerieById)
+app.get('/serie/:serie_id', serieQueries.getSerieById)
 
 /**
  * @swagger
- * /series:
+ * /serie:
  *  post:
  *      tags:
- *          - series
- *      description: Use to create series
+ *          - serie
+ *      description: Use to create serie
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: series
+ *        - name: serie
  *          in: body
  *          schema:
  *              type: object
@@ -291,26 +291,26 @@ app.get('/series/:series_id', seriesQueries.getSerieById)
  *          '201':
  *              description: successful operation
  */
-app.post('/series', seriesQueries.createSeries)
+app.post('/serie', serieQueries.createSerie)
 
 /**
  * @swagger
- * /series/{series_id}:
+ * /serie/{serie_id}:
  *  put:
  *      tags:
- *          - series
- *      description: Use to update series
+ *          - serie
+ *      description: Use to update serie
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: series_id
+ *          - name: serie_id
  *            in: path
  *            required: true
  *            schema:
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: users
+ *          - name: account
  *            in: body
  *            schema:
  *              type: object
@@ -333,17 +333,17 @@ app.post('/series', seriesQueries.createSeries)
  *          '201':
  *              description: successful operation
  */
-app.put('/series/:series_id', seriesQueries.updateSeries)
+app.put('/serie/:serie_id', serieQueries.updateSerie)
 
 /**
  * @swagger
- * /series/{series_id}:
+ * /serie/{serie_id}:
  *  delete:
  *      tags:
- *          - series
- *      description: Use to delete series by id
+ *          - serie
+ *      description: Use to delete serie by id
  *      parameters:
- *        - name: 'series_id'
+ *        - name: 'serie_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -354,30 +354,30 @@ app.put('/series/:series_id', seriesQueries.updateSeries)
  *          '200':
  *              description: successful operation
  */
-app.delete('/series/:series_id', seriesQueries.deleteSeries)
+app.delete('/serie/:serie_id', serieQueries.deleteSerie)
 
 /**
  * @swagger
- * /series_actors:
+ * /serie_actor:
  *  get:
  *      tags:
- *          - series_actors
- *      description: Use to request all series_actors
+ *          - serie_actor
+ *      description: Use to request all serie_actor
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/series_actors', seriesActorQueries.getSeriesActors)
+app.get('/serie_actor', serieActorQueries.getSerieActor)
 
 /**
  * @swagger
- * /series_actors/{series_actors_id}:
+ * /serie_actor/{serie_actor_id}:
  *  get:
  *      tags:
- *          - series_actors
- *      description: Use to request series_actors by id
+ *          - serie_actor
+ *      description: Use to request serie_actor by id
  *      parameters:
- *        - name: 'series_actors_id'
+ *        - name: 'serie_actor_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -388,68 +388,68 @@ app.get('/series_actors', seriesActorQueries.getSeriesActors)
  *          '200':
  *              description: successful operation
  */
-app.get('/series_actors/:series_actors_id',seriesActorQueries.getSeriesActorsById)
+app.get('/serie_actor/:serie_actor_id',serieActorQueries.getSerieActorById)
 
 /**
  * @swagger
- * /series_actors:
+ * /serie_actor:
  *  post:
  *      tags:
- *          - series_actors
- *      description: Use to create series_actors relation
+ *          - serie_actor
+ *      description: Use to create serie_actor relation
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: serieid
+ *        - name: serie_id
  *          in: query
  *          type: int
- *        - name: actorid
+ *        - name: actor_id
  *          in: query
  *          type: int
  *      responses:
  *          '201':
  *              description: successful operation
  */
-app.post('/series_actors', seriesActorQueries.createSeriesActors)
+app.post('/serie_actor', serieActorQueries.createSerieActor)
 
 /**
  * @swagger
- * /series_actors/{series_actors_id}:
+ * /serie_actor/{serie_actor_id}:
  *  put:
  *      tags:
- *          - series_actors
- *      description: Use to update series_actors relation
+ *          - serie_actor
+ *      description: Use to update serie_actor relation
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: series_actors_id
+ *          - name: serie_actor_id
  *            in: path
  *            required: true
  *            schema:
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: serieid
+ *          - name: serie_id
  *            in: query
  *            type: int
- *          - name: actorid
+ *          - name: actor_id
  *            in: query
  *            type: int
  *      responses:
  *          '201':
  *              description: successful operation
  */
-app.put('/series_actors/:series_actors_id', seriesActorQueries.updateSeriesActors)
+app.put('/serie_actor/:serie_actor_id', serieActorQueries.updateSerieActor)
 
 /**
  * @swagger
- * /series_actors/{series_actors_id}:
+ * /serie_actor/{serie_actor_id}:
  *  delete:
  *      tags:
- *          - series_actors
- *      description: Use to delete series_actors relation by id
+ *          - serie_actor
+ *      description: Use to delete serie_actor relation by id
  *      parameters:
- *        - name: 'series_actors_id'
+ *        - name: 'serie_actor_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -460,30 +460,30 @@ app.put('/series_actors/:series_actors_id', seriesActorQueries.updateSeriesActor
  *          '200':
  *              description: successful operation
  */
-app.delete('/series_actors/:series_actors_id', seriesActorQueries.deleteSeriesActors)
+app.delete('/serie_actor/:serie_actor_id', serieActorQueries.deleteSerieActor)
 
 /**
  * @swagger
- * /series_categories:
+ * /serie_category:
  *  get:
  *      tags:
- *          - series_categories
- *      description: Use to request all series_categories
+ *          - serie_category
+ *      description: Use to request all serie_category
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
+app.get('/serie_category', seriecategoryQueries.getSeriecategory)
 
 /**
  * @swagger
- * /series_categories/{series_categories_id}:
+ * /serie_category/{serie_category_id}:
  *  get:
  *      tags:
- *          - series_categories
- *      description: Use to request series_categories by id
+ *          - serie_category
+ *      description: Use to request serie_category by id
  *      parameters:
- *        - name: 'series_categories_id'
+ *        - name: 'serie_category_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -494,19 +494,19 @@ app.get('/series_categories', seriesCategoriesQueries.getSeriesCategories)
  *          '200':
  *              description: successful operation
  */
-app.get('/series_categories/:series_categories_id',seriesCategoriesQueries.getSeriesCategoriesById)
+app.get('/serie_category/:serie_category_id',seriecategoryQueries.getSeriecategoryById)
 
 /**
  * @swagger
- * /series_categories:
+ * /serie_category:
  *  post:
  *      tags:
- *          - series_categories
- *      description: Use to create series_categories relation
+ *          - serie_category
+ *      description: Use to create serie_category relation
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: serieid
+ *        - name: serie_id
  *          in: query
  *          type: int
  *        - name: categoryid
@@ -516,26 +516,26 @@ app.get('/series_categories/:series_categories_id',seriesCategoriesQueries.getSe
  *          '201':
  *              description: successful operation
  */
-app.post('/series_categories', seriesCategoriesQueries.createSeriesCategories)
+app.post('/serie_category', seriecategoryQueries.createSeriecategory)
 
 /**
  * @swagger
- * /series_categories/{series_categories_id}:
+ * /serie_category/{serie_category_id}:
  *  put:
  *      tags:
- *          - series_categories
- *      description: Use to update series_categories relation
+ *          - serie_category
+ *      description: Use to update serie_category relation
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: series_categories_id
+ *          - name: serie_category_id
  *            in: path
  *            required: true
  *            schema:
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: serieid
+ *          - name: serie_id
  *            in: query
  *            type: int
  *          - name: categoryid
@@ -545,17 +545,17 @@ app.post('/series_categories', seriesCategoriesQueries.createSeriesCategories)
  *          '201':
  *              description: successful operation
  */
-app.put('/series_categories/:series_categories_id', seriesCategoriesQueries.updateSeriesCategories)
+app.put('/serie_category/:serie_category_id', seriecategoryQueries.updateSeriecategory)
 
 /**
  * @swagger
- * /series_categories/{series_categories_id}:
+ * /serie_category/{serie_category_id}:
  *  delete:
  *      tags:
- *          - series_categories
- *      description: Use to delete series_categories relation by id
+ *          - serie_category
+ *      description: Use to delete serie_category relation by id
  *      parameters:
- *        - name: 'series_categories_id'
+ *        - name: 'serie_category_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -566,30 +566,30 @@ app.put('/series_categories/:series_categories_id', seriesCategoriesQueries.upda
  *          '200':
  *              description: successful operation
  */
-app.delete('/series_categories/:series_categories_id', seriesCategoriesQueries.deleteSeriesCategories)
+app.delete('/serie_category/:serie_category_id', seriecategoryQueries.deleteSeriecategory)
 
 /**
  * @swagger
- * /saisons:
+ * /season:
  *  get:
  *      tags:
- *          - saisons
- *      description: Use to request all saisons
+ *          - season
+ *      description: Use to request all season
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/saisons', saisonsQueries.getSaisons)
+app.get('/season', seasonQueries.getSeason)
 
 /**
  * @swagger
- * /saisons/{saisons_id}:
+ * /season/{season_id}:
  *  get:
  *      tags:
- *          - saisons
- *      description: Use to request saisons by id
+ *          - season
+ *      description: Use to request season by id
  *      parameters:
- *        - name: 'saisons_id'
+ *        - name: 'season_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -600,29 +600,29 @@ app.get('/saisons', saisonsQueries.getSaisons)
  *          '200':
  *              description: successful operation
  */
-app.get('/saisons/:saisons_id', saisonsQueries.getSaisonById)
+app.get('/season/:season_id', seasonQueries.getSeasonById)
 
 /**
  * @swagger
- * /saisons:
+ * /season:
  *  post:
  *      tags:
- *          - saisons
- *      description: Use to create saisons
+ *          - season
+ *      description: Use to create season
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: serieid
+ *        - name: serie_id
  *          type: int
  *          in: query
- *        - name: saisons
+ *        - name: season
  *          in: body
  *          schema:
  *              type: object
  *              properties:
  *                  title:
  *                      type: string
- *                  saison_number:
+ *                  season_nb:
  *                      type: integer
  *                  quantite:
  *                      type: integer
@@ -630,36 +630,36 @@ app.get('/saisons/:saisons_id', saisonsQueries.getSaisonById)
  *          '201':
  *              description: successful operation
  */
-app.post('/saisons', saisonsQueries.createSaisons)
+app.post('/season', seasonQueries.createSeason)
 
 /**
  * @swagger
- * /saisons/{saisons_id}:
+ * /season/{season_id}:
  *  put:
  *      tags:
- *          - saisons
- *      description: Use to update saisons
+ *          - season
+ *      description: Use to update season
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: saisons_id
+ *          - name: season_id
  *            in: path
  *            required: true
  *            schema:
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: serieid
+ *          - name: serie_id
  *            type: int
  *            in: query
- *          - name: saisons
+ *          - name: season
  *            in: body
  *            schema:
  *              type: object
  *              properties:
  *                  title:
  *                      type: string
- *                  saison_number:
+ *                  season_nb:
  *                      type: integer
  *                  quantite:
  *                      type: integer
@@ -667,17 +667,17 @@ app.post('/saisons', saisonsQueries.createSaisons)
  *          '201':
  *              description: successful operation
  */
-app.put('/saisons/:saisons_id', saisonsQueries.updateSaisons)
+app.put('/season/:season_id', seasonQueries.updateSeason)
 
 /**
  * @swagger
- * /saisons/{saisons_id}:
+ * /season/{season_id}:
  *  delete:
  *      tags:
- *          - saisons
- *      description: Use to delete saisons by id
+ *          - season
+ *      description: Use to delete season by id
  *      parameters:
- *        - name: 'saisons_id'
+ *        - name: 'season_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -688,30 +688,30 @@ app.put('/saisons/:saisons_id', saisonsQueries.updateSaisons)
  *          '200':
  *              description: successful operation
  */
-app.delete('/saisons/:saisons_id', saisonsQueries.deleteSaisons)
+app.delete('/season/:season_id', seasonQueries.deleteSeason)
 
 /**
  * @swagger
- * /episodes:
+ * /episode:
  *  get:
  *      tags:
- *          - episodes
- *      description: Use to request all episodes
+ *          - episode
+ *      description: Use to request all episode
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/episodes', episodesQueries.getEpisodes)
+app.get('/episode', episodeQueries.getEpisode)
 
 /**
  * @swagger
- * /episodes/{episodes_id}:
+ * /episode/{episode_id}:
  *  get:
  *      tags:
- *          - episodes
- *      description: Use to request episodes by id
+ *          - episode
+ *      description: Use to request episode by id
  *      parameters:
- *        - name: 'episodes_id'
+ *        - name: 'episode_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -722,17 +722,17 @@ app.get('/episodes', episodesQueries.getEpisodes)
  *          '200':
  *              description: successful operation
  */
-app.get('/episodes/:episodes_id', episodesQueries.getEpisodesById)
+app.get('/episode/:episode_id', episodeQueries.getEpisodeById)
 
 /**
  * @swagger
- * /episodesNumber/{episodes_number}:
+ * /episodeNumber/{episode_nb}:
  *  get:
  *      tags:
- *          - episodes
- *      description: Use to request episodes by episode number
+ *          - episode
+ *      description: Use to request episode by episode nb
  *      parameters:
- *        - name: 'episodes_number'
+ *        - name: 'episode_nb'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -743,29 +743,29 @@ app.get('/episodes/:episodes_id', episodesQueries.getEpisodesById)
  *          '200':
  *              description: successful operation
  */
-app.get('/episodesNumber/:episodes_number', episodesQueries.getEpisodesByEpisodeNumber)
+app.get('/episodeNumber/:episode_nb', episodeQueries.getEpisodeByEpisodeNumber)
 
 /**
  * @swagger
- * /episodes:
+ * /episode:
  *  post:
  *      tags:
- *          - episodes
- *      description: Use to create episodes
+ *          - episode
+ *      description: Use to create episode
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: saisonid
+ *        - name: seasonid
  *          type: int
  *          in: query
- *        - name: episodes
+ *        - name: episode
  *          in: body
  *          schema:
  *              type: object
  *              properties:
  *                  title:
  *                      type: string
- *                  episode_number:
+ *                  episode_nb:
  *                      type: integer
  *                  duration:
  *                      type: string
@@ -775,36 +775,36 @@ app.get('/episodesNumber/:episodes_number', episodesQueries.getEpisodesByEpisode
  *          '201':
  *              description: successful operation
  */
-app.post('/episodes', episodesQueries.createEpisodes)
+app.post('/episode', episodeQueries.createEpisode)
 
 /**
  * @swagger
- * /episodes/{episodes_id}:
+ * /episode/{episode_id}:
  *  put:
  *      tags:
- *          - episodes
- *      description: Use to update episodes
+ *          - episode
+ *      description: Use to update episode
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: episodes_id
+ *          - name: episode_id
  *            in: path
  *            required: true
  *            schema:
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: saisonid
+ *          - name: seasonid
  *            type: int
  *            in: query
- *          - name: episodes
+ *          - name: episode
  *            in: body
  *            schema:
  *              type: object
  *              properties:
  *                  title:
  *                      type: string
- *                  episode_number:
+ *                  episode_nb:
  *                      type: integer
  *                  duration:
  *                      type: string
@@ -814,17 +814,17 @@ app.post('/episodes', episodesQueries.createEpisodes)
  *          '201':
  *              description: successful operation
  */
-app.put('/episodes/:episodes_id', episodesQueries.updateEpisodes)
+app.put('/episode/:episode_id', episodeQueries.updateEpisode)
 
 /**
  * @swagger
- * /episodes/{episodes_id}:
+ * /episode/{episode_id}:
  *  delete:
  *      tags:
- *          - episodes
- *      description: Use to delete episodes by id
+ *          - episode
+ *      description: Use to delete episode by id
  *      parameters:
- *        - name: 'episodes_id'
+ *        - name: 'episode_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -835,7 +835,7 @@ app.put('/episodes/:episodes_id', episodesQueries.updateEpisodes)
  *          '200':
  *              description: successful operation
  */
-app.delete('/episodes/:episodes_id', episodesQueries.deleteEpisodes)
+app.delete('/episode/:episode_id', episodeQueries.deleteEpisode)
 
 /**
  * @swagger
@@ -881,7 +881,7 @@ app.get('/synopsis/:synopsis_id', synopsisQueries.getSynopsisById)
  *      consumes:
  *        - application/json
  *      parameters:
- *        - name: serieid
+ *        - name: serie_id
  *          type: int
  *          in: query
  *        - name: body
@@ -910,7 +910,7 @@ app.post('/synopsis', synopsisQueries.createSynopsis)
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: serieid
+ *          - name: serie_id
  *            type: int
  *            in: query
  *          - name: body
@@ -945,26 +945,26 @@ app.delete('/synopsis/:synopsis_id', synopsisQueries.deleteSynopsis)
 
 /**
  * @swagger
- * /categories:
+ * /category:
  *  get:
  *      tags:
- *          - categories
- *      description: Use to request all episodes
+ *          - category
+ *      description: Use to request all episode
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/categories', categoriesQueries.getCategories)
+app.get('/category', categoryQueries.getCategory)
 
 /**
  * @swagger
- * /categories/{categories_id}:
+ * /category/{category_id}:
  *  get:
  *      tags:
- *          - categories
- *      description: Use to request categories by id
+ *          - category
+ *      description: Use to request category by id
  *      parameters:
- *        - name: 'categories_id'
+ *        - name: 'category_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -975,15 +975,15 @@ app.get('/categories', categoriesQueries.getCategories)
  *          '200':
  *              description: successful operation
  */
-app.get('/categories/:categories_id', categoriesQueries.getCategoriesById)
+app.get('/category/:category_id', categoryQueries.getCategoryById)
 
 /**
  * @swagger
- * /categories:
+ * /category:
  *  post:
  *      tags:
- *          - categories
- *      description: Use to create categories
+ *          - category
+ *      description: Use to create category
  *      consumes:
  *        - application/json
  *      parameters:
@@ -994,19 +994,19 @@ app.get('/categories/:categories_id', categoriesQueries.getCategoriesById)
  *          '201':
  *              description: successful operation
  */
-app.post('/categories', categoriesQueries.createCategories)
+app.post('/category', categoryQueries.createCategory)
 
 /**
  * @swagger
- * /categories/{categories_id}:
+ * /category/{category_id}:
  *  put:
  *      tags:
- *          - categories
- *      description: Use to update categories
+ *          - category
+ *      description: Use to update category
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: categories_id
+ *          - name: category_id
  *            in: path
  *            required: true
  *            schema:
@@ -1020,17 +1020,17 @@ app.post('/categories', categoriesQueries.createCategories)
  *          '201':
  *              description: successful operation
  */
-app.put('/categories/:categories_id', categoriesQueries.updateCategories)
+app.put('/category/:category_id', categoryQueries.updateCategory)
 
 /**
  * @swagger
- * /categories/{categories_id}:
+ * /category/{category_id}:
  *  delete:
  *      tags:
- *          - categories
- *      description: Use to delete categories by id
+ *          - category
+ *      description: Use to delete category by id
  *      parameters:
- *        - name: 'categories_id'
+ *        - name: 'category_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1041,7 +1041,7 @@ app.put('/categories/:categories_id', categoriesQueries.updateCategories)
  *          '200':
  *              description: successful operation
  */
-app.delete('/categories/:categories_id', categoriesQueries.deleteCategories)
+app.delete('/category/:category_id', categoryQueries.deleteCategory)
 
 /**
  * @swagger
@@ -1090,7 +1090,7 @@ app.get('/favorites/:favorites_id', favoritesQueries.getFavoritesById)
  *          - name: userid
  *            in: query
  *            type: string
- *          - name: serieid
+ *          - name: serie_id
  *            in: query
  *            type: string
  *      responses:
@@ -1119,7 +1119,7 @@ app.post('/favorites', favoritesQueries.createFavorites)
  *          - name: userid
  *            in: query
  *            type: string
- *          - name: serieid
+ *          - name: serie_id
  *            in: query
  *            type: string
  *      responses:
@@ -1305,7 +1305,7 @@ app.get('/role/:roles_id', roleQueries.getRoleById)
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: actorid
+ *          - name: actor_id
  *            in: query
  *            type: integer
  *          - name: character
@@ -1334,7 +1334,7 @@ app.post('/role', roleQueries.createRole)
  *              type: integer
  *              format: int64
  *              minimum: 1
- *          - name: actorid
+ *          - name: actor_id
  *            in: query
  *            type: integer
  *          - name: character
@@ -1369,26 +1369,26 @@ app.delete('/role/:roles_id', roleQueries.deleteRole)
 
 /**
  * @swagger
- * /actors:
+ * /actor:
  *  get:
  *      tags:
- *          - actors
- *      description: Use to request all actors
+ *          - actor
+ *      description: Use to request all actor
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/actors', actorsQueries.getActors)
+app.get('/actor', actorQueries.getActor)
 
 /**
  * @swagger
- * /actors/{actors_id}:
+ * /actor/{actor_id}:
  *  get:
  *      tags:
- *          - actors
- *      description: Use to request actors by id
+ *          - actor
+ *      description: Use to request actor by id
  *      parameters:
- *        - name: 'actors_id'
+ *        - name: 'actor_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1399,15 +1399,15 @@ app.get('/actors', actorsQueries.getActors)
  *          '200':
  *              description: successful operation
  */
-app.get('/actors/:actors_id', actorsQueries.getActorById)
+app.get('/actor/:actor_id', actorQueries.getActorById)
 
 /**
  * @swagger
- * /actors:
+ * /actor:
  *  post:
  *      tags:
- *          - actors
- *      description: Use to create actors
+ *          - actor
+ *      description: Use to create actor
  *      consumes:
  *          - application/json
  *      parameters:
@@ -1418,19 +1418,19 @@ app.get('/actors/:actors_id', actorsQueries.getActorById)
  *          '200':
  *              description: results rows
  */
-app.post('/actors', actorsQueries.createActors)
+app.post('/actor', actorQueries.createActor)
 
 /**
  * @swagger
- * /actors/{actors_id}:
+ * /actor/{actor_id}:
  *  put:
  *      tags:
- *          - actors
- *      description: Use to update actors
+ *          - actor
+ *      description: Use to update actor
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: actors_id
+ *          - name: actor_id
  *            in: path
  *            required: true
  *            schema:
@@ -1444,17 +1444,17 @@ app.post('/actors', actorsQueries.createActors)
  *          '200':
  *              description: results rows
  */
-app.put('/actors/:actors_id', actorsQueries.updateActors)
+app.put('/actor/:actor_id', actorQueries.updateActor)
 
 /**
  * @swagger
- * /actors/{actors_id}:
+ * /actor/{actor_id}:
  *  delete:
  *      tags:
- *          - actors
- *      description: Use to delete actors by id
+ *          - actor
+ *      description: Use to delete actor by id
  *      parameters:
- *        - name: 'actors_id'
+ *        - name: 'actor_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1465,7 +1465,7 @@ app.put('/actors/:actors_id', actorsQueries.updateActors)
  *          '200':
  *              description: successful operation
  */
-app.delete('/actors/:actors_id', actorsQueries.deleteActors)
+app.delete('/actor/:actor_id', actorQueries.deleteActor)
 
 app.listen(port, () => {
     console.log("Running on port " + port);
