@@ -30,13 +30,13 @@ const mainQueries = require('./queries/main')
 const seasonQueries = require('./queries/season')
 const categoryQueries = require('./queries/category')
 const episodeQueries = require('./queries/episode')
-const favoritesQueries = require('./queries/favorite')
+const favoriteQueries = require('./queries/favorite')
 const listenQueries = require('./queries/listen')
 const roleQueries = require('./queries/role')
 const actorQueries = require('./queries/actor')
 const serieQueries = require('./queries/serie')
 const serieActorQueries = require('./queries/serie_actor')
-const seriecategoryQueries = require('./queries/serie_category')
+const serieCategoryQueries = require('./queries/serie_category')
 const synopsisQueries = require('./queries/synopsis')
 const accountQueries = require('./queries/account')
 
@@ -473,7 +473,7 @@ app.delete('/serie_actor/:serie_actor_id', serieActorQueries.deleteSerieActor)
  *          '200':
  *              description: results rows
  */
-app.get('/serie_category', seriecategoryQueries.getSeriecategory)
+app.get('/serie_category', serieCategoryQueries.getSerieCategory)
 
 /**
  * @swagger
@@ -494,7 +494,7 @@ app.get('/serie_category', seriecategoryQueries.getSeriecategory)
  *          '200':
  *              description: successful operation
  */
-app.get('/serie_category/:serie_category_id',seriecategoryQueries.getSeriecategoryById)
+app.get('/serie_category/:serie_category_id',serieCategoryQueries.getSerieCategoryById)
 
 /**
  * @swagger
@@ -509,14 +509,14 @@ app.get('/serie_category/:serie_category_id',seriecategoryQueries.getSeriecatego
  *        - name: serie_id
  *          in: query
  *          type: int
- *        - name: categoryid
+ *        - name: category_id
  *          in: query
  *          type: int
  *      responses:
  *          '201':
  *              description: successful operation
  */
-app.post('/serie_category', seriecategoryQueries.createSeriecategory)
+app.post('/serie_category', serieCategoryQueries.createSerieCategory)
 
 /**
  * @swagger
@@ -538,14 +538,14 @@ app.post('/serie_category', seriecategoryQueries.createSeriecategory)
  *          - name: serie_id
  *            in: query
  *            type: int
- *          - name: categoryid
+ *          - name: category_id
  *            in: query
  *            type: int
  *      responses:
  *          '201':
  *              description: successful operation
  */
-app.put('/serie_category/:serie_category_id', seriecategoryQueries.updateSeriecategory)
+app.put('/serie_category/:serie_category_id', serieCategoryQueries.updateSerieCategory)
 
 /**
  * @swagger
@@ -566,7 +566,7 @@ app.put('/serie_category/:serie_category_id', seriecategoryQueries.updateSerieca
  *          '200':
  *              description: successful operation
  */
-app.delete('/serie_category/:serie_category_id', seriecategoryQueries.deleteSeriecategory)
+app.delete('/serie_category/:serie_category_id', serieCategoryQueries.deleteSerieCategory)
 
 /**
  * @swagger
@@ -1045,26 +1045,26 @@ app.delete('/category/:category_id', categoryQueries.deleteCategory)
 
 /**
  * @swagger
- * /favorites:
+ * /favorite:
  *  get:
  *      tags:
- *          - favorites
- *      description: Use to request all favorites
+ *          - favorite
+ *      description: Use to request all favorite
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get('/favorites', favoritesQueries.getFavorites)
+app.get('/favorite', favoriteQueries.getFavorites)
 
 /**
  * @swagger
- * /favorites/{favorites_id}:
+ * /favorite/{favorite_id}:
  *  get:
  *      tags:
- *          - favorites
- *      description: Use to request favorites by id
+ *          - favorite
+ *      description: Use to request favorite by id
  *      parameters:
- *        - name: 'favorites_id'
+ *        - name: 'favorite_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1075,15 +1075,15 @@ app.get('/favorites', favoritesQueries.getFavorites)
  *          '200':
  *              description: successful operation
  */
-app.get('/favorites/:favorites_id', favoritesQueries.getFavoritesById)
+app.get('/favorite/:favorite_id', favoriteQueries.getFavoritesById)
 
 /**
  * @swagger
- * /favorites:
+ * /favorite:
  *  post:
  *      tags:
- *          - favorites
- *      description: Use to create favorites
+ *          - favorite
+ *      description: Use to create favorite
  *      consumes:
  *          - application/json
  *      parameters:
@@ -1097,19 +1097,19 @@ app.get('/favorites/:favorites_id', favoritesQueries.getFavoritesById)
  *          '200':
  *              description: results rows
  */
-app.post('/favorites', favoritesQueries.createFavorites)
+app.post('/favorite', favoriteQueries.createFavorites)
 
 /**
  * @swagger
- * /favorites/{favorites_id}:
+ * /favorite/{favorite_id}:
  *  put:
  *      tags:
- *          - favorites
- *      description: Use to update favorites
+ *          - favorite
+ *      description: Use to update favorite
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: favorites_id
+ *          - name: favorite_id
  *            in: path
  *            required: true
  *            schema:
@@ -1126,17 +1126,17 @@ app.post('/favorites', favoritesQueries.createFavorites)
  *          '200':
  *              description: results rows
  */
-app.put('/favorites/:favorites_id', favoritesQueries.updateFavorites)
+app.put('/favorite/:favorite_id', favoriteQueries.updateFavorites)
 
 /**
  * @swagger
- * /favorites/{favorites_id}:
+ * /favorite/{favorite_id}:
  *  delete:
  *      tags:
- *          - favorites
- *      description: Use to delete favorites by id
+ *          - favorite
+ *      description: Use to delete favorite by id
  *      parameters:
- *        - name: 'favorites_id'
+ *        - name: 'favorite_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1147,7 +1147,7 @@ app.put('/favorites/:favorites_id', favoritesQueries.updateFavorites)
  *          '200':
  *              description: successful operation
  */
-app.delete('/favorites/:favorites_id', favoritesQueries.deleteFavorites)
+app.delete('/favorite/:favorite_id', favoriteQueries.deleteFavorites)
 
 /**
  * @swagger
@@ -1276,13 +1276,13 @@ app.get('/role', roleQueries.getRole)
 
 /**
  * @swagger
- * /role/{roles_id}:
+ * /role/{role_id}:
  *  get:
  *      tags:
  *          - role
  *      description: Use to request role by id
  *      parameters:
- *        - name: 'roles_id'
+ *        - name: 'role_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1293,7 +1293,7 @@ app.get('/role', roleQueries.getRole)
  *          '200':
  *              description: successful operation
  */
-app.get('/role/:roles_id', roleQueries.getRoleById)
+app.get('/role/:role_id', roleQueries.getRoleById)
 
 /**
  * @swagger
@@ -1319,7 +1319,7 @@ app.post('/role', roleQueries.createRole)
 
 /**
  * @swagger
- * /role/{roles_id}:
+ * /role/{role_id}:
  *  put:
  *      tags:
  *          - role
@@ -1327,7 +1327,7 @@ app.post('/role', roleQueries.createRole)
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: roles_id
+ *          - name: role_id
  *            in: path
  *            required: true
  *            schema:
@@ -1344,17 +1344,17 @@ app.post('/role', roleQueries.createRole)
  *          '200':
  *              description: results rows
  */
-app.put('/role/:roles_id', roleQueries.updateRole)
+app.put('/role/:role_id', roleQueries.updateRole)
 
 /**
  * @swagger
- * /role/{roles_id}:
+ * /role/{role_id}:
  *  delete:
  *      tags:
  *          - role
  *      description: Use to delete role by id
  *      parameters:
- *        - name: 'roles_id'
+ *        - name: 'role_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1365,7 +1365,7 @@ app.put('/role/:roles_id', roleQueries.updateRole)
  *          '200':
  *              description: successful operation
  */
-app.delete('/role/:roles_id', roleQueries.deleteRole)
+app.delete('/role/:role_id', roleQueries.deleteRole)
 
 /**
  * @swagger

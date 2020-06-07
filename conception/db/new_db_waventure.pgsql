@@ -11,8 +11,7 @@ CREATE TABLE account (
       password varchar(64)
 );
 
-INSERT INTO account (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
-      VALUES ('Clorge', 'Gravely', 'Rodney', 'Rondey@mail.com', '1961-06-16', 'avatar.jpg', crypt('password', gen_salt('md5')));
+
 
 CREATE TABLE serie (
       serie_id serial NOT NULL PRIMARY KEY,
@@ -60,6 +59,7 @@ CREATE TABLE category (
       category_id serial NOT NULL PRIMARY KEY,
       name varchar(100)
 );
+
 CREATE TABLE serie_category (
       serie_id serial NOT NULL PRIMARY KEY,
       serie_id serial,
@@ -67,9 +67,6 @@ CREATE TABLE serie_category (
       FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
       FOREIGN KEY (category_id) REFERENCES category (category_id)
 );
-
-INSERT INTO serie_category (serie_id, category_id)
-      VALUES ('1', '1');
 
 CREATE TABLE synopsis (
       synopsis_id serial NOT NULL PRIMARY KEY,
@@ -83,9 +80,6 @@ CREATE TABLE actor (
       name varchar(100)
 );
 
-INSERT INTO actor (name)
-      VALUES ('jean phil');
-
 CREATE TABLE role (
       role_id serial NOT NULL PRIMARY KEY,
       actor_id serial,
@@ -93,8 +87,7 @@ CREATE TABLE role (
       FOREIGN KEY (actor_id) REFERENCES actor (actor_id)
 );
 
-INSERT INTO ROLE (character)
-      VALUES ('poisson rouge');
+
 
 CREATE TABLE serie_actor (
       serie_actor_id serial NOT NULL PRIMARY KEY,
@@ -112,6 +105,9 @@ CREATE TABLE LISTEN (
       FOREIGN KEY (account_id) REFERENCES account (account_id),
       FOREIGN KEY (episode_id) REFERENCES episode (episode_id)
 );
+
+INSERT INTO account (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
+      VALUES ('Clorge', 'Gravely', 'Rodney', 'Rondey@mail.com', '1961-06-16', 'avatar.jpg', crypt('password', gen_salt('md5')));
 
 INSERT INTO serie (title, image, image_lg, image_bg, season, author, duration, upload_date, creation_date)
       VALUES ('Clyde Vanilla', 'clydevanilla.jpg', 'clydevanillaLg.jpg', 'clydevanillaBg.jpg', '1', 'Antoine Daniel', '00:03:11.00', '2020-06-03', '2017-09-17'),
@@ -137,6 +133,15 @@ INSERT INTO episode (season_id, title, episode_nb, duration, mp3_file)
 
 INSERT INTO category (name)
       VALUES ('heroic fantasy');
+
+INSERT INTO ROLE (character)
+      VALUES ('poisson rouge');
+
+INSERT INTO actor (name)
+      VALUES ('jean phil');
+
+INSERT INTO serie_category (serie_id, category_id)
+      VALUES ('1', '1');
 
 
 
