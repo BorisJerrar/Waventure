@@ -10,7 +10,7 @@ CREATE TABLE account (
     avatar varchar(64),
     password varchar(64)
 );
-
+/* non fini (main_color) */
 CREATE TABLE serie (
     serie_id serial NOT NULL PRIMARY KEY,
     title varchar(100),
@@ -24,6 +24,8 @@ CREATE TABLE serie (
     creation_date date
 );
 
+/* non fini (Eden done) */
+
 CREATE TABLE season (
     season_id serial NOT NULL PRIMARY KEY,
     serie_id serial,
@@ -31,6 +33,8 @@ CREATE TABLE season (
     quantite smallint,
     FOREIGN KEY (serie_id) REFERENCES serie (serie_id)
 );
+
+/* non fini (a faire clyde vanilla, et agent 0 | apartemment done) */
 
 CREATE TABLE episode (
     episode_id serial NOT NULL PRIMARY KEY,
@@ -143,7 +147,8 @@ VALUES ('Clyde Vanilla', 'clydevanilla.jpg', 'clydevanillaLg.jpg', 'clydevanilla
 ('Blind Cowboy', 'blindCowboy.jpg', 'blindCowboyLg.jpg', 'blindCowboyBg.jpg', 1, 'François TJP', '0:17:00.000', '2020-06-09', '2020-01-01');
 
 INSERT INTO season (serie_id, season_nb, quantite)
-VALUES (2, 1, 15),
+VALUES (1, 1, 10),
+(2, 1, 15),
 (2, 2, 19),
 (2, 3, 14),
 (3, 1, 18),
