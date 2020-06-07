@@ -32,8 +32,8 @@ VALUES
       (14, 1, 6),
       (15, 1, 25),
       (15, 2, 25),
-      (15, 3, 25);
-
+      (15, 3, 25),
+      (1, 1, 10);
 CREATE TABLE episode
 (
       episode_id serial NOT NULL PRIMARY KEY,
@@ -247,9 +247,15 @@ VALUES
       (12, 3, '0:05:36.000', 'Les courses', 'appartement_saison1_transmission3.mp3'),
       (12, 4, '0:04:04.000', '1er Contact', 'appartement_saison1_transmission4.mp3'),
       (12, 5, '0:05:31.000', 'Rendez-vous', 'appartement_saison1_transmission5.mp3'),
-      (12, 6, '0:05:08.000', 'This is the End', 'appartement_saison1_transmission6.mp3')
-,
+      (12, 6, '0:05:08.000', 'This is the End', 'appartement_saison1_transmission6.mp3'),
 
- 
-
-
+      (23, 1, '0:14:15.000', 'Destination Destin', 'clideVanilla_saison1_episode1.mp3'),
+      (23, 2, '0:19:21.000', 'Bonjour la Galère !', 'clideVanilla_saison1_episode2.mp3'),
+      (23, 3, '0:16:22.000', 'Le Joyau de Agu-Agu', 'clideVanilla_saison1_episode3.mp3'),
+      (23, 4, '0:19:21.000', 'Adjugé-Vendu !', 'clideVanilla_saison1_episode4.mp3'),
+      (23, 5, '0:19:56.000', 'ＢＲＡＮＬＯＵＩＳ', 'clideVanilla_saison1_episode5.mp3'),
+      (23, 6, '0:19:26.000', 'L''Enfer Jaune', 'clideVanillak_saison1_episode6.mp3'),
+      (23, 7, '0:22:04.000', 'Discoball', 'clideVanilla_saison1_episode7.mp3'),
+      (23, 8, '0:20:01.000', 'Le Client est Roi', 'clideVanilla_saison1_episode8.mp3'),
+      (23, 9, '0:20:44.000', ' L''Être Primordial', 'clideVanilla_saison1_episode9.mp3'),
+      (23, 10, '0:19:32.000', 'Confrontation ULTRAMAXIMALE', 'clideVanilla_saison1_episode10.mp3');
