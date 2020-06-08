@@ -191,8 +191,9 @@ VALUES
     (18, 1, 10),
     (19, 1, 8),
     (19, 2, 8),
-    (19, 3, 8)
-,
+    (19, 3, 8),
+    (20, 1, 10),
+    (20, 2, 10);
 
 INSERT INTO episode
     (season_id, episode_nb, duration, title, mp3_file)
