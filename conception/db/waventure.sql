@@ -193,7 +193,8 @@ VALUES
     (19, 2, 8),
     (19, 3, 8),
     (20, 1, 10),
-    (20, 2, 10);
+    (20, 2, 10),
+    (21, 1, 7);
 
 INSERT INTO episode
     (season_id, episode_nb, duration, title, mp3_file)
@@ -684,7 +685,15 @@ VALUES
     (31, 7, '0:10:06.000', 'La Prise de la Bastille', 'lepopetemporelle_saison2_episode7.mp3'),
     (31, 8, '0:09:27.000', 'Le Livre sacré', 'lepopetemporelle_saison2_episode8.mp3'),
     (31, 9, '0:14:25.000', 'Denver', 'lepopetemporelle_saison2_episode9.mp3'),
-    (31, 10, '0:13:41.000', 'Fin', 'lepopetemporelle_saison2_episode10.mp3');
+    (31, 10, '0:13:41.000', 'Fin', 'lepopetemporelle_saison2_episode10.mp3'),
+
+    (32, 1, '0:10:13.000', NULL, 'synapse_saison1_episode1.mp3'),
+    (32, 2, '0:09:47.000', NULL, 'synapse_saison1_episode2.mp3'),
+    (32, 3, '0:12:09.000', NULL, 'synapse_saison1_episode3.mp3'),
+    (32, 4, '0:14:37.000', NULL, 'synapse_saison1_episode4.mp3'),
+    (32, 5, '0:12:42.000', NULL, 'synapse_saison1_episode5.mp3'),
+    (32, 6, '0:10:46.000', NULL, 'synapse_saison1_episode6.mp3'),
+    (32, 7, '0:18:29.000', NULL, 'synapse_saison1_episode7.mp3');
 
 INSERT INTO account
     (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
