@@ -500,31 +500,31 @@ VALUES
     (19, 5, '0:07:12.000', 'Qui lentement parle', 'levaisseau_saison1_episode5.mp3'),
     (19, 6, '0:05:36.000', 'A qui voudrait', 'levaisseau_saison1_episode6.mp3'),
 
-    (20, 1, '0:05:09.000', NULL, 'eden_saison1_episode1.mp3'),
-    (20, 2, '0:05:22.000', NULL, 'eden_saison1_episode2.mp3'),
-    (20, 3, '0:05:04.000', NULL, 'eden_saison1_episode3.mp3'),
-    (20, 4, '0:05:24.000', NULL, 'eden_saison1_episode4.mp3'),
-    (20, 5, '0:05:15.000', NULL, 'eden_saison1_episode5.mp3'),
-    (20, 6, '0:05:38.000', NULL, 'eden_saison1_episode6.mp3'),
-    (20, 7, '0:05:27.000', NULL, 'eden_saison1_episode7.mp3'),
-    (20, 8, '0:05:10.000', NULL, 'eden_saison1_episode8.mp3'),
-    (20, 9, '0:05:17.000', NULL, 'eden_saison1_episode9.mp3'),
-    (20, 10, '0:05:24.000', NULL, 'eden_saison1_episode10.mp3'),
-    (20, 11, '0:05:17.000', NULL, 'eden_saison1_episode11.mp3'),
-    (20, 12, '0:05:07.000', NULL, 'eden_saison1_episode12.mp3'),
-    (20, 13, '0:05:12.000', NULL, 'eden_saison1_episode13.mp3'),
-    (20, 14, '0:05:15.000', NULL, 'eden_saison1_episode14.mp3'),
-    (20, 15, '0:05:12.000', NULL, 'eden_saison1_episode15.mp3'),
-    (20, 16, '0:05:16.000', NULL, 'eden_saison1_episode16.mp3'),
-    (20, 17, '0:05:31.000', NULL, 'eden_saison1_episode17.mp3'),
-    (20, 18, '0:05:03.000', NULL, 'eden_saison1_episode18.mp3'),
-    (20, 19, '0:05:00.000', NULL, 'eden_saison1_episode19.mp3'),
-    (20, 20, '0:05:12.000', NULL, 'eden_saison1_episode20.mp3'),
-    (20, 21, '0:05:20.000', NULL, 'eden_saison1_episode21.mp3'),
-    (20, 22, '0:05:23.000', NULL, 'eden_saison1_episode22.mp3'),
-    (20, 23, '0:05:16.000', NULL, 'eden_saison1_episode23.mp3'),
-    (20, 24, '0:05:10.000', NULL, 'eden_saison1_episode24.mp3'),
-    (20, 25, '0:06:03.000', NULL, 'eden_saison1_episode25.mp3'),
+    (21, 1, '0:05:09.000', NULL, 'eden_saison1_episode1.mp3'),
+    (21, 2, '0:05:22.000', NULL, 'eden_saison1_episode2.mp3'),
+    (21, 3, '0:05:04.000', NULL, 'eden_saison1_episode3.mp3'),
+    (21, 4, '0:05:24.000', NULL, 'eden_saison1_episode4.mp3'),
+    (21, 5, '0:05:15.000', NULL, 'eden_saison1_episode5.mp3'),
+    (21, 6, '0:05:38.000', NULL, 'eden_saison1_episode6.mp3'),
+    (21, 7, '0:05:27.000', NULL, 'eden_saison1_episode7.mp3'),
+    (21, 8, '0:05:10.000', NULL, 'eden_saison1_episode8.mp3'),
+    (21, 9, '0:05:17.000', NULL, 'eden_saison1_episode9.mp3'),
+    (21, 10, '0:05:24.000', NULL, 'eden_saison1_episode10.mp3'),
+    (21, 11, '0:05:17.000', NULL, 'eden_saison1_episode11.mp3'),
+    (21, 12, '0:05:07.000', NULL, 'eden_saison1_episode12.mp3'),
+    (21, 13, '0:05:12.000', NULL, 'eden_saison1_episode13.mp3'),
+    (21, 14, '0:05:15.000', NULL, 'eden_saison1_episode14.mp3'),
+    (21, 15, '0:05:12.000', NULL, 'eden_saison1_episode15.mp3'),
+    (21, 16, '0:05:16.000', NULL, 'eden_saison1_episode16.mp3'),
+    (21, 17, '0:05:31.000', NULL, 'eden_saison1_episode17.mp3'),
+    (21, 18, '0:05:03.000', NULL, 'eden_saison1_episode18.mp3'),
+    (21, 19, '0:05:00.000', NULL, 'eden_saison1_episode19.mp3'),
+    (21, 20, '0:05:12.000', NULL, 'eden_saison1_episode20.mp3'),
+    (21, 21, '0:05:20.000', NULL, 'eden_saison1_episode21.mp3'),
+    (21, 22, '0:05:23.000', NULL, 'eden_saison1_episode22.mp3'),
+    (21, 23, '0:05:16.000', NULL, 'eden_saison1_episode23.mp3'),
+    (21, 24, '0:05:10.000', NULL, 'eden_saison1_episode24.mp3'),
+    (21, 25, '0:06:03.000', NULL, 'eden_saison1_episode25.mp3'),
 
     (21, 1, '0:05:13.000', NULL, 'eden_saison2_episode1.mp3'),
     (21, 2, '0:04:56.000', NULL, 'eden_saison2_episode2.mp3'),
@@ -707,9 +707,28 @@ VALUES
     (34, 3, '0:10:15.000', '2542,5', 'remisansamis_saison1_episode3.mp3'),
     (34, 4, '0:09:59.000', '2541 BIS', 'remisansamis_saison1_episode4.mp3'),
     (34, 5, '0:13:22.000', '2543', 'remisansamis_saison1_episode5.mp3');
+
+
 INSERT INTO account
     (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
+
 VALUES
     ('adminValentin', 'valentin', 'cellier', 'valentin@mail.com', '1992-01-19', 'avatar1.jpg', crypt('adminPassword', gen_salt('md5'))),
     ('adminCharles', 'charles', 'decodin', 'charles@mail.com', '1992-01-19', 'avatar2.jpg', crypt('adminPassword', gen_salt('md5'))),
     ('adminBoris', 'boris', 'jerrar', 'boris@mail.com', '1992-01-19', 'avatar3.jpg', crypt('adminPassword', gen_salt('md5')));
+
+    INSERT INTO category
+    (name)
+VALUES
+('Science-fiction'),
+('Humour'),
+('Contes de fées'),
+('Aventure'),
+('Comédie'),
+('Fantastique,'),
+('Espionnage'),
+('Heroic fantasy'),
+('Fantasy'),
+('Aventure'),
+('Action'),
+('Decalée');
