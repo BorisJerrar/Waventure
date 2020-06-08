@@ -27,8 +27,6 @@ CREATE TABLE serie
     creation_date date
 );
 
-/* non fini (Eden done) */
-
 CREATE TABLE season
 (
     season_id serial NOT NULL PRIMARY KEY,
@@ -38,7 +36,6 @@ CREATE TABLE season
     FOREIGN KEY (serie_id) REFERENCES serie (serie_id)
 );
 
-/* non fini (a faire clyde vanilla, et agent 0 | apartemment done) */
 
 CREATE TABLE episode
 (
