@@ -426,7 +426,7 @@ VALUES
     (13, 25, '0:02:19.000', 'L''opposé', 'docteurbonoboshow_saison1_episode25.mp3'),
     (13, 26, '0:02:54.000', 'Le vilain', 'docteurbonoboshow_saison1_episode26.mp3'),
     (13, 27, '0:02:13.000', 'Le mensonge', 'docteurbonoboshow_saison1_episode27.mp3'),
-    (13, 28, '0:01.58.000', 'Le dîner', 'docteurbonoboshow_saison1_episode28.mp3'),
+    (13, 28, '0:01:58.000', 'Le dîner', 'docteurbonoboshow_saison1_episode28.mp3'),
     (13, 29, '0:03:30.000', 'Le chieur', 'docteurbonoboshow_saison1_episode29.mp3'),
     (13, 30, '0:02:19.000', 'Le livreur', 'docteurbonoboshow_saison1_episode30.mp3'),
     (13, 31, '0:03:38.000', 'L''ascenseur', 'docteurbonoboshow_saison1_episode30.mp3'),
