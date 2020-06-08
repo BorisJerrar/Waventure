@@ -132,7 +132,7 @@ VALUES
     ('Le Vaisseau', 'leVaisseau.jpg', 'leVaisseauLg.jpg', 'leVaisseauBg.jpg', 1, 'François TJP', '0:48:00.000', '2020-06-08', '2016-06-01'),
     ('Eden', 'eden.jpg', 'edenLg.jpg', 'edenBg.jpg', 3, 'Antoine Rouaud', '6:40:00.000', '2020-06-08', '2009-05-23'),
     ('Eden Sacrifice', 'edenSacrifice.jpg', 'edenSacrificeLg.jpg', 'edenSacrificeBg.jpg', 1, 'Antoine Rouaud', '1:47:00.000', '2020-06-08', '2012-01-01'),
-    ('Poséidôme', 'poseidome.jpg', 'poseidome.jpg', 'poseidome.jpg', 1, 'David Uystpruyst', '1:12:46.000', '2020-06-08', '2011-01-10'),
+    ('Poséidôme', 'poseidome.jpg', 'poseidomeLg.jpg', 'poseidomeBg.jpg', 1, 'David Uystpruyst', '1:12:46.000', '2020-06-08', '2011-01-10'),
     ('Le Cacao Qui Tue', 'leCacaoQuiTue.jpg', 'leCacaoQuiTueLg.jpg', 'leCacaoQuiTueBg.jpg', 1, 'Hélène & Sébastien', '2:51:00.000', '2020-06-08', '2014-04-13'),
     ('Les Contes De Fitzgerald', 'lesContesDeFitzgerald.jpg', 'lesContesDeFitzgerald.jpg', 'lesContesDeFitzgerald.jpg', 3, 'FAL', '1:01:07.000', '2020-06-08', '2011-09-24'),
     ('L''Épopée Temporelle ', 'epopeeTemporelle.jpg', 'epopeeTemporelleLg.jpg', 'epopeeTemporelleBg.jpg', 2, 'Cyprien', '3:30:00.000', '2020-06-08', '2017-07-01'),
