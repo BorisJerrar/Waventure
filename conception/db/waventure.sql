@@ -717,18 +717,18 @@ VALUES
     ('adminCharles', 'charles', 'decodin', 'charles@mail.com', '1992-01-19', 'avatar2.jpg', crypt('adminPassword', gen_salt('md5'))),
     ('adminBoris', 'boris', 'jerrar', 'boris@mail.com', '1992-01-19', 'avatar3.jpg', crypt('adminPassword', gen_salt('md5')));
 
-    INSERT INTO category
+INSERT INTO category
     (name)
+
 VALUES
-('Science-fiction'),
-('Humour'),
-('Contes de fées'),
-('Aventure'),
-('Comédie'),
-('Fantastique,'),
-('Espionnage'),
-('Heroic fantasy'),
-('Fantasy'),
-('Aventure'),
-('Action'),
-('Decalée');
+    ('Science-fiction'),
+    ('Humour'),
+    ('Contes de fées'),
+    ('Aventure'),
+    ('Comédie'),
+    ('Fantastique'),
+    ('Espionnage'),
+    ('Heroic fantasy'),
+    ('Fantasy'),
+    ('Action'),
+    ('Decalée');
