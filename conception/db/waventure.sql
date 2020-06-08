@@ -643,9 +643,25 @@ VALUES
     (27, 5, '0:06:27.000', NULL, 'lescontesdefitzgeralde_saison1_episode5.mp3'),
     (27, 6, '0:09:39.000', NULL, 'lescontesdefitzgeralde_saison1_episode6.mp3'),
     (27, 7, '0:08:56.000', NULL, 'lescontesdefitzgeralde_saison1_episode7.mp3'),
-    (27, 8, '0:08:52.000', NULL, 'lescontesdefitzgeralde_saison1_episode8.mp3');
+    (27, 8, '0:08:52.000', NULL, 'lescontesdefitzgeralde_saison1_episode8.mp3'),
 
-/* a faire fitgerald saison 2 */
+    (28, 1, '0:08:24.000', NULL, 'lescontesdefitzgeralde_saison2_episode1.mp3'),
+    (28, 2, '0:08:39.000', NULL, 'lescontesdefitzgeralde_saison2_episode2.mp3'),
+    (28, 3, '0:08:39.000', NULL, 'lescontesdefitzgeralde_saison2_episode3.mp3'),
+    (28, 4, '0:09:05.000', NULL, 'lescontesdefitzgeralde_saison2_episode4.mp3'),
+    (28, 5, '0:08:17.000', NULL, 'lescontesdefitzgeralde_saison2_episode5.mp3'),
+    (28, 6, '0:08:46.000', NULL, 'lescontesdefitzgeralde_saison2_episode6.mp3'),
+    (28, 7, '0:08:44.000', NULL, 'lescontesdefitzgeralde_saison2_episode7.mp3'),
+    (28, 8, '0:11:59.000', NULL, 'lescontesdefitzgeralde_saison2_episode8.mp3'),
+
+    (29, 1, '0:12:15.000', NULL, 'lescontesdefitzgeralde_saison3_episode1.mp3'),
+    (29, 2, '0:11:45.000', NULL, 'lescontesdefitzgeralde_saison3_episode2.mp3'),
+    (29, 3, '0:11:21.000', NULL, 'lescontesdefitzgeralde_saison3_episode3.mp3'),
+    (29, 4, '0:10:47.000', NULL, 'lescontesdefitzgeralde_saison3_episode4.mp3'),
+    (29, 5, '0:10:42.000', NULL, 'lescontesdefitzgeralde_saison3_episode5.mp3'),
+    (29, 6, '0:11:13.000', NULL, 'lescontesdefitzgeralde_saison3_episode6.mp3'),
+    (29, 7, '0:12:29.000', NULL, 'lescontesdefitzgeralde_saison3_episode7.mp3'),
+    (29, 8, '0:16:00.000', NULL, 'lescontesdefitzgeralde_saison3_episode8.mp3');
 
 
 INSERT INTO account
