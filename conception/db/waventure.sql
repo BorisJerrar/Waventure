@@ -661,8 +661,29 @@ VALUES
     (29, 5, '0:10:42.000', NULL, 'lescontesdefitzgeralde_saison3_episode5.mp3'),
     (29, 6, '0:11:13.000', NULL, 'lescontesdefitzgeralde_saison3_episode6.mp3'),
     (29, 7, '0:12:29.000', NULL, 'lescontesdefitzgeralde_saison3_episode7.mp3'),
-    (29, 8, '0:16:00.000', NULL, 'lescontesdefitzgeralde_saison3_episode8.mp3');
+    (29, 8, '0:16:00.000', NULL, 'lescontesdefitzgeralde_saison3_episode8.mp3'),
 
+    (30, 1, '0:08:55.000', 'Le Robot', 'lepopetemporelle_saison1_episode1.mp3'),
+    (30, 2, '0:08:48.000', 'La Disparition', 'lepopetemporelle_saison1_episode2.mp3'),
+    (30, 3, '0:08:27.000', 'L''Enfant perdu', 'lepopetemporelle_saison1_episode3.mp3'),
+    (30, 4, '0:08:54.000', 'La Chute', 'lepopetemporelle_saison1_episode4.mp3'),
+    (30, 5, '0:08:54.000', 'Le Scientifique', 'lepopetemporelle_saison1_episode5.mp3'),
+    (30, 6, '0:09:18.000', 'Le Sacrifice', 'lepopetemporelle_saison1_episode6.mp3'),
+    (30, 7, '0:10:03.000', 'Les Épreuves', 'lepopetemporelle_saison1_episode7.mp3'),
+    (30, 8, '0:09:12.000', 'Le Tournoi', 'lepopetemporelle_saison1_episode8.mp3'),
+    (30, 9, '0:10:51.000', 'Le Match final', 'lepopetemporelle_saison1_episode9.mp3'),
+    (30, 10, '0:13:10.000', 'Fin', 'lepopetemporelle_saison1_episode10.mp3'),
+
+    (31, 1, '0:11:47.000', 'Le temps cassé', 'lepopetemporelle_saison2_episode1.mp3'),
+    (31, 2, '0:11:10.000', 'Le Titanic', 'lepopetemporelle_saison2_episode2.mp3'),
+    (31, 3, '0:10:17.000', 'Léonard De Vinci', 'lepopetemporelle_saison2_episode3.mp3'),
+    (31, 4, '0:12:38.000', 'Flèches et canon laser', 'lepopetemporelle_saison2_episode4.mp3'),
+    (31, 5, '0:12:29.000', 'Dans l’arène', 'lepopetemporelle_saison2_episode5.mp3'),
+    (31, 6, '0:09:40.000', 'Et Dieu créa Internet', 'lepopetemporelle_saison2_episode6.mp3'),
+    (31, 7, '0:10:06.000', 'La Prise de la Bastille', 'lepopetemporelle_saison2_episode7.mp3'),
+    (31, 8, '0:09:27.000', 'Le Livre sacré', 'lepopetemporelle_saison2_episode8.mp3'),
+    (31, 9, '0:14:25.000', 'Denver', 'lepopetemporelle_saison2_episode9.mp3'),
+    (31, 10, '0:13:41.000', 'Fin', 'lepopetemporelle_saison2_episode10.mp3');
 
 INSERT INTO account
     (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
