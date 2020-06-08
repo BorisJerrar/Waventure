@@ -731,4 +731,5 @@ VALUES
     ('Heroic fantasy'),
     ('Fantasy'),
     ('Action'),
-    ('Decalée');
+    ('Decalée'),
+    ('Classique');
