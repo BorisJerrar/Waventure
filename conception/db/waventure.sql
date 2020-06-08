@@ -194,7 +194,8 @@ VALUES
     (19, 3, 8),
     (20, 1, 10),
     (20, 2, 10),
-    (21, 1, 7);
+    (21, 1, 7),
+    (22, 1, 7);
 
 INSERT INTO episode
     (season_id, episode_nb, duration, title, mp3_file)
@@ -693,7 +694,15 @@ VALUES
     (32, 4, '0:14:37.000', NULL, 'synapse_saison1_episode4.mp3'),
     (32, 5, '0:12:42.000', NULL, 'synapse_saison1_episode5.mp3'),
     (32, 6, '0:10:46.000', NULL, 'synapse_saison1_episode6.mp3'),
-    (32, 7, '0:18:29.000', NULL, 'synapse_saison1_episode7.mp3');
+    (32, 7, '0:18:29.000', NULL, 'synapse_saison1_episode7.mp3'),
+
+    (33, 1, '0:09:54.000', NULL, 'trimoriatv_saison1_episode1.mp3'),
+    (33, 2, '0:10:26.000', NULL, 'trimoriatv_saison1_episode2.mp3'),
+    (33, 3, '0:09:54.000', NULL, 'trimoriatv_saison1_episode3.mp3'),
+    (33, 4, '0:10:04.000', NULL, 'trimoriatv_saison1_episode4.mp3'),
+    (33, 5, '0:10:26.000', NULL, 'trimoriatv_saison1_episode5.mp3'),
+    (33, 6, '0:19:44.000', NULL, 'trimoriatv_saison1_episode6.mp3'),
+    (33, 7, '0:10:25.000', NULL, 'trimoriatv_saison1_episode7.mp3');
 
 INSERT INTO account
     (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
