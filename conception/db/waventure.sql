@@ -216,8 +216,9 @@ VALUES
     (34, 1, 9),
     (35, 1, 2),
     (36, 1, 18),
-    (37, 1, 23);
-
+    (37, 1, 23),
+    (38, 1, 12),
+    (29, 1, 5);
 
 INSERT INTO episode
     (season_id, episode_nb, duration, title, mp3_file)
@@ -972,7 +973,27 @@ VALUES
     (57, 20, '0:04:58.000', 'Duo de choc', 'adn2082_saison1_episode19.mp3'),
     (57, 21, '0:06:52.000', 'L''antiDOTE', 'adn2082_saison1_episode20.mp3'),
     (57, 22, '0:07:56.000', 'Le grand choix', 'adn2082_saison1_episode21.mp3'),
-    (57, 23, '0:03:07.000', 'Oliver et compagnie', 'adn,2082_saison1_epilogue1.mp3');
+    (57, 23, '0:03:07.000', 'Oliver et compagnie', 'adn,2082_saison1_epilogue1.mp3'),
+
+    (58, 1, '0:00:20.000', 'Teaser', 'lesaventuriers_saison1_teaser.mp3'),
+    (58, 2, '0:04:56.000', 'A la recherche de la Pyramide Perdue', 'lesaventuriers_saison1_episode1.mp3'),
+    (58, 3, '0:06:00.000', 'Bandelettes et Crustacés', 'lesaventuriers_saison1_episode2.mp3'),
+    (58, 4, '0:04:33.000', 'On l''appelle Fate', 'lesaventuriers_saison1_episode3.mp3'),
+    (58, 5, '0:06:10.000', 'Escale à Paris', 'lesaventuriers_saison1_episode4.mp3'),
+    (58, 6, '0:05:40.000', 'Maharadjah', 'lesaventuriers_saison1_episode5.mp3'),
+    (58, 7, '0:05:36.000', 'La Maldiction du Tigre', 'lesaventuriers_saison1_episode6.mp3'),
+    (58, 8, '0:07:37.000', 'Sacré Tigre', 'lesaventuriers_saison1_episode7.mp3'),
+    (58, 9, '0:07:44.000', 'Suivez la ligne et Passez par Tokyo', 'lesaventuriers_saison1_episode8.mp3'),
+    (58, 10, '0:08:40.000', 'Suivez la Ligne et Passez par Sydney', 'lesaventuriers_saison1_episode9.mp3'),
+    (58, 11, '0:08:25.000', 'Uluru', 'lesaventuriers_saison1_episode10.mp3'),
+    (58, 12, '0:10:32.000', 'Vers l''Aventure et au delà', 'lesaventuriers_saison1_episode11.mp3'),
+
+
+    (59, 1, '0:03:54.000', 'Make the dust fly', 'blindcowboy_saison1_episode1.mp3'),
+    (59, 2, '0:03:12.000', 'Birds of a feather', 'blindcowboy_saison1_episode2.mp3'),
+    (59, 3, '0:03:44.000', 'Keep the powder dry', 'blindcowboy_saison1_episode3.mp3'),
+    (59, 4, '0:02:25.000', 'Head over heels', 'blindcowboy_saison1_episode4.mp3'),
+    (59, 5, '0:03:25.000', 'Pieces of eight', 'blindcowboy_saison1_episode5.mp3');
 
 INSERT INTO account
     (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
