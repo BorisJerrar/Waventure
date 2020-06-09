@@ -203,4 +203,3 @@ INSERT INTO role (serie_id, actor_id, character) VALUES
 (9, 24, 'Elenda'),
 (9, 25, 'Le reporter'),
 (9, 11, 'Drann'),
-
