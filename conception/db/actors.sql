@@ -335,6 +335,7 @@ INSERT INTO role (serie_id, actor_id, character) VALUES
 (16, 48, 'Capitaine Thomas Delisse'),
 (16, 49, 'Maia'),
 (17, 50, 'Docteur Ambrosia'),
+<<<<<<< HEAD
 (18, 51, 'John B.'),
 (18, 52, 'Philomène Ganache'),
 (18, 53, 'Macintosh'),
@@ -370,3 +371,5 @@ INSERT INTO role (serie_id, actor_id, character) VALUES
 (25, 73, 'Nessa'),
 (25, 73, 'Karina'),
 (26, 73, 'Wallace Ticot'),
+=======
+>>>>>>> 9dd9194c8de4822fec04325fa79a5db1654d8b0d
