@@ -16,7 +16,7 @@ export default function Banner() {
     return (
         <div className="wedetteContainer">
             <div className="wedetteCover">
-              <img className="wedetteCoverImage" src={`${url}/clydevanilla.jpg`} alt="" />  
+              <img className="wedetteCoverImage" src={`${url}/clydevanillaLg.jpg`} alt="" />  
               <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
             </div>
             <div className="wedetteLogoContainer">
