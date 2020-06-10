@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import "../style/Categorie.css";
 
-export default function Categorie({title}) {
+export default function Categorie({category}) {
     const [series, setSeries] = useState([])
     const [toggle, setToggle] = useState(false)
     const slider = useRef(null)
@@ -11,8 +11,8 @@ export default function Categorie({title}) {
     
 
     const fetchSeries = async() =>{
-        const reponse = await fetch(`http://localhost:4000/serie`)
-        const data = await reponse.json()
+        const response = await fetch(`http://localhost:4000/serieCategory/${category}`)
+        const data = await response.json()
        
         setSeries(data)
 }
@@ -36,9 +36,10 @@ useEffect(()=>{
     }, []) 
 
  
+ 
      return(
     <div className="catalog">
-        <h2 className="catalogTitle">{title}</h2>
+        <h2 className="catalogTitle">{category}</h2>
         
         <div className="catalogCoverContainer">
             <div ref={slider} className="sliderCover">

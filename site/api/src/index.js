@@ -25,6 +25,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 /* import queries */
+
+const serieByCategory = require("./queries/serie_serie_category_category");
 const mainQueries = require("./queries/main");
 const seasonQueries = require("./queries/season");
 const categoryQueries = require("./queries/category");
@@ -75,6 +77,9 @@ app.get("/sound/", (req, res) => {
 });
 
 /* MAIN */
+
+app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
+
 /**
  * @swagger
  * /sagaInfo/{serie_id}:

@@ -2,7 +2,7 @@ import React ,{useState} from "react";
 import './App.css';
 import  Header from './components/Header'
 import  Player from './components/Player'
-import Categorie from './components/Categorie'
+import Catalog from './components/Catalog'
 import Banner from './components/Banner'
 
 
@@ -30,21 +30,12 @@ setSerieId(serie_id)
     accountTrigger={accountTrigger}
     setAccountTriggerTrigger={setAccountTriggerTrigger}
     />
-    <Player 
-    serieId={serieId}
-    />
+    <Player />
     <Banner
     lunchingEpisode={(serie_id)=>lunchingEpisode(serie_id)}
     />
-    <Categorie
-    title={"Les classiques"}
-    />
-    <Categorie
-    title={"Aventure Médiéval"}
-    />
-    <Categorie
-    title={"Aventure Spatiale"}
-    />
+    <Catalog/>
+    
     
 </>
     </div>
