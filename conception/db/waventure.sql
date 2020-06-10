@@ -100,8 +100,10 @@ CREATE TABLE serie_actor
 CREATE TABLE role
 (
     role_id serial NOT NULL PRIMARY KEY,
+        serie_id serial,
     actor_id serial,
     character varchar(100),
+        FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
     FOREIGN KEY (actor_id) REFERENCES actor (actor_id)
 );
 
