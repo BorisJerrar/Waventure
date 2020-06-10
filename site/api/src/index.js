@@ -78,7 +78,7 @@ app.get("/sound/", (req, res) => {
 
 /* MAIN */
 
-app.get("/serieCategory/:category_id", serieByCategory.getSerieByCategory )
+app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 
 /**
  * @swagger
