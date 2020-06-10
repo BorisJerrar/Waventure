@@ -11,7 +11,7 @@ export default function Categorie({title}) {
     
 
     const fetchSeries = async() =>{
-        const reponse = await fetch(`http://localhost:4000/series`)
+        const reponse = await fetch(`http://localhost:4000/serie`)
         const data = await reponse.json()
        
         setSeries(data)
