@@ -1,6 +1,8 @@
 CREATE EXTENSION
 IF NOT EXISTS pgcrypto;
 
+SET client_encoding TO 'LATIN1';
+
 CREATE TABLE account
 (
     account_id serial NOT NULL PRIMARY KEY,
