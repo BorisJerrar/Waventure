@@ -13,7 +13,7 @@ export default function Header({
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
   const categories = async () => {
     setCategoriesTrigger(!categoriesTrigger);
-    const data = await fetch(`${serveurPath}/categorie`);
+    const data = await fetch(`${serveurPath}/category`);
     const json = await data.json();
     setTitleArray(json);
   };
