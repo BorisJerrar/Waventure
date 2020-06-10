@@ -113,7 +113,7 @@ INSERT INTO actor (name) VALUES
 ('Yann Belin'),
 ('Xavier Botti'),
 ('Nicolas Botti'),
-('Nicolas Botti'),
+('Nicolas Botti');
 
 
 
