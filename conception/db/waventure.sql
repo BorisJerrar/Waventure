@@ -1361,7 +1361,7 @@ INSERT INTO serie_actor (serie_id, actor_id) VALUES
 (25, 71),
 (25, 72),
 (25, 73),
-(26, 74),
+(26, 74);
 
 
 
