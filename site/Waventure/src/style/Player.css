@@ -35,7 +35,7 @@
   height: auto;
   padding: 30px;
 }
-.rhap_container:focus:not(:focus-visible) {
+.rhap_container:focus{
   outline: 0;
 }
 
@@ -94,7 +94,7 @@
   cursor: pointer;
   -webkit-user-select: none;
 }
-.rhap_progress-container:focus:not(:focus-visible) {
+.rhap_progress-container:focus {
   outline: 0;
 }
 
@@ -217,7 +217,7 @@ display: none;
   height: 14px;
   cursor: pointer;
 }
-.rhap_volume-bar-area:focus:not(:focus-visible) {
+.rhap_volume-bar-area:focus {
   outline: 0;
 }
 
@@ -263,6 +263,6 @@ display: none;
 .rhap_button-clear:active {
   opacity: 0.95;
 }
-.rhap_button-clear:focus:not(:focus-visible) {
+.rhap_button-clear:focus {
   outline: 0;
 }

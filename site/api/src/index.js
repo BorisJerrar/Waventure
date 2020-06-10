@@ -65,10 +65,11 @@ app.get('/images/:image', (req, res) => {
   })
 })
 
-app.get('/sound/:sound', (req, res) => {
+app.get('/sound/:saga/:sound', (req, res) => {
   let sound = req.params.sound
+  let saga = req.params.saga
 
-  let read = fs.createReadStream(`./src/sound/${sound}.mp3`);
+  let read = fs.createReadStream(`./src/sound/Adoprixtoxis/${sound}.mp3`);
   read.on('open', ()=>{
     res.writeHead(206,{'Content-Type': 'audio/mpeg'})
     read.pipe(res)
