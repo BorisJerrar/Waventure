@@ -5,26 +5,28 @@ import "../style/Player.css";
 export default function Player() {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeNumber, setEpisodeNumber] = useState(50);
-  const [cover, setCover] = useState("");
+  const [serieInformation, setSerieInformation] = useState({});
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [urlAudio, setUrlAudio] = useState(``);
   useEffect(() => {
+    const fetchingSerie = async () => {
+      const reponse = await fetch(`http://localhost:4000/serie/3`);
+      const data = await reponse.json();
+      await setSerieInformation(data[0]);
+    };
     const fetchingAudio = async () => {
       const track = await fetch(
         `${serverPath}/episode/${episodeNumber}`
       );
       const data = await track.json();
       await setEpisodeInfos(...data);
-      await setUrlAudio(`${serverPath}/sound/?saga=Adoprixtoxis&sound=${data[0].mp3_file}`);
+      if(serverPath && serieInformation && serieInformation.title && data) {
+        await setUrlAudio(`${serverPath}/sound/?saga=${serieInformation.title}&sound=${data[0].mp3_file}`)
+      }
     };
-    const fetchingImgAudio = async () => {
-      const reponse = await fetch(`http://localhost:4000/serie/1`);
-      const data = await reponse.json();
-      await setCover(data[0].image);
-    };
+    fetchingSerie();
     fetchingAudio();
-    fetchingImgAudio();
-  }, [episodeNumber, serverPath]);
+  }, [episodeNumber, serverPath, serieInformation.title, serieInformation.author]);
   const nextSaga = () => {
     return setEpisodeNumber(episodeNumber + 1);
   };
@@ -34,8 +36,7 @@ export default function Player() {
   const header = () => {
     return (
       <div className="playerHeader">
-        <p>Episode 1 | La Legende</p>
-        <p>Nico {"&"} Matt</p>
+        <p>Episode 1 | {serieInformation?serieInformation.author:''} | {episodeInfos?episodeInfos.title:''}</p>
       </div>
     );
   };
@@ -49,16 +50,15 @@ export default function Player() {
     );
   };
   const player = useRef();
-  console.log(player.current);
 
   return (
     <div className="playerWarper">
-      <img src={`${serverPath}/images/${cover}`} alt={`Cover of ${cover}`} />
+      <img src={serieInformation && serieInformation.image?`${serverPath}/images/${serieInformation.image}`:''} alt={`Cover of ${serieInformation.image}`} />
       <AudioPlayer
         layout={"horizontal"}
         header={header()}
         footer={footer()}
-        src={urlAudio}
+        src={urlAudio?urlAudio:''}
         preload={"none"}
         onPlay={() => console.log(urlAudio)}
         showSkipControls={true}
