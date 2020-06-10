@@ -2,22 +2,35 @@ const db = require('../../db/database')
 
 
 const getSynopsis = (request, response) => {
-  db.query('SELECT * FROM synopsis ORDER BY synopsis_id ASC', (error, results) => {
-    if (error) {
-      throw error
+    const serie_id = request.query.serie_id
+    if ( serie_id != "undifined" ) {
+        db.query('SELECT * FROM synopsis WHERE serie_id = $1 ', [serie_id], (error, results) => {
+
+            if (error) {
+                throw error
+            }
+            response.status(200).json(results.rows)
+        })
     }
-    response.status(200).json(results.rows)
-  })
+    else {
+        db.query('SELECT * FROM synopsis ORDER BY synopsis_id ASC', (error, results) => {
+
+            if (error) {
+                throw error
+            }
+            response.status(200).json(results.rows)
+        })
+    }
 }
 
 const getSynopsisById = (request, response) => {
-  const synopsis_id = parseInt(request.params.synopsis_id)
-  db.query('SELECT * FROM synopsis WHERE synopsis_id = $1', [synopsis_id], (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
+    const synopsis_id = parseInt(request.params.synopsis_id)
+    db.query('SELECT * FROM synopsis WHERE synopsis_id = $1', [synopsis_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
 }
 
 const createSynopsis = (request, response) => {

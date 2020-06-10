@@ -844,6 +844,13 @@ app.delete('/episode/:episode_id', episodeQueries.deleteEpisode)
  *      tags:
  *          - synopsis
  *      description: Use to request all synopsis
+ *      parameters:
+ *          - in: query
+ *            name: serie_id
+ *            schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
  *      responses:
  *          '200':
  *              description: results rows
