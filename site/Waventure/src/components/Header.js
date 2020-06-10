@@ -73,7 +73,7 @@ export default function Header({
       <div className="profilIcon" onClick={avatar}>
         <img src={`${pathImg}/arrow.svg`} alt="Arrow Icon" />
         <div className="avatarBox">
-          <img src={`${pathAvar}/Avatar01.jpg`} alt="Profil Icon" />
+          <img src={`${pathAvar}/avatars/Avatar01.jpg`} alt="Profil Icon" />
         {accountTrigger ? (
           <div className="accountRolling">
             <p
