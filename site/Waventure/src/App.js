@@ -2,7 +2,7 @@ import React ,{useState} from "react";
 import './App.css';
 import  Header from './components/Header'
 import  Player from './components/Player'
-import Categorie from './components/Categorie'
+import Catalog from './components/Catalog'
 import Banner from './components/Banner'
 
 
@@ -27,15 +27,8 @@ function App() {
     />
     <Player />
     <Banner/>
-    <Categorie
-    title={"Les classiques"}
-    />
-    <Categorie
-    title={"Aventure Médiéval"}
-    />
-    <Categorie
-    title={"Aventure Spatiale"}
-    />
+    <Catalog/>
+    
     
 </>
     </div>
