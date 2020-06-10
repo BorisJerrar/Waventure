@@ -1,80 +1,78 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const port = process.env.port|| 4000
-const app = express()
-const db = require('../db/database')
-const fs = require('fs')
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const port = process.env.port || 4000;
+const app = express();
+const db = require("../db/database");
+const fs = require("fs");
 
-const swaggerJsDoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express')
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 // Extended: https://swagger.io/specification/#infoObject
 const swaggerOptions = {
-    swaggerDefinition: {
-        info: {
-            title: 'Waventure API',
-            description: 'waventure API Information',
-            contact: {
-                name: 'Boris Jerar, Charles Decodin, Valentin Cellier'
-            },
-            server: ['http://localhost:4000']
-        }
+  swaggerDefinition: {
+    info: {
+      title: "Waventure API",
+      description: "waventure API Information",
+      contact: {
+        name: "Boris Jerar, Charles Decodin, Valentin Cellier",
+      },
+      server: ["http://localhost:4000"],
     },
-    apis: ['index.js']
-}
- const swaggerDocs = swaggerJsDoc(swaggerOptions)
-
+  },
+  apis: ["index.js"],
+};
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 /* import queries */
-const mainQueries = require('./queries/main')
-const seasonQueries = require('./queries/season')
-const categoryQueries = require('./queries/category')
-const episodeQueries = require('./queries/episode')
-const favoriteQueries = require('./queries/favorite')
-const listenQueries = require('./queries/listen')
-const roleQueries = require('./queries/role')
-const actorQueries = require('./queries/actor')
-const serieQueries = require('./queries/serie')
-const serieActorQueries = require('./queries/serie_actor')
-const serieCategoryQueries = require('./queries/serie_category')
-const synopsisQueries = require('./queries/synopsis')
-const accountQueries = require('./queries/account')
+const mainQueries = require("./queries/main");
+const seasonQueries = require("./queries/season");
+const categoryQueries = require("./queries/category");
+const episodeQueries = require("./queries/episode");
+const favoriteQueries = require("./queries/favorite");
+const listenQueries = require("./queries/listen");
+const roleQueries = require("./queries/role");
+const actorQueries = require("./queries/actor");
+const serieQueries = require("./queries/serie");
+const serieActorQueries = require("./queries/serie_actor");
+const serieCategoryQueries = require("./queries/serie_category");
+const synopsisQueries = require("./queries/synopsis");
+const accountQueries = require("./queries/account");
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-app.use(bodyParser.json())
-app.use(cors())
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use(
-    bodyParser.urlencoded({
-      extended: true,
-    })
-  )
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
+app.get("/", (request, response) => {
+  response.json({ info: "Node.js, Express, and Postgres API" });
+});
 
-app.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-})
-
-app.get('/images/:image', (req, res) => {
-  let image = req.params.image
+app.get("/images/:image", (req, res) => {
+  let image = req.params.image;
 
   let read = fs.createReadStream(`./src/img/${image}`);
-  read.on('open', ()=>{
-    res.set('Content-Type', 'image/jpeg')
-    read.pipe(res)
-  })
-})
+  read.on("open", () => {
+    res.set("Content-Type", "image/jpeg");
+    read.pipe(res);
+  });
+});
 
-app.get('/sound/:saga/:sound', (req, res) => {
-  let sound = req.params.sound
-  let saga = req.params.saga
+app.get("/sound/", (req, res) => {
+  let sound = req.query.sound;
+  let saga = req.query.saga;
 
-  let read = fs.createReadStream(`./src/sound/Adoprixtoxis/${sound}.mp3`);
-  read.on('open', ()=>{
-    res.writeHead(206,{'Content-Type': 'audio/mpeg'})
-    read.pipe(res)
-  })
-})
+  let read = fs.createReadStream(`./src/sound/${saga}/${sound}`);
+  read.on("open", () => {
+    res.writeHead(206, { "Content-Type": "audio/mpeg" });
+    read.pipe(res);
+  });
+});
 
 /* MAIN */
 /**
@@ -93,9 +91,7 @@ app.get('/sound/:saga/:sound', (req, res) => {
  *          '200':
  *              description: results rows
  */
-app.get('/sagaInfo/:serie_id', mainQueries.getSagaInfosBySerieId)
-
-
+app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
 
 /**
  * @swagger
@@ -108,7 +104,7 @@ app.get('/sagaInfo/:serie_id', mainQueries.getSagaInfosBySerieId)
  *          '200':
  *              description: results rows
  */
-app.get('/account', accountQueries.getAccount)
+app.get("/account", accountQueries.getAccount);
 
 /**
  * @swagger
@@ -129,7 +125,7 @@ app.get('/account', accountQueries.getAccount)
  *          '200':
  *              description: successful operation
  */
-app.get('/account/:account_id', accountQueries.getAccountById)
+app.get("/account/:account_id", accountQueries.getAccountById);
 
 /**
  * @swagger
@@ -162,7 +158,7 @@ app.get('/account/:account_id', accountQueries.getAccountById)
  *          '201':
  *              description: successful operation
  */
-app.post('/account', accountQueries.createAccount)
+app.post("/account", accountQueries.createAccount);
 
 /**
  * @swagger
@@ -202,7 +198,7 @@ app.post('/account', accountQueries.createAccount)
  *          '201':
  *              description: successful operation
  */
-app.put('/account/:account_id', accountQueries.updateAccount)
+app.put("/account/:account_id", accountQueries.updateAccount);
 
 /**
  * @swagger
@@ -223,7 +219,7 @@ app.put('/account/:account_id', accountQueries.updateAccount)
  *          '200':
  *              description: successful operation
  */
-app.delete('/account/:account_id', accountQueries.deleteAccount)
+app.delete("/account/:account_id", accountQueries.deleteAccount);
 
 /**
  * @swagger
@@ -236,7 +232,7 @@ app.delete('/account/:account_id', accountQueries.deleteAccount)
  *          '200':
  *              description: results rows
  */
-app.get('/serie', serieQueries.getSerie)
+app.get("/serie", serieQueries.getSerie);
 
 /**
  * @swagger
@@ -257,7 +253,7 @@ app.get('/serie', serieQueries.getSerie)
  *          '200':
  *              description: successful operation
  */
-app.get('/serie/:serie_id', serieQueries.getSerieById)
+app.get("/serie/:serie_id", serieQueries.getSerieById);
 
 /**
  * @swagger
@@ -292,7 +288,7 @@ app.get('/serie/:serie_id', serieQueries.getSerieById)
  *          '201':
  *              description: successful operation
  */
-app.post('/serie', serieQueries.createSerie)
+app.post("/serie", serieQueries.createSerie);
 
 /**
  * @swagger
@@ -334,7 +330,7 @@ app.post('/serie', serieQueries.createSerie)
  *          '201':
  *              description: successful operation
  */
-app.put('/serie/:serie_id', serieQueries.updateSerie)
+app.put("/serie/:serie_id", serieQueries.updateSerie);
 
 /**
  * @swagger
@@ -355,7 +351,7 @@ app.put('/serie/:serie_id', serieQueries.updateSerie)
  *          '200':
  *              description: successful operation
  */
-app.delete('/serie/:serie_id', serieQueries.deleteSerie)
+app.delete("/serie/:serie_id", serieQueries.deleteSerie);
 
 /**
  * @swagger
@@ -368,7 +364,7 @@ app.delete('/serie/:serie_id', serieQueries.deleteSerie)
  *          '200':
  *              description: results rows
  */
-app.get('/serie_actor', serieActorQueries.getSerieActor)
+app.get("/serie_actor", serieActorQueries.getSerieActor);
 
 /**
  * @swagger
@@ -389,7 +385,7 @@ app.get('/serie_actor', serieActorQueries.getSerieActor)
  *          '200':
  *              description: successful operation
  */
-app.get('/serie_actor/:serie_actor_id',serieActorQueries.getSerieActorById)
+app.get("/serie_actor/:serie_actor_id", serieActorQueries.getSerieActorById);
 
 /**
  * @swagger
@@ -411,7 +407,7 @@ app.get('/serie_actor/:serie_actor_id',serieActorQueries.getSerieActorById)
  *          '201':
  *              description: successful operation
  */
-app.post('/serie_actor', serieActorQueries.createSerieActor)
+app.post("/serie_actor", serieActorQueries.createSerieActor);
 
 /**
  * @swagger
@@ -440,7 +436,7 @@ app.post('/serie_actor', serieActorQueries.createSerieActor)
  *          '201':
  *              description: successful operation
  */
-app.put('/serie_actor/:serie_actor_id', serieActorQueries.updateSerieActor)
+app.put("/serie_actor/:serie_actor_id", serieActorQueries.updateSerieActor);
 
 /**
  * @swagger
@@ -461,7 +457,7 @@ app.put('/serie_actor/:serie_actor_id', serieActorQueries.updateSerieActor)
  *          '200':
  *              description: successful operation
  */
-app.delete('/serie_actor/:serie_actor_id', serieActorQueries.deleteSerieActor)
+app.delete("/serie_actor/:serie_actor_id", serieActorQueries.deleteSerieActor);
 
 /**
  * @swagger
@@ -474,7 +470,7 @@ app.delete('/serie_actor/:serie_actor_id', serieActorQueries.deleteSerieActor)
  *          '200':
  *              description: results rows
  */
-app.get('/serie_category', serieCategoryQueries.getSerieCategory)
+app.get("/serie_category", serieCategoryQueries.getSerieCategory);
 
 /**
  * @swagger
@@ -495,7 +491,10 @@ app.get('/serie_category', serieCategoryQueries.getSerieCategory)
  *          '200':
  *              description: successful operation
  */
-app.get('/serie_category/:serie_category_id',serieCategoryQueries.getSerieCategoryById)
+app.get(
+  "/serie_category/:serie_category_id",
+  serieCategoryQueries.getSerieCategoryById
+);
 
 /**
  * @swagger
@@ -517,7 +516,7 @@ app.get('/serie_category/:serie_category_id',serieCategoryQueries.getSerieCatego
  *          '201':
  *              description: successful operation
  */
-app.post('/serie_category', serieCategoryQueries.createSerieCategory)
+app.post("/serie_category", serieCategoryQueries.createSerieCategory);
 
 /**
  * @swagger
@@ -546,7 +545,10 @@ app.post('/serie_category', serieCategoryQueries.createSerieCategory)
  *          '201':
  *              description: successful operation
  */
-app.put('/serie_category/:serie_category_id', serieCategoryQueries.updateSerieCategory)
+app.put(
+  "/serie_category/:serie_category_id",
+  serieCategoryQueries.updateSerieCategory
+);
 
 /**
  * @swagger
@@ -567,7 +569,10 @@ app.put('/serie_category/:serie_category_id', serieCategoryQueries.updateSerieCa
  *          '200':
  *              description: successful operation
  */
-app.delete('/serie_category/:serie_category_id', serieCategoryQueries.deleteSerieCategory)
+app.delete(
+  "/serie_category/:serie_category_id",
+  serieCategoryQueries.deleteSerieCategory
+);
 
 /**
  * @swagger
@@ -580,7 +585,7 @@ app.delete('/serie_category/:serie_category_id', serieCategoryQueries.deleteSeri
  *          '200':
  *              description: results rows
  */
-app.get('/season', seasonQueries.getSeason)
+app.get("/season", seasonQueries.getSeason);
 
 /**
  * @swagger
@@ -601,7 +606,7 @@ app.get('/season', seasonQueries.getSeason)
  *          '200':
  *              description: successful operation
  */
-app.get('/season/:season_id', seasonQueries.getSeasonById)
+app.get("/season/:season_id", seasonQueries.getSeasonById);
 
 /**
  * @swagger
@@ -631,7 +636,7 @@ app.get('/season/:season_id', seasonQueries.getSeasonById)
  *          '201':
  *              description: successful operation
  */
-app.post('/season', seasonQueries.createSeason)
+app.post("/season", seasonQueries.createSeason);
 
 /**
  * @swagger
@@ -668,7 +673,7 @@ app.post('/season', seasonQueries.createSeason)
  *          '201':
  *              description: successful operation
  */
-app.put('/season/:season_id', seasonQueries.updateSeason)
+app.put("/season/:season_id", seasonQueries.updateSeason);
 
 /**
  * @swagger
@@ -689,7 +694,7 @@ app.put('/season/:season_id', seasonQueries.updateSeason)
  *          '200':
  *              description: successful operation
  */
-app.delete('/season/:season_id', seasonQueries.deleteSeason)
+app.delete("/season/:season_id", seasonQueries.deleteSeason);
 
 /**
  * @swagger
@@ -702,7 +707,7 @@ app.delete('/season/:season_id', seasonQueries.deleteSeason)
  *          '200':
  *              description: results rows
  */
-app.get('/episode', episodeQueries.getEpisode)
+app.get("/episode", episodeQueries.getEpisode);
 
 /**
  * @swagger
@@ -723,7 +728,7 @@ app.get('/episode', episodeQueries.getEpisode)
  *          '200':
  *              description: successful operation
  */
-app.get('/episode/:episode_id', episodeQueries.getEpisodeById)
+app.get("/episode/:episode_id", episodeQueries.getEpisodeById);
 
 /**
  * @swagger
@@ -744,7 +749,7 @@ app.get('/episode/:episode_id', episodeQueries.getEpisodeById)
  *          '200':
  *              description: successful operation
  */
-app.get('/episodeNumber/:episode_nb', episodeQueries.getEpisodeByEpisodeNumber)
+app.get("/episodeNumber/:episode_nb", episodeQueries.getEpisodeByEpisodeNumber);
 
 /**
  * @swagger
@@ -776,7 +781,7 @@ app.get('/episodeNumber/:episode_nb', episodeQueries.getEpisodeByEpisodeNumber)
  *          '201':
  *              description: successful operation
  */
-app.post('/episode', episodeQueries.createEpisode)
+app.post("/episode", episodeQueries.createEpisode);
 
 /**
  * @swagger
@@ -815,7 +820,7 @@ app.post('/episode', episodeQueries.createEpisode)
  *          '201':
  *              description: successful operation
  */
-app.put('/episode/:episode_id', episodeQueries.updateEpisode)
+app.put("/episode/:episode_id", episodeQueries.updateEpisode);
 
 /**
  * @swagger
@@ -836,7 +841,7 @@ app.put('/episode/:episode_id', episodeQueries.updateEpisode)
  *          '200':
  *              description: successful operation
  */
-app.delete('/episode/:episode_id', episodeQueries.deleteEpisode)
+app.delete("/episode/:episode_id", episodeQueries.deleteEpisode);
 
 /**
  * @swagger
@@ -849,7 +854,7 @@ app.delete('/episode/:episode_id', episodeQueries.deleteEpisode)
  *          '200':
  *              description: results rows
  */
-app.get('/synopsis', synopsisQueries.getSynopsis)
+app.get("/synopsis", synopsisQueries.getSynopsis);
 
 /**
  * @swagger
@@ -870,7 +875,7 @@ app.get('/synopsis', synopsisQueries.getSynopsis)
  *          '200':
  *              description: successful operation
  */
-app.get('/synopsis/:synopsis_id', synopsisQueries.getSynopsisById)
+app.get("/synopsis/:synopsis_id", synopsisQueries.getSynopsisById);
 
 /**
  * @swagger
@@ -892,7 +897,7 @@ app.get('/synopsis/:synopsis_id', synopsisQueries.getSynopsisById)
  *          '201':
  *              description: successful operation
  */
-app.post('/synopsis', synopsisQueries.createSynopsis)
+app.post("/synopsis", synopsisQueries.createSynopsis);
 
 /**
  * @swagger
@@ -921,7 +926,7 @@ app.post('/synopsis', synopsisQueries.createSynopsis)
  *          '201':
  *              description: successful operation
  */
-app.put('/synopsis/:synopsis_id', synopsisQueries.updateSynopsis)
+app.put("/synopsis/:synopsis_id", synopsisQueries.updateSynopsis);
 
 /**
  * @swagger
@@ -942,7 +947,7 @@ app.put('/synopsis/:synopsis_id', synopsisQueries.updateSynopsis)
  *          '200':
  *              description: successful operation
  */
-app.delete('/synopsis/:synopsis_id', synopsisQueries.deleteSynopsis)
+app.delete("/synopsis/:synopsis_id", synopsisQueries.deleteSynopsis);
 
 /**
  * @swagger
@@ -955,7 +960,7 @@ app.delete('/synopsis/:synopsis_id', synopsisQueries.deleteSynopsis)
  *          '200':
  *              description: results rows
  */
-app.get('/category', categoryQueries.getCategory)
+app.get("/category", categoryQueries.getCategory);
 
 /**
  * @swagger
@@ -976,7 +981,7 @@ app.get('/category', categoryQueries.getCategory)
  *          '200':
  *              description: successful operation
  */
-app.get('/category/:category_id', categoryQueries.getCategoryById)
+app.get("/category/:category_id", categoryQueries.getCategoryById);
 
 /**
  * @swagger
@@ -995,7 +1000,7 @@ app.get('/category/:category_id', categoryQueries.getCategoryById)
  *          '201':
  *              description: successful operation
  */
-app.post('/category', categoryQueries.createCategory)
+app.post("/category", categoryQueries.createCategory);
 
 /**
  * @swagger
@@ -1021,7 +1026,7 @@ app.post('/category', categoryQueries.createCategory)
  *          '201':
  *              description: successful operation
  */
-app.put('/category/:category_id', categoryQueries.updateCategory)
+app.put("/category/:category_id", categoryQueries.updateCategory);
 
 /**
  * @swagger
@@ -1042,7 +1047,7 @@ app.put('/category/:category_id', categoryQueries.updateCategory)
  *          '200':
  *              description: successful operation
  */
-app.delete('/category/:category_id', categoryQueries.deleteCategory)
+app.delete("/category/:category_id", categoryQueries.deleteCategory);
 
 /**
  * @swagger
@@ -1055,7 +1060,7 @@ app.delete('/category/:category_id', categoryQueries.deleteCategory)
  *          '200':
  *              description: results rows
  */
-app.get('/favorite', favoriteQueries.getFavorites)
+app.get("/favorite", favoriteQueries.getFavorites);
 
 /**
  * @swagger
@@ -1076,7 +1081,7 @@ app.get('/favorite', favoriteQueries.getFavorites)
  *          '200':
  *              description: successful operation
  */
-app.get('/favorite/:favorite_id', favoriteQueries.getFavoritesById)
+app.get("/favorite/:favorite_id", favoriteQueries.getFavoritesById);
 
 /**
  * @swagger
@@ -1098,7 +1103,7 @@ app.get('/favorite/:favorite_id', favoriteQueries.getFavoritesById)
  *          '200':
  *              description: results rows
  */
-app.post('/favorite', favoriteQueries.createFavorites)
+app.post("/favorite", favoriteQueries.createFavorites);
 
 /**
  * @swagger
@@ -1127,7 +1132,7 @@ app.post('/favorite', favoriteQueries.createFavorites)
  *          '200':
  *              description: results rows
  */
-app.put('/favorite/:favorite_id', favoriteQueries.updateFavorites)
+app.put("/favorite/:favorite_id", favoriteQueries.updateFavorites);
 
 /**
  * @swagger
@@ -1148,7 +1153,7 @@ app.put('/favorite/:favorite_id', favoriteQueries.updateFavorites)
  *          '200':
  *              description: successful operation
  */
-app.delete('/favorite/:favorite_id', favoriteQueries.deleteFavorites)
+app.delete("/favorite/:favorite_id", favoriteQueries.deleteFavorites);
 
 /**
  * @swagger
@@ -1161,7 +1166,7 @@ app.delete('/favorite/:favorite_id', favoriteQueries.deleteFavorites)
  *          '200':
  *              description: results rows
  */
-app.get('/listen', listenQueries.getListen)
+app.get("/listen", listenQueries.getListen);
 
 /**
  * @swagger
@@ -1182,7 +1187,7 @@ app.get('/listen', listenQueries.getListen)
  *          '200':
  *              description: successful operation
  */
-app.get('/listen/:listen_id', listenQueries.getListenById)
+app.get("/listen/:listen_id", listenQueries.getListenById);
 
 /**
  * @swagger
@@ -1207,7 +1212,7 @@ app.get('/listen/:listen_id', listenQueries.getListenById)
  *          '200':
  *              description: results rows
  */
-app.post('/listen', listenQueries.createListen)
+app.post("/listen", listenQueries.createListen);
 
 /**
  * @swagger
@@ -1239,7 +1244,7 @@ app.post('/listen', listenQueries.createListen)
  *          '200':
  *              description: results rows
  */
-app.put('/listen/:listen_id', listenQueries.updateListen)
+app.put("/listen/:listen_id", listenQueries.updateListen);
 
 /**
  * @swagger
@@ -1260,7 +1265,7 @@ app.put('/listen/:listen_id', listenQueries.updateListen)
  *          '200':
  *              description: successful operation
  */
-app.delete('/listen/:listen_id', listenQueries.deleteListen)
+app.delete("/listen/:listen_id", listenQueries.deleteListen);
 
 /**
  * @swagger
@@ -1273,7 +1278,7 @@ app.delete('/listen/:listen_id', listenQueries.deleteListen)
  *          '200':
  *              description: results rows
  */
-app.get('/role', roleQueries.getRole)
+app.get("/role", roleQueries.getRole);
 
 /**
  * @swagger
@@ -1294,7 +1299,7 @@ app.get('/role', roleQueries.getRole)
  *          '200':
  *              description: successful operation
  */
-app.get('/role/:role_id', roleQueries.getRoleById)
+app.get("/role/:role_id", roleQueries.getRoleById);
 
 /**
  * @swagger
@@ -1316,7 +1321,7 @@ app.get('/role/:role_id', roleQueries.getRoleById)
  *          '200':
  *              description: results rows
  */
-app.post('/role', roleQueries.createRole)
+app.post("/role", roleQueries.createRole);
 
 /**
  * @swagger
@@ -1345,7 +1350,7 @@ app.post('/role', roleQueries.createRole)
  *          '200':
  *              description: results rows
  */
-app.put('/role/:role_id', roleQueries.updateRole)
+app.put("/role/:role_id", roleQueries.updateRole);
 
 /**
  * @swagger
@@ -1366,7 +1371,7 @@ app.put('/role/:role_id', roleQueries.updateRole)
  *          '200':
  *              description: successful operation
  */
-app.delete('/role/:role_id', roleQueries.deleteRole)
+app.delete("/role/:role_id", roleQueries.deleteRole);
 
 /**
  * @swagger
@@ -1379,7 +1384,7 @@ app.delete('/role/:role_id', roleQueries.deleteRole)
  *          '200':
  *              description: results rows
  */
-app.get('/actor', actorQueries.getActor)
+app.get("/actor", actorQueries.getActor);
 
 /**
  * @swagger
@@ -1400,7 +1405,7 @@ app.get('/actor', actorQueries.getActor)
  *          '200':
  *              description: successful operation
  */
-app.get('/actor/:actor_id', actorQueries.getActorById)
+app.get("/actor/:actor_id", actorQueries.getActorById);
 
 /**
  * @swagger
@@ -1419,7 +1424,7 @@ app.get('/actor/:actor_id', actorQueries.getActorById)
  *          '200':
  *              description: results rows
  */
-app.post('/actor', actorQueries.createActor)
+app.post("/actor", actorQueries.createActor);
 
 /**
  * @swagger
@@ -1445,7 +1450,7 @@ app.post('/actor', actorQueries.createActor)
  *          '200':
  *              description: results rows
  */
-app.put('/actor/:actor_id', actorQueries.updateActor)
+app.put("/actor/:actor_id", actorQueries.updateActor);
 
 /**
  * @swagger
@@ -1466,8 +1471,8 @@ app.put('/actor/:actor_id', actorQueries.updateActor)
  *          '200':
  *              description: successful operation
  */
-app.delete('/actor/:actor_id', actorQueries.deleteActor)
+app.delete("/actor/:actor_id", actorQueries.deleteActor);
 
 app.listen(port, () => {
-    console.log("Running on port " + port);
-})
+  console.log("Running on port " + port);
+});

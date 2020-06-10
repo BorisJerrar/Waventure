@@ -13,10 +13,9 @@ export default function Player() {
       const track = await fetch(
         `${serverPath}/episode/${episodeNumber}`
       );
-      console.log(`${serverPath}/episode/${episodeNumber}`);
       const data = await track.json();
       await setEpisodeInfos(...data);
-      await setUrlAudio(`${serverPath}/sound/${data[0].mp3_file}`);
+      await setUrlAudio(`${serverPath}/sound/?saga=Adoprixtoxis&sound=${data[0].mp3_file}`);
     };
     const fetchingImgAudio = async () => {
       const reponse = await fetch(`http://localhost:4000/serie/1`);
