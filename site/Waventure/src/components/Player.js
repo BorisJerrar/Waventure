@@ -26,7 +26,7 @@ export default function Player() {
     };
     fetchingSerie();
     fetchingAudio();
-  }, [episodeNumber, serverPath]);
+  }, [episodeNumber, serverPath, serieInformation.title, serieInformation.author]);
   const nextSaga = () => {
     return setEpisodeNumber(episodeNumber + 1);
   };
