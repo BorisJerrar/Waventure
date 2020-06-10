@@ -2,31 +2,26 @@ import React, { useState, useEffect, useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 
-export default function Player() {
+export default function Player({serieId}) {  
   const serverPath = process.env.REACT_APP_SERVER_PATH;
-  const [episodeNumber, setEpisodeNumber] = useState(50);
+  const [episodeNumber, setEpisodeNumber] = useState(1);
   const [serieInformation, setSerieInformation] = useState({});
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [urlAudio, setUrlAudio] = useState(``);
   useEffect(() => {
     const fetchingSerie = async () => {
-      const reponse = await fetch(`http://localhost:4000/serie/3`);
+      const reponse = await fetch(`http://localhost:4000/serie/${serieId}`);
       const data = await reponse.json();
       await setSerieInformation(data[0]);
-    };
-    const fetchingAudio = async () => {
-      const track = await fetch(
-        `${serverPath}/episode/${episodeNumber}`
-      );
-      const data = await track.json();
-      await setEpisodeInfos(...data);
-      if(serverPath && serieInformation && serieInformation.title && data) {
-        await setUrlAudio(`${serverPath}/sound/?saga=${serieInformation.title}&sound=${data[0].mp3_file}`)
-      }
-    };
-    fetchingSerie();
-    fetchingAudio();
-  }, [episodeNumber, serverPath, serieInformation.title, serieInformation.author]);
+      console.log(serieInformation);
+        const reponseInfos = await fetch(`http://localhost:4000/sagaInfo/${serieId}`);
+        const dataInfo = await reponseInfos.json();
+       setEpisodeInfos(dataInfo[0]);
+          await setUrlAudio(`${serverPath}/sound/?saga=${serieInformation.title}&sound=${dataInfo[0].mp3_file}`)
+  }
+  fetchingSerie();
+}, [serieId, serieInformation.title, serverPath])
+
   const nextSaga = () => {
     return setEpisodeNumber(episodeNumber + 1);
   };
@@ -36,7 +31,7 @@ export default function Player() {
   const header = () => {
     return (
       <div className="playerHeader">
-        <p>Episode 1 | {serieInformation?serieInformation.author:''} | {episodeInfos?episodeInfos.title:''}</p>
+        <p>Episode {episodeNumber} | {serieInformation?serieInformation.author:''} | {episodeInfos?episodeInfos.title:''}</p>
       </div>
     );
   };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../style/Banner.css";
 
-export default function Banner() {
+export default function Banner(props) {
 
     const [wedette, setWedette] = useState([]);
     const [synopsis, setSynopsis] = useState([]);
@@ -22,10 +22,13 @@ export default function Banner() {
         fetchWedette()
         fetchSynopsis()
     }, [])
-
+    const lunchingEpisode = (serie) => {
+    props.lunchingEpisode(serie.serie_id)
+    }
+    
     return (
         <div className="wedetteContainer">
-            <div className="wedetteCover">
+            <div className="wedetteCover" onClick={()=> lunchingEpisode(wedette)}>
               <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : '' }`} alt="" />  
               <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
             </div>
