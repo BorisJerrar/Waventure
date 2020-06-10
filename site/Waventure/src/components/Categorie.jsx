@@ -5,8 +5,10 @@ export default function Categorie({category}) {
     const [series, setSeries] = useState([])
     const [toggle, setToggle] = useState(false)
     const slider = useRef(null)
+    const [positionSlider, SetPositionSlider] = useState('')
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
     const pathImg= process.env.REACT_APP_STATIC_IMG_PATH
+   console.log(positionSlider);
    
     
 
@@ -34,8 +36,6 @@ export default function Categorie({category}) {
 useEffect(()=>{
         fetchSeries()
     }, []) 
-
- 
  
      return(
     <div className="catalog">
@@ -50,7 +50,7 @@ useEffect(()=>{
         })} 
             </div>
            
-        <img className="arrowCatalogFront" onClick={slideCoverLeft} src={`${pathImg}/arrowCatalog.svg`} alt=""/>
+        <img className="arrowCatalogFront" onClick={slideCoverLeft} src={`${pathImg}/arrowCatalog.svg`} style={series.length >= 5 ? {display: "block"} : {display: "none"}} alt=""/>
         <img className="arrowCatalogBack" onClick={slideCoverRight} style={toggle? {display: "block"} : {display: "none"}} src={`${pathImg}/arrowCatalog.svg`} alt=""/>
         </div>
        
