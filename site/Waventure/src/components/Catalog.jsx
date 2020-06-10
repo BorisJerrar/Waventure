@@ -25,7 +25,7 @@ console.log(categories);
              key = {index}
              category = {item.name}
              /> 
-            )
+            ) 
         
         })
     )
