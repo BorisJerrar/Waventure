@@ -43,7 +43,7 @@ export default function Categorie({ category }) {
                 onClick={() => console.log(item)}
                 className="catalogCover"
                 src={`${url}/${item.image}`}
-                alt=""
+                alt={item.image}
               />
             );
           })}
