@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 
-export default function Player({serieId}) {  
+export default function Player({ serieId }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeNumber, setEpisodeNumber] = useState(1);
   const [serieInformation, setSerieInformation] = useState({});
@@ -13,14 +13,22 @@ export default function Player({serieId}) {
       const reponse = await fetch(`http://localhost:4000/serie/${serieId}`);
       const data = await reponse.json();
       await setSerieInformation(data[0]);
-      console.log(serieInformation);
-        const reponseInfos = await fetch(`http://localhost:4000/sagaInfo/${serieId}`);
-        const dataInfo = await reponseInfos.json();
-       setEpisodeInfos(dataInfo[0]);
-          await setUrlAudio(`${serverPath}/sound/?saga=${serieInformation.title}&sound=${dataInfo[0].mp3_file}`)
-  }
-  fetchingSerie();
-}, [serieId, serieInformation.title, serverPath])
+    };
+    const fetchingEpisode = async () => {
+      const reponseInfos = await fetch(
+        `http://localhost:4000/sagaInfo/${serieId}`
+      );
+      const dataInfo = await reponseInfos.json();
+      setEpisodeInfos(dataInfo[0]);
+      if (serieInformation && dataInfo) {
+        await setUrlAudio(
+          `${serverPath}/sound/?saga=${serieInformation.title}&sound=${dataInfo[0].mp3_file}`
+        );
+      }
+    };
+    fetchingSerie();
+    fetchingEpisode();
+  }, [serieId, serieInformation.title, serverPath]);
 
   const nextSaga = () => {
     return setEpisodeNumber(episodeNumber + 1);
@@ -31,7 +39,11 @@ export default function Player({serieId}) {
   const header = () => {
     return (
       <div className="playerHeader">
-        <p>Episode {episodeNumber} | {serieInformation?serieInformation.author:''} | {episodeInfos?episodeInfos.title:''}</p>
+        <p>
+          Episode {episodeNumber} |{" "}
+          {serieInformation ? serieInformation.author : ""} |{" "}
+          {episodeInfos ? episodeInfos.title : ""}
+        </p>
       </div>
     );
   };
@@ -48,12 +60,19 @@ export default function Player({serieId}) {
 
   return (
     <div className="playerWarper">
-      <img src={serieInformation && serieInformation.image?`${serverPath}/images/${serieInformation.image}`:''} alt={`Cover of ${serieInformation.image}`} />
+      <img
+        src={
+          serieInformation && serieInformation.image
+            ? `${serverPath}/images/${serieInformation.image}`
+            : ""
+        }
+        alt={`Cover of ${serieInformation.image}`}
+      />
       <AudioPlayer
         layout={"horizontal"}
         header={header()}
         footer={footer()}
-        src={urlAudio?urlAudio:''}
+        src={urlAudio ? urlAudio : ""}
         preload={"none"}
         onPlay={() => console.log(urlAudio)}
         showSkipControls={true}

@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = process.env.port || 4000;
 const app = express();
-const db = require("../db/database");
 const fs = require("fs");
 
 const swaggerJsDoc = require("swagger-jsdoc");

@@ -30,7 +30,7 @@ setSerieId(serie_id)
     accountTrigger={accountTrigger}
     setAccountTriggerTrigger={setAccountTriggerTrigger}
     />
-    <Player />
+<Player serieId={serieId}/>
     <Banner
     lunchingEpisode={(serie_id)=>lunchingEpisode(serie_id)}
     />
