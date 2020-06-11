@@ -2,47 +2,39 @@ import React, { useState, useEffect, useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 
-export default function Player({ serieId }) {
+export default function Player({ serieId , index, setIndex}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
-  const [episodeNumber, setEpisodeNumber] = useState(1);
-  const [serieInformation, setSerieInformation] = useState({});
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [urlAudio, setUrlAudio] = useState(``);
+
   useEffect(() => {
-    const fetchingSerie = async () => {
-      const reponse = await fetch(`http://localhost:4000/serie/${serieId}`);
-      const data = await reponse.json();
-      await setSerieInformation(data[0]);
-    };
     const fetchingEpisode = async () => {
-      const reponseInfos = await fetch(
-        `http://localhost:4000/sagaInfo/${serieId}`
-      );
+      const reponseInfos = await fetch(`${serverPath}/sagaInfo/${serieId}`);
       const dataInfo = await reponseInfos.json();
-      setEpisodeInfos(dataInfo[0]);
-      if (serieInformation && dataInfo) {
-        await setUrlAudio(
-          `${serverPath}/sound/?saga=${serieInformation.title}&sound=${dataInfo[0].mp3_file}`
-        );
-      }
+      setEpisodeInfos(dataInfo[index]);
+      setUrlAudio(
+        `${serverPath}/sound/?saga=${dataInfo[index].title}&sound=${dataInfo[index].mp3_file}`
+      );
     };
-    fetchingSerie();
     fetchingEpisode();
-  }, [serieId, serieInformation.title, serverPath]);
+  }, [index, serieId, serverPath]);
 
   const nextSaga = () => {
-    return setEpisodeNumber(episodeNumber + 1);
+    return setIndex(index + 1);
   };
   const prevSaga = () => {
-    return setEpisodeNumber(episodeNumber - 1);
+    return setIndex(index - 1);
   };
   const header = () => {
     return (
       <div className="playerHeader">
         <p>
-          Episode {episodeNumber} |{" "}
-          {serieInformation ? serieInformation.author : ""} |{" "}
-          {episodeInfos ? episodeInfos.title : ""}
+          Episode{" "}
+          {episodeInfos && episodeInfos.episode_nb
+            ? JSON.stringify(episodeInfos.episode_nb)
+            : ""}{" "}
+          {"|"} {episodeInfos && episodeInfos.author ? JSON.stringify(episodeInfos.author) : ""} |{" "}
+          {episodeInfos && episodeInfos.title ? JSON.stringify(episodeInfos.title) : ""}
         </p>
       </div>
     );
@@ -57,24 +49,27 @@ export default function Player({ serieId }) {
     );
   };
   const player = useRef();
-
   return (
     <div className="playerWarper">
       <img
         src={
-          serieInformation && serieInformation.image
-            ? `${serverPath}/images/${serieInformation.image}`
+          episodeInfos && episodeInfos.image
+            ? `${serverPath}/images/${episodeInfos.image}`
             : ""
         }
-        alt={`Cover of ${serieInformation.image}`}
+        alt={
+          episodeInfos && episodeInfos.image
+            ? `Cover of ${episodeInfos.image}`
+            : "Cover Waventure"
+        }
       />
       <AudioPlayer
         layout={"horizontal"}
         header={header()}
         footer={footer()}
         src={urlAudio ? urlAudio : ""}
-        preload={"none"}
-        onPlay={() => console.log(urlAudio)}
+        preload={"auto"}
+        autoPlay={false}
         showSkipControls={true}
         showJumpControls={false}
         onClickPrevious={() => {

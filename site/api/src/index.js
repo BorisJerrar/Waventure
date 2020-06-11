@@ -22,7 +22,7 @@ const swaggerOptions = {
   apis: ["index.js"],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-
+app.use(cors());
 /* import queries */
 
 const serieByCategory = require("./queries/serie_serie_category_category");
@@ -39,8 +39,6 @@ const serieActorQueries = require("./queries/serie_actor");
 const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
-
-app.use(cors());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 

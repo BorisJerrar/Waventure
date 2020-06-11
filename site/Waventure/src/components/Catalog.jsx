@@ -13,11 +13,6 @@ const fetchCategories = async() =>{
 useEffect(() => {
  fetchCategories()
 }, [])
-    
-
-console.log(categories);
-
-   
     return (
         categories.map((item, index)=>{
             return(

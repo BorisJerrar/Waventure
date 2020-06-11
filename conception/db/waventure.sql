@@ -612,7 +612,7 @@ VALUES
     (23, 3, '0:16:22.000', 'Le Joyau de Agu-Agu', 'clideVanilla_saison1_episode3.mp3'),
     (23, 4, '0:19:21.000', 'Adjugé-Vendu !', 'clideVanilla_saison1_episode4.mp3'),
     (23, 5, '0:19:56.000', 'ＢＲＡＮＬＯＵＩＳ', 'clideVanilla_saison1_episode5.mp3'),
-    (23, 6, '0:19:26.000', 'L''Enfer Jaune', 'clideVanillak_saison1_episode6.mp3'),
+    (23, 6, '0:19:26.000', 'L''Enfer Jaune', 'clideVanilla_saison1_episode6.mp3'),
     (23, 7, '0:22:04.000', 'Discoball', 'clideVanilla_saison1_episode7.mp3'),
     (23, 8, '0:20:01.000', 'Le Client est Roi', 'clideVanilla_saison1_episode8.mp3'),
     (23, 9, '0:20:44.000', ' L''Être Primordial', 'clideVanilla_saison1_episode9.mp3'),
