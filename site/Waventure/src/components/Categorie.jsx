@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../style/Categorie.css";
 
-export default function Categorie({ category }) {
+export default function Categorie({ category, lunchingEpisode}) {
   const [series, setSeries] = useState([]);
   const [toggle, setToggle] = useState(false);
   const slider = useRef(null);
   const [positionSlider, SetPositionSlider] = useState("");
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
-
+const lunchingEpisodeCategorie = (item) => {
+    lunchingEpisode(item.serie_id)
+}
   const slideCoverLeft = (e) => {
     const position = slider.current.offsetLeft - 300;
     slider.current.style.marginLeft = position + "px";
@@ -40,7 +42,7 @@ export default function Categorie({ category }) {
             return (
               <img
                 key={index}
-                onClick={() => console.log(item)}
+                onClick={()=> lunchingEpisodeCategorie(item)}
                 className="catalogCover"
                 src={`${url}/${item.image}`}
                 alt={item.image}

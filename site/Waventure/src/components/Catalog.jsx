@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Categorie from './Categorie'
 
-export default function Catalog() {
+export default function Catalog({lunchingEpisode}) {
 const [categories, setCategories] = useState([])
 
 const fetchCategories = async() =>{
@@ -19,6 +19,7 @@ useEffect(() => {
              <Categorie
              key = {index}
              category = {item.name}
+             lunchingEpisode={(serie_id)=>lunchingEpisode(serie_id)}
              /> 
             ) 
         

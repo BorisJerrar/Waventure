@@ -39,7 +39,9 @@ setIndex={setIndex}
     <Banner
     lunchingEpisode={(serie_id)=>lunchingEpisode(serie_id)}
     />
-    <Catalog/>
+    <Catalog
+        lunchingEpisode={(serie_id)=>lunchingEpisode(serie_id)}
+    />
     
     
 </>

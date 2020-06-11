@@ -23,8 +23,10 @@ export default function Player({ serieId , index, setIndex}) {
     return setIndex(index + 1);
   };
   const prevSaga = () => {
-    return setIndex(index - 1);
-  };
+    if (index > 0){
+    return setIndex(index - 1)
+  } else { return index}
+  }
   const header = () => {
     return (
       <div className="playerHeader">
