@@ -7,37 +7,35 @@
   font-family: inherit;
   width: 100%;
   padding: 10px 15px;
-  background-color: #1B1B1B;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: #1b1b1b;
 }
-.playerWarper{
+.playerWarper {
   display: flex;
   width: 100%;
   user-select: none;
-  min-height: 270px;
-  max-height: 270px;
+  transition: all 0.2s ease;
+  background-color: #1b1b1b;
 }
-.playerHeader{
+.playerHeader {
   padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  width: 100%;
-  user-select: none;
+  width: 90%;
 }
-.playerHeaderInfo{
-transition: font-size .2s ease-in-out;
+.playerHeaderInfo {
+  transition: font-size 0.2s ease;
 }
-.playerFooterSynopsis{
+.playerFooterSynopsis {
   color: #d8d8d8;
   cursor: pointer;
 }
-.playerFooterSynopsis:hover{
+.playerFooterSynopsis:hover {
   cursor: pointer;
   color: #ffffff;
 }
-.synoPlayer{
+.synoPlayer {
   position: absolute;
   margin: auto;
   left: 0;
@@ -47,9 +45,32 @@ transition: font-size .2s ease-in-out;
   font-size: 13px;
   padding-top: 15px;
   padding-left: 15px;
-  transition: opacity .2s ease-in-out;
+  transition: opacity 0.2s ease;
 }
-.playerFooter{
+.episodeList {
+  background-color: #292929;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 80px;
+  text-align: justify;
+  width: 80%;
+  height: 180px;
+  overflow-y: scroll;
+  font-size: 13px;
+  transition: opacity 0.2s ease;
+  box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+.episodeUnique {
+  cursor: pointer;
+  padding: 15px 0px;
+  padding: 15px;
+  transition: background-color 0.2s ease;
+}
+.episodeUnique:hover {
+  background-color: #A487B3;
+}
+.playerFooter {
   position: absolute;
   bottom: 0px;
   display: flex;
@@ -59,13 +80,13 @@ transition: font-size .2s ease-in-out;
   padding: 40px;
   user-select: none;
 }
-.playerWarper img{
-  background-color: #1B1B1B;
+.playerWarper img:first-child {
+  background-color: #1b1b1b;
   width: 20vw;
   height: 20vw;
   padding: 30px;
 }
-.rhap_container:focus{
+.rhap_container:focus {
   outline: 0;
 }
 
@@ -82,7 +103,7 @@ transition: font-size .2s ease-in-out;
   bottom: 60px;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 98%;
 }
 
 .rhap_stacked .rhap_controls-section {
@@ -112,7 +133,7 @@ transition: font-size .2s ease-in-out;
 
 .rhap_progress-section {
   display: flex;
-  flex: 3 1 auto;
+  width: 80%;
   align-items: center;
 }
 
@@ -151,7 +172,7 @@ transition: font-size .2s ease-in-out;
   height: 100%;
   position: absolute;
   z-index: 2;
-  background-color: #ff0000;
+  background-color: #A487B3;
   border-radius: 2px;
 }
 
@@ -182,7 +203,7 @@ transition: font-size .2s ease-in-out;
 .rhap_controls-section {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  width: 15%;
   justify-content: space-between;
   align-items: center;
 }
@@ -194,7 +215,7 @@ transition: font-size .2s ease-in-out;
 }
 
 .rhap_repeat-button {
-display: none;
+  display: none;
 }
 
 .rhap_main-controls {
@@ -297,4 +318,9 @@ display: none;
 }
 .rhap_button-clear:focus {
   outline: 0;
+}
+.arrowRetre{
+  align-self: flex-end;
+  width: 30px;
+  height: auto;
 }
