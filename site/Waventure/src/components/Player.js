@@ -5,6 +5,7 @@ import "../style/Player.css";
 export default function Player({ serieId , index, setIndex}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
+  const [synopsis, setSynopsis] = useState(false);
   const [urlAudio, setUrlAudio] = useState(``);
 
   useEffect(() => {
@@ -18,7 +19,9 @@ export default function Player({ serieId , index, setIndex}) {
     };
     fetchingEpisode();
   }, [index, serieId, serverPath]);
-
+const showSynopsis = () => {
+  setSynopsis(!synopsis)
+}
   const nextSaga = () => {
     return setIndex(index + 1);
   };
@@ -30,27 +33,34 @@ export default function Player({ serieId , index, setIndex}) {
   const header = () => {
     return (
       <div className="playerHeader">
-        <p>
+        <p className="playerHeaderInfo" style={synopsis?{fontSize:'12px'}: {fontSize:'28px'}}>
           Episode{" "}
           {episodeInfos && episodeInfos.episode_nb
             ? JSON.stringify(episodeInfos.episode_nb)
             : ""}{" "}
-          {"|"} {episodeInfos && episodeInfos.author ? JSON.stringify(episodeInfos.author) : ""} |{" "}
-          {episodeInfos && episodeInfos.title ? JSON.stringify(episodeInfos.title) : ""}
+          {"|"} {
+          episodeInfos && episodeInfos.title
+            ? episodeInfos.title
+            : ""
+          } {"|"} {episodeInfos && episodeInfos.author ? episodeInfos.author : ""}
+          
         </p>
+      <p className='synoPlayer' style={synopsis && episodeInfos && episodeInfos.body?{opacity : '1'}:{opacity : '0'}}>{episodeInfos.body}</p>
       </div>
     );
   };
   const footer = () => {
     return (
       <div className="playerFooter">
-        <p>La Legende de Xantah</p>
-        <p>Synopsys</p>
+        <p>Episodes</p>
+        <p onClick={showSynopsis} className='playerFooterSynopsis'>Synopsis</p>
         <p>En savoir plus</p>
       </div>
     );
   };
   const player = useRef();
+  console.log(player.current);
+  
   return (
     <div className="playerWarper">
       <img
@@ -66,11 +76,12 @@ export default function Player({ serieId , index, setIndex}) {
         }
       />
       <AudioPlayer
+      defaultDuration={episodeInfos && episodeInfos.episode_duration?episodeInfos.episode_duration: ''}
         layout={"horizontal"}
         header={header()}
         footer={footer()}
         src={urlAudio ? urlAudio : ""}
-        preload={"auto"}
+        preload={"metadata"}
         autoPlay={false}
         showSkipControls={true}
         showJumpControls={false}

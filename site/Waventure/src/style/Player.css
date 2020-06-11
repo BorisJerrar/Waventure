@@ -1,4 +1,5 @@
 .rhap_container {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -13,15 +14,44 @@
   display: flex;
   width: 100%;
   user-select: none;
+  min-height: 270px;
+  max-height: 270px;
 }
 .playerHeader{
   padding-top: 50px;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
   width: 100%;
   user-select: none;
 }
+.playerHeaderInfo{
+transition: font-size .2s ease-in-out;
+}
+.playerFooterSynopsis{
+  color: #d8d8d8;
+  cursor: pointer;
+}
+.playerFooterSynopsis:hover{
+  cursor: pointer;
+  color: #ffffff;
+}
+.synoPlayer{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 70px;
+  text-align: justify;
+  width: 60%;
+  font-size: 13px;
+  padding-top: 15px;
+  padding-left: 15px;
+  transition: opacity .2s ease-in-out;
+}
 .playerFooter{
+  position: absolute;
+  bottom: 0px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -31,8 +61,8 @@
 }
 .playerWarper img{
   background-color: #1B1B1B;
-  width: 20%;
-  height: auto;
+  width: 20vw;
+  height: 20vw;
   padding: 30px;
 }
 .rhap_container:focus{
@@ -48,9 +78,11 @@
 }
 
 .rhap_main {
+  position: absolute;
+  bottom: 60px;
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  width: 100%;
 }
 
 .rhap_stacked .rhap_controls-section {

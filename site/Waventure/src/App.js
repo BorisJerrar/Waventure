@@ -9,7 +9,8 @@ import Banner from './components/Banner'
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false)
   const [accountTrigger, setAccountTriggerTrigger] = useState(false)
-  const [serieId, setSerieId] = useState(5)
+  const [showingPlayer, setShowingPlayer] = useState(false)
+  const [serieId, setSerieId] = useState(2)
   const [index, setIndex] = useState(0);
   const triggeringCategory = () => {
     if(categoriesTrigger){
@@ -19,6 +20,7 @@ function App() {
     }
   }
   const lunchingEpisode = (serie_id) => {
+    setShowingPlayer(true)
     setIndex(0)
 setSerieId(serie_id)
     
@@ -32,10 +34,11 @@ setSerieId(serie_id)
     accountTrigger={accountTrigger}
     setAccountTriggerTrigger={setAccountTriggerTrigger}
     />
+    {showingPlayer?
 <Player serieId={serieId}
 index={index}
 setIndex={setIndex}
-/>
+/>:''}
     <Banner
     lunchingEpisode={(serie_id)=>lunchingEpisode(serie_id)}
     />
