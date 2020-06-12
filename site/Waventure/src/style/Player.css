@@ -19,8 +19,8 @@
 .mainCover {
   background-color: #1b1b1b;
   margin: auto;
-height: 250px;
-height: 250px;
+height: 280px;
+height: 280px;
   padding: 30px;
 }
 .rhap_container:focus {
@@ -139,8 +139,8 @@ height: 250px;
 
 .rhap_controls-section {
   position: absolute;
-  right: 40px;
-  top: -150px;
+  right: 150px;
+  top: -130px;
   display: flex;
   flex-direction: column;
   width: 15%;
