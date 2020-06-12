@@ -106,7 +106,7 @@ function SignUp(props) {
                 type="submit"
                 onClick={handleSubmitClick}
             >
-                <Link to="/main">
+                <Link to="/main" style={{textDecoration: 'none', color: "red"}}>
                     S'inscrire
                 </Link>
             </button>
