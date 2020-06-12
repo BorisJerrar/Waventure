@@ -18,8 +18,10 @@
 }
 .mainCover {
   background-color: #1b1b1b;
-  width: 20vw;
-  height: 20vw;
+  max-width: 20vw;
+  max-height: 20vw;
+  min-width: 20vw;
+  min-height: 20vw;
   padding: 30px;
 }
 .rhap_container:focus {
