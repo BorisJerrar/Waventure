@@ -20,8 +20,10 @@ export default function Player({ serieId, index, setIndex, playing}) {
       setSagaInfo(dataInfo);
       setEpisodeInfos(dataInfo[index]);
       setUrlAudio(
-        `${serverPath}/sound/?saga=${dataInfo[index].title}&sound=${dataInfo[index].mp3_file}`
+        `${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`
       );
+      console.log( `${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`);
+      
     };
     fetchingEpisode();
   }, [index, serieId, serverPath]);
@@ -48,7 +50,7 @@ export default function Player({ serieId, index, setIndex, playing}) {
         className='mainCover'
       />
       <AudioPlayer
-      customIcons={{pause: <img src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/next.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
+      customIcons={{pause: <img src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/play.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
         defaultDuration={
           episodeInfos && episodeInfos.episode_duration
             ? episodeInfos.episode_duration
