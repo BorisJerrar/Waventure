@@ -61,7 +61,7 @@ function App() {
           <div className='playerTrigger' style={showingPlayer || reducer ? { marginTop: '0px', transition: 'margin-top .2s ease' } : { marginTop: '-270px', transition: 'margin-top .2s ease' }}>
             <Player serieId={serieId} index={index} setIndex={setIndex} reducer={reducer} setReducer={setReducer} playing={playing} />
           </div>
-          <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
+         <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
           <Catalog lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
         </>
       </div>
