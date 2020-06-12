@@ -21,10 +21,10 @@ export default function PlayerFooter({
 
   return (
     <div className="playerFooter">
-      <p onClick={showEpisode} className="playerFooterSynopsis">
+      <p onClick={showEpisode} style={episodes?{borderBottom: 'solid 2px #a487b3', color: '#fff'}:{borderBottom: 'none'}} className="playerFooterSynopsis">
         Episodes
       </p>
-      <p onClick={showSynopsis} className="playerFooterSynopsis">
+      <p onClick={showSynopsis} style={synopsis?{borderBottom: 'solid 2px #a487b3', color: '#fff'}:{borderBottom: 'none'}} className="playerFooterSynopsis">
         Synopsis
       </p>
       <p className="playerFooterSynopsis">En savoir plus</p>

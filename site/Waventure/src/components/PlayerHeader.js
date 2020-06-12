@@ -5,10 +5,16 @@ export default function PlayerHeader({
   synopsis,
   learnMore,
   episodes,
+  setEpisode,
   episodeInfos,
   sagaInfo,
   setIndex,
 }) {
+
+const changingEpisode = (each) => {
+  setIndex(each.episode_nb - 1)
+  setEpisode(false)
+}
   return (
     <div className="playerHeader">
       <p
@@ -30,19 +36,19 @@ export default function PlayerHeader({
         {"|"} {episodeInfos && episodeInfos.title ? episodeInfos.title : ""}{" "}
         {"|"} {episodeInfos && episodeInfos.author ? episodeInfos.author : ""}
       </p>
-      {synopsis && episodeInfos && episodeInfos.body?<p
+      <p
         className="synoPlayer"
         style={
           synopsis && episodeInfos && episodeInfos.body
-            ? {opacity: "1" }
+            ? { opacity: "1" }
             : { opacity: "0" }
         }
       >
         {episodeInfos.body}
-      </p>:<p></p>}
+      </p>
       <div
         className="episodeList"
-        style={episodes ? { opacity: "1" } : { opacity: "0" }}
+        style={episodes ? {visibility: 'visible', opacity: "1" } : {visibility: 'hidden',opacity: "0" }}
       >
         {sagaInfo
           ? sagaInfo.map((each, index) => {
@@ -50,7 +56,7 @@ export default function PlayerHeader({
                 <p
                   key={index}
                   className="episodeUnique"
-                  onClick={() => setIndex(each.episode_nb - 1)}
+                  onClick={() => changingEpisode(each)}
                 >
                   Episode {each.episode_nb} {each.episode_title}
                 </p>

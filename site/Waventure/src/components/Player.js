@@ -71,7 +71,7 @@ export default function Player({ serieId, index, setIndex, playing}) {
             : ""
         }
         layout={"horizontal"}
-        header={<PlayerHeader synopsis={synopsis} learnMore={learnMore} episodes={episodes} episodeInfos={episodeInfos} sagaInfo={sagaInfo} setIndex={setIndex}/>}
+        header={<PlayerHeader synopsis={synopsis} learnMore={learnMore} episodes={episodes} setEpisode={setEpisodes} episodeInfos={episodeInfos} sagaInfo={sagaInfo} setIndex={setIndex}/>}
         footer={<PlayerFooter setSynopsis={setSynopsis} synopsis={synopsis} setLearnMore={setLearnMore} episodes={episodes} setEpisodes={setEpisodes}/>}
         src={urlAudio ? urlAudio : ""}
         preload={"metadata"}
