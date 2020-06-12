@@ -30,16 +30,16 @@ export default function PlayerHeader({
         {"|"} {episodeInfos && episodeInfos.title ? episodeInfos.title : ""}{" "}
         {"|"} {episodeInfos && episodeInfos.author ? episodeInfos.author : ""}
       </p>
-      <p
+      {synopsis && episodeInfos && episodeInfos.body?<p
         className="synoPlayer"
         style={
           synopsis && episodeInfos && episodeInfos.body
-            ? { opacity: "1" }
+            ? {opacity: "1" }
             : { opacity: "0" }
         }
       >
         {episodeInfos.body}
-      </p>
+      </p>:<p></p>}
       <div
         className="episodeList"
         style={episodes ? { opacity: "1" } : { opacity: "0" }}

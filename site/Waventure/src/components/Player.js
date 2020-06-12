@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 
 export default function Player({ serieId, index, setIndex, playing}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;

@@ -28,12 +28,6 @@ export default function PlayerFooter({
         Synopsis
       </p>
       <p className="playerFooterSynopsis">En savoir plus</p>
-      <img
-        className="arrowRetre"
-        onClick={() => console.log("caca")}
-        src="./img/arrowback.svg"
-        alt="test"
-      />
     </div>
   );
 }
