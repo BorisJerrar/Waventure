@@ -139,7 +139,7 @@
 .rhap_controls-section {
   position: absolute;
   right: 40px;
-  top: -100px;
+  top: -150px;
   display: flex;
   flex-direction: column;
   width: 15%;
@@ -201,9 +201,10 @@
 }
 
 .rhap_volume-container {
+  padding: 10px;
   display: flex;
   align-items: center;
-  flex: 0 1 100px;
+  width: 100%;
   -webkit-user-select: none;
 }
 

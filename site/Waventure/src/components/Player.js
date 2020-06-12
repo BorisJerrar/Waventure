@@ -3,6 +3,8 @@ import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
 export default function Player({ serieId, index, setIndex, playing}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
@@ -27,6 +29,20 @@ export default function Player({ serieId, index, setIndex, playing}) {
     };
     fetchingEpisode();
   }, [index, serieId, serverPath]);
+  const nextSaga = () => {
+    if (index < sagaInfo.length - 1) {
+      return setIndex(index + 1);
+    } else {
+      return index;
+    }
+  };
+  const prevSaga = () => {
+    if (index > 0) {
+      return setIndex(index - 1);
+    } else {
+      return index;
+    }
+  };
   return (
     <div
       className="playerWarper"
@@ -50,7 +66,7 @@ export default function Player({ serieId, index, setIndex, playing}) {
         className='mainCover'
       />
       <AudioPlayer
-      customIcons={{pause: <img src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/play.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
+      customIcons={{pause: <img style={{color: '#FFF'}}src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/play.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
         defaultDuration={
           episodeInfos && episodeInfos.episode_duration
             ? episodeInfos.episode_duration
@@ -64,6 +80,9 @@ export default function Player({ serieId, index, setIndex, playing}) {
         autoPlay={playing?true:false}
         showSkipControls={true}
         showJumpControls={false}
+        onClickNext={nextSaga}
+        onClickPrevious={prevSaga}
+onEnded={nextSaga}
       />
     </div>
   );
