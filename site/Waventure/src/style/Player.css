@@ -16,71 +16,7 @@
   transition: all 0.2s ease;
   background-color: #1b1b1b;
 }
-.playerHeader {
-  padding-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  width: 90%;
-}
-.playerHeaderInfo {
-  transition: font-size 0.2s ease;
-}
-.playerFooterSynopsis {
-  color: #d8d8d8;
-  cursor: pointer;
-}
-.playerFooterSynopsis:hover {
-  cursor: pointer;
-  color: #ffffff;
-}
-.synoPlayer {
-  position: absolute;
-  margin: auto;
-  left: 0;
-  top: 70px;
-  text-align: justify;
-  width: 60%;
-  font-size: 13px;
-  padding-top: 15px;
-  padding-left: 15px;
-  transition: opacity 0.2s ease;
-}
-.episodeList {
-  background-color: #292929;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  top: 80px;
-  text-align: justify;
-  width: 80%;
-  height: 180px;
-  overflow-y: scroll;
-  font-size: 13px;
-  transition: opacity 0.2s ease;
-  box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2);
-}
-.episodeUnique {
-  cursor: pointer;
-  padding: 15px 0px;
-  padding: 15px;
-  transition: background-color 0.2s ease;
-}
-.episodeUnique:hover {
-  background-color: #A487B3;
-}
-.playerFooter {
-  position: absolute;
-  bottom: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 70%;
-  padding: 40px;
-  user-select: none;
-}
-.playerWarper img:first-child {
+.mainCover {
   background-color: #1b1b1b;
   width: 20vw;
   height: 20vw;
@@ -192,15 +128,18 @@
   box-sizing: border-box;
   position: absolute;
   z-index: 3;
-  width: 20px;
-  height: 20px;
+  width: 0px;
+  height: 0px;
   margin-left: -10px;
   top: -8px;
-  background: rgba(255, 255, 255, 0);
+  background: rgb(255, 0, 0);
   border-radius: 50px;
 }
 
 .rhap_controls-section {
+  position: absolute;
+  right: 40px;
+  top: -100px;
   display: flex;
   flex-direction: column;
   width: 15%;

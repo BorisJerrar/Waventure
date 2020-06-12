@@ -1,0 +1,18 @@
+.playerFooterSynopsis {
+    color: #d8d8d8;
+    cursor: pointer;
+  }
+  .playerFooterSynopsis:hover {
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .playerFooter {
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    padding: 40px;
+    user-select: none;
+  }

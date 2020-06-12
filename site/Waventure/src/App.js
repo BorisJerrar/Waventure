@@ -12,6 +12,7 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(2);
   const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(false)
   const triggeringCategory = () => {
     if (categoriesTrigger) {
       setCategoriesTrigger(!categoriesTrigger);
@@ -20,10 +21,12 @@ function App() {
     }
   };
   const lunchingEpisode = (serie_id) => {
+    setPlaying(true)
     setShowingPlayer(true);
     setIndex(0);
     setSerieId(serie_id);
   };
+  audio = createRef<HTMLAudioElement>()
   return (
     <div className="App" onClick={triggeringCategory}>
       <>
@@ -34,7 +37,7 @@ function App() {
           setAccountTriggerTrigger={setAccountTriggerTrigger}
         />
           <div className='playerTrigger' style={showingPlayer || reducer ? {marginTop: '0px', transition: 'margin-top .2s ease'}:{marginTop: '-270px', transition: 'margin-top .2s ease'}}>
-          <Player serieId={serieId} index={index} setIndex={setIndex}  reducer={reducer} setReducer={setReducer}/>
+          <Player serieId={serieId} index={index} setIndex={setIndex}  reducer={reducer} setReducer={setReducer} setPlaying={setPlaying} playing={playing}/>
           </div>
         <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
         <Catalog lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
