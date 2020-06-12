@@ -36,7 +36,6 @@ height: 280px;
 }
 
 .rhap_main {
-  z-index: 1000;
   position: absolute;
   bottom: 60px;
   display: flex;
