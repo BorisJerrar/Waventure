@@ -3,9 +3,8 @@ import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
-import PlayerControle from "./PlayerControle";
 
-export default function Player({ serieId, index, setIndex, playing, setPlaying}) {
+export default function Player({ serieId, index, setIndex, playing}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
@@ -49,7 +48,7 @@ export default function Player({ serieId, index, setIndex, playing, setPlaying})
         className='mainCover'
       />
       <AudioPlayer
-      customControlsSection={[<PlayerControle playing={playing} setPlaying={setPlaying} index={index} setIndex={setIndex}/>]}
+      customIcons={{pause: <img src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/next.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
         defaultDuration={
           episodeInfos && episodeInfos.episode_duration
             ? episodeInfos.episode_duration

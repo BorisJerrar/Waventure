@@ -160,7 +160,7 @@
 .rhap_main-controls {
   flex: 0 1 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
