@@ -9,9 +9,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 
@@ -37,7 +35,6 @@ function App() {
     setSerieId(serie_id);
   };
   return (
-
     <Router>
 
       <Route path="/home">
@@ -60,7 +57,7 @@ function App() {
             setCategoriesTrigger={setCategoriesTrigger}
             accountTrigger={accountTrigger}
             setAccountTriggerTrigger={setAccountTriggerTrigger}
-          />
+            />
           <div className='playerTrigger' style={showingPlayer || reducer ? { marginTop: '0px', transition: 'margin-top .2s ease' } : { marginTop: '-270px', transition: 'margin-top .2s ease' }}>
             <Player serieId={serieId} index={index} setIndex={setIndex} reducer={reducer} setReducer={setReducer} playing={playing} />
           </div>
