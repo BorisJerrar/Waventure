@@ -64,10 +64,10 @@ function App() {
             accountTrigger={accountTrigger}
             setAccountTriggerTrigger={setAccountTriggerTrigger}
             />
-          <div className={offset >= 75?'playerTrigger fix':'playerTrigger'} style={showingPlayer || reducer ? { marginTop: '0px',  zIndex: 1000, transition: 'all .2s ease' } : { marginTop: '-270px', zIndex: -0,transition: 'all .2s ease' }}>
+          <div className={offset >= 75 && showingPlayer?'playerTrigger fix':'playerTrigger'} style={showingPlayer || reducer ? { marginTop: '0px',  zIndex: 1000, transition: 'all .2s ease' } : { marginTop: '-270px', zIndex: -0,transition: 'all .2s ease' }}>
             <Player serieId={serieId} index={index} setIndex={setIndex} reducer={reducer} setReducer={setReducer} playing={playing} />
           </div>
-         <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} offset={offset}/>
+         <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} offset={offset} showingPlayer={showingPlayer}/>
           <Catalog lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
         </>
       </div>
