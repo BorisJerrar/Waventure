@@ -29,8 +29,9 @@ export default function Banner(props) {
     return (
         <div className="wedetteContainer">
             <div className="wedetteCover" onClick={()=> lunchingEpisode(wedette)}>
-              <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : '' }`} alt="" />  
-              <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
+              <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : '' }`} alt="" /> 
+              <img src="./img/btnPlay.svg" className="btnPlayBig" alt=""/>   
+{/*               <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>   */}
             </div>
             <div className="wedetteLogoContainer">
             <span><img src="./img/logoWedette.svg" alt="W"/></span>

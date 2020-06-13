@@ -18,10 +18,20 @@
   right: 40px;
   bottom: 35px;
   width: 60px;
-  opacity: 1;
+  opacity: 0.5;
   transition: ease-in-out opacity .1s;
 }
-
+.btnPlayBig {
+    position: absolute;
+margin: auto;
+    width: 90px;
+    height: 90px;
+    opacity: 0;
+    transition: ease-in-out opacity .2s;
+  }
+  .wedetteCover:hover .btnPlayBig{
+    opacity: 0.5;
+}
 .wedetteCover:hover .btnPlay{
     opacity: 0;
 }
