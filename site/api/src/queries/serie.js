@@ -20,6 +20,15 @@ const getSerieById = (request, response) => {
     })
 }
 
+const getSerieByUploadDate = (request, response) => {
+    db.query('SELECT * FROM serie ORDER BY upload_date DESC LIMIT 10', (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
 const createSerie = (request, response) => {
     const { title, image, image_lg, author, duration, upload_date, creation_date } = request.body
 
@@ -60,6 +69,7 @@ const deleteSerie = (request, response) => {
 module.exports = {
     getSerie,
     getSerieById,
+    getSerieByUploadDate,
     createSerie,
     updateSerie,
     deleteSerie
