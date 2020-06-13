@@ -17,16 +17,16 @@
   background-color: #1b1b1b;
 }
 .mainCover {
+  position: relative;
   background-color: #1b1b1b;
   margin: auto;
-height: 280px;
-height: 280px;
-  padding: 30px;
+  padding: 15px;
+  height: 240px;
+  width: 240px;
 }
 .rhap_container:focus {
   outline: 0;
 }
-
 .rhap_header {
   margin-bottom: 10px;
 }
@@ -36,6 +36,7 @@ height: 280px;
 }
 
 .rhap_main {
+  z-index: 1000;
   position: absolute;
   bottom: 60px;
   display: flex;
