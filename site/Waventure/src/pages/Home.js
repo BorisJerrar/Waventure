@@ -32,22 +32,22 @@ function Home(props) {
                     Décrouvez-en des nouvelles.</h1>
                     <h1><strong>Gratuitement</strong></h1>
                     <div className="wrap-img">
-                        <img src={`${pathImg}/synapse.jpg`}></img>
-                        <img src={`${pathImg}/eden.jpg`}></img>
-                        <img src={`${pathImg}/jencyoReva.jpg`}></img>
-                        <img src={`${pathImg}/leCacaoQuiTue.jpg`}></img>
-                        <img src={`${pathImg}/leChasseur.jpg`}></img>
-                        <img src={`${pathImg}/ledocteurBonoboShow.jpg`}></img>
-                        <img src={`${pathImg}/ledonjondenaheulbeuk.jpg`}></img>
-                        <img src={`${pathImg}/leGuideGalactique.jpg`}></img>
-                        <img src={`${pathImg}/lesAventuriers.jpg`}></img>
-                        <img src={`${pathImg}/leVaisseau.jpg`}></img>
-                        <img src={`${pathImg}/ozion.jpg`}></img>
-                        <img src={`${pathImg}/poseidome.jpg`}></img>
-                        <img src={`${pathImg}/trimoria.jpg`}></img>
-                        <img src={`${pathImg}/survivaure.jpg`}></img>
-                        <img src={`${pathImg}/rda.jpg`}></img>
-                        <img src={`${pathImg}/clydevanilla.jpg`}></img>
+                        <img src={`${pathImg}/synapse.jpg`} alt="cover synapse"/>
+                        <img src={`${pathImg}/eden.jpg`} alt="cover eden"/>
+                        <img src={`${pathImg}/jencyoReva.jpg`} alt="cover jencyoReva"/>
+                        <img src={`${pathImg}/leCacaoQuiTue.jpg`} alt="cover " />
+                        <img src={`${pathImg}/leChasseur.jpg`} alt="cover leCacaoQuiTue"/>
+                        <img src={`${pathImg}/ledocteurBonoboShow.jpg`} alt="cover ledocteurBonoboShow"/>
+                        <img src={`${pathImg}/ledonjondenaheulbeuk.jpg`} alt="cover ledonjondenaheulbeuk"/>
+                        <img src={`${pathImg}/leGuideGalactique.jpg`} alt="cover leGuideGalactique"/>
+                        <img src={`${pathImg}/lesAventuriers.jpg`} alt="cover lesAventuriers"/>
+                        <img src={`${pathImg}/leVaisseau.jpg`} alt="cover leVaisseau"/>
+                        <img src={`${pathImg}/ozion.jpg`} alt="cover ozion"/>
+                        <img src={`${pathImg}/poseidome.jpg`} alt="cover poseidome"/>
+                        <img src={`${pathImg}/trimoria.jpg`} alt="cover trimoria"/>
+                        <img src={`${pathImg}/survivaure.jpg`} alt="cover survivaure"/>
+                        <img src={`${pathImg}/rda.jpg`} alt="cover rda"/>
+                        <img src={`${pathImg}/clydevanilla.jpg`} alt="cover clydevanilla"/>
                     </div>
                 </div>
             </main>
