@@ -45,7 +45,7 @@ export default function Banner(props) {
                     {synopsis.body}
                 </p>
             </div>
-            <img className="backgroundImg" src="./img/clyde.svg" alt="" />
+            <img className="backgroundImg" src={`${url}/${wedette && wedette.image_bg ?wedette.image_bg:''}`} alt={`Bg_image ${wedette && wedette.title ?wedette.title:''}`} />
         </div>
     )
 }
