@@ -21,6 +21,12 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(2);
   const [index, setIndex] = useState(0);
+  const [offset, setOffset] = useState(0);
+
+  window.addEventListener('scroll', ()=>{
+    setOffset(window.pageYOffset)
+  })
+
   const triggeringCategory = () => {
     if (categoriesTrigger) {
       setCategoriesTrigger(!categoriesTrigger);
@@ -58,10 +64,10 @@ function App() {
             accountTrigger={accountTrigger}
             setAccountTriggerTrigger={setAccountTriggerTrigger}
             />
-          <div className='playerTrigger' style={showingPlayer || reducer ? { marginTop: '0px',  zIndex: 1000, transition: 'all .2s ease' } : { marginTop: '-270px', zIndex: -0,transition: 'all .2s ease' }}>
+          <div className={offset >= 75?'playerTrigger fix':'playerTrigger'} style={showingPlayer || reducer ? { marginTop: '0px',  zIndex: 1000, transition: 'all .2s ease' } : { marginTop: '-270px', zIndex: -0,transition: 'all .2s ease' }}>
             <Player serieId={serieId} index={index} setIndex={setIndex} reducer={reducer} setReducer={setReducer} playing={playing} />
           </div>
-         <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
+         <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} offset={offset}/>
           <Catalog lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
         </>
       </div>

@@ -15,6 +15,7 @@
   user-select: none;
   transition: all 0.2s ease;
   background-color: #1b1b1b;
+  position: unset;
 }
 .mainCover {
   position: relative;

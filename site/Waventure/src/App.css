@@ -45,3 +45,7 @@
 .playerTrigger{
   width: 100%;
 }
+.fix{
+  position: fixed;
+  top: 0;
+}

@@ -1,4 +1,5 @@
 .wedetteContainer {
+  user-select: none;
   background-color: #1b1b1b;
   width: 100%;
   display: flex;
@@ -6,34 +7,30 @@
   font-family: "Pontano Sans", sans-serif;
   font-size: 20px;
   font-weight: 400;
+  transition: ease-in-out background-color 0.6s;
+}
+.wedetteContainer:hover {
+  background-color: #0f0f0f;
 }
 
 .wedetteCoverImage {
+  cursor: pointer;
   width: 100%;
   opacity: 0.8;
 }
 
 .btnPlay {
+  cursor: pointer;
   position: absolute;
   right: 40px;
   bottom: 35px;
   width: 60px;
   opacity: 0.5;
-  transition: ease-in-out opacity .1s;
+  transition: ease-in-out opacity 0.1s;
 }
-.btnPlayBig {
-    position: absolute;
-margin: auto;
-    width: 90px;
-    height: 90px;
-    opacity: 0;
-    transition: ease-in-out opacity .2s;
-  }
-  .wedetteCover:hover .btnPlayBig{
-    opacity: 0.5;
-}
-.wedetteCover:hover .btnPlay{
-    opacity: 0;
+
+.wedetteCover:hover .btnPlay {
+  opacity: 0.8;
 }
 
 .wedetteLogoContainer {
@@ -71,9 +68,9 @@ margin: auto;
   opacity: 0.2;
   width: 20%;
 }
-.wedetteCover{
-    position: relative;
-    overflow: hidden;
+.wedetteCover {
+  position: relative;
+  overflow: hidden;
 }
 .wedetteCover,
 .wedetteCoverImage {
@@ -84,7 +81,11 @@ margin: auto;
   height: 438px;
   transition: ease-in-out 0.2s all;
 }
-.wedetteCover:hover .wedetteCoverImage{
-    width: 490px;
-    height: 490px;
+.wedetteCover:hover .wedetteCoverImage {
+  width: 490px;
+  height: 490px;
+}
+
+.marginScroll{
+  margin-top: 270px;
 }

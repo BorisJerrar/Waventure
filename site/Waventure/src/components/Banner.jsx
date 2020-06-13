@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import "../style/Banner.css";
 
-export default function Banner(props) {
+export default function Banner({lunchingEpisode, offset}) {
 
     const [wedette, setWedette] = useState([]);
     const [synopsis, setSynopsis] = useState([]);
 
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
     const fetchWedette = async () => {
-        const response = await fetch(`http://localhost:4000/serie/1`)
+        const response = await fetch(`http://localhost:4000/serie/2`)
         const data = await response.json()
         setWedette(data[0])
     }
     const fetchSynopsis = async () => {
-        const response = await fetch(`http://localhost:4000/synopsis?serie_id=1`)
+        const response = await fetch(`http://localhost:4000/synopsis?serie_id=2`)
         const data = await response.json()
         setSynopsis(data[0])
     }
@@ -22,16 +22,15 @@ export default function Banner(props) {
         fetchWedette()
         fetchSynopsis()
     }, [])
-    const lunchingEpisode = (serie) => {
-    props.lunchingEpisode(serie.serie_id)
+    const lunchingEpisodeBanner = (serie) => {
+    lunchingEpisode(serie.serie_id)
     }
     
     return (
-        <div className="wedetteContainer">
-            <div className="wedetteCover" onClick={()=> lunchingEpisode(wedette)}>
+        <div className={offset>= 75? "wedetteContainer marginScroll":"wedetteContainer"}>
+            <div className="wedetteCover" onClick={()=> lunchingEpisodeBanner(wedette)}>
               <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : '' }`} alt="" /> 
-              <img src="./img/btnPlay.svg" className="btnPlayBig" alt=""/>   
-{/*               <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>   */}
+             <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
             </div>
             <div className="wedetteLogoContainer">
             <span><img src="./img/logoWedette.svg" alt="W"/></span>

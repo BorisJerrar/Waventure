@@ -4,7 +4,7 @@ import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
 
-export default function Player({ serieId, index, setIndex, playing}) {
+export default function Player({ serieId, index, setIndex, playing, offset, setOffset}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
@@ -12,7 +12,6 @@ export default function Player({ serieId, index, setIndex, playing}) {
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
   const [urlAudio, setUrlAudio] = useState(``);
-
   useEffect(() => {
     const fetchingEpisode = async () => {
       const reponseInfos = await fetch(`${serverPath}/sagaInfo/${serieId}`);
