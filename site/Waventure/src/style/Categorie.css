@@ -26,5 +26,7 @@
     top: -40px ;
     right: 0;
 }
-
+.imageSlideShow{
+    cursor: pointer;
+}
 
