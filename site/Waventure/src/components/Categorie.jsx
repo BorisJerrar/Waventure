@@ -47,7 +47,7 @@ const fetchSeries = async () => {
                 <div key={arrIndex}>
                 {array.map((item, index)=>{
                   return(
-                    <img key={index} style={{width:"167px", margin: "10px"}} src={`${url}/${item.image}`} alt=""/>
+                    <img key={index} style={{width:"200px", margin: "10px"}} src={`${url}/${item.image}`} alt=""/>
                   )
                 })}
               </div>
