@@ -16,39 +16,4 @@
     justify-content: flex-start;
 }
 
-.catalogCoverContainer{
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-}
-
-.catalogCover{
-    margin-right: 25px;
-    width: 167px;
-}
-
-.arrowCatalogFront{
-    background: linear-gradient(to right, rgba(36,36,36,0), rgba(25,25,25,1));
-    position: absolute;
-    width: 70px;
-    height: 100%;
-    padding: 10px;
-    right: 0;
-    top: 0;
-}
-.arrowCatalogBack{
-    background: linear-gradient(to right, rgba(36,36,36,0), rgba(25,25,25,1));
-    position: absolute;
-    width: 70px;
-    height: 100%;
-    padding: 10px;
-    Left: 0;
-    top: 0;
-    transform: rotate(180deg);
-}
-.sliderCover{
-    display: flex;
-    flex-wrap: nowrap;
-    transition: .3s ease-in-out margin-left;
-}
 

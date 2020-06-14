@@ -1,73 +1,61 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../style/Categorie.css";
+import {Slide} from 'react-slideshow-image'
 
 export default function Categorie({ category, lunchingEpisode}) {
   const [series, setSeries] = useState([]);
-  const [toggle, setToggle] = useState(false);
   const slider = useRef(null);
-  const [positionSlider, SetPositionSlider] = useState("");
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
+
+
 const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id)
 }
-  const slideCoverLeft = (e) => {
-    const position = slider.current.offsetLeft - 300;
-    slider.current.style.marginLeft = position + "px";
-    setToggle(true);
-  };
-  const slideCoverRight = (e) => {
-    const position = slider.current.offsetLeft + 300;
-    slider.current.style.marginLeft = position + "px";
-  };
+
+const fetchSeries = async () => {
+  const response = await fetch(
+    `http://localhost:4000/serieCategory/${category}`
+  );
+  const data = await response.json();
+  let temp = []
+  for (let i = 0; i < Math.ceil(data.length/5) ; i++) {
+    temp.push(data.slice(i*5, i*5 + 5))
+  }  
+  setSeries(temp)
+};
 
   useEffect(() => {
-    const fetchSeries = async () => {
-      const response = await fetch(
-        `http://localhost:4000/serieCategory/${category}`
-      );
-      const data = await response.json();
-      setSeries(data);
-    };
     fetchSeries();
   }, [category]);
+
+  const properties = {
+    indicators: true,
+    autoplay: false,
+    transitionDuration: 500,
+  }
+  
 
   return (
     <div className="catalog">
       <h2 className="catalogTitle">{category}</h2>
 
-      <div className="catalogCoverContainer">
-        <div ref={slider} className="sliderCover">
-          {series.map((item, index) => {
-            return (
-              <img
-                key={index}
-                onClick={()=> lunchingEpisodeCategorie(item)}
-                className="catalogCover"
-                src={`${url}/${item.image}`}
-                alt={item.image}
-              />
-            );
-          })}
+        <div className="containerSlide">
+          <Slide {...properties}>
+            {series.map((array, arrIndex)=>{
+              return (
+                <div key={arrIndex}>
+                {array.map((item, index)=>{
+                  return(
+                    <img key={index} style={{width:"167px", margin: "10px"}} src={`${url}/${item.image}`} alt=""/>
+                  )
+                })}
+              </div>
+              )
+            })}    
+          </Slide>
         </div>
-
-        <img
-          className="arrowCatalogFront"
-          onClick={slideCoverLeft}
-          src={`${pathImg}/arrowCatalog.svg`}
-          style={
-            series.length >= 5 ? { display: "block" } : { display: "none" }
-          }
-          alt=""
-        />
-        <img
-          className="arrowCatalogBack"
-          onClick={slideCoverRight}
-          style={toggle ? { display: "block" } : { display: "none" }}
-          src={`${pathImg}/arrowCatalog.svg`}
-          alt=""
-        />
-      </div>
     </div>
+
   );
 }
