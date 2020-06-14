@@ -68,7 +68,7 @@ function App() {
                   }
             }
           >
-            <Player
+       {/*      <Player
               serieId={serieId}
               index={index}
               setIndex={setIndex}
@@ -76,7 +76,7 @@ function App() {
               setReducer={setReducer}
               playing={playing}
               offset={offset}
-            />
+            /> */}
           </div>
           <Switch>
 
