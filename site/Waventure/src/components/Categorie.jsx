@@ -4,7 +4,6 @@ import {Slide} from 'react-slideshow-image'
 
 export default function Categorie({ category, lunchingEpisode}) {
   const [series, setSeries] = useState([]);
-  const slider = useRef(null);
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
 
@@ -34,6 +33,19 @@ const fetchSeries = async () => {
     autoplay: false,
     transitionDuration: 500,
   }
+
+  const zoomItem = (e) =>{
+    console.log(e.target.style.width);
+    e.target.style.width = '220px';
+    e.target.style.margin = '0px'
+   
+    
+  }
+
+  const reinitializeSize = (e)=>{
+    e.target.style.width = '200px'
+    e.target.style.margin = '10px'
+  }
   
 
   return (
@@ -44,10 +56,10 @@ const fetchSeries = async () => {
           <Slide {...properties}>
             {series.map((array, arrIndex)=>{
               return (
-                <div key={arrIndex}>
+                <div key={arrIndex} style={{display: 'flex', alignItems: "center"}}>
                 {array.map((item, index)=>{
                   return(
-                    <img key={index} style={{width:"200px", margin: "10px"}} src={`${url}/${item.image}`} alt=""/>
+                    <img key={index} onMouseOver={zoomItem} onMouseOut={reinitializeSize} style={{width:`200px`, margin: "10px"}} src={`${url}/${item.image}`} alt=""/>
                   )
                 })}
               </div>
