@@ -46,6 +46,6 @@
   width: 100%;
 }
 .fix{
-  position: fixed;
+  position: sticky;
   top: 0;
 }

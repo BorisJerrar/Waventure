@@ -4,7 +4,7 @@ import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
 
-export default function Player({ serieId, index, setIndex, playing, offset, setOffset}) {
+export default function Player({ serieId, index, setIndex, playing}) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
