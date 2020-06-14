@@ -68,7 +68,7 @@ function App() {
                   }
             }
           >
-       {/*      <Player
+             <Player
               serieId={serieId}
               index={index}
               setIndex={setIndex}
@@ -76,10 +76,9 @@ function App() {
               setReducer={setReducer}
               playing={playing}
               offset={offset}
-            /> */}
+            /> 
           </div>
           <Switch>
-
           <Route path="/newest">
             <Newest lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
           </Route>
