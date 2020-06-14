@@ -6,11 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <Switch>
       <Route path="/home">
         <Home />
       </Route>
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Route path="/main">
       <App />
       </Route>
+      </Switch>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

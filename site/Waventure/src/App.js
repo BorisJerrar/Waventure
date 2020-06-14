@@ -5,7 +5,7 @@ import Player from "./components/Player";
 import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -19,8 +19,8 @@ function App() {
 
   window.addEventListener("scroll", () => {
     setTimeout(() => {
-      setCategoriesTrigger(false)
-      setAccountTriggerTrigger(false) 
+      setCategoriesTrigger(false);
+      setAccountTriggerTrigger(false);
     }, 500);
     setOffset(window.scrollY);
   });
@@ -58,7 +58,7 @@ function App() {
               showingPlayer || reducer
                 ? {
                     marginTop: "0px",
-                    zIndex: '90',
+                    zIndex: "90",
                     transition: "all .2s ease",
                   }
                 : {
@@ -78,17 +78,18 @@ function App() {
               offset={offset}
             />
           </div>
+          <Switch>
+
           <Route path="/newest">
-            <Newest />
-            </Route>
+            <Newest lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
+          </Route>
           <Route path="/main">
-            <Banner
-              lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
-            />
+            <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
             <Catalog
               lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
-            />
+              />
           </Route>
+              </Switch>
         </>
       </div>
     </Router>
