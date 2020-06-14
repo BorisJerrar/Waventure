@@ -65,8 +65,9 @@ export default function Categorie({ category, lunchingEpisode }) {
           {series.map((array, arrIndex) => {
             return (
               <div
+              className='categoryContainer'
                 key={arrIndex}
-                style={{ display: "flex", alignItems: "center" }}
+                style={{ }}
               >
                 {array.map((item, index) => {
                   return (
@@ -76,7 +77,7 @@ export default function Categorie({ category, lunchingEpisode }) {
                       onMouseOver={zoomItem}
                       onMouseOut={reinitializeSize}
                       onClick={()=> {lunchingEpisodeCategorie(item)}}
-                      style={{ width: `15vw`, margin: "1vw",transition : "ease-in-out all 0.3s"}}
+                      style={{ width: `15vw`, margin: "1vw",transition : "ease-in-out all 0.2s"}}
                       src={`${url}/${item.image}`}
                       alt={"cover of" + item.title}
                     />
