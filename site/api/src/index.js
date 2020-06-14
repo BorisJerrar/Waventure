@@ -4,6 +4,7 @@ const cors = require("cors");
 const port = process.env.port || 4000;
 const app = express();
 const fs = require("fs");
+const ms = require('mediaserver');
 
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
@@ -62,17 +63,11 @@ app.get("/images/:image", (req, res) => {
   });
 });
 
-app.get("/sound/", (req, res) => {
+app.get('/sound/', function(req, res){
   let sound = req.query.sound;
   let saga = req.query.saga;
-
-  let read = fs.createReadStream(`./src/sound/${saga}/${sound}`);
-  read.on("open", () => {
-    res.writeHead(206, { "Content-Type": "audio/mpeg" });
-    read.pipe(res);
-  });
+  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
-
 /* MAIN */
 
 app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
