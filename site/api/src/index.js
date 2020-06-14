@@ -259,6 +259,19 @@ app.get("/serie/:serie_id", serieQueries.getSerieById);
 
 /**
  * @swagger
+ * /serie/{serie_id}:
+ *  get:
+ *      tags:
+ *          - serie
+ *      description: Use to request serie by upload date
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get("/serieUploades/", serieQueries.getSerieByUploadDate);
+
+/**
+ * @swagger
  * /serie:
  *  post:
  *      tags:

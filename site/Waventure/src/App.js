@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import Player from "./components/Player";
 import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
+import Newest from "./components/Newest";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -13,6 +15,16 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(2);
   const [index, setIndex] = useState(0);
+  const [offset, setOffset] = useState(0);
+
+  window.addEventListener("scroll", () => {
+    setTimeout(() => {
+      setCategoriesTrigger(false)
+      setAccountTriggerTrigger(false) 
+    }, 500);
+    setOffset(window.scrollY);
+  });
+
   const triggeringCategory = () => {
     if (categoriesTrigger) {
       setCategoriesTrigger(!categoriesTrigger);
@@ -21,12 +33,13 @@ function App() {
     }
   };
   const lunchingEpisode = (serie_id) => {
-    setPlaying(true)
+    setPlaying(true);
     setShowingPlayer(true);
     setIndex(0);
     setSerieId(serie_id);
   };
   return (
+<<<<<<< HEAD
     <div className="App" onClick={triggeringCategory}>
       <>
         <Header
@@ -37,11 +50,61 @@ function App() {
         />
           <div className='playerTrigger' style={showingPlayer || reducer ? {marginTop: '0px', transition: 'margin-top .2s ease'}:{marginTop: '-270px', transition: 'margin-top .2s ease'}}>
           {/* <Player serieId={serieId} index={index} setIndex={setIndex}  reducer={reducer} setReducer={setReducer} playing={playing}/> */}
+=======
+    <Router>
+      <div className="App" onClick={triggeringCategory}>
+        <>
+          <Header
+            categoriesTrigger={categoriesTrigger}
+            setCategoriesTrigger={setCategoriesTrigger}
+            accountTrigger={accountTrigger}
+            setAccountTriggerTrigger={setAccountTriggerTrigger}
+          />
+          <div
+            className={
+              offset >= 75 && showingPlayer
+                ? "playerTrigger fix"
+                : "playerTrigger"
+            }
+            style={
+              showingPlayer || reducer
+                ? {
+                    marginTop: "0px",
+                    zIndex: '90',
+                    transition: "all .2s ease",
+                  }
+                : {
+                    marginTop: "-270px",
+                    zIndex: -0,
+                    transition: "all .2s ease",
+                  }
+            }
+          >
+            <Player
+              serieId={serieId}
+              index={index}
+              setIndex={setIndex}
+              reducer={reducer}
+              setReducer={setReducer}
+              playing={playing}
+              offset={offset}
+            />
+>>>>>>> 3ec6561be66656d8063fdae3b330f599759a27d4
           </div>
-        <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
-        <Catalog lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
-      </>
-    </div>
+          <Route path="/newest">
+            <Newest />
+            </Route>
+          <Route path="/main">
+            <Banner
+              lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+            />
+            <Catalog
+              lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+            />
+          </Route>
+        </>
+      </div>
+    </Router>
   );
 }
 

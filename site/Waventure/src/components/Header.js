@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/Header.css";
+import { Link } from 'react-router-dom'
 
 export default function Header({
   categoriesTrigger,
@@ -13,10 +14,17 @@ export default function Header({
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
   const categories = async () => {
     setCategoriesTrigger(!categoriesTrigger);
-    const data = await fetch(`${serveurPath}/category`);
-    const json = await data.json();
-    setTitleArray(json);
   };
+  useEffect(() => {
+    const fetching = async () =>{
+      const data = await fetch(`${serveurPath}/category`);
+      const json = await data.json();
+      setTitleArray(json);
+    }
+      if(categoriesTrigger){
+        fetching()
+      }
+  }, [categoriesTrigger, serveurPath])
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
   };
@@ -24,7 +32,7 @@ export default function Header({
     <header>
       <div className="leftHeaderSide">
         <div className="waventureLogo">
-          <a href="./">Logo Cliquable</a>
+          <Link to="/main" className="LinkHome">Logo Cliquable</Link>
           <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo" />
           <h1>WAVENTURE</h1>
         </div>
@@ -65,7 +73,7 @@ export default function Header({
                   : ""}
               </div>
             </li>
-            <li>Nouveautés</li>
+            <li><Link to='/newest' className='newestLink'>Nouveautés</Link></li>
             <li>Coup de coeur</li>
           </ul>
         </nav>

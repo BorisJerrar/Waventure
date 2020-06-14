@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
@@ -12,7 +12,6 @@ export default function Player({ serieId, index, setIndex, playing}) {
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
   const [urlAudio, setUrlAudio] = useState(``);
-
   useEffect(() => {
     const fetchingEpisode = async () => {
       const reponseInfos = await fetch(`${serverPath}/sagaInfo/${serieId}`);
@@ -27,6 +26,20 @@ export default function Player({ serieId, index, setIndex, playing}) {
     };
     fetchingEpisode();
   }, [index, serieId, serverPath]);
+  const nextSaga = () => {
+    if (index < sagaInfo.length - 1) {
+      return setIndex(index + 1);
+    } else {
+      return index;
+    }
+  };
+  const prevSaga = () => {
+    if (index > 0) {
+      return setIndex(index - 1);
+    } else {
+      return index;
+    }
+  };
   return (
     <div
       className="playerWarper"
@@ -50,20 +63,23 @@ export default function Player({ serieId, index, setIndex, playing}) {
         className='mainCover'
       />
       <AudioPlayer
-      customIcons={{pause: <img src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/play.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
+      customIcons={{pause: <img style={{color: '#FFF'}}src='./img/pause.svg' alt='pause icon'/>, play: <img src='./img/play.svg' alt='play icon'/>, next: <img src='./img/next.svg' alt='next track icon'/>, previous: <img src='./img/prev.svg' alt='previous track icon'/>}}
         defaultDuration={
           episodeInfos && episodeInfos.episode_duration
             ? episodeInfos.episode_duration
             : ""
         }
         layout={"horizontal"}
-        header={<PlayerHeader synopsis={synopsis} learnMore={learnMore} episodes={episodes} episodeInfos={episodeInfos} sagaInfo={sagaInfo} setIndex={setIndex}/>}
+        header={<PlayerHeader synopsis={synopsis} learnMore={learnMore} episodes={episodes} setEpisode={setEpisodes} episodeInfos={episodeInfos} sagaInfo={sagaInfo} setIndex={setIndex}/>}
         footer={<PlayerFooter setSynopsis={setSynopsis} synopsis={synopsis} setLearnMore={setLearnMore} episodes={episodes} setEpisodes={setEpisodes}/>}
         src={urlAudio ? urlAudio : ""}
         preload={"metadata"}
         autoPlay={playing?true:false}
         showSkipControls={true}
         showJumpControls={false}
+        onClickNext={nextSaga}
+        onClickPrevious={prevSaga}
+onEnded={nextSaga}
       />
     </div>
   );
