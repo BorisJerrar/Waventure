@@ -39,18 +39,6 @@ function App() {
     setSerieId(serie_id);
   };
   return (
-<<<<<<< HEAD
-    <div className="App" onClick={triggeringCategory}>
-      <>
-        <Header
-          categoriesTrigger={categoriesTrigger}
-          setCategoriesTrigger={setCategoriesTrigger}
-          accountTrigger={accountTrigger}
-          setAccountTriggerTrigger={setAccountTriggerTrigger}
-        />
-          <div className='playerTrigger' style={showingPlayer || reducer ? {marginTop: '0px', transition: 'margin-top .2s ease'}:{marginTop: '-270px', transition: 'margin-top .2s ease'}}>
-          {/* <Player serieId={serieId} index={index} setIndex={setIndex}  reducer={reducer} setReducer={setReducer} playing={playing}/> */}
-=======
     <Router>
       <div className="App" onClick={triggeringCategory}>
         <>
@@ -80,7 +68,7 @@ function App() {
                   }
             }
           >
-            <Player
+       {/*      <Player
               serieId={serieId}
               index={index}
               setIndex={setIndex}
@@ -88,8 +76,7 @@ function App() {
               setReducer={setReducer}
               playing={playing}
               offset={offset}
-            />
->>>>>>> 3ec6561be66656d8063fdae3b330f599759a27d4
+            /> */}
           </div>
           <Route path="/newest">
             <Newest />
