@@ -7,7 +7,7 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [hover, setHover] = useState(false);
   const [information, setInformation] = useState(false);
   const [hoverItem, setHoverItem] = useState([]);
-  const [synopsis, setSynopsis] = useState('');
+  const [synopsis, setSynopsis] = useState("");
   const [dataHover, setDataHover] = useState({});
   const [lengthSeries, setLengthSeries] = useState("");
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
@@ -59,14 +59,13 @@ export default function Categorie({ category, lunchingEpisode }) {
     setHover(true);
     setHoverItem(item);
     console.log(dataHover);
-    
   };
   const unsettingHover = () => {
     setHover(false);
     setInformation(false);
   };
   const informationShow = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     setInformation(!information);
   };
   return (
@@ -91,7 +90,8 @@ export default function Categorie({ category, lunchingEpisode }) {
                           lunchingEpisodeCategorie(item);
                         }}
                       >
-                                                                      <h6
+                        <h6
+                          className="hoverInformationSynopsis"
                           style={
                             information
                               ? { visibility: "visible" }
@@ -107,6 +107,7 @@ export default function Categorie({ category, lunchingEpisode }) {
                           alt="play button"
                         />
                         <p
+                          className="hoverInformationTitle"
                           style={
                             information
                               ? { visibility: "hidden" }
@@ -116,6 +117,7 @@ export default function Categorie({ category, lunchingEpisode }) {
                           {item.title}
                         </p>
                         <p
+                          className="hoverInformationAuthor"
                           style={
                             information
                               ? { visibility: "hidden" }
@@ -125,16 +127,29 @@ export default function Categorie({ category, lunchingEpisode }) {
                           {item.author}
                         </p>
                         <p
+                          className="hoverInformationEpisode"
                           style={
                             information
                               ? { visibility: "hidden" }
                               : { visibility: "visible" }
                           }
                         >
-                          Ep.1 S.2
+                          S2 Ep 4
                         </p>
-                        <i className="watchTime"></i>
+                        <i
+                          className="watchTime"
+                          style={
+                            information
+                              ? { visibility: "hidden" }
+                              : { visibility: "visible" }
+                          }
+                        ></i>
                         <img
+                          style={
+                            information
+                              ? { visibility: "hidden" }
+                              : { visibility: "visible" }
+                          }
                           className="playLogoCategory"
                           src={`${urlimg}/btnPlay.svg`}
                           alt="play button"
