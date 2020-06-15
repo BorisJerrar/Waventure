@@ -16,24 +16,28 @@ export default function Newest({lunchingEpisode}) {
     const lunchingEpisodeCategorie = (item) => {
         lunchingEpisode(item.serie_id)
     }
+
     return (
+        <>
+        <h3 className="newestTilte">Nouveautées</h3>
         <div className='newestCardContainer'>
-<h3>Nouveautées</h3>
        {newest.map((item, index) => {
-            return (
-                <div>
-                    <h5>{item.title}</h5>
-                    <p>{item.body}</p>
-                <img
+           return (
+                <div className='newestCard' onClick={()=> lunchingEpisodeCategorie(item)}>
+                     <img
                 key={index}
-                onClick={()=> lunchingEpisodeCategorie(item)}
                 className="newestCover"
                 src={`${url}/${item.image_lg}`}
                 alt={item.image_lg}
                 />
+                                    <div className='newestCardText'>
+                    <h5>{item.title}</h5>
+                    <p>{item.body}</p>
+                    </div>
                 </div>
                 );
             })}
             </div>
+            </>
     )
 }
