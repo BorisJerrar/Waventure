@@ -10,7 +10,6 @@
 .categoryContainer{
     display: flex;
     align-items: center;
-    justify-content: space-around;
 }
 .catalogTitle{
     font-family: 'Pontano Sans', sans-serif;

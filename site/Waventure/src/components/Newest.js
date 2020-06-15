@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import '../style/Newest.css'
 export default function Newest({lunchingEpisode}) {
     const [newest, setNewest] = useState([])
     const fetchNewest = async() =>{
@@ -17,11 +17,11 @@ export default function Newest({lunchingEpisode}) {
         lunchingEpisode(item.serie_id)
     }
     return (
-        <div>
+        <div className='newestCardContainer'>
 <h3>Nouveautées</h3>
        {newest.map((item, index) => {
             return (
-                <div className='newestCardContainer'>
+                <div>
                     <h5>{item.title}</h5>
                     <p>{item.body}</p>
                 <img
