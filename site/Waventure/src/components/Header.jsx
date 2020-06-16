@@ -38,7 +38,9 @@ export default function Header({
   const fetchSearchSeries = async(e) =>{
     let userSearch = e.target.value.toLowerCase()
     const response = await fetch (`http://localhost:4000/serie?search=%${userSearch}%`)
-    const data = await response.json()
+    const data = await response.json() 
+    console.log(data);
+    
     setResultSearch(data)
 }
 
@@ -51,6 +53,17 @@ export default function Header({
     setSearch(e.target.value)  
     fetchSearchSeries(e)  
   }  
+
+  const hideSearch = () => {
+    setToggle(false)
+  }
+
+  const showSearch = (e) => {
+    if(e.target.value !== ""){
+      setToggle(true)
+    }
+    
+  }
   
   return (
     <header>
@@ -60,8 +73,8 @@ export default function Header({
           <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo" />
           <h1>WAVENTURE</h1>
         </div>
-        <div className="searchingBar">
-          <input placeholder="Recherche" onChange={getInput} value={search} />
+        <div onBlur={hideSearch} className="searchingBar">
+          <input onFocus={showSearch} placeholder="Recherche" onChange={getInput} value={search} />
           <button>
             <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
           </button>
