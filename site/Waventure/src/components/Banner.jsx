@@ -44,7 +44,7 @@ export default function Banner({lunchingEpisode}) {
                     {synopsis.body}
                 </p>
             </div>
-            <img className="backgroundImg" src={`${url}/${wedette && wedette.image_bg ?wedette.image_bg:''}`} alt={`Bg_image ${wedette && wedette.title ?wedette.title:''}`} />
+            <img className="backgroundImg" src={`${url}/${wedette && wedette.image_bg?wedette.image_bg:''}`} alt={`Bg_image ${wedette && wedette.title ?wedette.title:''}`} />
         </div>
     )
 }

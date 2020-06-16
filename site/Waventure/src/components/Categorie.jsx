@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
 
@@ -8,7 +9,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [information, setInformation] = useState(false);
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
-  const [dataHover, setDataHover] = useState({});
   const [lengthSeries, setLengthSeries] = useState("");
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
@@ -34,7 +34,6 @@ export default function Categorie({ category, lunchingEpisode }) {
         `${server}/sagaInfo/${hoverItem.serie_id}`
       );
       const data = await response.json();
-      setDataHover(data[0]);
       setSynopsis(data[0].body);
     };
     if (hover) {
@@ -58,7 +57,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const settingHover = (item) => {
     setHover(true);
     setHoverItem(item);
-    console.log(dataHover);
   };
   const unsettingHover = () => {
     setHover(false);
@@ -78,89 +76,19 @@ export default function Categorie({ category, lunchingEpisode }) {
               <div className="categoryContainer" key={arrIndex} style={{}}>
                 {array.map((item, index) => {
                   return (
-                    <div
-                      key={index}
-                      className={"hoverInformationContainer"}
-                      onMouseEnter={() => settingHover(item)}
-                      onMouseLeave={unsettingHover}
-                    >
-                      <div
-                        className="hoverInformation"
-                        onClick={() => {
-                          lunchingEpisodeCategorie(item);
-                        }}
-                      >
-                        <h6
-                          className="hoverInformationSynopsis"
-                          style={
-                            information
-                              ? { visibility: "visible" }
-                              : { visibility: "hidden" }
-                          }
-                        >
-                          {synopsis}
-                        </h6>
-                        <img
-                          className="InformationCategory"
-                          onClick={informationShow}
-                          src={`${urlimg}/information.svg`}
-                          alt="play button"
-                        />
-                        <p
-                          className="hoverInformationTitle"
-                          style={
-                            information
-                              ? { visibility: "hidden" }
-                              : { visibility: "visible" }
-                          }
-                        >
-                          {item.title}
-                        </p>
-                        <p
-                          className="hoverInformationAuthor"
-                          style={
-                            information
-                              ? { visibility: "hidden" }
-                              : { visibility: "visible" }
-                          }
-                        >
-                          {item.author}
-                        </p>
-                        <p
-                          className="hoverInformationEpisode"
-                          style={
-                            information
-                              ? { visibility: "hidden" }
-                              : { visibility: "visible" }
-                          }
-                        >
-                          S2 Ep 4
-                        </p>
-                        <i
-                          className="watchTime"
-                          style={
-                            information
-                              ? { visibility: "hidden" }
-                              : { visibility: "visible" }
-                          }
-                        ></i>
-                        <img
-                          style={
-                            information
-                              ? { visibility: "hidden" }
-                              : { visibility: "visible" }
-                          }
-                          className="playLogoCategory"
-                          src={`${urlimg}/btnPlay.svg`}
-                          alt="play button"
-                        />
-                      </div>
-                      <img
-                        className="imageSlideShow"
-                        src={`${url}/${item.image}`}
-                        alt={"cover of" + item.title}
-                      />
-                    </div>
+                    <CategoryUnique 
+                    item={item} 
+                    index={index} 
+                    settingHover={(item) => settingHover(item)}
+                    unsettingHover={() => unsettingHover()}
+                    lunchingEpisodeCategorie={lunchingEpisodeCategorie}
+                    information={information}
+                    urlimg={urlimg}
+                    synopsis={synopsis}
+                    hover={hover}
+                    informationShow={(e) => informationShow(e)}
+                    url={url}
+                    />
                   );
                 })}
               </div>

@@ -79,13 +79,13 @@
   align-items: center;
   width: 438px;
   height: 438px;
-  transition: ease-in-out 0.2s all;
+  transition: ease-in 0.2s all;
 }
 .wedetteCover:hover .wedetteCoverImage {
   width: 490px;
   height: 490px;
 }
 
-.marginScroll{
+.marginScroll {
   margin-top: 270px;
 }

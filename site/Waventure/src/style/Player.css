@@ -112,7 +112,7 @@
   height: 100%;
   position: absolute;
   z-index: 2;
-  background-color: #A487B3;
+  background-color: #a487b3;
   border-radius: 2px;
 }
 
@@ -204,7 +204,7 @@
 
 .rhap_volume-container {
   position: absolute;
-bottom: -40px;
+  bottom: -40px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -269,7 +269,7 @@ bottom: -40px;
 .rhap_button-clear:focus {
   outline: 0;
 }
-.arrowRetre{
+.arrowRetre {
   align-self: flex-end;
   width: 30px;
   height: auto;
