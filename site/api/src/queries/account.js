@@ -26,7 +26,7 @@ const createAccount = (req, res) => {
     return res.status(400).send({ 'message': 'Some values are missing' });
   }
   if (!Helper.isValidEmail(req.body.email)) {
-    return res.status(400).send({ 'message': 'Please enter a valid email address' });
+    return res.status(400).json('Please enter a valid email address');
   }
   const hashPassword = Helper.hashPassword(req.body.password);
 
@@ -45,9 +45,6 @@ const createAccount = (req, res) => {
   ];
 
   const rows = db.query(createQuery, values, (error, results) => {
-    if (error.routine === '_bt_check_unique') {
-      return res.status(400).send({'message': 'Déjà un compte utilisateur avec cette adresse email.'});
-    }
     if (error) {
       return res.status(400).send(error);
     }
@@ -58,10 +55,10 @@ const createAccount = (req, res) => {
 
 const loginAccount = (req, res) => {
   if (!req.body.email || !req.body.password) {
-    return res.status(400).send({'message': 'Some values are missing'});
+    return res.status(400).send('message Some values are missing');
   }
   if (!Helper.isValidEmail(req.body.email)) {
-    return res.status(400).send({ 'message': 'Please enter a valid email address' });
+    return res.status(400).send({error : 'message Please enter a valid email address'});
   }
   const text = 'SELECT * FROM account WHERE email = $1';
 
