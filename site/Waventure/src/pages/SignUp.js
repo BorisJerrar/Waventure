@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 function SignUp(props) {
 
@@ -13,6 +13,12 @@ function SignUp(props) {
         last_name : "",
         birth_date : ""
     })
+    const [token, setToken] = useState();
+    const [isLoggedIn, setLoggedIn] = useState(false);
+
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
 
     const handleChange = (e) => {
         const {id, value} = e.target
@@ -31,9 +37,12 @@ function SignUp(props) {
         }
     }
 
+    if (isLoggedIn) {
+        return <Redirect to="/main" />;
+    }
+
     const sendToServer = () => {
         if(state.email.length && state.password.length && state.username.length && state.first_name.length && state.last_name.length && state.birth_date.length ) {
-            console.log("password match");
             const payload={
                 "username":state.username,
                 "first_name":state.first_name,
@@ -42,15 +51,13 @@ function SignUp(props) {
                 "birth_date":state.birth_date,
                 "password":state.password,
             }
-            console.log(payload)
-            axios.post('http://localhost:4000/account', payload)
+            axios.post('http://localhost:4000/auth/signup', payload)
                 .then(function (response) {
-                    if (response.data.code === 201) {
-                        console.log(response)
+                        console.log(JSON.stringify(response.data))
+                        setToken(response.data.token)
+                        setLoggedIn(true)
+                        console.log(token)
 
-                    } else {
-                        console.log(response)
-                    }
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -59,7 +66,8 @@ function SignUp(props) {
     }
 
         return(
-        <form className="sign-up-form">
+        <form className="sign-up-form"
+              onSubmit={handleSubmit}>
             <input type="email"
                 id="email"
                 placeholder="Email"
@@ -106,9 +114,7 @@ function SignUp(props) {
                 type="submit"
                 onClick={handleSubmitClick}
             >
-                <Link to="/main" style={{textDecoration: 'none', color: "red"}}>
                     S'inscrire
-                </Link>
             </button>
         </form>
 

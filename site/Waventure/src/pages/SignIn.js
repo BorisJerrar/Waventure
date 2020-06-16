@@ -5,23 +5,30 @@ import { Link, Redirect } from 'react-router-dom'
 function SignIn(props) {
 
     const [isLoggedIn, setLoggedIn] = useState(false);
-    const [isError, setIsError] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [token, setToken] = useState();
 
     function checkLogin() {
-        axios.post("http://localhost:4000/Auth/login", {
-            email,
-            password
-        }).then(result => {
-            if (result.status === 200) {
-                setLoggedIn(true);
-            } else {
-                setIsError(true);
-            }
-        }).catch(e => {
-            setIsError(true);
+        axios.post('http://localhost:4000/auth/signin', {
+            email: email,
+            password: password
         })
+            .then(function (response) {
+                console.log(JSON.stringify(response.data))
+                setToken(response.data.token)
+                setLoggedIn(true)
+                console.log(token)
+            }
+            )
+            .catch(function (error) {
+                console.log(error);
+            })
+
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
     }
 
     if (isLoggedIn) {
@@ -29,7 +36,8 @@ function SignIn(props) {
     }
 
     return (
-        <form className="sign-in-form">
+        <form className="sign-in-form"
+            onSubmit={handleSubmit}>
             <input
                 type="email"
                 id="email"
@@ -52,9 +60,7 @@ function SignIn(props) {
                 type="submit"
                 onClick={checkLogin}
             >
-                <Link to="/main">
-                    S'identifier
-                </Link>
+                S'identifier
             </button>
         </form>
 
