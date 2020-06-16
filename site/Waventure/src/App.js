@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
+import Header from "./components/Header.jsx";
 import Player from "./components/Player";
 import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
