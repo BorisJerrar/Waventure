@@ -14,19 +14,22 @@ export default function PlayerFooter({
     <div className="playerFooter">
 
 <PlayerFooterItem
+  title={"Episodes"}
   element={episodes}
   setElement={setEpisodes}
   setLastElement={setSynopsis}
   setLearnMore={setLearnMore}
 />
+
 <PlayerFooterItem
+  title={"Synopsis"}
   element={synopsis}
   setElement={setSynopsis}
   setLastElement={setEpisodes}
   setLearnMore={setLearnMore}
 />
 
-<p className="playerFooterSynopsis">En savoir plus</p>
+<p className="playerFooterItem">En savoir plus</p>
     </div>
   );
 }

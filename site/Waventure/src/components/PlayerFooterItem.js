@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PlayerFooterItem({element, setElement, setLearnMore, setLastElement}) {
+export default function PlayerFooterItem({title, element, setElement, setLearnMore, setLastElement}) {
 
     const showElement = () => {
         setLastElement(false);
@@ -9,8 +9,8 @@ export default function PlayerFooterItem({element, setElement, setLearnMore, set
       };
 
     return (
-        <p onClick={showElement} style={element?{borderBottom: 'solid 2px #a487b3', color: '#fff'}:{borderBottom: 'none'}} className="playerFooterSynopsis">
-        Episodes
+        <p onClick={showElement} style={element?{borderBottom: 'solid 2px #a487b3', color: '#fff'}:{borderBottom: 'none'}} className="playerFooterItem">
+        {title}
       </p>
     )
 }

@@ -1,8 +1,8 @@
-.playerFooterSynopsis {
+.playerFooterItem {
     color: #d8d8d8;
     cursor: pointer;
   }
-  .playerFooterSynopsis:hover {
+  .playerFooterItem:hover {
     cursor: pointer;
     color: #ffffff;
   }
