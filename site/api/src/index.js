@@ -5,6 +5,7 @@ const port = process.env.port || 4000;
 const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
+const http = require('http')
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -80,10 +81,10 @@ app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
 
 /**
  * @swagger
- * /account/login:
+ * /auth/signin:
  *  post:
  *      tags:
- *          - account
+ *        - auth
  *      description: Use login account
  *      consumes:
  *        - application/json
@@ -101,7 +102,40 @@ app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
  *          '201':
  *              description: successful operation
  */
-app.post('/account/login', accountQueries.loginAccount)
+app.post('/auth/signin', accountQueries.loginAccount)
+
+/**
+ * @swagger
+ * /auth/signup:
+ *  post:
+ *      tags:
+ *        - auth 
+ *      description: Use to create account
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: account
+ *          in: body
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  username:
+ *                      type: string
+ *                  first_name:
+ *                      type: string
+ *                  last_name:
+ *                      type: string
+ *                  email:
+ *                      type: string
+ *                  birth_date:
+ *                      type: string
+ *                  password:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post("/auth/signup", accountQueries.createAccount);
 
 app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 
@@ -157,38 +191,6 @@ app.get("/account", accountQueries.getAccount);
  */
 app.get("/account/:account_id", accountQueries.getAccountById);
 
-/**
- * @swagger
- * /account:
- *  post:
- *      tags:
- *          - account
- *      description: Use to create account
- *      consumes:
- *        - application/json
- *      parameters:
- *        - name: account
- *          in: body
- *          schema:
- *              type: object
- *              properties:
- *                  username:
- *                      type: string
- *                  first_name:
- *                      type: string
- *                  last_name:
- *                      type: string
- *                  email:
- *                      type: string
- *                  birth_date:
- *                      type: string
- *                  password:
- *                      type: string
- *      responses:
- *          '201':
- *              description: successful operation
- */
-app.post("/account", accountQueries.createAccount);
 
 /**
  * @swagger

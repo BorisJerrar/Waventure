@@ -1,17 +1,17 @@
 CREATE EXTENSION unaccent;
 CREATE EXTENSION
 IF NOT EXISTS pgcrypto;
-
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 SET client_encoding
 TO 'UTF-8';
 
 CREATE TABLE account
 (
-    account_id serial NOT NULL PRIMARY KEY,
+    account_id UUID,
     username varchar(25),
     first_name varchar(25),
     last_name varchar(25),
-    email varchar(100),
+    email varchar(100) UNIQUE NOT NULL,
     birth_date date,
     avatar varchar(64),
     password varchar(64)
@@ -999,12 +999,12 @@ VALUES
     (59, 5, '0:03:25.000', 'Pieces of eight', 'blindcowboy_saison1_episode5.mp3');
 
 INSERT INTO account
-    (username, first_name, last_name, email, birth_date, avatar, PASSWORD)
+    (account_id, username, first_name, last_name, email, birth_date, avatar, PASSWORD)
 
 VALUES
-    ('adminValentin', 'valentin', 'cellier', 'valentin@mail.com', '1992-01-19', 'avatar1.jpg', crypt('adminPassword', gen_salt('md5'))),
-    ('adminCharles', 'charles', 'decodin', 'charles@mail.com', '1992-01-19', 'avatar2.jpg', crypt('adminPassword', gen_salt('md5'))),
-    ('adminBoris', 'boris', 'jerrar', 'boris@mail.com', '1992-01-19', 'avatar3.jpg', crypt('adminPassword', gen_salt('md5')));
+    (gen_random_uuid(), 'adminValentin', 'valentin', 'cellier', 'valentin@mail.com', '1992-01-19', 'avatar1.jpg', crypt('adminPassword', gen_salt('md5'))),
+    (gen_random_uuid(), 'adminCharles', 'charles', 'decodin', 'charles@mail.com', '1992-01-19', 'avatar2.jpg', crypt('adminPassword', gen_salt('md5'))),
+    (gen_random_uuid(), 'adminBoris', 'boris', 'jerrar', 'boris@mail.com', '1992-01-19', 'avatar3.jpg', crypt('adminPassword', gen_salt('md5')));
 
 INSERT INTO category
     (name)
