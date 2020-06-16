@@ -1,39 +1,175 @@
-.catalog{
-    background-color: #242424;
-    display: flex;
-    flex-direction: column;
-    width: 85vw;
-    margin-top: 10px;
-    overflow-x: hidden;
-    user-select: none;
+.catalog {
+  background-color: #242424;
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  margin-top: 10px;
+  overflow-x: hidden;
+  user-select: none;
 }
-.categoryContainer{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.categoryContainer {
+  display: flex;
+  align-items: center;
 }
-.catalogTitle{
-    font-family: 'Pontano Sans', sans-serif;
-    font-weight: 300;
-    font-size: 24px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.containerSlide{
-    position: relative;
+.catalogTitle {
+  font-family: "Pontano Sans", sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.indicators{
+.containerSlide {
+  position: relative;
+}
+
+.indicators {
+  position: absolute;
+  top: -20px;
+  right: 10px;
+}
+.imageSlideShow {
+  width: 100%;
+  height: auto;
+}
+.hoverInformation:hover + .imageSlideShow {
+filter: grayscale(.5);
+}
+
+.hoverInformation {
+  z-index: 100;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: ease-in-out 0.2s opacity;
+  opacity: 0;
+}
+.hoverInformation:hover {
+  opacity: 1;
+}
+.hoverInformation:hover::after {
+  content: "";
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: linear-gradient(
+    to top,
+    rgb(0, 0, 0),
+    rgba(0, 0, 0, 0.767),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.hoverInformationContainer {
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.356);
+  width: 15vw;
+  margin: 1vw;
+  transition: ease-in-out all 0.2s;
+  user-select: none;
+}
+.hoverInformationContainer:hover {
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
+  width: 17vw;
+  margin: 0vw;
+}
+.playLogoCategory {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  width: 30px;
+  height: 30px;
+  z-index: 100;
+}
+.InformationCategory {
     position: absolute;
-    top: -20px;
-    right: 10px;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    width: 18px;
+    height: 18px;
+    z-index: 999;
+  }
+.hoverInformationEpisode{
+  margin: auto;
+  position: absolute;
+  bottom: 80px;
+  right: 10px;
+  z-index: 100;
+  font-size: 21px;
+  font-weight: 400;
+  height: 25px;
+  text-align: left;
 }
-.react-slideshow-container + div.indicators > .each-slideshow-indicator.active {
-    background: blue;
+.hoverInformationAuthor{
+  margin: auto;
+  position: absolute;
+  bottom: 40px;
+  left: 12px;
+  z-index: 100;
+  font-size: 10px;
+  font-weight: 600;
+  width: 30%;
+  height: 25px;
+  text-align: left;
 }
-.imageSlideShow{
-    cursor: pointer;
-}
-
+.hoverInformationTitle{
+    margin: auto;
+    position: absolute;
+    text-align: left;
+    top: 80px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    font-size: 20px;
+    font-weight: 600;
+    height: 25px;
+    width: 80%;
+    word-break: keep-all;
+  }
+  .hoverInformationSynopsis{
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    font-size: 16px;
+    font-weight: 300;
+    height: 25px;
+  }
+  .watchTime{
+      width: 90%;
+      height: 3px;
+      background-color: #fff;
+      margin: auto;
+      position: absolute;
+      bottom: 70px;
+      left: 0px;
+      right: 0px;
+      z-index: 100;
+  }
+  .watchTime::after{
+      content: '';
+      width: 20%;
+      height: 3px;
+      background-color: rgb(185, 121, 204);
+      margin: auto;
+      position: absolute;
+      left: 0px;
+      z-index: 100;
+  }
