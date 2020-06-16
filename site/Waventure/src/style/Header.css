@@ -125,6 +125,25 @@ li,
   top: 58px;
   left: 0;
 }
+.searchFetch{
+  position: absolute;
+  width: 20vw;
+  top: 53px;
+  background-color: #1b1b1b;
+}
+
+.eachSearch{
+  display: flex;
+  padding: 10px 0px 10px 0px;
+}
+
+.eachImage{
+  width: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
 .profilIcon {
   display: flex;
   justify-content: flex-end;

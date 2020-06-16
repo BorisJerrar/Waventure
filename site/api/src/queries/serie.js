@@ -1,12 +1,26 @@
 const db = require("../../db/database");
 
 const getSerie = (request, response) => {
-  db.query("SELECT * FROM serie ORDER BY serie_id ASC", (error, results) => {
+  if(Object.keys(request.query).length === 0){
+     db.query("SELECT * FROM serie ORDER BY serie_id ASC", (error, results) => {
     if (error) {
       throw error;
     }
     response.status(200).json(results.rows);
   });
+  }else{
+    const regex = /%20/gi
+    const search = request.query.search.replace(regex,' ')
+    console.log(search);
+    
+    db.query(`SELECT * FROM search_serie WHERE lower LIKE $1` ,[search], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+ 
 };
 
 const getSerieById = (request, response) => {
