@@ -5,6 +5,9 @@ const port = process.env.port || 4000;
 const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
@@ -69,6 +72,31 @@ app.get('/sound/', function(req, res){
   ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
 /* MAIN */
+
+/**
+ * @swagger
+ * /account/login:
+ *  post:
+ *      tags:
+ *          - account
+ *      description: Use login account
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - name: account
+ *          in: body
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  email:
+ *                      type: string
+ *                  password:
+ *                      type: string
+ *      responses:
+ *          '201':
+ *              description: successful operation
+ */
+app.post('/account/login', accountQueries.loginAccount)
 
 app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 
