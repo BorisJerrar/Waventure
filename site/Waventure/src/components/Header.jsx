@@ -10,6 +10,7 @@ export default function Header({
 }) {
   const [titleArray, setTitleArray] = useState([]);
   const [search, setSearch] = useState('')
+  const [toggle, setToggle] = useState(false)
   const [resultSearch, setResultSearch] = useState([])
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
   const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
@@ -42,11 +43,14 @@ export default function Header({
 }
 
   const getInput = (e) => {
+    if(e.target.value !== "" ){
+      setToggle(true)
+    }else{
+      setToggle(false)
+    }
     setSearch(e.target.value)  
     fetchSearchSeries(e)  
-  }
-
-  console.log(resultSearch);
+  }  
   
   return (
     <header>
@@ -61,7 +65,7 @@ export default function Header({
           <button>
             <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
           </button>
-          <div className="searchFetch">
+          <div className="searchFetch" style={toggle ? {display:"block"} : {display:"none"}}>
             
                {resultSearch.map((each, key) =>{
                  return(
