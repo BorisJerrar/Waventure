@@ -68,7 +68,7 @@
     rgba(0, 0, 0, 0.767),
     rgba(0, 0, 0, 0)
   );
-  transition: ease-out0.2s all;
+  transition: ease-out 0.2s all;
 }
 
 .hoverInformationContainer {
@@ -80,7 +80,6 @@
   margin: 1vw;
   user-select: none;
   cursor: pointer;
-  transform: translate3d();
   -webkit-transition: height 0.2s ease-in, width 0.2s ease-in, margin 0.2s ease-in,
     box-shadow 0.3s ease-in;
   -moz-transition: height 0.2s ease-in, width0.2s ease-in, margin 0.2s ease-in,
@@ -91,7 +90,6 @@
     box-shadow 0.3s ease-in;
 }
 .hoverInformationContainer:hover {
-  transform: translate3d();
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
   width: 17vw;
   height: 17vw;

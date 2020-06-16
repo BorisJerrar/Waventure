@@ -13,7 +13,7 @@ function App() {
   const [reducer, setReducer] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [showingPlayer, setShowingPlayer] = useState(false);
-  const [serieId, setSerieId] = useState(2);
+  const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
   const [offset, setOffset] = useState(0);
 

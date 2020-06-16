@@ -78,7 +78,7 @@ export default function Categorie({ category, lunchingEpisode }) {
                   return (
                     <CategoryUnique 
                     item={item} 
-                    index={index} 
+                    key={index}
                     settingHover={(item) => settingHover(item)}
                     unsettingHover={() => unsettingHover()}
                     lunchingEpisodeCategorie={lunchingEpisodeCategorie}

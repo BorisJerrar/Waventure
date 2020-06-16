@@ -69,7 +69,7 @@ app.get("/images/:image", (req, res) => {
 app.get('/sound/', function(req, res){
   let sound = req.query.sound;
   let saga = req.query.saga;
-  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
+  ms.pipe(req, res, `${process.ENV.SERVER}/src/sound/${saga}/${sound}`);
 });
 /* MAIN */
 
