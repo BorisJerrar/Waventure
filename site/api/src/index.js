@@ -5,6 +5,7 @@ const port = process.env.port || 4000;
 const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
+const http = require('http')
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -69,7 +70,7 @@ app.get("/images/:image", (req, res) => {
 app.get('/sound/', function(req, res){
   let sound = req.query.sound;
   let saga = req.query.saga;
-  ms.pipe(req, res, `${process.ENV.SERVER}/src/sound/${saga}/${sound}`);
+  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
 /* MAIN */
 
