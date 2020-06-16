@@ -1,0 +1,76 @@
+body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background-color: #242424;
+}
+
+
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.7);
+  box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.waventureLogo {
+    margin: 0 0 30px;
+    padding: 0;
+    text-align: center;
+}
+.waventureLogo img {
+    width: 6rem;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+  
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: #fff;
+    border-radius: 5px;;
+}
+
+
+.login-box .btn-base {
+    margin: 0 0 30px;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+
+}
+
+.form-aside {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 30px;
+}
+
+.form-aside, .link-form {
+    color: #fff;
+    text-decoration: none;
+}
+
+.link-form {
+    color: #fff;
+    text-decoration: none;
+    text-decoration: underline #fff;
+}
