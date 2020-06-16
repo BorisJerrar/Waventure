@@ -23,11 +23,8 @@ export default function Player({ serieId, index, setIndex, playing }) {
       setUrlAudio(
         `${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`
       );
-<<<<<<< HEAD
       console.log(`${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`);
 
-=======
->>>>>>> 41ca41b97b9793f6fbb70bd3f64c77970b8a9882
     };
     if(serieId !== -1){
     fetchingEpisode()
