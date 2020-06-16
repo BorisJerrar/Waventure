@@ -45,11 +45,14 @@ const createAccount = (req, res) => {
   ];
 
   const rows = db.query(createQuery, values, (error, results) => {
+    if (error.routine === '_bt_check_unique') {
+      return res.status(400).send({'message': 'Déjà un compte utilisateur avec cette adresse email.'});
+    }
     if (error) {
       return res.status(400).send(error);
     }
     const token = Helper.generateToken(results.rows[0].account_id)
-    return res.status(201).send(token)
+    return res.status(201).send({ token })
   })
 }
 
@@ -63,6 +66,9 @@ const loginAccount = (req, res) => {
   const text = 'SELECT * FROM account WHERE email = $1';
 
   const rows = db.query(text, [req.body.email], (error, results) => {
+    if (!results.rows[0]) {
+      return res.status(400).send({'message': 'Pas d\'utilisateur enregistrer avec cette adresse email'})
+    }
     if (error) {
       return res.status(400).send(error);
     }
