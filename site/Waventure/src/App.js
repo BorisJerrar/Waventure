@@ -45,25 +45,23 @@ function App() {
             style={
               showingPlayer || reducer
                 ? {
-                    marginTop: "0px",
                     zIndex: "90",
                     transition: "all .2s ease",
                   }
                 : {
-                    marginTop: "-270px",
-                    zIndex: -0,
+                    zIndex: -1,
                     transition: "all .2s ease",
                   }
             }
           >
-          <Sticky enabled={true} top={0} bottomBoundary={1200}>
+          <Sticky enabled={showingPlayer?true:false} top={0}>
           <Player    
               serieId={serieId}
               index={index}
               setIndex={setIndex}
               reducer={reducer}
               setReducer={setReducer}
-              playing={playing}/> 
+              playing={playing}/>
 </Sticky>
           </div>
           <Switch>
@@ -71,7 +69,18 @@ function App() {
             <Newest lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
           </Route>
           <Route path="/main">
+            <div className='playerTrigger' style={showingPlayer || reducer
+                ? {
+                    marginTop: 0,
+                    transition: "all .2s ease",
+                  }
+                : {
+                    marginTop: '-270px',
+                    transition: "all .2s ease",
+                  }
+            }>
             <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
+            </div>
             <Catalog
               lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
               />
