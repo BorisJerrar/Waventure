@@ -4,7 +4,6 @@ import "../style/Categorie.css";
 
 export default function CategoryUnique({
   item,
-  index,
   settingHover,
   unsettingHover,
   lunchingEpisodeCategorie,
@@ -17,7 +16,6 @@ export default function CategoryUnique({
 }) {
   return (
     <div
-      key={index}
       className={"hoverInformationContainer"}
       onMouseEnter={() => settingHover(item)}
       onMouseLeave={() => unsettingHover()}

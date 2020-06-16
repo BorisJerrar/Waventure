@@ -21,10 +21,10 @@ export default function Player({ serieId, index, setIndex, playing}) {
       setUrlAudio(
         `${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`
       );
-      console.log( `${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`);
-      
     };
-    fetchingEpisode();
+    if(serieId !== -1){
+    fetchingEpisode()
+    };
   }, [index, serieId, serverPath]);
   const nextSaga = () => {
     if (index < sagaInfo.length - 1) {
