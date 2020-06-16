@@ -5,6 +5,7 @@ import Player from "./components/Player";
 import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
+import Sticky from 'react-stickynode';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -15,15 +16,6 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
-  const [offset, setOffset] = useState(0);
-
-  window.addEventListener("scroll", () => {
-    setTimeout(() => {
-      setCategoriesTrigger(false);
-      setAccountTriggerTrigger(false);
-    }, 500);
-    setOffset(window.scrollY);
-  });
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -49,11 +41,7 @@ function App() {
             setAccountTriggerTrigger={setAccountTriggerTrigger}
           />
           <div
-            className={
-              offset >= 75 && showingPlayer
-                ? "playerTrigger fix"
-                : "playerTrigger"
-            }
+            className="playerTrigger"
             style={
               showingPlayer || reducer
                 ? {
@@ -68,15 +56,15 @@ function App() {
                   }
             }
           >
-             <Player
+          <Sticky enabled={true} top={0} bottomBoundary={1200}>
+          <Player    
               serieId={serieId}
               index={index}
               setIndex={setIndex}
               reducer={reducer}
               setReducer={setReducer}
-              playing={playing}
-              offset={offset}
-            /> 
+              playing={playing}/> 
+</Sticky>
           </div>
           <Switch>
           <Route path="/newest">
