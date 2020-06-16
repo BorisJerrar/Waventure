@@ -31,7 +31,7 @@ export default function Categorie({ category, lunchingEpisode }) {
     fetchSeries();
     const fetchSerieInformation = async () => {
       const response = await fetch(
-        `http://localhost:4000/sagaInfo/${hoverItem.serie_id}`
+        `${server}/sagaInfo/${hoverItem.serie_id}`
       );
       const data = await response.json();
       setDataHover(data[0]);
