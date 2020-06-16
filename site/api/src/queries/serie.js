@@ -11,7 +11,6 @@ const getSerie = (request, response) => {
   }else{
     const regex = /%20/gi
     const search = request.query.search.replace(regex,' ')
-    console.log(search);
     
     db.query(`SELECT * FROM search_serie WHERE lower LIKE $1` ,[search], (error, results) => {
       if (error) {

@@ -41,7 +41,7 @@ header {
   height: 32px;
   position: absolute;
   right: 3%;
-  transition: background-color0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 .searchingBar button:active {
   background-color: rgb(214, 214, 214);
@@ -81,7 +81,7 @@ nav {
   user-select: none;
   text-decoration: none;
   color: #fff;
-  transition: color0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
 }
 .newestLink:active {
   color: rgb(160, 160, 160);
@@ -127,8 +127,12 @@ li,
 }
 .searchFetch {
   position: absolute;
-  width: 20vw;
+  padding-right: 10px;
+  min-width: 25vw;
+  max-height: 30vh;
+  overflow-y: scroll;
   top: 53px;
+  left: 40px;
   background-color: #1b1b1b;
 }
 
@@ -137,7 +141,11 @@ li,
   padding: 10px 0px 10px 0px;
 }
 
-.eachImage {
+.eachSearch:hover {
+  background-color: #4e4e4e;
+}
+
+.eachImage{
   width: 30px;
   margin-right: 10px;
   margin-left: 10px;
