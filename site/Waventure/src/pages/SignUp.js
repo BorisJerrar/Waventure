@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import "../style/SignUp.css"
 
 function SignUp(props) {
 

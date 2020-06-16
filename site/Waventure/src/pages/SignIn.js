@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom'
+import "../style/SignIn.css"
 
 function SignIn(props) {
+    const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState("");
@@ -36,6 +38,12 @@ function SignIn(props) {
     }
 
     return (
+        <>
+        <div className="waventureLogo">
+            <a href="./">Logo Cliquable</a>
+            <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
+            <h1>WAVENTURE</h1>
+        </div>
         <form className="sign-in-form"
             onSubmit={handleSubmit}>
             <input
@@ -63,7 +71,7 @@ function SignIn(props) {
                 S'identifier
             </button>
         </form>
-
+        </>
     )
 }
 
