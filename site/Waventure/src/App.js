@@ -5,7 +5,8 @@ import Player from "./components/Player";
 import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
-import Sticky from 'react-stickynode';
+import HeaderCategory from "./components/HeaderCategory";
+import Sticky from "react-stickynode";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
+  const [titleArray, setTitleArray] = useState([]);
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -39,6 +41,8 @@ function App() {
             setCategoriesTrigger={setCategoriesTrigger}
             accountTrigger={accountTrigger}
             setAccountTriggerTrigger={setAccountTriggerTrigger}
+            titleArray={titleArray}
+            setTitleArray={setTitleArray}
           />
           <div
             className="playerTrigger"
@@ -54,38 +58,87 @@ function App() {
                   }
             }
           >
-          <Sticky enabled={showingPlayer?true:false} top={0}>
-          <Player    
-              serieId={serieId}
-              index={index}
-              setIndex={setIndex}
-              reducer={reducer}
-              setReducer={setReducer}
-              playing={playing}/>
-</Sticky>
+            <Sticky enabled={showingPlayer ? true : false} top={0}>
+              <Player
+                serieId={serieId}
+                index={index}
+                setIndex={setIndex}
+                reducer={reducer}
+                setReducer={setReducer}
+                playing={playing}
+              />
+            </Sticky>
           </div>
           <Switch>
-          <Route path="/newest">
-            <Newest lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
-          </Route>
-          <Route path="/main">
-            <div className='playerTrigger' style={showingPlayer || reducer
-                ? {
-                    marginTop: 0,
-                    transition: "all .2s ease",
-                  }
-                : {
-                    marginTop: '-270px',
-                    transition: "all .2s ease",
-                  }
-            }>
-            <Banner lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)} />
-            </div>
-            <Catalog
-              lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+            <Route path="/newest">
+              <div
+                className="playerTrigger"
+                style={
+                  showingPlayer || reducer
+                    ? {
+                        marginTop: 0,
+                        transition: "all .2s ease",
+                      }
+                    : {
+                        marginTop: "-270px",
+                        transition: "all .2s ease",
+                      }
+                }
+              >
+                <Newest
+                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                />
+              </div>
+            </Route>
+            <Route path="/main">
+              <div
+                className="playerTrigger"
+                style={
+                  showingPlayer || reducer
+                    ? {
+                        marginTop: 0,
+                        transition: "all .2s ease",
+                      }
+                    : {
+                        marginTop: "-270px",
+                        transition: "all .2s ease",
+                      }
+                }
+              >
+                <Banner
+                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                />
+              </div>
+              <Catalog
+                lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
               />
-          </Route>
-              </Switch>
+            </Route>
+            {titleArray.map((item, index) => {
+              return (
+                <Route path={`/${item.name}`} key={index}>
+                  <div
+                    className="playerTrigger flexing"
+                    style={
+                      showingPlayer || reducer
+                        ? {
+                            marginTop: 0,
+                            transition: "all .2s ease",
+                          }
+                        : {
+                            marginTop: "-270px",
+                            transition: "all .2s ease",
+                          }
+                    }
+                  >
+                    <HeaderCategory
+                      categoryName={item.name}
+                      lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                    />
+                  </div>
+                </Route>
+              );
+            })}
+          </Switch>
         </>
       </div>
     </Router>

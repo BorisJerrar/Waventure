@@ -7,8 +7,10 @@ export default function Header({
   setCategoriesTrigger,
   accountTrigger,
   setAccountTriggerTrigger,
+  titleArray,
+  setTitleArray
 }) {
-  const [titleArray, setTitleArray] = useState([]);
+
   const [search, setSearch] = useState('')
   const [toggle, setToggle] = useState(false)
   const [resultSearch, setResultSearch] = useState([])
@@ -29,7 +31,7 @@ export default function Header({
     if (categoriesTrigger) {
       fetching()
     }
-  }, [categoriesTrigger, serveurPath])
+  }, [categoriesTrigger, serveurPath, setTitleArray])
 
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
@@ -107,7 +109,7 @@ export default function Header({
                 {categoriesTrigger
                   ? titleArray.map((each, key) => {
                     return (
-                      <p
+                      <Link to={`/${each.name}`}
                         key={key}
                         className="categoriesParagraph"
                         style={
@@ -117,7 +119,7 @@ export default function Header({
                         }
                       >
                         {each.name}
-                      </p>
+                      </Link>
                     );
                   })
                   : ""}
