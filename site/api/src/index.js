@@ -43,6 +43,8 @@ const serieActorQueries = require("./queries/serie_actor");
 const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
+const serieRoleQueries = require("./queries/serie_role");
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 
@@ -71,6 +73,9 @@ app.get('/sound/', function(req, res){
   let saga = req.query.saga;
   ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
+
+app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
+
 /* MAIN */
 
 /**
