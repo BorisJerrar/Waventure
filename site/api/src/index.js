@@ -5,7 +5,7 @@ const port = process.env.port || 4000;
 const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
-const http = require('http')
+const http = require('http');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -24,7 +24,7 @@ const swaggerOptions = {
       server: ["http://localhost:4000"],
     },
   },
-  apis: ["index.js"],
+  apis: ["server.js"],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use(cors());
@@ -44,6 +44,8 @@ const serieActorQueries = require("./queries/serie_actor");
 const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
+const Auth = require('./middleware/Auth.js');
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 
@@ -150,7 +152,7 @@ app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
  *          '200':
  *              description: results rows
  */
-app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
+app.get("/sagaInfo/:serie_id", Auth.verifyToken, mainQueries.getSagaInfosBySerieId);
 
 /**
  * @swagger
@@ -259,7 +261,7 @@ app.delete("/account/:account_id", accountQueries.deleteAccount);
  *          '200':
  *              description: results rows
  */
-app.get("/serie", serieQueries.getSerie);
+app.get("/serie", Auth.verifyToken, serieQueries.getSerie);
 
 /**
  * @swagger
