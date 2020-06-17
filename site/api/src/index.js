@@ -152,7 +152,7 @@ app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
  *          '200':
  *              description: results rows
  */
-app.get("/sagaInfo/:serie_id", Auth.verifyToken, mainQueries.getSagaInfosBySerieId);
+app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
 
 /**
  * @swagger
