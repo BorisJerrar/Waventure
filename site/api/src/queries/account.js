@@ -1,5 +1,5 @@
 const db = require('../../db/database')
-const Helper = require('../Helper')
+const Helper = require('../controllers/Helper')
 const { uuid } = require('uuidv4');
 
 const getAccount = (request, response) => {
