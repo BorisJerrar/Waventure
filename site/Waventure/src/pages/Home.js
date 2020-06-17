@@ -4,7 +4,6 @@ import "../style/Home.css";
 
 function Home(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
-    const pathImg = process.env.REACT_APP_DYNAMIC_IMG_PATH
     return (
         <>
             <header>
