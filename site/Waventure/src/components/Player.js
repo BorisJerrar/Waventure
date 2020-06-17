@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
@@ -20,7 +20,7 @@ export default function Player({
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
   const [urlAudio, setUrlAudio] = useState(``);
-  const Playref = useRef();
+
   useEffect(() => {
     const fetchingEpisode = async () => {
      const fetching = await fetch(`${serverPath}/sagaInfo/${serieId}`)
