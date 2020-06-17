@@ -3,9 +3,16 @@ import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
-import PlayerMoreInfo from "./PlayerMoreInfo";
 
-export default function Player({ serieId, index, setIndex, playing }) {
+
+export default function Player({
+   serieId, 
+   index, 
+   setIndex, 
+   playing, 
+   toggleWrapper, 
+   setToggleWrapper
+  }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
@@ -89,27 +96,25 @@ export default function Player({ serieId, index, setIndex, playing }) {
             : ""
         }
         layout={"horizontal"}
-        header={
-          <PlayerHeader
-            synopsis={synopsis}
-            learnMore={learnMore}
-            episodes={episodes}
-            setEpisode={setEpisodes}
-            episodeInfos={episodeInfos}
-            sagaInfo={sagaInfo}
-            setIndex={setIndex}
-          />
-        }
-        footer={
-          <PlayerFooter
-            setSynopsis={setSynopsis}
-            synopsis={synopsis}
-            setLearnMore={setLearnMore}
-            episodes={episodes}
-            setEpisodes={setEpisodes}
-          />
-        }
-        src={urlAudio?urlAudio:''}
+        header={<PlayerHeader
+         synopsis={synopsis} 
+         learnMore={learnMore} 
+         episodes={episodes} 
+         setEpisode={setEpisodes} 
+         episodeInfos={episodeInfos} 
+         sagaInfo={sagaInfo} 
+         setIndex={setIndex} />}
+        footer={<PlayerFooter 
+          setSynopsis={setSynopsis} 
+          synopsis={synopsis} 
+          setLearnMore={setLearnMore} 
+          episodes={episodes} 
+          setEpisodes={setEpisodes} 
+          serieId={serieId}  
+          toggleWrapper={toggleWrapper}
+          setToggleWrapper={setToggleWrapper}
+          />}
+        src={urlAudio ? urlAudio : ""}
         preload={"none"}
         autoPlay={playing ? true : false}
         showSkipControls={true}
@@ -117,9 +122,8 @@ export default function Player({ serieId, index, setIndex, playing }) {
         onClickNext={nextSaga}
         onClickPrevious={prevSaga}
         onEnded={nextSaga}
-        onAbort={() => {}}
-        ref={Playref}
-      />
+      />    
+      
     </div>
   );
 }

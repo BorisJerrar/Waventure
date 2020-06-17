@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/PlayerFooter.css";
 import PlayerFooterItem from "./PlayerFooterItem"
+import PlayerMoreInfo from "./PlayerMoreInfo"
 
 export default function PlayerFooter({
   setSynopsis,
@@ -8,7 +9,16 @@ export default function PlayerFooter({
   episodes,
   setLearnMore,
   setEpisodes,
+  serieId,
+  toggleWrapper,
+  setToggleWrapper
 }) {
+  
+
+ 
+  const showMoreInfo = () =>{
+    setToggleWrapper(!toggleWrapper)
+  }
 
   return (
     <div className="playerFooter">
@@ -29,7 +39,17 @@ export default function PlayerFooter({
   setLearnMore={setLearnMore}
 />
 
-<p className="playerFooterItem">En savoir plus</p>
+<PlayerMoreInfo
+      setToggleWrapper={setToggleWrapper}
+      toggleWrapper={toggleWrapper}
+      serieId={serieId}
+      />  
+
+
+<p 
+style={toggleWrapper? {borderBottom: 'solid 2px #a487b3', color: '#fff'}:{borderBottom: 'none'} } 
+onClick={showMoreInfo} className="playerFooterItem"
+>En savoir plus</p>
     </div>
   );
 }

@@ -41,8 +41,6 @@ export default function Header({
     let userSearch = e.target.value.toLowerCase()
     const response = await fetch (`${serveurPath}/serie?search=%${userSearch}%`)
     const data = await response.json() 
-    console.log(data);
-    
     setResultSearch(data)
 }
 

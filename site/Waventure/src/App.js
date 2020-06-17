@@ -17,13 +17,19 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
+  const [toggleWrapper, setToggleWrapper] = useState(false)
+
+ 
   const [titleArray, setTitleArray] = useState([]);
 
   const triggeringCategory = () => {
+    
     if (categoriesTrigger) {
       setCategoriesTrigger(!categoriesTrigger);
     } else if (accountTrigger) {
       setAccountTriggerTrigger(!accountTrigger);
+    } else if(toggleWrapper){
+      setToggleWrapper(!toggleWrapper)
     }
   };
   const lunchingEpisode = (serie_id) => {
@@ -58,16 +64,18 @@ function App() {
                   }
             }
           >
-            <Sticky enabled={showingPlayer ? true : false} top={0}>
-              <Player
-                serieId={serieId}
-                index={index}
-                setIndex={setIndex}
-                reducer={reducer}
-                setReducer={setReducer}
-                playing={playing}
+          <Sticky enabled={showingPlayer?true:false} top={0}>
+          <Player    
+              serieId={serieId}
+              index={index}
+              setIndex={setIndex}
+              reducer={reducer}
+              setReducer={setReducer}
+              playing={playing}
+              toggleWrapper={toggleWrapper}
+              setToggleWrapper={setToggleWrapper}
               />
-            </Sticky>
+</Sticky>
           </div>
           <Switch>
             <Route path="/newest">
