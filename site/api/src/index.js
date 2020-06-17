@@ -265,7 +265,7 @@ app.delete("/account/:account_id", accountQueries.deleteAccount);
  *          '200':
  *              description: results rows
  */
-app.get("/serie", Auth.verifyToken, serieQueries.getSerie);
+app.get("/serie", serieQueries.getSerie);
 
 /**
  * @swagger
