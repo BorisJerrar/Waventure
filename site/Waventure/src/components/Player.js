@@ -29,7 +29,7 @@ export default function Player({ serieId, index, setIndex, playing }) {
           )}
         }
     if (serieId !== -1) {
-       return fetchingEpisode();
+       fetchingEpisode();
     }
   }, [index, serieId, serverPath]);
 

@@ -12,8 +12,9 @@ export default function PlayerHeader({
 }) {
 
 const changingEpisode = (each) => {
-  setIndex(each.episode_nb - 1)
+  setIndex(each.episode_id - 1)
   setEpisode(false)
+
 }
   return (
     <div className="playerHeader">
@@ -36,7 +37,7 @@ const changingEpisode = (each) => {
         {"|"} {episodeInfos && episodeInfos.title ? episodeInfos.title : ""}{" "}
         {"|"} {episodeInfos && episodeInfos.author ? episodeInfos.author : ""}
       </p>
-      <p
+      {episodeInfos?<p
         className="synoPlayer"
         style={
           synopsis && episodeInfos && episodeInfos.body
@@ -46,6 +47,8 @@ const changingEpisode = (each) => {
       >
         {episodeInfos.body}
       </p>
+      :
+      ""}
       <div
         className="episodeList"
         style={episodes ? {visibility: 'visible', opacity: "1" } : {visibility: 'hidden',opacity: "0" }}
