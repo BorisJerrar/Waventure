@@ -8,11 +8,19 @@ const getSerie = (request, response) => {
     }
     response.status(200).json(results.rows);
   });
-  }else{
+  }else if(request.query.search !== undefined){
     const regex = /%20/gi
     const search = request.query.search.replace(regex,' ')
     
     db.query(`SELECT * FROM search_serie WHERE lower LIKE $1` ,[search], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }else if(request.query.author !== undefined){
+    const author = request.query.author
+    db.query(`SELECT * FROM serie WHERE author = $1` ,[author], (error, results) => {
       if (error) {
         throw error
       }

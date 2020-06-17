@@ -3,9 +3,16 @@ import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
-import PlayerMoreInfo from "./PlayerMoreInfo"
 
-export default function Player({ serieId, index, setIndex, playing }) {
+
+export default function Player({
+   serieId, 
+   index, 
+   setIndex, 
+   playing, 
+   toggleWrapper, 
+   setToggleWrapper
+  }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
@@ -14,6 +21,8 @@ export default function Player({ serieId, index, setIndex, playing }) {
   const [learnMore, setLearnMore] = useState(false);
   const [urlAudio, setUrlAudio] = useState(``);
 
+  
+  
   useEffect(() => {
     const fetchingEpisode = async () => {
       const reponseInfos = await fetch(`${serverPath}/sagaInfo/${serieId}`);
@@ -23,8 +32,6 @@ export default function Player({ serieId, index, setIndex, playing }) {
       setUrlAudio(
         `${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`
       );
-      console.log(`${serverPath}/sound/?saga=${dataInfo[index].title.split(" ").join("")}&sound=${dataInfo[index].mp3_file}`);
-
     };
     if(serieId !== -1){
     fetchingEpisode()
@@ -77,8 +84,24 @@ export default function Player({ serieId, index, setIndex, playing }) {
             : ""
         }
         layout={"horizontal"}
-        header={<PlayerHeader synopsis={synopsis} learnMore={learnMore} episodes={episodes} setEpisode={setEpisodes} episodeInfos={episodeInfos} sagaInfo={sagaInfo} setIndex={setIndex} />}
-        footer={<PlayerFooter setSynopsis={setSynopsis} synopsis={synopsis} setLearnMore={setLearnMore} episodes={episodes} setEpisodes={setEpisodes} />}
+        header={<PlayerHeader
+         synopsis={synopsis} 
+         learnMore={learnMore} 
+         episodes={episodes} 
+         setEpisode={setEpisodes} 
+         episodeInfos={episodeInfos} 
+         sagaInfo={sagaInfo} 
+         setIndex={setIndex} />}
+        footer={<PlayerFooter 
+          setSynopsis={setSynopsis} 
+          synopsis={synopsis} 
+          setLearnMore={setLearnMore} 
+          episodes={episodes} 
+          setEpisodes={setEpisodes} 
+          serieId={serieId}  
+          toggleWrapper={toggleWrapper}
+          setToggleWrapper={setToggleWrapper}
+          />}
         src={urlAudio ? urlAudio : ""}
         preload={"metadata"}
         autoPlay={playing ? true : false}
@@ -87,7 +110,8 @@ export default function Player({ serieId, index, setIndex, playing }) {
         onClickNext={nextSaga}
         onClickPrevious={prevSaga}
         onEnded={nextSaga}
-      />      
+      />    
+      
     </div>
   );
 }

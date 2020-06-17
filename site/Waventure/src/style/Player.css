@@ -10,10 +10,11 @@
   background-color: #1b1b1b;
 }
 .playerWarper {
+  position: relative;
   display: flex;
   width: 100%;
   user-select: none;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease; 
   background-color: #1b1b1b;
   position: unset;
   box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.527);
@@ -26,6 +27,7 @@
   height: 240px;
   width: 240px;
 }
+
 .rhap_container:focus {
   outline: 0;
 }

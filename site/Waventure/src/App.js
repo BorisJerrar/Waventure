@@ -16,12 +16,18 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
+  const [toggleWrapper, setToggleWrapper] = useState(false)
+
+ 
 
   const triggeringCategory = () => {
+    
     if (categoriesTrigger) {
       setCategoriesTrigger(!categoriesTrigger);
     } else if (accountTrigger) {
       setAccountTriggerTrigger(!accountTrigger);
+    } else if(toggleWrapper){
+      setToggleWrapper(!toggleWrapper)
     }
   };
   const lunchingEpisode = (serie_id) => {
@@ -61,7 +67,10 @@ function App() {
               setIndex={setIndex}
               reducer={reducer}
               setReducer={setReducer}
-              playing={playing}/>
+              playing={playing}
+              toggleWrapper={toggleWrapper}
+              setToggleWrapper={setToggleWrapper}
+              />
 </Sticky>
           </div>
           <Switch>

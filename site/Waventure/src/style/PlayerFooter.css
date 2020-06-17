@@ -16,3 +16,37 @@
     padding: 40px;
     user-select: none;
   }
+
+  .moreInfoWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    background-color: #1b1b1b;
+    top: 96px;
+    width: 100vw;
+    left: -255px;
+   
+  }
+  .moreInfoWrapper>p{
+    margin: 0px 20px 10px 5px;
+  }
+  
+  .moreInfoWrapper>h3{
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  font-size: 20px;
+  }
+  
+  .distributionWrapper{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    max-height: 20vw;
+  }
+  
+  .distributionCharacter{
+    margin: 0px 20px 10px 5px;  
+  }
