@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom'
-import "../style/SignIn.css"
+import "../style/LoginForm.css"
 
 function SignIn(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
@@ -38,49 +38,51 @@ function SignIn(props) {
     }
 
     return (
-        <main>
-            <div className="waventureLogo">
-                <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
-                <h1>WAVENTURE</h1>
-            </div>
-            <form className="login-box"
-                onSubmit={handleSubmit}>
-                <div className="user-box">
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={e => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-                    <input type="password"
-                        id="password"
-                        placeholder="Mot de Passe"
-                        value={password}
-                        onChange={e => {
-                            setPassword(e.target.value);
-                        }}
-                    />
-                    <button
-                        className="btn-base"
-                        type="submit"
-                        onClick={checkLogin}
-                    >
-                        S'identifier
-                    </button>
-                    <div className="form-aside">
-                        <p>Pas encore de compte ?</p>
-                        <Link className="link-form" to="/signUp">S'inscrire</Link>
-                    </div>
-                    <div className="form-aside">
-                        <p>mot de passe oulié ?</p>
-                        <Link className="link-form" to="/pwdReset">Réinitialiser</Link>
-                    </div>
+        <div className="bg-container">
+            <main className="user-form">
+                <div className="waventureLogo">
+                    <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
+                    <h1>WAVENTURE</h1>
                 </div>
-            </form>
-        </main>
+                <form className="login-box"
+                    onSubmit={handleSubmit}>
+                    <div className="user-box">
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={e => {
+                                setEmail(e.target.value);
+                            }}
+                        />
+                        <input type="password"
+                            id="password"
+                            placeholder="Mot de Passe"
+                            value={password}
+                            onChange={e => {
+                                setPassword(e.target.value);
+                            }}
+                        />
+                        <button
+                            className="btn-base"
+                            type="submit"
+                            onClick={checkLogin}
+                        >
+                            S'identifier
+                    </button>
+                        <div className="form-aside">
+                            <p>Pas encore de compte ?</p>
+                            <Link className="link-form" to="/signUp">S'inscrire</Link>
+                        </div>
+                        <div className="form-aside">
+                            <p>mot de passe oulié ?</p>
+                            <Link className="link-form" to="/pwdReset">Réinitialiser</Link>
+                        </div>
+                    </div>
+                </form>
+            </main>
+        </div>
     )
 }
 
