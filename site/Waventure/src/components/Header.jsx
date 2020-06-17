@@ -7,8 +7,10 @@ export default function Header({
   setCategoriesTrigger,
   accountTrigger,
   setAccountTriggerTrigger,
+  titleArray,
+  setTitleArray
 }) {
-  const [titleArray, setTitleArray] = useState([]);
+
   const [search, setSearch] = useState('')
   const [toggle, setToggle] = useState(false)
   const [resultSearch, setResultSearch] = useState([])
@@ -29,7 +31,7 @@ export default function Header({
     if (categoriesTrigger) {
       fetching()
     }
-  }, [categoriesTrigger, serveurPath])
+  }, [categoriesTrigger, serveurPath, setTitleArray])
 
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
@@ -37,7 +39,7 @@ export default function Header({
 
   const fetchSearchSeries = async(e) =>{
     let userSearch = e.target.value.toLowerCase()
-    const response = await fetch (`http://localhost:4000/serie?search=%${userSearch}%`)
+    const response = await fetch (`${serveurPath}/serie?search=%${userSearch}%`)
     const data = await response.json() 
     setResultSearch(data)
 }
@@ -66,9 +68,9 @@ export default function Header({
   return (
     <header>
       <div className="leftHeaderSide">
-        <div className="waventureLogo">
+        <div className="waventureLogoHeader">
           <Link to="/main" className="LinkHome">Logo Cliquable</Link>
-          <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo" />
+          <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo"/>
           <h1>WAVENTURE</h1>
         </div>
         <div onBlur={hideSearch} className="searchingBar">
@@ -85,7 +87,6 @@ export default function Header({
                    <p className="eachTitle">{each.lower}</p>
                    </div>
                  )
-              
             })}
            
           </div>
@@ -105,7 +106,7 @@ export default function Header({
                 {categoriesTrigger
                   ? titleArray.map((each, key) => {
                     return (
-                      <p
+                      <Link to={`/${each.name}`}
                         key={key}
                         className="categoriesParagraph"
                         style={
@@ -115,7 +116,7 @@ export default function Header({
                         }
                       >
                         {each.name}
-                      </p>
+                      </Link>
                     );
                   })
                   : ""}

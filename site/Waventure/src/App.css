@@ -49,3 +49,9 @@
   position: sticky;
   top: 0;
 }
+.flexing{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
