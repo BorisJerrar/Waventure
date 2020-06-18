@@ -5,7 +5,7 @@ const port = process.env.port || 4000;
 const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
-const http = require('http')
+const http = require('http');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -24,7 +24,7 @@ const swaggerOptions = {
       server: ["http://localhost:4000"],
     },
   },
-  apis: ["index.js"],
+  apis: ["server.js"],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use(cors());
@@ -45,6 +45,7 @@ const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
 const serieRoleQueries = require("./queries/serie_role");
+const Auth = require('./middleware/Auth.js');
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
