@@ -5,6 +5,7 @@ import "../style/LoginForm.css"
 
 function SignIn(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
+    const pathAvatar = process.env.REACT_APP_DYNAMIC_IMG_PATH
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState("");
@@ -34,12 +35,13 @@ function SignIn(props) {
     }
 
     if (isLoggedIn) {
+        localStorage.setItem('token', token)
         return <Redirect to="/main" />;
     }
 
     return (
         <div className="bg-container">
-            <main className="user-form">
+            <main className="home sign-in">
                 <div className="waventureLogo">
                     <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
                     <h1>WAVENTURE</h1>

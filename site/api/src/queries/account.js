@@ -31,8 +31,8 @@ const createAccount = (req, res) => {
   const hashPassword = Helper.hashPassword(req.body.password);
 
   const createQuery = `INSERT INTO
-      account(account_id, username, first_name, last_name, email, birth_date, password)
-      VALUES($1, $2, $3, $4, $5, $6, $7)
+      account(account_id, username, first_name, last_name, email, birth_date, avatar_id, password)
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       returning *`;
   const values = [
     uuid(),
@@ -41,7 +41,8 @@ const createAccount = (req, res) => {
     req.body.last_name,
     req.body.email,
     req.body.birth_date,
-    hashPassword,
+    req.body.avatar_id,
+    hashPassword
   ];
 
   const rows = db.query(createQuery, values, (error, results) => {
