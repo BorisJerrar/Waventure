@@ -148,7 +148,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  text-align: justify;
+  text-align: left;
   z-index: 110;
   font-size: small;
   font-weight: 300;
@@ -175,4 +175,6 @@
   position: absolute;
   left: 0px;
   z-index: 100;
+}.scaleMore{
+transform: scale(2,2);
 }

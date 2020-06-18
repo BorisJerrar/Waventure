@@ -58,3 +58,7 @@
   flex-direction: column;
   align-items: center;
 }
+.zIndexMax{
+  position: relative;
+  z-index: 1000;
+}

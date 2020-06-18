@@ -49,7 +49,7 @@ function App() {
             setTitleArray={setTitleArray}
           />
           <div
-            className="playerTrigger"
+            className="playerTrigger zIndexMax"
             style={
               showingPlayer || reducer
                 ? {

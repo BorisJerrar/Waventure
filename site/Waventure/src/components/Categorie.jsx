@@ -74,7 +74,7 @@ export default function Categorie({ category, lunchingEpisode }) {
         <Slide {...properties}>
           {series.map((array, arrIndex) => {
             return (
-              <div className="categoryContainer" key={arrIndex} style={{}}>
+              <div className="categoryContainer" key={arrIndex}>             
                 {array.map((item, index) => {
                   return (
                     <CategoryUnique 

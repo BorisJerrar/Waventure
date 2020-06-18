@@ -30,7 +30,6 @@ export default function CategoryUnique({
           classname="hoverInformationSynopsis"
           visibilityProps={information}
           ellement={synopsis}
-          
         />
         <img
           className="InformationCategory"
