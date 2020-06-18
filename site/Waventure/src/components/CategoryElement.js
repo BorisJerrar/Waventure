@@ -7,8 +7,8 @@ export default function CategorySynopsis({ellement, visibilityProps, classname})
         className={classname}
         style={
           visibilityProps
-            ? { visibility: "visible", transform: 'opacity(1)' }
-            : { visibility: "hidden", transform: 'opacity(0)'}
+            ? { visibility: "visible", opacity : 1 }
+            : { visibility: "hidden", opacity : 0 }
         }
       >
         {ellement}
