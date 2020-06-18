@@ -11,7 +11,9 @@ export default function Player({
    setIndex, 
    playing, 
    toggleWrapper, 
-   setToggleWrapper
+   setToggleWrapper,
+   setSagaEpisodeSaisonInfo,
+   sagaEpisodeSaisonInfo
   }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
@@ -102,7 +104,11 @@ export default function Player({
          setEpisode={setEpisodes} 
          episodeInfos={episodeInfos} 
          sagaInfo={sagaInfo} 
-         setIndex={setIndex} />}
+         setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
+         sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
+         setIndex={setIndex} 
+         />
+        }
         footer={<PlayerFooter 
           setSynopsis={setSynopsis} 
           synopsis={synopsis} 
@@ -112,6 +118,8 @@ export default function Player({
           serieId={serieId}  
           toggleWrapper={toggleWrapper}
           setToggleWrapper={setToggleWrapper}
+          setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
+          sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
           />}
         src={urlAudio ? urlAudio : ""}
         preload={"none"}
@@ -121,6 +129,7 @@ export default function Player({
         onClickNext={nextSaga}
         onClickPrevious={prevSaga}
         onEnded={nextSaga}
+
       />    
       
     </div>

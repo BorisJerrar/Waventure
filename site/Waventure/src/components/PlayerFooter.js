@@ -2,6 +2,7 @@ import React from "react";
 import "../style/PlayerFooter.css";
 import PlayerFooterItem from "./PlayerFooterItem"
 import PlayerMoreInfo from "./PlayerMoreInfo"
+import PlayerEpisode from "./PlayerEpisode"
 
 export default function PlayerFooter({
   setSynopsis,
@@ -11,7 +12,9 @@ export default function PlayerFooter({
   setEpisodes,
   serieId,
   toggleWrapper,
-  setToggleWrapper
+  setToggleWrapper,
+  setSagaEpisodeSaisonInfo,
+  sagaEpisodeSaisonInfo
 }) {
   
 
@@ -23,12 +26,15 @@ export default function PlayerFooter({
   return (
     <div className="playerFooter">
 
-<PlayerFooterItem
+<PlayerEpisode
   title={"Episodes"}
   element={episodes}
   setElement={setEpisodes}
   setLastElement={setSynopsis}
   setLearnMore={setLearnMore}
+  serieId={serieId}
+  setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
+  sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
 />
 
 <PlayerFooterItem

@@ -17,6 +17,7 @@ function App() {
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
   const [toggleWrapper, setToggleWrapper] = useState(false);
+  const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
 
   const [titleArray, setTitleArray] = useState([]);
 
@@ -70,6 +71,8 @@ function App() {
                 playing={playing}
                 toggleWrapper={toggleWrapper}
                 setToggleWrapper={setToggleWrapper}
+                setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
+                sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
               />
           </div>
           <Switch>
