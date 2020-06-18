@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import "../style/LoginForm.css"
@@ -6,6 +6,7 @@ import "../style/LoginForm.css"
 function SignUp(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
     const pathAvatar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
+    const serveurPath = process.env.REACT_APP_SERVER_PATH
 
     const [state, setState] = useState({
         email: "",
@@ -14,13 +15,29 @@ function SignUp(props) {
         username: "",
         first_name: "",
         last_name: "",
-        birth_date: ""
+        birth_date: "",
+        avatar_id: ""
     })
     const [token, setToken] = useState();
     const [isLoggedIn, setLoggedIn] = useState(false);
+    const [avatarFormTrigger, setAvatarFormTrigger] = useState(false)
+    const [avatar, setAvatar] = useState([]);
+    const [userAvatar, setUserAvatar] = useState();
 
-    function handleSubmit(event) {
-        event.preventDefault();
+    useEffect(() => {
+        const fetching = async () => {
+          const data = await fetch(`${serveurPath}/avatar`);
+          const json = await data.json();
+          setAvatar(json);
+        }
+        if (avatarFormTrigger) {
+          fetching()
+        }
+      }, [avatarFormTrigger, serveurPath, avatar])
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
     }
 
     const handleChange = (e) => {
@@ -49,6 +66,7 @@ function SignUp(props) {
                 "last_name": state.last_name,
                 "email": state.email,
                 "birth_date": state.birth_date,
+                "avatar_id": state.avatar_id,
                 "password": state.password,
             }
             axios.post('http://localhost:4000/auth/signup', payload)
@@ -65,10 +83,22 @@ function SignUp(props) {
         }
     }
 
-
     if (isLoggedIn) {
         localStorage.setItem('token', token)
         return <Redirect to="/main" />;
+    }
+
+    const showAvatarForm = () => {
+        setAvatarFormTrigger(!avatarFormTrigger)
+    }
+
+    const handleToggle = ( key ) => {
+        console.log(key + 1)
+        setAvatarFormTrigger(false)
+        setState(prevState => ({
+            ...prevState,
+            ['avatar_id']: key + 1
+        }))
     }
 
     return (
@@ -81,6 +111,28 @@ function SignUp(props) {
                 <form className="login-box"
                     onSubmit={handleSubmit}>
                     <div className="user-box">
+                        <img
+                        className="profil-avatar"
+                            src={`${pathAvatar}/Avatar01.jpg`}
+                            alt="profil-icon"
+                            onClick={showAvatarForm}
+                        />
+                        <div className="avatar-form">
+                        {avatarFormTrigger
+                            ? avatar.map((each, key) => {
+                                return (
+                                    <img
+                                        src={`${pathAvatar}/${each.avatar_path}`}
+                                        key={key}
+                                        value={key}
+                                        className="profil-avatar"
+                                        onClick={() => handleToggle(key)}
+                                    >
+                                    </img>
+                                );
+                            })
+                            : ""}
+                            </div>
                         <input type="email"
                             id="email"
                             placeholder="Email"

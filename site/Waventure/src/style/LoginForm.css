@@ -23,11 +23,6 @@ body {
     justify-content: space-around
 }
 
-/*
-input[type=checkbox] {
-    display:none;
-}
-*/
 input#thing1[type=checkbox] + label
 {
     height: 50px;
