@@ -52,7 +52,7 @@ function App() {
             style={
               showingPlayer || reducer
                 ? {
-                  zIndex: 100,
+                  zIndex: 90,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
                   }
                 : {
