@@ -67,8 +67,7 @@ export default function Player({
       <img
         src={
           episodeInfos && episodeInfos.image
-            ? `${serverPath}/images/${episodeInfos.image}`
-            : ""
+            ? `${serverPath}/images/${episodeInfos.image}`:''
         }
         alt={
           episodeInfos && episodeInfos.image

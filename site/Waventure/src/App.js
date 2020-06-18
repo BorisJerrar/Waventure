@@ -17,19 +17,17 @@ function App() {
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
-  const [toggleWrapper, setToggleWrapper] = useState(false)
+  const [toggleWrapper, setToggleWrapper] = useState(false);
 
- 
   const [titleArray, setTitleArray] = useState([]);
 
   const triggeringCategory = () => {
-    
     if (categoriesTrigger) {
       setCategoriesTrigger(!categoriesTrigger);
     } else if (accountTrigger) {
       setAccountTriggerTrigger(!accountTrigger);
-    } else if(toggleWrapper){
-      setToggleWrapper(!toggleWrapper)
+    } else if (toggleWrapper) {
+      setToggleWrapper(!toggleWrapper);
     }
   };
   const lunchingEpisode = (serie_id) => {
@@ -55,27 +53,23 @@ function App() {
             style={
               showingPlayer || reducer
                 ? {
-                    zIndex: "90",
-                    transition: "all .2s ease",
+                    transform: "matrix(1, 0, 0, 1, 0, 0)",
                   }
                 : {
-                    zIndex: -1,
-                    transition: "all .2s ease",
+                    transform: "matrix(1, 0, 0, 1, 0, -270)",
                   }
             }
           >
-          <Sticky enabled={showingPlayer?true:false} top={0}>
-          <Player    
-              serieId={serieId}
-              index={index}
-              setIndex={setIndex}
-              reducer={reducer}
-              setReducer={setReducer}
-              playing={playing}
-              toggleWrapper={toggleWrapper}
-              setToggleWrapper={setToggleWrapper}
+              <Player
+                serieId={serieId}
+                index={index}
+                setIndex={setIndex}
+                reducer={reducer}
+                setReducer={setReducer}
+                playing={playing}
+                toggleWrapper={toggleWrapper}
+                setToggleWrapper={setToggleWrapper}
               />
-</Sticky>
           </div>
           <Switch>
             <Route path="/newest">
@@ -84,12 +78,10 @@ function App() {
                 style={
                   showingPlayer || reducer
                     ? {
-                        marginTop: 0,
-                        transition: "all .2s ease",
+                        transform: "matrix(1, 0, 0, 1, 0, 0)",
                       }
                     : {
-                        marginTop: "-270px",
-                        transition: "all .2s ease",
+                        transform: "matrix(1, 0, 0, 1, 0, -270)",
                       }
                 }
               >
@@ -104,12 +96,10 @@ function App() {
                 style={
                   showingPlayer || reducer
                     ? {
-                        marginTop: 0,
-                        transition: "all .2s ease",
+                        transform: "matrix(1, 0, 0, 1, 0, 0)",
                       }
                     : {
-                        marginTop: "-270px",
-                        transition: "all .2s ease",
+                        transform: "matrix(1, 0, 0, 1, 0, -270)",
                       }
                 }
               >
@@ -117,9 +107,22 @@ function App() {
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
                 />
               </div>
-              <Catalog
-                lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
-              />
+              <div
+                className="playerTrigger catalogApp"
+                style={
+                  showingPlayer || reducer
+                    ? {
+                        transform: "matrix(1, 0, 0, 1, 0, 0)",
+                      }
+                    : {
+                        transform: "matrix(1, 0, 0, 1, 0, -270)",
+                      }
+                }
+              >
+                <Catalog
+                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                />
+              </div>
             </Route>
             {titleArray.map((item, index) => {
               return (
@@ -129,12 +132,10 @@ function App() {
                     style={
                       showingPlayer || reducer
                         ? {
-                            marginTop: 0,
-                            transition: "all .2s ease",
+                            transform: "matrix(1, 0, 0, 1, 0, 0)",
                           }
                         : {
-                            marginTop: "-270px",
-                            transition: "all .2s ease",
+                            transform: "matrix(1, 0, 0, 1, 0, -270)",
                           }
                     }
                   >

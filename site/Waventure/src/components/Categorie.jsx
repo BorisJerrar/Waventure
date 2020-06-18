@@ -64,6 +64,7 @@ export default function Categorie({ category, lunchingEpisode }) {
   };
   const informationShow = (e) => {
     e.stopPropagation();
+    setHover(!hover);
     setInformation(!information);
   };
   return (

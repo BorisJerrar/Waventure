@@ -40,6 +40,7 @@
   cursor: pointer;
   padding: 15px 0px;
   padding: 15px;
+  background-color: #a487b300;
   transition: background-color 0.2s ease;
 }
 .episodeUnique:hover {
