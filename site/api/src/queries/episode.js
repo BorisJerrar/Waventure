@@ -31,12 +31,14 @@ const getEpisodeBySeasonAndSaga = (request, response) => {
   const serie_id = parseInt(request.params.serie_id);
 
   db.query(
-    `SELECT testing.title, testing.season_nb, array_agg(testing.episode_nb) AS 
+    `SELECT testing.title, testing.season_nb, array_agg(testing.episode_id) AS 
+    episode_id, array_agg(testing.episode_nb) AS 
     episode_number ,array_agg(testing.episode_title)  
-    AS episode_title FROM ( SELECT serie.serie_id, season.serie_id, 
+    AS episode_title, array_agg(testing.mp3_file) AS 
+    mp3_file FROM ( SELECT serie.serie_id, season.serie_id, 
     serie.title, episode.season_id, 
     season.season_id, season.season_nb, episode.episode_id, episode.episode_nb, 
-    episode.episode_title FROM serie, season, episode WHERE episode.season_id  = 
+    episode.episode_title, episode.mp3_file FROM serie, season, episode WHERE episode.season_id  = 
     season.season_id AND serie.serie_id = season.serie_id AND serie.serie_id = $1 
     AND season.serie_id = $1) AS testing GROUP BY (testing.season_nb, testing.title) 
     ORDER BY testing.season_nb ASC`,
