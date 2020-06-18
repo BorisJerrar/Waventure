@@ -775,7 +775,26 @@ app.get("/episode", episodeQueries.getEpisode);
  *              description: successful operation
  */
 app.get("/episode/:episode_id", episodeQueries.getEpisodeById);
-
+/**
+ * @swagger
+ * /episode/{episode_id}:
+ *  get:
+ *      tags:
+ *          - episode
+ *      description: Use to request episode by id
+ *      parameters:
+ *        - name: 'episode_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get("/saisonAndEpisode/:serie_id", episodeQueries.getEpisodeBySeasonAndSaga);
 /**
  * @swagger
  * /episodeNumber/{episode_nb}:

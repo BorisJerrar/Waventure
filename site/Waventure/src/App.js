@@ -6,7 +6,6 @@ import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
-import Sticky from "react-stickynode";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
