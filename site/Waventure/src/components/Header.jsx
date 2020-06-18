@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style/Header.css";
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 export default function Header({
   categoriesTrigger,
@@ -63,6 +63,15 @@ export default function Header({
       setToggle(true)
     }
     
+  }
+
+  const logout = () => {
+    localStorage.clear('token');
+    console.log(localStorage.getItem('token'));
+    if (!localStorage.getItem('token')) {
+      console.log('déconnexion')
+      return <Redirect to="/home"/>
+    }
   }
   
   return (
@@ -148,6 +157,7 @@ export default function Header({
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
+                onClick={logout}
               >
                 Se Deconecter
             </p>

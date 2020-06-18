@@ -6,7 +6,12 @@ import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
+<<<<<<< HEAD
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+=======
+import Sticky from "react-stickynode";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+>>>>>>> userLogin
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -19,6 +24,8 @@ function App() {
   const [toggleWrapper, setToggleWrapper] = useState(false);
 
   const [titleArray, setTitleArray] = useState([]);
+
+  console.log(localStorage.getItem('token'))
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -35,6 +42,10 @@ function App() {
     setIndex(0);
     setSerieId(serie_id);
   };
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/home" />
+  }
   return (
     <Router>
       <div className="App" onClick={triggeringCategory}>
