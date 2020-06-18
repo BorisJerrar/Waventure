@@ -4,7 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import "../style/LoginForm.css"
 
 function SignUp(props) {
-    const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH
+    const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
+    const pathAvatar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
     const [state, setState] = useState({
         email: "",
@@ -64,74 +65,76 @@ function SignUp(props) {
         }
     }
 
+
     if (isLoggedIn) {
+        localStorage.setItem('token', token)
         return <Redirect to="/main" />;
     }
 
     return (
         <div className="bg-container">
-        <main className="user-form">
-            <div className="waventureLogo">
-                <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
-                <h1>WAVENTURE</h1>
-            </div>
-            <form className="login-box"
-                onSubmit={handleSubmit}>
-                <div className="user-box">
-                    <input type="email"
-                        id="email"
-                        placeholder="Email"
-                        value={state.email}
-                        onChange={handleChange}
-                    />
-                    <input type="password"
-                        id="password"
-                        placeholder="Mot de Passe"
-                        value={state.password}
-                        onChange={handleChange}
-                    />
-                    <input type="password"
-                        id="passwordConfirmation"
-                        placeholder="Confirmation du Mot de Passe"
-                        value={state.passwordConfirmation}
-                        onChange={handleChange}
-                    />
-                    <input type="username"
-                        id="username"
-                        placeholder="username"
-                        value={state.username}
-                        onChange={handleChange}
-                    />
-                    <input type="first_name"
-                        id="first_name"
-                        placeholder="prenom"
-                        onChange={handleChange}
-                    />
-                    <input type="last_name"
-                        id="last_name"
-                        placeholder="Nom"
-                        value={state.last_name}
-                        onChange={handleChange}
-                    />
-                    <input type="birth_date"
-                        id="birth_date"
-                        placeholder="Date de naissance"
-                        value={state.birth_date}
-                        onChange={handleChange}
-                    />
-                    <div className="form-aside">
-                        <Link className="link-form" to="/signIn">J'ai déjà un compte</Link>
-                        <button
-                            className="btn-base"
-                            type="submit"
-                            onClick={handleSubmitClick}
-                        >
-                            S'inscrire
-                        </button>
-                    </div>
+            <main className="home sign-up">
+                <div className="waventureLogo">
+                    <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
+                    <h1>WAVENTURE</h1>
                 </div>
-            </form>
-        </main>
+                <form className="login-box"
+                    onSubmit={handleSubmit}>
+                    <div className="user-box">
+                        <input type="email"
+                            id="email"
+                            placeholder="Email"
+                            value={state.email}
+                            onChange={handleChange}
+                        />
+                        <input type="password"
+                            id="password"
+                            placeholder="Mot de Passe"
+                            value={state.password}
+                            onChange={handleChange}
+                        />
+                        <input type="password"
+                            id="passwordConfirmation"
+                            placeholder="Confirmation du Mot de Passe"
+                            value={state.passwordConfirmation}
+                            onChange={handleChange}
+                        />
+                        <input type="username"
+                            id="username"
+                            placeholder="username"
+                            value={state.username}
+                            onChange={handleChange}
+                        />
+                        <input type="first_name"
+                            id="first_name"
+                            placeholder="prenom"
+                            onChange={handleChange}
+                        />
+                        <input type="last_name"
+                            id="last_name"
+                            placeholder="Nom"
+                            value={state.last_name}
+                            onChange={handleChange}
+                        />
+                        <input type="date"
+                            id="birth_date"
+                            placeholder="Date de naissance"
+                            value={state.birth_date}
+                            onChange={handleChange}
+                        />
+                        <div className="form-aside">
+                            <Link className="link-form" to="/signIn">J'ai déjà un compte</Link>
+                            <button
+                                className="btn-base"
+                                type="submit"
+                                onClick={handleSubmitClick}
+                            >
+                                S'inscrire
+                        </button>
+                        </div>
+                    </div>
+                </form>
+            </main>
         </div>
     )
 }

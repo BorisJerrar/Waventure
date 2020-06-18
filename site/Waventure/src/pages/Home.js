@@ -5,7 +5,7 @@ import "../style/Home.css";
 function Home(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
     return (
-        <>
+        <main className="home">
             <header>
                 <div className="leftHeaderSide">
                     <div className="waventureLogoLg">
@@ -31,7 +31,7 @@ function Home(props) {
                     <div className="bg-container"></div>
                </div>
             </main>
-        </>
+        </main>
     );
 }
 

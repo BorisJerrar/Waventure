@@ -12,11 +12,47 @@ body {
     font-family: sans-serif;
 }
 
-.user-form {
+.profil-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.avatar-form {
+    display: flex;
+    justify-content: space-around
+}
+
+/*
+input[type=checkbox] {
+    display:none;
+}
+*/
+input#thing1[type=checkbox] + label
+{
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+.sign-up {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 400px;
+  height: 80vh;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.7);
+  box-sizing: border-box;
+}
+.sign-in {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 50vh;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
