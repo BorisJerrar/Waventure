@@ -224,7 +224,7 @@ VALUES
     (36, 1, 18),
     (37, 1, 23),
     (38, 1, 12),
-    (29, 1, 5);
+    (39, 1, 5);
 
 INSERT INTO episode
     (season_id, episode_nb, duration, title, mp3_file)
