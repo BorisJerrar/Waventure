@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const port = process.env.port || 4000;
+const port = 4000;
 const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
