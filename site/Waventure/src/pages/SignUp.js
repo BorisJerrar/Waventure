@@ -107,7 +107,6 @@ function SignUp(props) {
         <div>
             <div className="wrap-bg">
                 <div className="bg-container"></div>
-
             </div>
             <main className="home sign-up">
                 <div className="waventureLogo">

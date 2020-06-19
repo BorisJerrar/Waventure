@@ -159,7 +159,7 @@ export default function Header({
                 style={{ padding: "8px", display: "block" }}
                 onClick={logout}
               >
-                Se Deconecter
+                Se déconnecter
             </p>
             </div>
           ) : (
