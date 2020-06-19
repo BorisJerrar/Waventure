@@ -5,7 +5,6 @@ import "../style/LoginForm.css"
 
 function SignIn(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
-    const pathAvatar = process.env.REACT_APP_DYNAMIC_IMG_PATH
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState("");
@@ -42,11 +41,8 @@ function SignIn(props) {
     return (
         <div>
             <div className="wrap-bg">
-
                 <div className="bg-container"></div>
             </div>
-
-
             <main className="home sign-in">
                 <div className="waventureLogo">
                     <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />

@@ -16,7 +16,7 @@ function SignUp(props) {
         first_name: "",
         last_name: "",
         birth_date: "",
-        avatar_id: ""
+        avatar_id: "1",
     })
     const [token, setToken] = useState();
     const [isLoggedIn, setLoggedIn] = useState(false);
@@ -42,10 +42,10 @@ function SignUp(props) {
 
     const handleChange = (e) => {
         const { id, value } = e.target
-        setState(prevState => ({
-            ...prevState,
+        setState({
+            ...state,
             [id]: value
-        }))
+        })
     }
 
     const handleSubmitClick = (e) => {
@@ -95,10 +95,10 @@ function SignUp(props) {
     const handleToggle = (key) => {
         setSelectedAvatar("Avatar0"+(key + 1)+".jpg")
         setAvatarFormTrigger(false)
-        setState(prevState => ({
-            ...prevState,
-            ['avatar_id']: key + 1
-        }))
+        setState({
+            ...state,
+            'avatar_id': key + 1
+        })
     }
 
     console.log(selectedAvatar)
@@ -137,6 +137,7 @@ function SignUp(props) {
                                             value={each.avatar_path}
                                             className="profil-avatar"
                                             onClick={() => handleToggle(key)}
+                                            alt="avatar"
                                         >
                                         </img>
                                     );
