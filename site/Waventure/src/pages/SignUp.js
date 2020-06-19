@@ -22,18 +22,18 @@ function SignUp(props) {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [avatarFormTrigger, setAvatarFormTrigger] = useState(false)
     const [avatar, setAvatar] = useState([]);
-    const [userAvatar, setUserAvatar] = useState();
+    const [selectedAvatar, setSelectedAvatar] = useState("Avatar01.jpg")
 
     useEffect(() => {
         const fetching = async () => {
-          const data = await fetch(`${serveurPath}/avatar`);
-          const json = await data.json();
-          setAvatar(json);
+            const data = await fetch(`${serveurPath}/avatar`);
+            const json = await data.json();
+            setAvatar(json);
         }
         if (avatarFormTrigger) {
-          fetching()
+            fetching()
         }
-      }, [avatarFormTrigger, serveurPath, avatar])
+    }, [avatarFormTrigger, serveurPath, avatar])
 
 
     const handleSubmit = (e) => {
@@ -92,8 +92,8 @@ function SignUp(props) {
         setAvatarFormTrigger(!avatarFormTrigger)
     }
 
-    const handleToggle = ( key ) => {
-        console.log(key + 1)
+    const handleToggle = (key) => {
+        setSelectedAvatar("Avatar0"+(key + 1)+".jpg")
         setAvatarFormTrigger(false)
         setState(prevState => ({
             ...prevState,
@@ -101,38 +101,49 @@ function SignUp(props) {
         }))
     }
 
+    console.log(selectedAvatar)
+
     return (
-        <div className="bg-container">
+        <div>
+            <div className="wrap-bg">
+                <div className="bg-container"></div>
+
+            </div>
             <main className="home sign-up">
                 <div className="waventureLogo">
                     <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
-                    <h1>WAVENTURE</h1>
+                    <h1 className="logo-txt">WAVENTURE</h1>
                 </div>
                 <form className="login-box"
                     onSubmit={handleSubmit}>
                     <div className="user-box">
-                        <img
-                        className="profil-avatar"
-                            src={`${pathAvatar}/Avatar01.jpg`}
-                            alt="profil-icon"
-                            onClick={showAvatarForm}
-                        />
-                        <div className="avatar-form">
-                        {avatarFormTrigger
-                            ? avatar.map((each, key) => {
-                                return (
-                                    <img
-                                        src={`${pathAvatar}/${each.avatar_path}`}
-                                        key={key}
-                                        value={key}
-                                        className="profil-avatar"
-                                        onClick={() => handleToggle(key)}
-                                    >
-                                    </img>
-                                );
-                            })
-                            : ""}
+                        <div className="avatar-box">
+                            <img
+                                className="profil-avatar"
+                                src={`${pathAvatar}/${selectedAvatar}`}
+                                alt="profil-icon"
+                                onClick={showAvatarForm}
+                            />
+                            <div className="middle">
+                                <div></div>
                             </div>
+                        </div>
+                        <div className="avatar-form">
+                            {avatarFormTrigger
+                                ? avatar.map((each, key) => {
+                                    return (
+                                        <img
+                                            src={`${pathAvatar}/${each.avatar_path}`}
+                                            key={key}
+                                            value={each.avatar_path}
+                                            className="profil-avatar"
+                                            onClick={() => handleToggle(key)}
+                                        >
+                                        </img>
+                                    );
+                                })
+                                : ""}
+                        </div>
                         <input type="email"
                             id="email"
                             placeholder="Email"
