@@ -23,32 +23,55 @@
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
+    padding-left: 15vw;
     background-color: #1b1b1b;
     top: 96px;
     width: 100vw;
     left: -255px;
     z-index: 100;
-   
+    letter-spacing: 0.3px; 
   }
+
   .moreInfoWrapper>p{
-    margin: 0px 20px 10px 5px;
+    margin: 0px 20px 30px 40px;
   }
   
   .moreInfoWrapper>h3{
   display: flex;
   justify-content: flex-start;
-  padding: 20px;
+  margin: 20px;
   font-size: 20px;
+  font-weight: 500;
+  border-bottom: #A487B3 solid 2px;
   }
   
   .distributionWrapper{
     display:flex;
-    flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
-    max-height: 20vw;
+    text-align: left;
+    max-height: 27vw;
+    padding-right: 25vw;
+    line-height: 1.6;
+    margin-left: 30px;
+  }
+  .distributionWrapper>p{
+    margin-right: 40px;
   }
   
   .distributionCharacter{
     margin: 0px 20px 10px 5px;  
+  }
+  .distributionActor{
+    border-bottom: 2px solid #A487B3;
+    font-weight: 550;
+  }
+
+  .distributionItem{
+    text-align: left; 
+  }
+
+  .otherSeries{
+    align-self: flex-end;
+    margin-top: 30px;
   }

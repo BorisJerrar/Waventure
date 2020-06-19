@@ -11,7 +11,8 @@ export default function PlayerFooter({
   setEpisodes,
   serieId,
   toggleWrapper,
-  setToggleWrapper
+  setToggleWrapper,
+  sagaInfo
 }) {
   
 
@@ -43,6 +44,7 @@ export default function PlayerFooter({
       setToggleWrapper={setToggleWrapper}
       toggleWrapper={toggleWrapper}
       serieId={serieId}
+      sagaInfo={sagaInfo}
       />  
 
 

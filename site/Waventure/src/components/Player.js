@@ -112,6 +112,7 @@ export default function Player({
           serieId={serieId}  
           toggleWrapper={toggleWrapper}
           setToggleWrapper={setToggleWrapper}
+          sagaInfo={sagaInfo}
           />}
         src={urlAudio ? urlAudio : ""}
         preload={"none"}
