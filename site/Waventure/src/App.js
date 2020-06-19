@@ -6,8 +6,7 @@ import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
-import Sticky from "react-stickynode";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -18,8 +17,11 @@ function App() {
   const [serieId, setSerieId] = useState(-1);
   const [index, setIndex] = useState(0);
   const [toggleWrapper, setToggleWrapper] = useState(false);
+  const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
 
   const [titleArray, setTitleArray] = useState([]);
+
+  console.log(localStorage.getItem('token'))
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -36,6 +38,10 @@ function App() {
     setIndex(0);
     setSerieId(serie_id);
   };
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/home" />
+  }
   return (
     <Router>
       <div className="App" onClick={triggeringCategory}>
@@ -53,9 +59,11 @@ function App() {
             style={
               showingPlayer || reducer
                 ? {
+                  zIndex: 90,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
                   }
                 : {
+                  zIndex: -1,
                     transform: "matrix(1, 0, 0, 1, 0, -270)",
                   }
             }
@@ -69,6 +77,8 @@ function App() {
                 playing={playing}
                 toggleWrapper={toggleWrapper}
                 setToggleWrapper={setToggleWrapper}
+                setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
+                sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
               />
           </div>
           <Switch>

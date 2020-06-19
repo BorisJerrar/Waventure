@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/PlayerHeader.css";
 
 export default function PlayerHeader({
@@ -7,15 +7,14 @@ export default function PlayerHeader({
   episodes,
   setEpisode,
   episodeInfos,
-  sagaInfo,
   setIndex,
+  sagaEpisodeSaisonInfo,
 }) {
-  const changingEpisode = (index) => {
-    
-  
-setIndex(index)
+   const changingEpisode = (e) => {
+    setIndex(e.target.attributes[0].value - 1);
     setEpisode(false);
-  };
+  }
+let testingg = 0
   return (
     <div className="playerHeader">
       <p
@@ -55,19 +54,20 @@ setIndex(index)
             : { visibility: "hidden", opacity: "0" }
         }
       >
-        {sagaInfo
-          ? sagaInfo.map((each, index) => {
-              return (
-                <p
-                  key={index}
-                  className="episodeUnique"
-                  onClick={() => changingEpisode(index)}
-                >
-                  Episode {each.episode_nb} {each.episode_title}
-                </p>
-              );
-            })
-          : ""}
+        {sagaEpisodeSaisonInfo.map((each, index) => {
+          return(
+            <div key={index}>
+          <p className={'episodeUnique'} style={{cursor: 'default'}}>Saison {each.season_nb}</p>
+          {each.episode_number.map((item, indexTwo) => {
+            testingg +=1
+            return (
+              <p key={testingg} src-key={testingg} className={"episodeUnique "} onClick={(e)=> changingEpisode(e)}>
+                {item} {each.episode_title[indexTwo]?`| ${each.episode_title[indexTwo]}`:""}
+              </p>
+            )
+          })}
+          </div>
+        )})}
       </div>
     </div>
   );

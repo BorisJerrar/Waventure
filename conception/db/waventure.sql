@@ -13,9 +13,17 @@ CREATE TABLE account
     last_name varchar(25),
     email varchar(100) UNIQUE NOT NULL,
     birth_date date,
-    avatar varchar(64),
+    avatar_id varchar(64),
     password varchar(64)
 );
+
+CREATE TABLE avatar
+(
+    avatar_id serial NOT NULL PRIMARY KEY,
+    avatar_path varchar(64),
+    FOREIGN KEY (avatar_id) REFERENCES avatar (avatar_id)
+);
+
 /* non fini (main_color) */
 CREATE TABLE serie
 (
@@ -998,13 +1006,25 @@ VALUES
     (59, 4, '0:02:25.000', 'Head over heels', 'blindcowboy_saison1_episode4.mp3'),
     (59, 5, '0:03:25.000', 'Pieces of eight', 'blindcowboy_saison1_episode5.mp3');
 
+
+INSERT INTO avatar (avatar_path)
+VALUES
+    ('Avatar01.jpg'),
+    ('Avatar02.jpg'),
+    ('Avatar03.jpg'),
+    ('Avatar04.jpg'),
+    ('Avatar05.jpg'),
+    ('Avatar06.jpg'),
+    ('Avatar07.jpg'),
+    ('Avatar08.jpg');
+
 INSERT INTO account
-    (account_id, username, first_name, last_name, email, birth_date, avatar, PASSWORD)
+    (account_id, username, first_name, last_name, email, birth_date, avatar_id, PASSWORD)
 
 VALUES
-    (gen_random_uuid(), 'adminValentin', 'valentin', 'cellier', 'valentin@mail.com', '1992-01-19', 'avatar1.jpg', crypt('adminPassword', gen_salt('md5'))),
-    (gen_random_uuid(), 'adminCharles', 'charles', 'decodin', 'charles@mail.com', '1992-01-19', 'avatar2.jpg', crypt('adminPassword', gen_salt('md5'))),
-    (gen_random_uuid(), 'adminBoris', 'boris', 'jerrar', 'boris@mail.com', '1992-01-19', 'avatar3.jpg', crypt('adminPassword', gen_salt('md5')));
+    (gen_random_uuid(), 'adminValentin', 'valentin', 'cellier', 'valentin@mail.com', '1992-01-19', '1', crypt('adminPassword', gen_salt('md5'))),
+    (gen_random_uuid(), 'adminCharles', 'charles', 'decodin', 'charles@mail.com', '1992-01-19', '2', crypt('adminPassword', gen_salt('md5'))),
+    (gen_random_uuid(), 'adminBoris', 'boris', 'jerrar', 'boris@mail.com', '1992-01-19', '3', crypt('adminPassword', gen_salt('md5')));
 
 INSERT INTO category
     (name)

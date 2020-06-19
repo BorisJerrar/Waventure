@@ -7,7 +7,6 @@ export default function PlayerFooterItem({title, element, setElement, setLearnMo
         setLearnMore(false);
         setElement(!element);
       };
-
     return (
         <p onClick={showElement} style={element?{borderBottom: 'solid 2px #a487b3', color: '#fff'}:{borderBottom: 'none'}} className="playerFooterItem">
         {title}

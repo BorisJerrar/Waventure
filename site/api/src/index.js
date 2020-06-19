@@ -45,6 +45,7 @@ const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
 const serieRoleQueries = require("./queries/serie_role");
+const avatarQueries = require("./queries/avatar");
 const Auth = require('./middleware/Auth.js');
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -775,7 +776,26 @@ app.get("/episode", episodeQueries.getEpisode);
  *              description: successful operation
  */
 app.get("/episode/:episode_id", episodeQueries.getEpisodeById);
-
+/**
+ * @swagger
+ * /episode/{episode_id}:
+ *  get:
+ *      tags:
+ *          - episode
+ *      description: Use to request episode by id
+ *      parameters:
+ *        - name: 'episode_id'
+ *          in: 'path'
+ *          required: true
+ *          schema:
+ *              type: integer
+ *              format: int64
+ *              minimum: 1
+ *      responses:
+ *          '200':
+ *              description: successful operation
+ */
+app.get("/saisonAndEpisode/:serie_id", episodeQueries.getEpisodeBySeasonAndSaga);
 /**
  * @swagger
  * /episodeNumber/{episode_nb}:
@@ -1525,6 +1545,20 @@ app.put("/actor/:actor_id", actorQueries.updateActor);
  *              description: successful operation
  */
 app.delete("/actor/:actor_id", actorQueries.deleteActor);
+
+
+/**
+ * @swagger
+ * /avatar:
+ *  get:
+ *      tags:
+ *          - avatar
+ *      description: Use to request all avatar
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get("/avatar", avatarQueries.getAvatar);
 
 app.listen(port, () => {
   console.log("Running on port " + port);
