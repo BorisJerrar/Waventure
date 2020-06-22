@@ -7,6 +7,7 @@ import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import Search from "./components/Search.jsx";
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -18,10 +19,15 @@ function App() {
   const [index, setIndex] = useState(0);
   const [toggleWrapper, setToggleWrapper] = useState(false);
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
+  const [uniqueSearch, setUniqueSearch] = useState({})
 
   const [titleArray, setTitleArray] = useState([]);
 
   console.log(localStorage.getItem('token'))
+
+  const handleSearchApp = (result)=>{
+      setUniqueSearch(result)
+  }
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -53,6 +59,7 @@ function App() {
             setAccountTriggerTrigger={setAccountTriggerTrigger}
             titleArray={titleArray}
             setTitleArray={setTitleArray}
+            handleSearchApp={(result)=>handleSearchApp(result)}
           />
           <div
             className="playerTrigger zIndexMax"
@@ -82,6 +89,11 @@ function App() {
               />
           </div>
           <Switch>
+            <Route path="/search">
+              <Search
+              uniqueSearch={uniqueSearch}
+              />
+            </Route>
             <Route path="/newest">
               <div
                 className="playerTrigger"

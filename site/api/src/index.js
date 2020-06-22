@@ -46,6 +46,7 @@ const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
 const serieRoleQueries = require("./queries/serie_role");
 const avatarQueries = require("./queries/avatar");
+const serieSynopsisQueries = require("./queries/serie_synopsis")
 const Auth = require('./middleware/Auth.js');
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -77,6 +78,7 @@ app.get('/sound/', function(req, res){
   ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
 
+app.get("/serieSynopsis/:id", serieSynopsisQueries.getSerieSynopsis)
 app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
 
 /* MAIN */
