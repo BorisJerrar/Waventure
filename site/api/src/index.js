@@ -1130,22 +1130,22 @@ app.delete("/category/:category_id", categoryQueries.deleteCategory);
  *  get:
  *      tags:
  *          - favorite
- *      description: Use to request all favorite
+ *      description: Use to request all favorite with id_token
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get("/favorite", favoriteQueries.getFavorites);
+app.get("/favorite", Auth.verifyToken, favoriteQueries.getFavorites);
 
 /**
  * @swagger
- * /favorite/{favorite_id}:
+ * /favorite/{serie_id}:
  *  get:
  *      tags:
  *          - favorite
  *      description: Use to request favorite by id
  *      parameters:
- *        - name: 'favorite_id'
+ *        - name: 'serie_id'
  *          in: 'path'
  *          required: true
  *          schema:
@@ -1156,7 +1156,7 @@ app.get("/favorite", favoriteQueries.getFavorites);
  *          '200':
  *              description: successful operation
  */
-app.get("/favorite/:favorite_id", favoriteQueries.getFavoritesById);
+app.get("/favorite/:serie_id", Auth.verifyToken, favoriteQueries.getFavoritesById);
 
 /**
  * @swagger
@@ -1168,54 +1168,23 @@ app.get("/favorite/:favorite_id", favoriteQueries.getFavoritesById);
  *      consumes:
  *          - application/json
  *      parameters:
- *          - name: account_id
- *            in: query
- *            type: string
- *          - name: serie_id
- *            in: query
- *            type: string
+ *          - name: 'serie_id'
+ *            in: 'path'
+ *            type: integer
+ *            minimum: 1
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.post("/favorite", favoriteQueries.createFavorites);
+app.post("/favorite/:serie_id", Auth.verifyToken, favoriteQueries.createFavorites);
 
 /**
  * @swagger
- * /favorite/{favorite_id}:
- *  put:
- *      tags:
- *          - favorite
- *      description: Use to update favorite
- *      consumes:
- *          - application/json
- *      parameters:
- *          - name: favorite_id
- *            in: path
- *            required: true
- *            schema:
- *              type: integer
- *              format: int64
- *              minimum: 1
- *          - name: account_id
- *            in: query
- *            type: string
- *          - name: serie_id
- *            in: query
- *            type: string
- *      responses:
- *          '200':
- *              description: results rows
- */
-app.put("/favorite/:favorite_id", favoriteQueries.updateFavorites);
-
-/**
- * @swagger
- * /favorite/{favorite_id}:
+ * /favorite/{serie_id}:
  *  delete:
  *      tags:
  *          - favorite
- *      description: Use to delete favorite by id
+ *      description: Use to delete favorite serie_id and account_id
  *      parameters:
  *        - name: 'favorite_id'
  *          in: 'path'
@@ -1228,7 +1197,7 @@ app.put("/favorite/:favorite_id", favoriteQueries.updateFavorites);
  *          '200':
  *              description: successful operation
  */
-app.delete("/favorite/:favorite_id", favoriteQueries.deleteFavorites);
+app.delete("/favorite/:serie_id", Auth.verifyToken, favoriteQueries.deleteFavorites);
 
 /**
  * @swagger
@@ -1561,6 +1530,7 @@ app.delete("/actor/:actor_id", actorQueries.deleteActor);
  *              description: results rows
  */
 app.get("/avatar", avatarQueries.getAvatar);
+
 
 app.listen(port, () => {
   console.log("Running on port " + port);

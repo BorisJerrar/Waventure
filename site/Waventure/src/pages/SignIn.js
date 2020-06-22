@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom'
 import "../style/LoginForm.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SignIn(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
@@ -82,7 +81,7 @@ function SignIn(props) {
                             <p>mot de passe oulié ?</p>
                             <Link className="link-form" to="/pwdReset">Réinitialiser</Link>
                         </div>
-                        <FontAwesomeIcon icon={['far', 'heart']} />
+
                     </div>
                 </form>
             </main>
