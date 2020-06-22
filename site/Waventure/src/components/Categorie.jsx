@@ -13,35 +13,45 @@ export default function Categorie({ category, lunchingEpisode }) {
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
+  const [matches,setMaches]  = useState(window.innerWidth)
 
   const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id);
   };
+
+  window.addEventListener("resize", ()=> { 
+    setTimeout( () =>{setMaches(window.innerWidth)}, 700)})
+
   useEffect(() => {
-    const fetchSeries = async () => {
+      const fetchSeries = async () => {
       const response = await fetch(`${server}/serieCategory/${category}`);
       const data = await response.json();
       let temp = [];
-      for (let i = 0; i < Math.ceil(data.length / 5); i++) {
-        temp.push(data.slice(i * 5, i * 5 + 5));
+      if (matches <= 990) {
+        for (let i = 0; i < Math.ceil(data.length / 4); i++) {
+          temp.push(data.slice(i * 4, i * 4 + 4));
+        }
+      } else{
+        for (let i = 0; i < Math.ceil(data.length / 5); i++) {
+          temp.push(data.slice(i * 5, i * 5 + 5));
+        }
       }
       setSeries(temp);
       setLengthSeries(data.length);
+
     };
     fetchSeries();
     const fetchSerieInformation = async () => {
       const response = await fetch(
         `${server}/sagaInfo/${hoverItem.serie_id}`
       );
-      const data = await response.json();
-      console.log(data);
-      
+      const data = await response.json();      
       setSynopsis(data[0].body);
     };
     if (hover) {
       fetchSerieInformation();
     }
-  }, [category, hover, hoverItem.serie_id, server]);
+  }, [category, hover, hoverItem.serie_id, server, matches]);
 
   let properties = {
     indicators: true,
@@ -49,13 +59,7 @@ export default function Categorie({ category, lunchingEpisode }) {
     transitionDuration: 500,
   };
 
-  if (lengthSeries <= 5) {
-    properties = {
-      ...properties,
-      arrows: false,
-      indicators: false,
-    };
-  }
+  
   const settingHover = (item) => {
     setHover(true);
     setHoverItem(item);
