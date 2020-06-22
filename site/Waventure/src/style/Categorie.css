@@ -143,7 +143,7 @@
     text-align: left;
     margin: auto;
     padding: 10px;
-    top: 80px;
+    top: 40px;
     left: 0px;
     right: 0px;
     z-index: 100;
@@ -165,7 +165,7 @@
     left: 0;
     text-align: left;
     z-index: 110;
-    font-size: small;
+    font-size: 8px;
     font-weight: 300;
     transition: opacity 0.3s ease-in-out;
   }
@@ -360,7 +360,7 @@ background: rgba(201, 201, 201, 0) !important;
     text-align: left;
     margin: auto;
     padding: 10px;
-    top: 80px;
+    top: 40px;
     left: 0px;
     right: 0px;
     z-index: 100;
