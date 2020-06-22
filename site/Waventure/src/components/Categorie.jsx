@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
+import axios from 'axios';
 
 export default function Categorie({ category, lunchingEpisode }) {
   const [series, setSeries] = useState([]);
@@ -10,9 +11,12 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
   const [lengthSeries, setLengthSeries] = useState("");
+  const [favorite, setFavorite] = useState([]);
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
+
+  const token = localStorage.getItem('token');
 
   const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id);
@@ -29,6 +33,28 @@ export default function Categorie({ category, lunchingEpisode }) {
       setLengthSeries(data.length);
     };
     fetchSeries();
+    var config = {
+      method: 'get',
+      url: `${server}/favorite`,
+      headers: { 
+        'x-access-token': token
+      }
+    };
+    const fetchFavorite = async () => {
+    axios(config)
+    .then(function (response) {
+      setFavorite(response.data)
+      console.log(favorite)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+ 
+    }
+
+    fetchFavorite();
+    
+   
     const fetchSerieInformation = async () => {
       const response = await fetch(
         `${server}/sagaInfo/${hoverItem.serie_id}`

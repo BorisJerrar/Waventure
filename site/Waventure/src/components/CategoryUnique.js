@@ -1,6 +1,7 @@
 import React from "react";
 import CategoryElement from "./CategoryElement";
 import "../style/Categorie.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function CategoryUnique({
   item,
@@ -26,6 +27,8 @@ export default function CategoryUnique({
           lunchingEpisodeCategorie(item);
         }}
       >
+        <FontAwesomeIcon icon={['fas', 'heart']} />
+        <FontAwesomeIcon icon={['far', 'heart']} />
         <CategoryElement
           classname="hoverInformationSynopsis"
           visibilityProps={information}

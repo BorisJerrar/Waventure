@@ -1130,12 +1130,12 @@ app.delete("/category/:category_id", categoryQueries.deleteCategory);
  *  get:
  *      tags:
  *          - favorite
- *      description: Use to request all favorite
+ *      description: Use to request all favorite with id_token
  *      responses:
  *          '200':
  *              description: results rows
  */
-app.get("/favorite", favoriteQueries.getFavorites);
+app.get("/favorite", Auth.verifyToken, favoriteQueries.getFavorites);
 
 /**
  * @swagger
@@ -1170,10 +1170,13 @@ app.get("/favorite/:favorite_id", favoriteQueries.getFavoritesById);
  *      parameters:
  *          - name: account_id
  *            in: query
- *            type: string
+ *            type: uuid 
  *          - name: serie_id
  *            in: query
  *            type: string
+ *          - name: favorite
+ *            in: query
+ *            type: boolean
  *      responses:
  *          '200':
  *              description: results rows
@@ -1561,6 +1564,7 @@ app.delete("/actor/:actor_id", actorQueries.deleteActor);
  *              description: results rows
  */
 app.get("/avatar", avatarQueries.getAvatar);
+
 
 app.listen(port, () => {
   console.log("Running on port " + port);

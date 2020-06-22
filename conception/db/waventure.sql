@@ -8,7 +8,7 @@ TO 'UTF-8';
 
 CREATE TABLE account
 (
-    account_id UUID,
+    account_id UUID PRIMARY KEY,
     username varchar(25),
     first_name varchar(25),
     last_name varchar(25),
@@ -40,6 +40,18 @@ CREATE TABLE serie
     creation_date date
 );
 
+
+CREATE TABLE favorite 
+(
+    favorite_id serial NOT NULL PRIMARY KEY,
+    serie_id serial,
+    account_id UUID,
+    favorite boolean,
+    FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
+    FOREIGN KEY (account_id) REFERENCES account (account_id)
+);
+
+
 CREATE TABLE season
 (
     season_id serial NOT NULL PRIMARY KEY,
@@ -61,14 +73,7 @@ CREATE TABLE episode
     FOREIGN KEY (season_id) REFERENCES season (season_id)
 );
 
-CREATE TABLE favorite
-(
-    favorite_id serial NOT NULL PRIMARY KEY,
-    account_id serial,
-    serie_id serial,
-    FOREIGN KEY (account_id) REFERENCES account (account_id),
-    FOREIGN KEY (serie_id) REFERENCES serie (serie_id)
-);
+
 
 CREATE TABLE synopsis
 (
@@ -121,7 +126,7 @@ CREATE TABLE role
 CREATE TABLE LISTEN
 (
     listen_id serial NOT NULL PRIMARY KEY,
-    account_id serial,
+    account_id UUID,
     episode_id serial,
     duration time,
     FOREIGN KEY (account_id) REFERENCES account (account_id),

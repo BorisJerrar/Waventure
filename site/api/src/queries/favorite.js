@@ -1,8 +1,10 @@
 const db = require('../../db/database')
-
+const jwt = require('jsonwebtoken')
 
 const getFavorites = (request, response) => {
-  db.query('SELECT * FROM favorite ORDER BY favorite_id ASC', (error, results) => {
+    const token = request.headers['x-access-token'];
+    const decoded = jwt.verify(token, process.env.SECRET)
+  db.query('SELECT * FROM favorite WHERE account_id = $1', [decoded.account_id], (error, results) => {
     if (error) {
       throw error
     }
@@ -24,8 +26,9 @@ const getFavoritesById = (request, response) => {
 const createFavorites = (request, response) => {
     const account_id = request.query.account_id
     const serie_id = request.query.serie_id
+    const favorite = request.query.favorite
 
-    db.query('INSERT INTO favorite ( account_id, serie_id ) VALUES ($1, $2)', [ account_id, serie_id ], (error, results) => {
+    db.query('INSERT INTO favorite ( account_id, serie_id, favorite ) VALUES ($1, $2, $3)', [ account_id, serie_id, favorite ], (error, results) => {
         if (error) {
             throw error
         }
@@ -36,10 +39,9 @@ const createFavorites = (request, response) => {
 
 const updateFavorites = (request, response) => {
     const favorite_id = parseInt(request.params.favorite_id)
-    const account_id = request.query.account_id
-    const serie_id = request.query.serie_id
+    const favorite = request.body.favorite
     db.query(
-        'UPDATE favorite SET account_id = $1, serie_id = $2 WHERE favorite_id = $3', [account_id, serie_id, favorite_id],
+        'UPDATE favorite SET favorite = $1 WHERE favorite_id = $2', [favorite, favorite_id],
         (error, results) => {
             if (error) {
                 throw error
