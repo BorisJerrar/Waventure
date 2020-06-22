@@ -172,7 +172,7 @@ app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
  *          '200':
  *              description: results rows
  */
-app.get("/account", accountQueries.getAccount);
+app.get("/account", Auth.verifyToken, accountQueries.getAccount);
 
 /**
  * @swagger
@@ -193,7 +193,7 @@ app.get("/account", accountQueries.getAccount);
  *          '200':
  *              description: successful operation
  */
-app.get("/account/:account_id", accountQueries.getAccountById);
+app.get("/account/:account_id", Auth.verifyToken, accountQueries.getAccountById);
 
 
 /**

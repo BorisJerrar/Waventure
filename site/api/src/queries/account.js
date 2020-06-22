@@ -1,9 +1,13 @@
 const db = require('../../db/database')
 const Helper = require('../controllers/Helper')
 const { uuid } = require('uuidv4');
+const jwt = require('jsonwebtoken');
 
 const getAccount = (request, response) => {
-  db.query('SELECT * FROM account ORDER BY account_id ASC', (error, results) => {
+  const token = request.headers['x-access-token'];
+  const decoded = jwt.verify(token, process.env.SECRET)
+  console.log(token)
+  db.query('SELECT * FROM account WHERE account_id = $1', [decoded.account_id], (error, results) => {
     if (error) {
       throw error
     }
@@ -12,7 +16,9 @@ const getAccount = (request, response) => {
 }
 
 const getAccountById = (request, response) => {
+  
   const account_id = parseInt(request.params.account_id)
+  req.account = { account_id: decoded.account_id };
   db.query('SELECT * FROM account WHERE account_id = $1', [account_id], (error, results) => {
     if (error) {
       throw error
