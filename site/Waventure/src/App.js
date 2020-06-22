@@ -20,12 +20,7 @@ function App() {
   const [toggleWrapper, setToggleWrapper] = useState(false);
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({})
-  const [scrolling, setScrolling] = useState(0)
  const [titleArray, setTitleArray] = useState([]);
-
-window.addEventListener("scroll", ()=>{
-  setScrolling(window.pageYOffset)
-})
 
   const handleSearchApp = (result)=>{
       setUniqueSearch(result)
@@ -62,11 +57,9 @@ window.addEventListener("scroll", ()=>{
             titleArray={titleArray}
             setTitleArray={setTitleArray}
             handleSearchApp={(result)=>handleSearchApp(result)}
-            playing={playing}
-            scrolling={scrolling}
           />
           <div
-            className={scrolling>= 75 && playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
+            className={playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
             style={
               showingPlayer || reducer
                 ? {

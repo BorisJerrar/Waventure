@@ -59,7 +59,6 @@
   align-items: center;
 }
 .zIndexMax{
-  position: relative;
   -webkit-transition: all 0.5s ease;
   -moz-transition: position 10s;
   -ms-transition: position 10s;
@@ -67,7 +66,7 @@
   transition: all 0.5s ease;
 }
 .fixing{
-  position: fixed !important;
+  position: sticky !important;
   top: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: position 10s;
