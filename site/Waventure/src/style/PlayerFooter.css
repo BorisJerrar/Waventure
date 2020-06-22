@@ -27,8 +27,8 @@
     padding-left: 15vw;
     background-color: #1b1b1b;
     top: 96px;
-    width: 102.5vw;
-    left: -255px;
+    width: 110.5vw;
+    left: -100px;
     z-index: -1;
     letter-spacing: 0.3px; 
     transition: transform .3s ease-in-out, opacity .2s ease-in-out

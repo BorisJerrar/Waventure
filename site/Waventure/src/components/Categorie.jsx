@@ -13,7 +13,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
   const [matches,setMaches]  = useState(window.innerWidth)
-
   const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id);
   };

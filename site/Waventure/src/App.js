@@ -20,10 +20,12 @@ function App() {
   const [toggleWrapper, setToggleWrapper] = useState(false);
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({})
+  const [scrolling, setScrolling] = useState(0)
+ const [titleArray, setTitleArray] = useState([]);
 
-  const [titleArray, setTitleArray] = useState([]);
-
-  console.log(localStorage.getItem('token'))
+window.addEventListener("scroll", ()=>{
+  setScrolling(window.pageYOffset)
+})
 
   const handleSearchApp = (result)=>{
       setUniqueSearch(result)
@@ -60,13 +62,15 @@ function App() {
             titleArray={titleArray}
             setTitleArray={setTitleArray}
             handleSearchApp={(result)=>handleSearchApp(result)}
+            playing={playing}
+            scrolling={scrolling}
           />
           <div
-            className="playerTrigger zIndexMax"
+            className={scrolling>= 75 && playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
             style={
               showingPlayer || reducer
                 ? {
-                  zIndex: 90,
+                  zIndex: 200000,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
                   }
                 : {
@@ -130,7 +134,7 @@ function App() {
                 />
               </div>
               <div
-                className="playerTrigger catalogApp"
+                className={"playerTrigger catalogApp"}
                 style={
                   showingPlayer || reducer
                     ? {

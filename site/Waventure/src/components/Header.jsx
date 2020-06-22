@@ -9,7 +9,9 @@ export default function Header({
   setAccountTriggerTrigger,
   titleArray,
   setTitleArray,
-  handleSearchApp
+  handleSearchApp,
+  playing,
+  scrolling
 }) {
 
   const [search, setSearch] = useState('')
@@ -81,7 +83,7 @@ export default function Header({
   }
   
   return (
-    <header>
+    <header className={scrolling >= 75 && playing? "amergment": ""}>
       <div className="leftHeaderSide">
         <div className="waventureLogoHeader">
           <Link to="/main" className="LinkHome">Logo Cliquable</Link>

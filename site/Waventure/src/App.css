@@ -60,5 +60,8 @@
 }
 .zIndexMax{
   position: relative;
-  overflow: hidden;
+}
+.fixing{
+  position: fixed !important;
+  top: 0;
 }

@@ -1,4 +1,7 @@
 @media (max-width: 990px) {
+  .amergment{
+    margin-bottom: 270px;
+    }
   header {
     font-family: "Pontano Sans", sans-serif;
     background-color: #242424;
@@ -390,4 +393,7 @@ right: 0;
     background-color: #1b1b1b;
     cursor: pointer;
   }
+  .amergment{
+    margin-bottom: 270px;
+    }
 }
