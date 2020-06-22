@@ -1,6 +1,9 @@
 import React from "react";
 import CategoryElement from "./CategoryElement";
 import "../style/Categorie.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function CategoryUnique({
   item,
@@ -13,7 +16,57 @@ export default function CategoryUnique({
   url,
   synopsis,
   hover,
+  favorite,
 }) {
+
+  const server = process.env.REACT_APP_SERVER_PATH;
+  const token = localStorage.getItem('token')
+
+
+
+  const handleFavorite = () => {
+
+    var addConfig = {
+      method: 'POST',
+      url: `${server}/favorite/${item.serie_id}`,
+      headers: {
+        'x-access-token': token
+      }
+    };
+    var removeConfig = {
+      method: 'DELETE',
+      url: `${server}/favorite/${item.serie_id}`,
+      headers: {
+        'x-access-token': token
+      }
+    };
+
+    const addFavorite = async () => {
+      axios(addConfig)
+        .then(function (response) {
+          console.log(response.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    const removeFavorite = async () => {
+      axios(removeConfig)
+        .then(function (response) {
+          console.log(response.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+
+    if (favorite == false) {
+      addFavorite();
+    } else {
+      removeFavorite();
+    }
+  }
+
   return (
     <div
       className={"hoverInformationContainer"}
@@ -26,6 +79,16 @@ export default function CategoryUnique({
           lunchingEpisodeCategorie(item);
         }}
       >
+        {favorite == false ? <FontAwesomeIcon
+          className="hoverInformationHeart"
+          onClick={(e) => handleFavorite(e)}
+          icon={['far', 'heart']} size="2x" /> :
+          <FontAwesomeIcon
+            className="hoverInformationHeart"
+            onClick={(e) => handleFavorite(e)}
+            icon={['fas', 'heart']} size="2x" />}
+
+
         <CategoryElement
           classname="hoverInformationSynopsis"
           visibilityProps={information}
