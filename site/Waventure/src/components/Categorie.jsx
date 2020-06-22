@@ -34,6 +34,8 @@ export default function Categorie({ category, lunchingEpisode }) {
         `${server}/sagaInfo/${hoverItem.serie_id}`
       );
       const data = await response.json();
+      console.log(data);
+      
       setSynopsis(data[0].body);
     };
     if (hover) {

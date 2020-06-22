@@ -8,7 +8,8 @@ export default function Header({
   accountTrigger,
   setAccountTriggerTrigger,
   titleArray,
-  setTitleArray
+  setTitleArray,
+  handleSearchApp
 }) {
 
   const [search, setSearch] = useState('')
@@ -55,7 +56,8 @@ export default function Header({
   }  
 
   const hideSearch = () => {
-    setToggle(false)
+    /* setToggle(false) */  
+    console.log('try')
   }
 
   const showSearch = (e) => {
@@ -72,6 +74,10 @@ export default function Header({
       console.log('déconnexion')
       return <Redirect to="/home"/>
     }
+  }
+
+  const handleSearch = (result)=>{    
+    handleSearchApp(result)
   }
   
   return (
@@ -91,10 +97,13 @@ export default function Header({
             
                {resultSearch.map((each, key) =>{
                  return(
-                   <div className="eachSearch" key={key}>
+                   <Link onClick={()=>handleSearch(each)}  key={key} to="/search" style={{textDecoration: "none", color: "white"}}>
+                     <div className="eachSearch">
                    <img className="eachImage" src={`${pathAvar}/${each.image}`} alt=""/>
                    <p className="eachTitle">{each.lower}</p>
                    </div>
+                   </Link>
+                   
                  )
             })}
            
