@@ -5,7 +5,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  width: 90%;
+  width: 100%;
+  text-align: left;
 }
 .playerHeaderInfo {
   transition: font-size 0.2s ease;
@@ -16,7 +17,7 @@
   left: 0;
   top: 70px;
   text-align: justify;
-  width: 60%;
+  width: 90%;
   font-size: 13px;
   padding-top: 15px;
   padding-left: 15px;
@@ -29,7 +30,7 @@
   left: 0;
   top: 80px;
   text-align: justify;
-  width: 80%;
+  width: 100%;
   height: 180px;
   overflow-y: scroll;
   font-size: 13px;

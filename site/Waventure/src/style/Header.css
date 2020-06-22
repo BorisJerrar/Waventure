@@ -291,8 +291,9 @@ right: 0;
     color: #fff;
     transition: color 0.2s ease-in-out;
   }
-  .newestLink:active, .newestLink:hover {
+  .newestLink:hover, .category:hover{
     color: rgb(160, 160, 160);
+    transition: color 0.2s ease-in-out;
   }
   nav ul,
   nav ul li,

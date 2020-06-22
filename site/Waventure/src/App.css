@@ -60,4 +60,5 @@
 }
 .zIndexMax{
   position: relative;
+  overflow: hidden;
 }

@@ -114,7 +114,7 @@ function App() {
             </Route>
             <Route path="/main">
               <div
-                className="playerTrigger"
+                className="playerTrigger improve"
                 style={
                   showingPlayer || reducer
                     ? {

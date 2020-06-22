@@ -8,24 +8,31 @@
   font-family: inherit;
   width: 100%;
   padding: 10px 15px;
-  background-color: #1b1b1b;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.171);
 }
 .playerWarper {
+  overflow: hidden;
   position: relative;
   display: flex;
   width: 100%;
   user-select: none;
-  transition: all 0.3s ease-in; 
-  background-color: #1b1b1b;
+  background-color: rgba(0, 0, 0, 0);
   position: unset;
   box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.527);
 }
 .mainCover {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   background-color: #1b1b1b;
   margin: auto;
-  padding: 15px;
-  width: 240px;
+  padding: 0px;
+  width: 100%;
+  z-index: -1;
+transform: translate(0px, -200px);
+filter: opacity(0.4) blur(5px)
 }
 
 .rhap_container:focus {
@@ -146,7 +153,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  width: 15%;
+  width: 35%;
   justify-content: space-between;
   align-items: center;
 }
@@ -206,12 +213,12 @@
 
 .rhap_volume-container {
   position: absolute;
-  bottom: -40px;
+  bottom: -50px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 70%;
   -webkit-user-select: none;
 }
 
@@ -442,6 +449,7 @@
 .rhap_main-controls {
   width: 100%;
   display: flex;
+
   justify-content: space-around;
   align-items: center;
 }
