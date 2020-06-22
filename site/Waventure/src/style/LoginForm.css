@@ -1,9 +1,26 @@
+.wrap-bg {
+    overflow: hidden;
+    height: 100vh;
+    
+}
+
+@keyframes scrollBackground {
+        from {
+            margin-top: 0;
+        }
+        to {
+            margin-top: -100%;
+        }
+}
+
 .bg-container {
     background: url("/img/background.jpg");
     background-position: center;
-    width: 100vw;
-    height:100vh;
-    background-size: cover;
+    background-repeat: repeat-y;
+    height:300vh;
+    background-size: 100%;
+
+    animation: scrollBackground infinite alternate-reverse 60s linear;
 }
 
 body {
@@ -12,23 +29,45 @@ body {
     font-family: sans-serif;
 }
 
+.logo-txt {
+    font-size: 0.8em;
+}
+
 .profil-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: none;
+}
+
+
+.avatar-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .avatar-form {
-    display: flex;
-    justify-content: space-around
+    z-index: 100;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 0%;
+    display: inline-block; 
+    text-align: center;
+    height: auto;
+    background-color: #181818;
 }
 
-input#thing1[type=checkbox] + label
-{
-    height: 50px;
-    width: 50px;
-    display:inline-block;
-    padding: 0 0 0 0px;
+.avatar-form img {
+    cursor: pointer;
+    margin: 5px;
+}
+
+.avatar-form img:hover {
+    border: 2px solid #47C003;
 }
 
 .sign-up {
@@ -36,22 +75,23 @@ input#thing1[type=checkbox] + label
   top: 50%;
   left: 50%;
   width: 400px;
-  height: 80vh;
+  height: auto;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
   box-sizing: border-box;
+  position: fixed;
 }
 .sign-in {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 400px;
-  height: 50vh;
   padding: 40px;
+  height: auto;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.7);
-  box-sizing: border-box;
+  position: fixed;
 }
 
 

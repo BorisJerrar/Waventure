@@ -30,7 +30,7 @@ export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
        }, [serieId, author, sagaInfo])
        
     return (
-        <div  style={toggleWrapper? {visibility: "visible"}: {visibility: "hidden"}} className="moreInfoWrapper">
+        <div  style={toggleWrapper? {transform: "translate(0,0)", visibility: "visible", opacity: 1}: {transform: "translate(0,-50px)", visibility: "hidden", opacity: 0}} className="moreInfoWrapper">
             <h3>Auteur</h3>
             <p>{moreInfo.length !== 0 ? moreInfo[0].author : ""}</p>
             <h3>Distribution</h3>

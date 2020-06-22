@@ -26,10 +26,11 @@
     padding-left: 15vw;
     background-color: #1b1b1b;
     top: 96px;
-    width: 100vw;
+    width: 102.5vw;
     left: -255px;
-    z-index: 100;
+    z-index: -1;
     letter-spacing: 0.3px; 
+    transition: transform .3s ease-in-out, opacity .2s ease-in-out
   }
 
   .moreInfoWrapper>p{

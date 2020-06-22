@@ -26,7 +26,7 @@ function Home(props) {
             <main className="wrap">
                 <div className="center-title">
                     <h1>Ecoutez vos sagas mp3 préférées,<br />
-                    Décrouvez-en des nouvelles.</h1>
+                    Découvrez-en des nouvelles.</h1>
                     <h1><strong>Gratuitement</strong></h1>
                     <div className="bg-container"></div>
                </div>
