@@ -11,12 +11,12 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
   const [lengthSeries, setLengthSeries] = useState("");
-  const [favorite, setFavorite] = useState([]);
+  const [favorite, setFavorite] = useState(false)
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
 
   const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id);
@@ -35,39 +35,36 @@ export default function Categorie({ category, lunchingEpisode }) {
     fetchSeries();
     var config = {
       method: 'get',
-      url: `${server}/favorite`,
-      headers: { 
+      url: `${server}/favorite/${hoverItem.serie_id}`,
+      headers: {
         'x-access-token': token
       }
     };
+
     const fetchFavorite = async () => {
-    axios(config)
-    .then(function (response) {
-      setFavorite(response.data)
-      console.log(favorite)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
- 
+      axios(config)
+        .then(function (response) {
+          setFavorite(response.data[0].exists)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
 
-    fetchFavorite();
-    
-   
+
     const fetchSerieInformation = async () => {
       const response = await fetch(
         `${server}/sagaInfo/${hoverItem.serie_id}`
       );
       const data = await response.json();
-      console.log(data);
-      
       setSynopsis(data[0].body);
     };
     if (hover) {
       fetchSerieInformation();
+      fetchFavorite();
+
     }
-  }, [category, hover, hoverItem.serie_id, server]);
+  }, [category, hover, hoverItem.serie_id, server, token]);
 
   let properties = {
     indicators: true,
@@ -95,6 +92,8 @@ export default function Categorie({ category, lunchingEpisode }) {
     setHover(!hover);
     setInformation(!information);
   };
+
+
   return (
     <div className="catalog">
       <h2 className="catalogTitle">{category}</h2>
@@ -102,21 +101,22 @@ export default function Categorie({ category, lunchingEpisode }) {
         <Slide {...properties}>
           {series.map((array, arrIndex) => {
             return (
-              <div className="categoryContainer" key={arrIndex}>             
+              <div className="categoryContainer" key={arrIndex}>
                 {array.map((item, index) => {
                   return (
-                    <CategoryUnique 
-                    item={item} 
-                    key={index}
-                    settingHover={(item) => settingHover(item)}
-                    unsettingHover={() => unsettingHover()}
-                    lunchingEpisodeCategorie={lunchingEpisodeCategorie}
-                    information={information}
-                    urlimg={urlimg}
-                    synopsis={synopsis}
-                    hover={hover}
-                    informationShow={(e) => informationShow(e)}
-                    url={url}
+                    <CategoryUnique
+                      item={item}
+                      key={index}
+                      settingHover={(item) => settingHover(item)}
+                      unsettingHover={() => unsettingHover()}
+                      lunchingEpisodeCategorie={lunchingEpisodeCategorie}
+                      information={information}
+                      favorite={favorite}
+                      urlimg={urlimg}
+                      synopsis={synopsis}
+                      hover={hover}
+                      informationShow={(e) => informationShow(e)}
+                      url={url}
                     />
                   );
                 })}

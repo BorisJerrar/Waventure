@@ -46,7 +46,6 @@ CREATE TABLE favorite
     favorite_id serial NOT NULL PRIMARY KEY,
     serie_id serial,
     account_id UUID,
-    favorite boolean,
     FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
     FOREIGN KEY (account_id) REFERENCES account (account_id)
 );
