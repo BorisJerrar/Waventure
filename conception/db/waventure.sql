@@ -1,7 +1,8 @@
 CREATE EXTENSION unaccent;
 CREATE EXTENSION
 IF NOT EXISTS pgcrypto;
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION
+IF NOT EXISTS "uuid-ossp";
 SET client_encoding
 TO 'UTF-8';
 
@@ -1007,7 +1008,8 @@ VALUES
     (59, 5, '0:03:25.000', 'Pieces of eight', 'blindcowboy_saison1_episode5.mp3');
 
 
-INSERT INTO avatar (avatar_path)
+INSERT INTO avatar
+    (avatar_path)
 VALUES
     ('Avatar01.jpg'),
     ('Avatar02.jpg'),
@@ -1030,11 +1032,11 @@ INSERT INTO category
     (name)
 
 VALUES
-    ('Science-fiction'), 
+    ('Science-fiction'),
     ('Humour'),
-    ('féerique'),
+    ('Féerique'),
     ('Aventure'),
-        ('Comédie'),
+    ('Comédie'),
     ('Action'),
     ('Decalée'),
     ('Classique'),

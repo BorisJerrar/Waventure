@@ -18,7 +18,7 @@ export default function Header({
   const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
 
-  const categories = async () => {
+  const categories = () => {
     setCategoriesTrigger(!categoriesTrigger);
   };
 
@@ -120,8 +120,8 @@ export default function Header({
                         className="categoriesParagraph"
                         style={
                           categoriesTrigger
-                            ? { padding: "8px", display: "flex" }
-                            : { display: "none" }
+                            ? {opacity: 1, padding: "8px", visibility: "visible"}
+                            : { visibility: "hidden", opacity: 0}
                         }
                       >
                         {each.name}
@@ -132,7 +132,7 @@ export default function Header({
               </div>
             </li>
             <li><Link to='/newest' className='newestLink'>Nouveautés</Link></li>
-            <li>Coup de coeur</li>
+            <li className='newestLink' >Coup de coeur</li>
           </ul>
         </nav>
       </div>
