@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom'
 import "../style/LoginForm.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SignIn(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
+
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState("");
@@ -39,14 +41,11 @@ function SignIn(props) {
     }
 
     return (
-        <div>
-            <div className="wrap-bg">
-                <div className="bg-container"></div>
-            </div>
+        <div className="bg-container">
             <main className="home sign-in">
                 <div className="waventureLogo">
                     <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
-                    <h1 className="logo-txt">WAVENTURE</h1>
+                    <h1>WAVENTURE</h1>
                 </div>
                 <form className="login-box"
                     onSubmit={handleSubmit}>
@@ -83,10 +82,11 @@ function SignIn(props) {
                             <p>mot de passe oulié ?</p>
                             <Link className="link-form" to="/pwdReset">Réinitialiser</Link>
                         </div>
+                        <FontAwesomeIcon icon={['far', 'heart']} />
                     </div>
                 </form>
             </main>
-            </div>
+        </div>
     )
 }
 
