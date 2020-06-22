@@ -9,7 +9,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [information, setInformation] = useState(false);
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
-  const [lengthSeries, setLengthSeries] = useState("");
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
@@ -37,8 +36,6 @@ export default function Categorie({ category, lunchingEpisode }) {
         }
       }
       setSeries(temp);
-      setLengthSeries(data.length);
-
     };
     fetchSeries();
     const fetchSerieInformation = async () => {
