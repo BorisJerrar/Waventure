@@ -39,14 +39,7 @@
     border-radius: 4px;
   }
   .searchingBar button {
-    height: 32px;
-    background-color: #fff;
-    border: none;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 3%;
-    transition: background-color 0.2s ease-in-out;
+display: none
   }
   .searchingBar button:active {
     background-color: rgb(214, 214, 214);
@@ -113,10 +106,10 @@ right: 0;
     cursor: pointer;
     padding: 10px 0px;
     transition: 0.2s ease-in-out background-color;
+    font-size: 10px;
   }
   .categoriesParagraph:hover {
     background-color: #4e4e4e;
-    transform: scale3d(1.1,1.1,1.1);
   }
   li,
   .newestLink {
@@ -124,6 +117,7 @@ right: 0;
   }
   .arrowCategories {
     padding-left: 5px;
+    width: 11px;
   }
   .category {
     position: relative;
@@ -138,25 +132,26 @@ right: 0;
   }
   .categoriesFetch {
     z-index: 1000;
-    width: 100%;
+    width: 25vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #1b1b1b;
     position: absolute;
-    top: 58px;
-    left: 0;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.274);
+    top: 53px;
+    left: -7vw;
+    max-height: 30vh;
+    overflow-y: scroll;
   }
   .searchFetch {
     position: absolute;
     padding-right: 10px;
-    min-width: 25vw;
+    min-width: 45vw;
     max-height: 30vh;
     overflow-y: scroll;
     top: 53px;
-    left: 40px;
+    left: 0px;
     background-color: #1b1b1b;
   }
 
@@ -198,9 +193,9 @@ right: 0;
   .accountRolling {
     z-index: 10000;
     position: absolute;
-    top: 69px;
-    right: 0px;
-    width: 600%;
+    top: 53px;
+    right: -10px;
+    width: 35vw;
     background-color: #1b1b1b;
     cursor: pointer;
   }
