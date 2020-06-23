@@ -92,7 +92,7 @@ export default function Header({
         </div>
         <div className="searchingBar">
           <input ref={refSearch} onClick={showSearch} placeholder="Recherche" onChange={getInput} value={search} />
-          <Link onClick={()=>handleSearch(search)} to="/search" >
+          <Link onClick={()=>handleSearch(search)} to="/search" className="buttonSearch">
             <button>
             <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
           </button>
