@@ -11,6 +11,7 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
   const [matches,setMaches]  = useState(window.innerWidth)
+  const [length,setLength]  = useState(0)
   const [favorite, setFavorite] = useState(false)
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
@@ -30,7 +31,7 @@ export default function Categorie({ category, lunchingEpisode }) {
       const response = await fetch(`${server}/serieCategory/${category}`);
       const data = await response.json();
       let temp = [];
-      if (matches <= 990) {
+      if (matches < 990) {
         for (let i = 0; i < Math.ceil(data.length / 4); i++) {
           temp.push(data.slice(i * 4, i * 4 + 4));
         }
@@ -39,7 +40,8 @@ export default function Categorie({ category, lunchingEpisode }) {
           temp.push(data.slice(i * 5, i * 5 + 5));
         }
       }
-      setSeries(temp);
+      setSeries(temp)
+      setLength(series.length)
     };
     fetchSeries();
     var config = {
@@ -73,15 +75,14 @@ export default function Categorie({ category, lunchingEpisode }) {
       fetchFavorite();
 
     }
-  }, [category, hover, hoverItem.serie_id, server, token, matches]);
+  }, [category, hover, hoverItem.serie_id, server, token, matches])
 
   let properties = {
     indicators: true,
     autoplay: false,
     transitionDuration: 500,
-  };
+  }
 
-  
   const settingHover = (item) => {
     setHover(true);
     setHoverItem(item);
