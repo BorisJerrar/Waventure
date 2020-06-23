@@ -51,12 +51,14 @@
   }
   
   .wedetteDescription {
-    width: 35em;
+    width: 100%;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    height: 200px;
+    padding: 10px;
   }
   
   .wedetteTitle {
@@ -66,7 +68,7 @@
   }
   
   .wedetteSynopsis {
-    font-size: 13px;
+    font-size: 14px;
     text-align: justify;
   }
   .backgroundImg {
@@ -85,9 +87,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 338px;
-    max-width: 338px;
-    height: 338px;
+    min-width: 100vw;
+    max-width: 100vw;
+    height: 100vw;
     transition: ease-in 0.2s transform;
     will-change: transform;
   }
@@ -114,6 +116,20 @@
   font-weight: 400;
   transition: ease-in-out background-color 0.6s;
 }
+.btnPlay {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 50px !important;
+  opacity: 0.8;
+  transition: ease-in-out opacity 0.1s;
+}
+
+.wedetteCover:hover .btnPlay {
+  opacity: 1;
+}
+
 .wedetteContainer:hover {
   background-color: #0f0f0f;
 }

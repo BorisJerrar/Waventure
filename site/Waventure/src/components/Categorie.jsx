@@ -22,18 +22,22 @@ export default function Categorie({ category, lunchingEpisode }) {
   };
 
   window.addEventListener("resize", ()=> { 
-    setTimeout( () =>{setMaches(window.innerWidth)}, 700)})
+    setTimeout( () =>{setMaches(window.innerWidth)}, 300)})
 
   useEffect(() => {
       const fetchSeries = async () => {
       const response = await fetch(`${server}/serieCategory/${category}`);
       const data = await response.json();
       let temp = [];
-      if (matches < 990) {
+      if (matches > 762 && matches < 990) {
         for (let i = 0; i < Math.ceil(data.length / 4); i++) {
           temp.push(data.slice(i * 4, i * 4 + 4));
         }
-      } else{
+      }else if (matches < 762) {
+        for (let i = 0; i < Math.ceil(data.length / 2); i++) {
+          temp.push(data.slice(i * 2, i * 2 + 2));
+        }
+      }else{
         for (let i = 0; i < Math.ceil(data.length / 5); i++) {
           temp.push(data.slice(i * 5, i * 5 + 5));
         }
