@@ -7,18 +7,6 @@
   background-color: #242424;
   min-height: 100vh;
 }
-
-.App-logo {
-  width: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -30,21 +18,8 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .playerTrigger{
-  transition: all .3s ease-in;
+  transition: all .3s ease;
   width: 100%;
 }
 .flexing{
@@ -64,9 +39,5 @@
 .fixing{
   position: sticky !important;
   top: 0;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: position 10s;
-  -ms-transition: position 10s;
-  -o-transition: position 10s;
-  transition: all 0.5s ease;
+  transition: .3s ease;
 }

@@ -77,7 +77,7 @@ function App() {
             setToggle={setToggle}
           />
           <div
-            className={playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
+            className={playing?"playerTrigger fixing":"playerTrigger"}
             style={
               showingPlayer || reducer
                 ? {
