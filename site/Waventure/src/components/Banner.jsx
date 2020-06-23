@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "../style/Banner.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
 export default function Banner({ lunchingEpisode }) {
 
     const [wedette, setWedette] = useState([]);

@@ -14,7 +14,8 @@ export default function Player({
    toggleWrapper, 
    setToggleWrapper,
    setSagaEpisodeSaisonInfo,
-   sagaEpisodeSaisonInfo
+   sagaEpisodeSaisonInfo,
+   sending
   }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
@@ -23,7 +24,10 @@ export default function Player({
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
   const [urlAudio, setUrlAudio] = useState(``);
-
+  const receving = () => {
+setUrlAudio("")
+    sending()
+  }
   useEffect(() => {
     const fetchingEpisode = async () => {
      const fetching = await fetch(`${serverPath}/sagaInfo/${serieId}`)
@@ -119,6 +123,7 @@ export default function Player({
          setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
          sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
          setIndex={setIndex} 
+         sending={()=>{receving()}}
          />
         }
         footer={<PlayerFooter 

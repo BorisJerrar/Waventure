@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/PlayerHeader.css";
 
 export default function PlayerHeader({
@@ -9,14 +10,19 @@ export default function PlayerHeader({
   episodeInfos,
   setIndex,
   sagaEpisodeSaisonInfo,
+  sending
 }) {
-   const changingEpisode = (e) => {
+  const closingPlayer = () => {
+    sending()
+  }
+  const changingEpisode = (e) => {
     setIndex(e.target.attributes[0].value - 1);
     setEpisode(false);
-  }
-let increm = 0
+  };
+  let increm = 0;
   return (
     <div className="playerHeader">
+      <FontAwesomeIcon icon={["fas", "times"]} className='cancerler' size="4x" onClick={closingPlayer}/>
       <p
         className="playerHeaderInfo"
         style={
@@ -55,19 +61,33 @@ let increm = 0
         }
       >
         {sagaEpisodeSaisonInfo.map((each, index) => {
-          return(
+          return (
             <div key={index}>
-          <p className={'episodeUnique season'} style={{cursor: 'default'}}>Saison {each.season_nb}</p>
-          {each.episode_number.map((item, indexTwo) => {
-            increm +=1
-            return (
-              <p key={increm} src-key={increm} className={"episodeUnique "} onClick={(e)=> changingEpisode(e)}>
-                Episode {item} {each.episode_title[indexTwo]?`| ${each.episode_title[indexTwo]}`:""}
+              <p
+                className={"episodeUnique season"}
+                style={{ cursor: "default" }}
+              >
+                Saison {each.season_nb}
               </p>
-            )
-          })}
-          </div>
-        )})}
+              {each.episode_number.map((item, indexTwo) => {
+                increm += 1;
+                return (
+                  <p
+                    key={increm}
+                    src-key={increm}
+                    className={"episodeUnique "}
+                    onClick={(e) => changingEpisode(e)}
+                  >
+                    Episode {item}{" "}
+                    {each.episode_title[indexTwo]
+                      ? `| ${each.episode_title[indexTwo]}`
+                      : ""}
+                  </p>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

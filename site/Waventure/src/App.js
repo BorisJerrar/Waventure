@@ -22,6 +22,12 @@ function App() {
   const [uniqueSearch, setUniqueSearch] = useState({})
  const [titleArray, setTitleArray] = useState([]);
 
+ const receving = () => {
+   setPlaying(false)
+   setShowingPlayer(false)
+   setSerieId(-1)
+   setReducer(false)
+ }
   const handleSearchApp = (result)=>{
       setUniqueSearch(result)
   }
@@ -65,10 +71,12 @@ function App() {
                 ? {
                   zIndex: 200000,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
+                    opacity: 1
                   }
                 : {
                   zIndex: -1,
                     transform: "matrix(1, 0, 0, 1, 0, -270)",
+                    opacity: 0
                   }
             }
           >
@@ -83,6 +91,7 @@ function App() {
                 setToggleWrapper={setToggleWrapper}
                 setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
                 sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
+                sending={()=>{receving()}}
               />
           </div>
           <Switch>

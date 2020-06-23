@@ -43,7 +43,7 @@
 }
 
 .playerTrigger{
-  transition: transform .3s ease-in;
+  transition: all .3s ease-in;
   width: 100%;
 }
 .flexing{
@@ -58,13 +58,8 @@
   flex-direction: column;
   align-items: center;
 }
-.zIndexMax{
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: position 10s;
-  -ms-transition: position 10s;
-  -o-transition: position 10s;
-  transition: all 0.5s ease;
-}
+
+
 .fixing{
   position: sticky !important;
   top: 0;
