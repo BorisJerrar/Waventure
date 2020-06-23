@@ -83,7 +83,7 @@ export default function Header({
   }
   
   return (
-    <header className={scrolling >= 75 && playing? "amergment": ""}>
+    <header>
       <div className="leftHeaderSide">
         <div className="waventureLogoHeader">
           <Link to="/main" className="LinkHome">Logo Cliquable</Link>

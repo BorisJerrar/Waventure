@@ -28,7 +28,10 @@
     background-color: #1b1b1b;
     top: 96px;
     width: 110.5vw;
-    left: -100px;
+    left: unset;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
     z-index: -1;
     letter-spacing: 0.3px; 
     transition: transform .3s ease-in-out, opacity .2s ease-in-out
