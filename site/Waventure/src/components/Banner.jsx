@@ -34,7 +34,7 @@ export default function Banner({ lunchingEpisode }) {
                 <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : ''}`} alt="" />
                 <FontAwesomeIcon
                     className="btnPlay"
-                    icon={['far', 'play-circle']}
+                    icon={['fa', 'play-circle']}
                     size="4x"
                 />
             </div>
