@@ -41,7 +41,7 @@ CREATE TABLE serie
 );
 
 
-CREATE TABLE favorite 
+CREATE TABLE favorite
 (
     favorite_id serial NOT NULL PRIMARY KEY,
     serie_id serial,
@@ -1120,8 +1120,6 @@ VALUES
     (23, 2),
     (23, 4),
     (23, 7),
-    (24, 7),
-    (24, 2),
     (24, 2),
     (25, 4),
     (25, 1),
