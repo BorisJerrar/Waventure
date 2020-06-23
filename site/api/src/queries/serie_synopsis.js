@@ -1,11 +1,13 @@
 const db = require("../../db/database");
 
 const getSerieSynopsis = (request, response) => {
-    const serieId = parseInt(request.params.id)
+  const regex = /%20/gi
+  const search = request.query.search.replace(regex,' ')
+    console.log(search);
     
     db.query(
-      "SELECT * FROM serie NATURAL JOIN synopsis WHERE serie.serie_id= $1;",
-      [serieId],
+      "SELECT * FROM search_serie_synopsis WHERE title LIKE $1;",
+      [search],
       (error, results) => {
         if (error) {
           throw error;

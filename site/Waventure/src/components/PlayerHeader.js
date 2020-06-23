@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style/PlayerHeader.css";
 
 export default function PlayerHeader({

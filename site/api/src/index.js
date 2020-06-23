@@ -2,11 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 4000;
-const app = express();
 const fs = require("fs");
 const ms = require('mediaserver');
 const http = require('http');
 const dotenv = require('dotenv');
+/* Add file */
+const multer = require('multer')
+const app = express();
+
+
 
 dotenv.config();
 
@@ -49,6 +53,7 @@ const avatarQueries = require("./queries/avatar");
 const serieSynopsisQueries = require("./queries/serie_synopsis")
 const Auth = require('./middleware/Auth.js');
 
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 
@@ -57,6 +62,33 @@ app.use(
     extended: true,
   })
 );
+
+/* add file */
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+  cb(null, 'public')
+},
+filename: function (req, file, cb) {
+  cb(null, Date.now() + '-' +file.originalname )
+}
+})
+
+var upload = multer({ storage: storage }).single('file')
+
+app.post('/upload',function(req, res) {
+     
+  upload(req, res, function (err) {
+         if (err instanceof multer.MulterError) {
+             return res.status(500).json(err)
+         } else if (err) {
+             return res.status(500).json(err)
+         }
+    return res.status(200).send(req.file)
+
+  })
+
+});
+/* End add file */
 
 app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
@@ -78,7 +110,7 @@ app.get('/sound/', function(req, res){
   ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
 
-app.get("/serieSynopsis/:id", serieSynopsisQueries.getSerieSynopsis)
+app.get("/serieSynopsis", serieSynopsisQueries.getSerieSynopsis)
 app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
 
 /* MAIN */

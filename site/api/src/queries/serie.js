@@ -9,8 +9,16 @@ const getSerie = (request, response) => {
     response.status(200).json(results.rows);
   });
   }else if(request.query.search !== undefined){
-    const regex = /%20/gi
-    const search = request.query.search.replace(regex,' ')
+   const map = {
+     '%20': " ",
+     '%27': "'",
+     '%C3%A9':"é"
+   }
+    const search = request.query.search.replace(/%20|%27|%C3%A9/gi,(item)=>{
+      return map[item]
+    })
+    console.log(search);
+    
     
     db.query(`SELECT * FROM search_serie WHERE lower LIKE $1` ,[search], (error, results) => {
       if (error) {

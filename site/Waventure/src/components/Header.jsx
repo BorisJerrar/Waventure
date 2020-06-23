@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../style/Header.css";
 import { Link, Redirect } from 'react-router-dom'
+import { useRef } from "react";
 
 export default function Header({
   categoriesTrigger,
@@ -9,12 +10,15 @@ export default function Header({
   setAccountTriggerTrigger,
   titleArray,
   setTitleArray,
-  handleSearchApp
+  handleSearchApp,
+  toggle,
+  setToggle
 }) {
 
   const [search, setSearch] = useState('')
-  const [toggle, setToggle] = useState(false)
   const [resultSearch, setResultSearch] = useState([])
+  
+  const refSearch = useRef(null)
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
   const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
@@ -39,10 +43,11 @@ export default function Header({
   };
 
   const fetchSearchSeries = async(e) =>{
-    let userSearch = e.target.value.toLowerCase()
+    let userSearch = refSearch.current.value
     const response = await fetch (`${serveurPath}/serie?search=%${userSearch}%`)
     const data = await response.json() 
     setResultSearch(data)
+      
 }
 
   const getInput = (e) => {
@@ -55,10 +60,7 @@ export default function Header({
     fetchSearchSeries(e)  
   }  
 
-  const hideSearch = () => {
-    /* setToggle(false) */  
-    console.log('try')
-  }
+  
 
   const showSearch = (e) => {
     if(e.target.value !== ""){
@@ -69,9 +71,7 @@ export default function Header({
 
   const logout = () => {
     localStorage.clear('token');
-    console.log(localStorage.getItem('token'));
     if (!localStorage.getItem('token')) {
-      console.log('déconnexion')
       return <Redirect to="/home"/>
     }
   }
@@ -88,16 +88,19 @@ export default function Header({
           <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo"/>
           <h1>WAVENTURE</h1>
         </div>
-        <div onBlur={hideSearch} className="searchingBar">
-          <input onFocus={showSearch} placeholder="Recherche" onChange={getInput} value={search} />
-          <button>
+        <div className="searchingBar">
+          <input ref={refSearch} onClick={showSearch} placeholder="Recherche" onChange={getInput} value={search} />
+          <Link onClick={()=>handleSearch(search)} to="/search" >
+            <button>
             <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
           </button>
+          </Link>
+          
           <div className="searchFetch" style={toggle ? {display:"block"} : {display:"none"}}>
             
                {resultSearch.map((each, key) =>{
                  return(
-                   <Link onClick={()=>handleSearch(each)}  key={key} to="/search" style={{textDecoration: "none", color: "white"}}>
+                   <Link onClick={()=>handleSearch(each.lower)}  key={key} to="/search" style={{textDecoration: "none", color: "white"}}>
                      <div className="eachSearch">
                    <img className="eachImage" src={`${pathAvar}/${each.image}`} alt=""/>
                    <p className="eachTitle">{each.lower}</p>
@@ -141,7 +144,7 @@ export default function Header({
               </div>
             </li>
             <li><Link to='/newest' className='newestLink'>Nouveautés</Link></li>
-            <li className='newestLink' >Coup de coeur</li>
+            <li className='newestLink'>Coup de coeur</li>
           </ul>
         </nav>
       </div>
@@ -151,18 +154,22 @@ export default function Header({
           <img src={`${pathAvar}/Avatar01.jpg`} alt="Profil Icon" />
           {accountTrigger ? (
             <div className="accountRolling">
+              
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
               >
                 Profil
             </p>
+             
+          <Link to="/contact" className="categoriesParagraph">   
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
               >
                 Contacter Waventure
             </p>
+            </Link>
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
