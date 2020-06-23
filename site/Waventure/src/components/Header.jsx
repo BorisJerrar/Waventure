@@ -12,7 +12,9 @@ export default function Header({
   setTitleArray,
   handleSearchApp,
   toggle,
-  setToggle
+  setToggle,
+  playing,
+  scrolling
 }) {
 
   const [search, setSearch] = useState('')

@@ -9,53 +9,58 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [information, setInformation] = useState(false);
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
-  const [lengthSeries, setLengthSeries] = useState("");
+  const [matches,setMaches]  = useState(window.innerWidth)
+  const [length,setLength]  = useState(0)
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
 
+  const token = localStorage.getItem('token')
+
   const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id);
   };
+
+  window.addEventListener("resize", ()=> { 
+    setTimeout( () =>{setMaches(window.innerWidth)}, 700)})
+
   useEffect(() => {
-    const fetchSeries = async () => {
+      const fetchSeries = async () => {
       const response = await fetch(`${server}/serieCategory/${category}`);
       const data = await response.json();
       let temp = [];
-      for (let i = 0; i < Math.ceil(data.length / 5); i++) {
-        temp.push(data.slice(i * 5, i * 5 + 5));
+      if (matches < 990) {
+        for (let i = 0; i < Math.ceil(data.length / 4); i++) {
+          temp.push(data.slice(i * 4, i * 4 + 4));
+        }
+      } else{
+        for (let i = 0; i < Math.ceil(data.length / 5); i++) {
+          temp.push(data.slice(i * 5, i * 5 + 5));
+        }
       }
-      setSeries(temp);
-      setLengthSeries(data.length);
+      setSeries(temp)
+      setLength(series.length)
     };
     fetchSeries();
+
     const fetchSerieInformation = async () => {
       const response = await fetch(
         `${server}/sagaInfo/${hoverItem.serie_id}`
       );
       const data = await response.json();
-      console.log(data);
-      
       setSynopsis(data[0].body);
     };
     if (hover) {
       fetchSerieInformation();
     }
-  }, [category, hover, hoverItem.serie_id, server]);
+  }, [category, hover, hoverItem.serie_id, server, token, matches])
 
   let properties = {
     indicators: true,
     autoplay: false,
     transitionDuration: 500,
-  };
-
-  if (lengthSeries <= 5) {
-    properties = {
-      ...properties,
-      arrows: false,
-      indicators: false,
-    };
   }
+
   const settingHover = (item) => {
     setHover(true);
     setHoverItem(item);
@@ -69,6 +74,8 @@ export default function Categorie({ category, lunchingEpisode }) {
     setHover(!hover);
     setInformation(!information);
   };
+
+
   return (
     <div className="catalog">
       <h2 className="catalogTitle">{category}</h2>
@@ -76,21 +83,21 @@ export default function Categorie({ category, lunchingEpisode }) {
         <Slide {...properties}>
           {series.map((array, arrIndex) => {
             return (
-              <div className="categoryContainer" key={arrIndex}>             
+              <div className="categoryContainer" key={arrIndex}>
                 {array.map((item, index) => {
                   return (
-                    <CategoryUnique 
-                    item={item} 
-                    key={index}
-                    settingHover={(item) => settingHover(item)}
-                    unsettingHover={() => unsettingHover()}
-                    lunchingEpisodeCategorie={lunchingEpisodeCategorie}
-                    information={information}
-                    urlimg={urlimg}
-                    synopsis={synopsis}
-                    hover={hover}
-                    informationShow={(e) => informationShow(e)}
-                    url={url}
+                    <CategoryUnique
+                      item={item}
+                      key={index}
+                      settingHover={(item) => settingHover(item)}
+                      unsettingHover={() => unsettingHover()}
+                      lunchingEpisodeCategorie={lunchingEpisodeCategorie}
+                      information={information}
+                      urlimg={urlimg}
+                      synopsis={synopsis}
+                      hover={hover}
+                      informationShow={(e) => informationShow(e)}
+                      url={url}
                     />
                   );
                 })}

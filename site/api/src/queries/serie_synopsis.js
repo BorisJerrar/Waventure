@@ -1,8 +1,14 @@
 const db = require("../../db/database");
 
 const getSerieSynopsis = (request, response) => {
-  const regex = /%20/gi
-  const search = request.query.search.replace(regex,' ')
+   const map = {
+     '%20': " ",
+     '%27': "'",
+     '%C3%A9':"é"
+   }
+    const search = request.query.search.replace(/%20|%27|%C3%A9/gi,(item)=>{
+      return map[item]
+    })
     console.log(search);
     
     db.query(

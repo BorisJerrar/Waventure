@@ -3,6 +3,7 @@ import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function Player({
@@ -80,16 +81,27 @@ export default function Player({
       />
       <AudioPlayer
         customIcons={{
-          pause: (
-            <img
-              style={{ color: "#FFF" }}
-              src="./img/pause.svg"
-              alt="pause icon"
-            />
-          ),
-          play: <img src="./img/play.svg" alt="play icon" />,
-          next: <img src="./img/next.svg" alt="next track icon" />,
-          previous: <img src="./img/prev.svg" alt="previous track icon" />,
+          pause: 
+            <FontAwesomeIcon
+            className="btn-media-player"
+            icon={['fas', 'pause'] }
+          />
+          ,
+          play:
+            <FontAwesomeIcon
+            className="btn-media-player"
+            icon={['fas', 'play'] }
+          />,
+          next:
+            <FontAwesomeIcon
+            className="btn-media-player"
+            icon={['fas', 'step-forward'] }
+          />,
+          previous:
+            <FontAwesomeIcon
+            className="btn-media-player"
+            icon={['fas', 'step-backward'] }
+          />,
         }}
         defaultDuration={
           episodeInfos && episodeInfos.episode_duration
@@ -132,7 +144,6 @@ export default function Player({
         onEnded={nextSaga}
 
       />    
-      
     </div>
   );
 }

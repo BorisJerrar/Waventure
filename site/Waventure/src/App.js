@@ -22,7 +22,6 @@ function App() {
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({})
   const [toggle, setToggle] = useState(false)
-
   const [titleArray, setTitleArray] = useState([]);
 
   console.log(localStorage.getItem('token'))
@@ -71,11 +70,11 @@ function App() {
             setToggle={setToggle}
           />
           <div
-            className="playerTrigger zIndexMax"
+            className={playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
             style={
               showingPlayer || reducer
                 ? {
-                  zIndex: 90,
+                  zIndex: 200000,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
                   }
                 : {
@@ -128,7 +127,7 @@ function App() {
             </Route>
             <Route path="/main">
               <div
-                className="playerTrigger"
+                className="playerTrigger improve"
                 style={
                   showingPlayer || reducer
                     ? {
@@ -144,7 +143,7 @@ function App() {
                 />
               </div>
               <div
-                className="playerTrigger catalogApp"
+                className={"playerTrigger catalogApp"}
                 style={
                   showingPlayer || reducer
                     ? {

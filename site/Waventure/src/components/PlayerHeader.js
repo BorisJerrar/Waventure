@@ -14,7 +14,7 @@ export default function PlayerHeader({
     setIndex(e.target.attributes[0].value - 1);
     setEpisode(false);
   }
-let testingg = 0
+let increm = 0
   return (
     <div className="playerHeader">
       <p
@@ -57,12 +57,12 @@ let testingg = 0
         {sagaEpisodeSaisonInfo.map((each, index) => {
           return(
             <div key={index}>
-          <p className={'episodeUnique'} style={{cursor: 'default'}}>Saison {each.season_nb}</p>
+          <p className={'episodeUnique season'} style={{cursor: 'default'}}>Saison {each.season_nb}</p>
           {each.episode_number.map((item, indexTwo) => {
-            testingg +=1
+            increm +=1
             return (
-              <p key={testingg} src-key={testingg} className={"episodeUnique "} onClick={(e)=> changingEpisode(e)}>
-                {item} {each.episode_title[indexTwo]?`| ${each.episode_title[indexTwo]}`:""}
+              <p key={increm} src-key={increm} className={"episodeUnique "} onClick={(e)=> changingEpisode(e)}>
+                Episode {item} {each.episode_title[indexTwo]?`| ${each.episode_title[indexTwo]}`:""}
               </p>
             )
           })}

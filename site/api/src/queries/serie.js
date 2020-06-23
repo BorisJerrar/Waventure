@@ -12,7 +12,7 @@ const getSerie = (request, response) => {
    const map = {
      '%20': " ",
      '%27': "'",
-     '%C3%A9':"é"
+     '%C2%82':"é"
    }
     const search = request.query.search.replace(/%20|%27|%C3%A9/gi,(item)=>{
       return map[item]

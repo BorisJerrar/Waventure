@@ -1,3 +1,4 @@
+@media (max-width: 990px) {
 .playerFooterItem {
     color: #d8d8d8;
     cursor: pointer;
@@ -26,8 +27,11 @@
     padding-left: 15vw;
     background-color: #1b1b1b;
     top: 96px;
-    width: 102.5vw;
-    left: -255px;
+    width: 110.5vw;
+    left: unset;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
     z-index: -1;
     letter-spacing: 0.3px; 
     transition: transform .3s ease-in-out, opacity .2s ease-in-out
@@ -75,4 +79,85 @@
   .otherSeries{
     align-self: flex-end;
     margin-top: 30px;
+  }
+}
+@media (min-width: 991px) {
+  .playerFooterItem {
+      color: #d8d8d8;
+      cursor: pointer;
+    }
+    .playerFooterItem:hover {
+      cursor: pointer;
+      color: #ffffff;
+    }
+    .playerFooter {
+      position: absolute;
+      bottom: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 70%;
+      padding: 40px;
+      user-select: none;
+      z-index: 100;
+    }
+  
+    .moreInfoWrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      padding-left: 15vw;
+      background-color: #1b1b1b;
+      top: 96px;
+      width: 102.5vw;
+      left: -255px;
+      z-index: -1;
+      letter-spacing: 0.3px; 
+      transition: transform .3s ease-in-out, opacity .2s ease-in-out
+    }
+  
+    .moreInfoWrapper>p{
+      margin: 0px 20px 30px 40px;
+    }
+    
+    .moreInfoWrapper>h3{
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: #A487B3 solid 2px;
+    }
+    
+    .distributionWrapper{
+      display:flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      text-align: left;
+      max-height: 27vw;
+      padding-right: 25vw;
+      line-height: 1.6;
+      margin-left: 30px;
+    }
+    .distributionWrapper>p{
+      margin-right: 40px;
+    }
+    
+    .distributionCharacter{
+      margin: 0px 20px 10px 5px;  
+    }
+    .distributionActor{
+      border-bottom: 2px solid #A487B3;
+      font-weight: 550;
+    }
+  
+    .distributionItem{
+      text-align: left; 
+    }
+  
+    .otherSeries{
+      align-self: flex-end;
+      margin-top: 30px;
+    }
   }

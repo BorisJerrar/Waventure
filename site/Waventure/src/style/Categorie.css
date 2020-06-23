@@ -1,180 +1,445 @@
-.catalog {
-  background-color: #242424;
-  display: flex;
-  flex-direction: column;
-  width: 85vw;
-  margin-top: 10px;
-  overflow-x: hidden;
-  user-select: none;
-}
-.categoryContainer {
-  display: flex;
-  align-items: center;
-}
-.catalogTitle {
-  font-family: "Pontano Sans", sans-serif;
-  font-weight: 300;
-  font-size: 24px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: flex-start;
-}
+@media (max-width: 990px) {
+  .catalog {
+    background-color: #242424;
+    display: flex;
+    flex-direction: column;
+    width: 93.5vw;
+    margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    user-select: none;
+  }
+  .categoryContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .catalogTitle {
+    font-family: "Pontano Sans", sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-left: 6%;
+    
+    display: flex;
+    justify-content: flex-start;
+  }
 
-.containerSlide {
-  position: relative;
-}
+  .containerSlide {
+    position: relative;
+  }
 
-.indicators {
-  position: absolute;
-  top: -20px;
-  right: 10px;
-}
-.imageSlideShow {
-  width: 100%;
-  height: 100%;
-  transition: ease-in 0.2s filter;
-}
-.hoverInformation:hover + .imageSlideShow {
-  filter: blur(5px);
-}
 
-.hoverInformation {
-  z-index: 100;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  transition: ease-in 0.2s opacity;
-  opacity: 0;
+  .indicators {
+    position: absolute;
+    top: -30px;
+    right: 6%;
+  }
+  .react-slideshow-container + div.indicators > .each-slideshow-indicator.active{
+    background-color: #fff !important;
+  }
+  .react-slideshow-container + div.indicators > .each-slideshow-indicator{
+    background-color: rgba(201, 201, 201, 0.616) !important;
+    width: 10px !important;
+    height: 3px !important;
+    border-radius: 0 !important;
+  }
+  .imageSlideShow {
+    width: 100%;
+    height: 100%;
+    transition: ease-in 0.2s filter;
+  }
+  .hoverInformation:hover + .imageSlideShow {
+    filter: blur(5px);
+  }
+
+  .hoverInformation {
+    z-index: 100;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: ease-in 0.2s opacity;
+    opacity: 0;
+  }
+  .hoverInformation:hover {
+    opacity: 1;
+  }
+  .hoverInformation:hover::after {
+    content: "";
+    z-index: 90;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.438);
+  }
+  .hoverInformationContainer {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.356);
+    width: 19vw;
+    height: 19vw;
+    margin: 1vw;
+    user-select: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in;
+  }
+  .hoverInformationContainer:hover {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+  }
+  .playLogoCategory {
+    position: absolute;
+    z-index: 100;
+  }
+  .InformationCategory {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    width: 18px;
+    height: 18px;
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationEpisode {
+    margin: auto;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    z-index: 100;
+    font-size: 14px;
+    font-weight: 400;
+    height: 25px;
+    text-align: left;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationAuthor {
+    margin: auto;
+    position: absolute;
+    bottom: 25px;
+    left: 12px;
+    z-index: 100;
+    font-size: 10px;
+    font-weight: 600;
+    width: 50%;
+    height: 25px;
+    text-align: left;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationTitle {
+    position: absolute;
+    text-align: left;
+    margin: auto;
+    padding: 10px;
+    top: 40px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    font-size: 14px;
+    font-weight: 600;
+    height: 25px;
+    width: 100%;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationSynopsis {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: auto;
+    padding: 0px 5px;
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    z-index: 110;
+    font-size: 11px;
+    overflow-y: scroll;
+    font-weight: 300;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .watchTime {
+    width: 90%;
+    height: 3px;
+    background-color: #fff;
+    margin: auto;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .watchTime::after {
+    content: "";
+    width: 20%;
+    height: 3px;
+    background-color: rgb(185, 121, 204);
+    margin: auto;
+    position: absolute;
+    left: 0px;
+    z-index: 100;
+  }
+  .scaleMore {
+    transform: scale(2, 2);
+  }
+  .react-slideshow-container .nav:last-of-type{
+    background: rgba(201, 201, 201, 0);
+    margin-left: 10px !important;
+    height: 17vw;
+    width: 4vw;
+    border-radius: 0;
+    transition: all .2s linear;
+  }
+  .react-slideshow-container .nav:first-of-type{
+    background: rgba(201, 201, 201, 0);
+    margin-right: 10px !important;
+    height: 12vw;
+    width: 4vw;
+    border-radius: 0;
+    transition: all .2s linear;
+  }
+  .react-slideshow-container .nav:last-of-type:hover, .react-slideshow-container .nav:first-of-type:hover {
+transform: scale3d(1.5,1.5,1.5);
+background: rgba(201, 201, 201, 0) !important;
+  }
+  .react-slideshow-container .nav span {
+    border-color: #fff !important;
+  }
 }
-.hoverInformation:hover {
-  opacity: 1;
-}
-.hoverInformation:hover::after {
-  content: "";
-  z-index: 90;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.438);
-}
-.hoverInformationContainer {
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.356);
-  width: 15vw;
-  height: 15vw;
-  margin: 1vw;
-  user-select: none;
-  cursor: pointer;
-  transition: transform 0.2s ease-in;
-}
-.hoverInformationContainer:hover {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
-  transform: matrix(1.1, 0, 0, 1.1, 0, 0);
-}
-.playLogoCategory {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 20px;
-  width: 30px;
-  height: 30px;
-  z-index: 100;
-}
-.InformationCategory {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 10px;
-  width: 18px;
-  height: 18px;
-  z-index: 999;
-  transition: opacity 0.3s ease-in-out;
-}
-.hoverInformationEpisode {
-  margin: auto;
-  position: absolute;
-  bottom: 80px;
-  right: 10px;
-  z-index: 100;
-  font-size: 21px;
-  font-weight: 400;
-  height: 25px;
-  text-align: left;
-  transition: opacity 0.3s ease-in-out;
-}
-.hoverInformationAuthor {
-  margin: auto;
-  position: absolute;
-  bottom: 40px;
-  left: 12px;
-  z-index: 100;
-  font-size: 10px;
-  font-weight: 600;
-  width: 50%;
-  height: 25px;
-  text-align: left;
-  transition: opacity 0.3s ease-in-out;
-}
-.hoverInformationTitle {
-  position: absolute;
-  text-align: left;
-  margin: auto;
-  padding: 10px;
-  top: 80px;
-  left: 0px;
-  right: 0px;
-  z-index: 100;
-  font-size: 20px;
-  font-weight: 600;
-  height: 25px;
-  width: 100%;
-  transition: opacity 0.3s ease-in-out;
-}
-.hoverInformationSynopsis {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  padding: 5px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  text-align: left;
-  z-index: 110;
-  font-size: small;
-  font-weight: 300;
-  transition: opacity 0.3s ease-in-out;
-}
-.watchTime {
-  width: 90%;
-  height: 3px;
-  background-color: #fff;
-  margin: auto;
-  position: absolute;
-  bottom: 70px;
-  left: 0px;
-  right: 0px;
-  z-index: 100;
-  transition: opacity 0.3s ease-in-out;
-}
-.watchTime::after {
-  content: "";
-  width: 20%;
-  height: 3px;
-  background-color: rgb(185, 121, 204);
-  margin: auto;
-  position: absolute;
-  left: 0px;
-  z-index: 100;
-}.scaleMore{
-transform: scale(2,2);
+@media (min-width: 991px) {
+  .catalog {
+    background-color: #242424;
+    display: flex;
+    flex-direction: column;
+    width: 93.5vw;
+    margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    user-select: none;
+  }
+  .categoryContainer {
+    display: flex;
+    align-items: center;
+  }
+  .catalogTitle {
+    font-family: "Pontano Sans", sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-left: 6%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .containerSlide {
+    position: relative;
+  }
+
+  .indicators {
+    position: absolute;
+    top: -30px;
+    right: 6%;
+  }
+  .react-slideshow-container + div.indicators > .each-slideshow-indicator.active{
+    background-color: #fff !important;
+  }
+  .react-slideshow-container + div.indicators > .each-slideshow-indicator{
+    background-color: rgba(201, 201, 201, 0.616) !important;
+    width: 10px !important;
+    height: 3px !important;
+    border-radius: 0 !important;
+  }
+  .imageSlideShow {
+    width: 100%;
+    height: 100%;
+    transition: ease-in 0.2s filter;
+  }
+  .hoverInformation:hover + .imageSlideShow {
+    filter: blur(5px);
+  }
+
+  .hoverInformation {
+    z-index: 100;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: ease-in 0.2s opacity;
+    opacity: 0;
+  }
+  .hoverInformation:hover {
+    opacity: 1;
+  }
+  .hoverInformation:hover::after {
+    content: "";
+    z-index: 90;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.438);
+  }
+  .hoverInformationContainer {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.356);
+    width: 15vw;
+    height: 15vw;
+    margin: 1vw;
+    user-select: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in;
+  }
+  .hoverInformationContainer:hover {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+  }
+  .playLogoCategory {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 1.8rem;
+    z-index: 100;
+  }
+  .InformationCategory {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 20px;
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationEpisode {
+    margin: auto;
+    position: absolute;
+    bottom: 80px;
+    right: 10px;
+    z-index: 100;
+    font-size: 21px;
+    font-weight: 400;
+    height: 25px;
+    text-align: left;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationAuthor {
+    margin: auto;
+    position: absolute;
+    bottom: 40px;
+    left: 12px;
+    z-index: 100;
+    font-size: 10px;
+    font-weight: 600;
+    width: 50%;
+    height: 25px;
+    text-align: left;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationTitle {
+    position: absolute;
+    text-align: left;
+    margin: auto;
+    padding: 10px;
+    top: 40px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    font-size: 20px;
+    font-weight: 600;
+    height: 25px;
+    width: 100%;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationSynopsis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    z-index: 110;
+    font-size: small;
+    font-weight: 300;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .hoverInformationHeart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: 10px;
+    font-size: 20px;
+    top: 0;
+    bottom: 0;
+    right: 30px;
+    text-align: left;
+    z-index: 110;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .watchTime {
+    width: 90%;
+    height: 3px;
+    background-color: #fff;
+    margin: auto;
+    position: absolute;
+    bottom: 70px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .watchTime::after {
+    content: "";
+    width: 20%;
+    height: 3px;
+    background-color: rgb(185, 121, 204);
+    margin: auto;
+    position: absolute;
+    left: 0px;
+    z-index: 100;
+  }
+  .scaleMore {
+    transform: scale(2, 2);
+  }
+  .react-slideshow-container .nav:last-of-type{
+    background: rgba(201, 201, 201, 0);
+    margin-left: 10px !important;
+    height: 17vw;
+    width: 4vw;
+    border-radius: 0;
+    transition: all .2s linear;
+  }
+  .react-slideshow-container .nav:first-of-type{
+    background: rgba(201, 201, 201, 0);
+    margin-right: 10px !important;
+    height: 12vw;
+    width: 4vw;
+    border-radius: 0;
+    transition: all .2s linear;
+  }
+  .react-slideshow-container .nav:last-of-type:hover, .react-slideshow-container .nav:first-of-type:hover {
+transform: scale3d(1.5,1.5,1.5);
+background: rgba(201, 201, 201, 0) !important;
+  }
+  .react-slideshow-container .nav span {
+    border-color: #fff !important;
+  }
 }
