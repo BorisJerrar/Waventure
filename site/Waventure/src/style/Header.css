@@ -183,7 +183,7 @@ right: 0;
     cursor: pointer;
     width: 6%;
   }
-  .profilIcon img:not(:last-child){
+  .firstArrow{
     display: none;
   }
   .avatarBox {

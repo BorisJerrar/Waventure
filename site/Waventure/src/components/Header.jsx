@@ -151,7 +151,7 @@ export default function Header({
         </nav>
       </div>
       <div className="profilIcon" onClick={avatar}>
-        <img src={`${pathImg}/arrow.svg`} alt="Arrow Icon" />
+        <img className="firstArrow" src={`${pathImg}/arrow.svg`} alt="Arrow Icon" />
         <div className="avatarBox">
           <img src={`${pathAvar}/Avatar01.jpg`} alt="Profil Icon" />
           {accountTrigger ? (

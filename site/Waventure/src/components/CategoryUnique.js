@@ -11,7 +11,6 @@ export default function CategoryUnique({
   unsettingHover,
   lunchingEpisodeCategorie,
   information,
-  urlimg,
   informationShow,
   url,
   synopsis,
@@ -119,12 +118,11 @@ export default function CategoryUnique({
         {favorite === false ? <FontAwesomeIcon
           className="hoverInformationHeart"
           onClick={(e) => handleFavorite(e)}
-          icon={['far', 'heart']} size="sm" /> :
+          icon={['far', 'heart']} size="sm" style={{opacity: information?0:1}}/> :
           <FontAwesomeIcon
             className="hoverInformationHeart"
             onClick={(e) => handleFavorite(e)}
-            icon={['fas', 'heart']} size="sm" />}
-
+            icon={['fas', 'heart']} size="sm" style={{opacity: information?0:1}}/>}
 
         <CategoryElement
           classname="hoverInformationSynopsis"
