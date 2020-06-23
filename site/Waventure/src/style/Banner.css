@@ -1,4 +1,105 @@
-@media (max-width: 990px) {
+@media (max-width: 762px) {
+  .wedetteContainer {
+    z-index: 2;
+    user-select: none;
+    background-color: #1b1b1b;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    font-family: "Pontano Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    transition: ease-in-out background-color 0.6s;
+  }
+  .wedetteContainer:hover {
+    background-color: #0f0f0f;
+  }
+  
+  .wedetteCoverImage {
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+  }
+  
+  .btnPlay {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+    transition: ease-in-out opacity 0.1s;
+  }
+  
+  .wedetteCover:hover .btnPlay {
+    opacity: 0.8;
+  }
+  
+  .wedetteLogoContainer {
+    display: flex;
+    position: absolute;
+    left: 350px;
+    top: 30px;
+  }
+  
+  .wedetteIndicator {
+    margin-left: -12px;
+  }
+  
+  .wedetteDescription {
+    width: 35em;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .wedetteTitle {
+    text-decoration: underline;
+    text-decoration-color: #7fc3e0;
+    margin-bottom: 20px;
+  }
+  
+  .wedetteSynopsis {
+    font-size: 13px;
+    text-align: justify;
+  }
+  .backgroundImg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0.2;
+    width: 20%;
+  }
+  .wedetteCover {
+    position: relative;
+    overflow: hidden;
+  }
+  .wedetteCover,
+  .wedetteCoverImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 338px;
+    max-width: 338px;
+    height: 338px;
+    transition: ease-in 0.2s transform;
+    will-change: transform;
+  }
+  .wedetteCover:hover .wedetteCoverImage {
+  transform: matrix(1.1, 0, 0, 1.1, 0, 0)
+  }
+  
+  .marginScroll {
+    margin-top: 270px;
+  }
+}
+@media (min-width:763px) and (max-width: 990px) {
 .wedetteContainer {
   z-index: 2;
   user-select: none;

@@ -60,6 +60,7 @@
     align-items: flex-start;
     justify-content: flex-end;
     width: 90%;
+    text-align: left;
   }
   .playerHeaderInfo {
     transition: font-size 0.2s ease;
