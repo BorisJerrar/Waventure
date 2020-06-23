@@ -156,14 +156,14 @@ export default function Header({
           <img src={`${pathAvar}/Avatar01.jpg`} alt="Profil Icon" />
           {accountTrigger ? (
             <div className="accountRolling">
-              
+            <Link to="/profil" className="categoriesParagraph">
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
               >
                 Profil
             </p>
-             
+          </Link>
           <Link to="/contact" className="categoriesParagraph">   
               <p
                 className="categoriesParagraph"
@@ -172,13 +172,16 @@ export default function Header({
                 Contacter Waventure
             </p>
             </Link>
+            
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
                 onClick={logout}
               >
                 Se déconnecter
-            </p>
+              </p>
+            
+              
             </div>
           ) : (
               ""
