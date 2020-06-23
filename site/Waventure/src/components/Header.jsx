@@ -92,7 +92,7 @@ export default function Header({
         </div>
         <div className="searchingBar">
           <input ref={refSearch} onClick={showSearch} placeholder="Recherche" onChange={getInput} value={search} />
-          <Link onClick={()=>handleSearch(search)} to="/search" >
+          <Link onClick={()=>handleSearch(search)} to="/search" className="buttonSearch">
             <button>
             <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
           </button>
@@ -156,14 +156,14 @@ export default function Header({
           <img src={`${pathAvar}/Avatar01.jpg`} alt="Profil Icon" />
           {accountTrigger ? (
             <div className="accountRolling">
-              
+            <Link to="/profil" className="categoriesParagraph">
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
               >
                 Profil
             </p>
-             
+          </Link>
           <Link to="/contact" className="categoriesParagraph">   
               <p
                 className="categoriesParagraph"
@@ -172,13 +172,16 @@ export default function Header({
                 Contacter Waventure
             </p>
             </Link>
+            
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
                 onClick={logout}
               >
                 Se déconnecter
-            </p>
+              </p>
+            
+              
             </div>
           ) : (
               ""

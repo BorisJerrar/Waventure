@@ -9,6 +9,7 @@ import HeaderCategory from "./components/HeaderCategory";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Search from "./components/Search.jsx";
 import Contact from "./components/Contact.jsx";
+import Profil from "./components/Profil.jsx";
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -106,6 +107,9 @@ function App() {
               />
           </div>
           <Switch>
+            <Route path='/profil'>
+              <Profil/>
+            </Route>
             <Route path='/contact'>
               <Contact/>
             </Route>
