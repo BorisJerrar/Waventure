@@ -10,9 +10,7 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
   const [matches,setMaches]  = useState(window.innerWidth)
-  const [length,setLength]  = useState(0)
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-  const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
 
   const token = localStorage.getItem('token')
@@ -43,7 +41,6 @@ export default function Categorie({ category, lunchingEpisode }) {
         }
       }
       setSeries(temp)
-      setLength(series.length)
     };
     fetchSeries();
 
@@ -97,7 +94,6 @@ export default function Categorie({ category, lunchingEpisode }) {
                       unsettingHover={() => unsettingHover()}
                       lunchingEpisodeCategorie={lunchingEpisodeCategorie}
                       information={information}
-                      urlimg={urlimg}
                       synopsis={synopsis}
                       hover={hover}
                       informationShow={(e) => informationShow(e)}
