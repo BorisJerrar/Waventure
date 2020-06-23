@@ -2,6 +2,7 @@ import React from "react";
 import CategoryElement from "./CategoryElement";
 import "../style/Categorie.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState, useEffect } from "react";
 import axios from 'axios';
 
 export default function CategoryUnique({
@@ -15,16 +16,14 @@ export default function CategoryUnique({
   url,
   synopsis,
   hover,
-  favorite,
 }) {
 
   const server = process.env.REACT_APP_SERVER_PATH;
+  const [favorite, setFavorite] = useState(false)
   const token = localStorage.getItem('token')
 
-
-
-  const handleFavorite = () => {
-
+  const handleFavorite = (e) => {
+    e.stopPropagation();
     var addConfig = {
       method: 'POST',
       url: `${server}/favorite/${item.serie_id}`,
@@ -44,6 +43,7 @@ export default function CategoryUnique({
       axios(addConfig)
         .then(function (response) {
           console.log(response.data)
+          fetchFavorite();
         })
         .catch(function (error) {
           console.log(error);
@@ -53,18 +53,56 @@ export default function CategoryUnique({
       axios(removeConfig)
         .then(function (response) {
           console.log(response.data)
+          fetchFavorite();
         })
         .catch(function (error) {
           console.log(error);
         })
     }
 
+    var config = {
+      method: 'get',
+      url: `${server}/favorite/${item.serie_id}`,
+      headers: {
+        'x-access-token': token
+      }
+    };
+    const fetchFavorite = async () => {
+      axios(config)
+        .then(function (response) {
+          setFavorite(response.data[0].exists)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
     if (favorite === false) {
       addFavorite();
     } else {
       removeFavorite();
     }
   }
+
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: `${server}/favorite/${item.serie_id}`,
+      headers: {
+        'x-access-token': token
+      }
+    };
+    const fetchFavorite = async () => {
+      axios(config)
+        .then(function (response) {
+          setFavorite(response.data[0].exists)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    fetchFavorite();
+  }, [server, item, token])
+
 
   return (
     <div
@@ -81,11 +119,11 @@ export default function CategoryUnique({
         {favorite === false ? <FontAwesomeIcon
           className="hoverInformationHeart"
           onClick={(e) => handleFavorite(e)}
-          icon={['far', 'heart']} size="2x" /> :
+          icon={['far', 'heart']} size="sm" /> :
           <FontAwesomeIcon
             className="hoverInformationHeart"
             onClick={(e) => handleFavorite(e)}
-            icon={['fas', 'heart']} size="2x" />}
+            icon={['fas', 'heart']} size="sm" />}
 
 
         <CategoryElement
@@ -93,11 +131,10 @@ export default function CategoryUnique({
           visibilityProps={information}
           ellement={synopsis}
         />
-        <img
+        <FontAwesomeIcon
           className="InformationCategory"
           onClick={(e) => informationShow(e)}
-          src={`${urlimg}/information.svg`}
-          alt="information button"
+          icon={['far', 'question-circle']} size="sm"
         />
         <CategoryElement
           classname="hoverInformationTitle"
@@ -119,13 +156,13 @@ export default function CategoryUnique({
           visibilityProps={hover}
           ellement=""
         />
-        <img
+        <FontAwesomeIcon
           style={
             information ? { visibility: "hidden" } : { visibility: "visible" }
           }
           className="playLogoCategory"
-          src={`${urlimg}/btnPlay.svg`}
-          alt="play button"
+          icon={['fas', 'play-circle'] }
+          size="2x"
         />
       </div>
       <img

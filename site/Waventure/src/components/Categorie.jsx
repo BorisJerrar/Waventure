@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
-import axios from 'axios';
 
 export default function Categorie({ category, lunchingEpisode }) {
   const [series, setSeries] = useState([]);
@@ -12,7 +11,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [synopsis, setSynopsis] = useState("");
   const [matches,setMaches]  = useState(window.innerWidth)
   const [length,setLength]  = useState(0)
-  const [favorite, setFavorite] = useState(false)
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
@@ -44,24 +42,6 @@ export default function Categorie({ category, lunchingEpisode }) {
       setLength(series.length)
     };
     fetchSeries();
-    var config = {
-      method: 'get',
-      url: `${server}/favorite/${hoverItem.serie_id}`,
-      headers: {
-        'x-access-token': token
-      }
-    };
-
-    const fetchFavorite = async () => {
-      axios(config)
-        .then(function (response) {
-          setFavorite(response.data[0].exists)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-
 
     const fetchSerieInformation = async () => {
       const response = await fetch(
@@ -72,8 +52,6 @@ export default function Categorie({ category, lunchingEpisode }) {
     };
     if (hover) {
       fetchSerieInformation();
-      fetchFavorite();
-
     }
   }, [category, hover, hoverItem.serie_id, server, token, matches])
 
@@ -115,7 +93,6 @@ export default function Categorie({ category, lunchingEpisode }) {
                       unsettingHover={() => unsettingHover()}
                       lunchingEpisodeCategorie={lunchingEpisodeCategorie}
                       information={information}
-                      favorite={favorite}
                       urlimg={urlimg}
                       synopsis={synopsis}
                       hover={hover}
