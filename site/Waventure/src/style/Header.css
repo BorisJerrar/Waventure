@@ -98,7 +98,6 @@ right: 0;
   }
 .newestLink:hover, .category:hover{
     color: rgb(160, 160, 160);
-    transition: color 0.2s ease-in-out;
   }
   nav ul,
   nav ul li,
@@ -305,6 +304,7 @@ right: 0;
   }
   .categoriesParagraph:hover {
     background-color: #4e4e4e;
+    transform: scale3d(1.1,1.1,1.1);
   }
   li,
   .newestLink {

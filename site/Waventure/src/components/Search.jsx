@@ -18,7 +18,7 @@ useEffect(() => {
     }
 
     fetchUniqueSerie()
-}, [uniqueSearch])
+}, [uniqueSearch, serverPath])
 
 
 

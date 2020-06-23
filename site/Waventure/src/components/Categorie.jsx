@@ -11,7 +11,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
   const [matches,setMaches]  = useState(window.innerWidth)
-  const [lengthSeries, setLengthSeries] = useState("");
   const [favorite, setFavorite] = useState(false)
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const urlimg = process.env.REACT_APP_STATIC_IMG_PATH;

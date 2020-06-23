@@ -1043,9 +1043,7 @@ VALUES
     ('Comédie'),
     ('Action'),
     ('Decalée'),
-    ('Classique'),
-    ('Exclusivité');
-
+    ('Classique');
 
 INSERT INTO serie_category
     (serie_id, category_id)

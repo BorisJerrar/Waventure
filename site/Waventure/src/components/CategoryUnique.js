@@ -2,7 +2,6 @@ import React from "react";
 import CategoryElement from "./CategoryElement";
 import "../style/Categorie.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect } from "react";
 import axios from 'axios';
 
 export default function CategoryUnique({
@@ -60,7 +59,7 @@ export default function CategoryUnique({
         })
     }
 
-    if (favorite == false) {
+    if (favorite === false) {
       addFavorite();
     } else {
       removeFavorite();
@@ -79,7 +78,7 @@ export default function CategoryUnique({
           lunchingEpisodeCategorie(item);
         }}
       >
-        {favorite == false ? <FontAwesomeIcon
+        {favorite === false ? <FontAwesomeIcon
           className="hoverInformationHeart"
           onClick={(e) => handleFavorite(e)}
           icon={['far', 'heart']} size="2x" /> :
