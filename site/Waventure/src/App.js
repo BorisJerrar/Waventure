@@ -8,6 +8,7 @@ import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Search from "./components/Search.jsx";
+import Contact from "./components/Contact.jsx";
 
 function App() {
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
@@ -20,7 +21,10 @@ function App() {
   const [toggleWrapper, setToggleWrapper] = useState(false);
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({})
- const [titleArray, setTitleArray] = useState([]);
+  const [toggle, setToggle] = useState(false)
+  const [titleArray, setTitleArray] = useState([]);
+
+  console.log(localStorage.getItem('token'))
 
  const receving = () => {
    setPlaying(false)
@@ -40,6 +44,11 @@ function App() {
     } else if (toggleWrapper) {
       setToggleWrapper(!toggleWrapper);
     }
+
+    if(toggle){
+      setToggle(false)
+    }
+
   };
   const lunchingEpisode = (serie_id) => {
     setPlaying(true);
@@ -63,6 +72,8 @@ function App() {
             titleArray={titleArray}
             setTitleArray={setTitleArray}
             handleSearchApp={(result)=>handleSearchApp(result)}
+            toggle={toggle}
+            setToggle={setToggle}
           />
           <div
             className={playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
@@ -95,9 +106,14 @@ function App() {
               />
           </div>
           <Switch>
+            <Route path='/contact'>
+              <Contact/>
+            </Route>
+
             <Route path="/search">
               <Search
               uniqueSearch={uniqueSearch}
+              lunchingEpisode={lunchingEpisode}
               />
             </Route>
             <Route path="/newest">

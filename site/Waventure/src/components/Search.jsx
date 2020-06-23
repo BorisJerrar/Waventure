@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
+import "../style/search.css";
 
-export default function Search({uniqueSearch}) {
+export default function Search({uniqueSearch, lunchingEpisode }) {
 const serverPath = process.env.REACT_APP_SERVER_PATH;
 const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 const [uniqueSerie, setUniqueSerie] = useState([])
@@ -8,12 +9,10 @@ const [uniqueSerie, setUniqueSerie] = useState([])
 console.log(uniqueSearch);
 
 
-
 useEffect(() => {
     const fetchUniqueSerie = async() =>{
-        const response = await fetch (`${serverPath}/serieSynopsis/${uniqueSearch.serie_id}`)
+        const response = await fetch (`${serverPath}/serieSynopsis?search=%${uniqueSearch}%`)
         const data = await response.json()
-        console.log(...data)
         setUniqueSerie(data)
     }
 
@@ -22,10 +21,26 @@ useEffect(() => {
 
 
 
+
     return (
-        <div>
-            <h3>{uniqueSerie && uniqueSerie[0] && uniqueSerie[0].title? uniqueSerie[0].title:""}</h3>
-            <img src={uniqueSerie && uniqueSerie[0] && uniqueSerie[0].image?`${urlimg}/${uniqueSerie[0].image}`: ""} alt=""/>
+        <div className="bodySearch">
+            {uniqueSerie.map((each, key)=>{
+                return(
+                   <div onClick={()=>lunchingEpisode(each.serie_id)} className="uniqueCard" key={key}>
+            <img src={`${urlimg}/${each.image}`} alt=""/>
+            <div>
+                <h5>{each.title}</h5>
+                <p>{each.body}</p>
+            </div>
+            </div> 
+                )
+            
+            })}
+           
+            
+        
         </div>
+        
+        
     )
 }

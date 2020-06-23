@@ -5,6 +5,7 @@
   align-items: center;
   text-align: center;
   background-color: #242424;
+  min-height: 100vh;
 }
 
 .App-logo {
