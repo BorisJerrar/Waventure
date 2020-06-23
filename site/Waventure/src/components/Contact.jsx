@@ -1,36 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import "../style/Contact.css";
-import axios from 'axios'
+import MainProfilInfo from './MainInfoProfil'
 
 export default function Contact() {
     const axios = require('axios')
-    const [user, setUser] = useState([])
     const [fileAudio, setFileAudio] = useState(null)
-    const token =  localStorage.token
-    const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-    const server = process.env.REACT_APP_SERVER_PATH;
-
-    const config = {
-        method: 'get',
-        url: 'http://localhost:4000/account',
-        headers: {
-            'x-access-token': token
-        }
-    }
-
-    const fetchAccount = () => {
-       axios(config)
-    .then((response)=>{
-        console.log(response.data);
-        setUser(response.data)
-    })
-    .catch((error)=>{
-        console.log(error);
-        
-    }) 
-    }
-
    
+  
     const handleSoundUpload = e =>{
         setFileAudio(e.target.files[0])
     }
@@ -48,21 +24,12 @@ export default function Contact() {
 }
 
 
-    useEffect(()=>{
-       fetchAccount()
-    },[])
+
 
     return (
+        
         <div className="contact">
-        <div className="userInfo">
-            <img src={user && user[0] && user[0].avatar_id ?`${urlimg}/Avatar0${user[0].avatar_id}.jpg`: ""} alt=""/>
-            <div>
-            <p>{user && user[0] && user[0].first_name? user[0].first_name + " " + user[0].last_name: ""}</p>
-            <p>{user && user[0] && user[0].username? user[0].username:""}</p>
-            <p>{user && user[0] && user[0].email? user[0].email: ""}</p>
-            </div>
-            
-        </div>
+            <MainProfilInfo/>
         <div className="favoriteSaga">
             <p className="favoriteSagaTitle">Pourquoi ma saga favorite n’est pas sur votre site?</p>
             <p className="favoriteSagaParagraph" >Lorem ipsum dolor sit amet consectetur adipisicing elit. In doloribus magni eius laudantium praesentium, 
