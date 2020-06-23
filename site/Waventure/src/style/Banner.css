@@ -23,21 +23,6 @@
   opacity: 0.8;
 }
 
-.btnPlay {
-  cursor: pointer;
-  position: absolute;
-  right: 20px;
-  bottom: 15px;
-  width: 40px;
-  height: 40px;
-  opacity: 0.5;
-  transition: ease-in-out opacity 0.1s;
-}
-
-.wedetteCover:hover .btnPlay {
-  opacity: 0.8;
-}
-
 .wedetteLogoContainer {
   display: flex;
   position: absolute;
@@ -127,12 +112,12 @@ transform: matrix(1.1, 0, 0, 1.1, 0, 0)
     right: 40px;
     bottom: 35px;
     width: 60px;
-    opacity: 0.5;
+    opacity: 0.8;
     transition: ease-in-out opacity 0.1s;
   }
   
   .wedetteCover:hover .btnPlay {
-    opacity: 0.8;
+    opacity: 1;
   }
   
   .wedetteLogoContainer {

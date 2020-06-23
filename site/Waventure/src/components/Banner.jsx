@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import "../style/Banner.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function Banner({lunchingEpisode}) {
+export default function Banner({ lunchingEpisode }) {
 
     const [wedette, setWedette] = useState([]);
     const [synopsis, setSynopsis] = useState([]);
@@ -23,28 +24,32 @@ export default function Banner({lunchingEpisode}) {
         fetchSynopsis()
     }, [])
     const lunchingEpisodeBanner = (serie) => {
-    lunchingEpisode(serie.serie_id)
+        lunchingEpisode(serie.serie_id)
     }
-    
+
     return (
         <div className={"wedetteContainer"}>
-            <div className="wedetteCover" onClick={()=> lunchingEpisodeBanner(wedette)}>
-              <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : '' }`} alt="" /> 
-             <img src="./img/btnPlay.svg" className="btnPlay" alt=""/>  
+            <div className="wedetteCover" onClick={() => lunchingEpisodeBanner(wedette)}>
+                <img className="wedetteCoverImage" src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : ''}`} alt="" />
+                <FontAwesomeIcon
+                    className="btnPlay"
+                    icon={['far', 'play-circle']}
+                    size="4x"
+                />
             </div>
             <div className="wedetteLogoContainer">
-            <span><img src="./img/logoWedette.svg" alt="W"/></span>
-            <h2 className="wedetteIndicator">edette</h2>
+                <span><img src="./img/logoWedette.svg" alt="W" /></span>
+                <h2 className="wedetteIndicator">edette</h2>
             </div>
-            
+
             <div className="wedetteDescription">
-                
+
                 <h3 className="wedetteTitle">{wedette.title}</h3>
                 <p className="wedetteSynopsis">
                     {synopsis.body}
                 </p>
             </div>
-            <img className="backgroundImg" src={`${url}/${wedette && wedette.image_bg?wedette.image_bg:''}`} alt={`Bg_image ${wedette && wedette.title ?wedette.title:''}`} />
+            <img className="backgroundImg" src={`${url}/${wedette && wedette.image_bg ? wedette.image_bg : ''}`} alt={`Bg_image ${wedette && wedette.title ? wedette.title : ''}`} />
         </div>
     )
 }
