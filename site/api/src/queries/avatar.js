@@ -13,7 +13,7 @@ const getAvatarByUser = (request, response) => {
 
   const token = request.headers['x-access-token'];
   const decoded = jwt.verify(token, process.env.SECRET)
-    db.query(`SELECT account.avatar_id,
+    db.query(`SELECT
     avatar.avatar_path
     FROM account 
     INNER JOIN avatar ON account.avatar_id = avatar.avatar_id
