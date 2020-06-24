@@ -4,6 +4,7 @@ import Categorie from './Categorie'
 export default function Catalog({lunchingEpisode}) {
 const [categories, setCategories] = useState([])
 
+
 const fetchCategories = async() =>{
     const response = await fetch (`http://localhost:4000/category`)
     const data = await response.json()

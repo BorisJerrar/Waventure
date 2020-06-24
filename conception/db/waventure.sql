@@ -126,9 +126,11 @@ CREATE TABLE LISTEN
 (
     listen_id serial NOT NULL PRIMARY KEY,
     account_id UUID,
+    serie_id serial,
     episode_id serial,
     duration time,
     FOREIGN KEY (account_id) REFERENCES account (account_id),
+    FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
     FOREIGN KEY (episode_id) REFERENCES episode (episode_id)
 );
 

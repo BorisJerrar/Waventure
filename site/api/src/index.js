@@ -1255,7 +1255,7 @@ app.delete("/favorite/:serie_id", Auth.verifyToken, favoriteQueries.deleteFavori
  *          '200':
  *              description: results rows
  */
-app.get("/listen", listenQueries.getListen);
+app.post("/listen", Auth.verifyToken, listenQueries.getListen);
 
 /**
  * @swagger
@@ -1276,32 +1276,9 @@ app.get("/listen", listenQueries.getListen);
  *          '200':
  *              description: successful operation
  */
-app.get("/listen/:listen_id", listenQueries.getListenById);
+app.get("/listenVerificator/", Auth.verifyToken, listenQueries.getListenById);
 
 /**
- * @swagger
- * /listen:
- *  post:
- *      tags:
- *          - listen
- *      description: Use to create listen
- *      consumes:
- *          - application/json
- *      parameters:
- *          - name: account_id
- *            in: query
- *            type: integer
- *          - name: episodeid
- *            in: query
- *            type: integer
- *          - name: duration
- *            in: query
- *            type: string
- *      responses:
- *          '200':
- *              description: results rows
- */
-app.post("/listen", listenQueries.createListen);
 
 /**
  * @swagger

@@ -30,6 +30,7 @@ const getFavoritesInfo = (request, response) => {
     })
 }
 
+
 const getFavoritesById = (request, response) => {
 
     const serie_id = parseInt(request.params.serie_id)

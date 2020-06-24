@@ -59,25 +59,25 @@ export default function Header({
    * Fetch user avatar
    * @param token 
    */
-  const fetchUserAvatar = async () => {
-    var config = {
-      method: 'get',
-      url: `${serveurPath}/avatarByUser`,
-      headers: {
-        'x-access-token': token
-      }
-    };
-    axios(config)
-      .then(function (response) {
-        setUserAvatar(response.data[0].avatar_path)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
   useEffect(() => {
+    const fetchUserAvatar = async () => {
+      var config = {
+        method: 'get',
+        url: `${serveurPath}/avatarByUser`,
+        headers: {
+          'x-access-token': token
+        }
+      };
+      axios(config)
+        .then(function (response) {
+          setUserAvatar(response.data[0].avatar_path)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
     fetchUserAvatar();
-  }, [])
+  }, [serveurPath, token])
 
 
   const getInput = (e) => {

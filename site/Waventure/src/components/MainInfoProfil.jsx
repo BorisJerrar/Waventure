@@ -6,29 +6,27 @@ export default function MainInfoProfil() {
     const token =  localStorage.token
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
-    const config = {
-        method: 'get',
-        url: 'http://localhost:4000/account',
-        headers: {
-            'x-access-token': token
-        }
-    }
-
-    const fetchAccount = () => {
-       axios(config)
-    .then((response)=>{
-        console.log(response.data);
-        setUser(response.data)
-    })
-    .catch((error)=>{
-        console.log(error);
-        
-    }) 
-    }
-
     useEffect(()=>{
+        const config = {
+            method: 'get',
+            url: 'http://localhost:4000/account',
+            headers: {
+                'x-access-token': token
+            }
+        }
+        const fetchAccount = () => {
+            axios(config)
+         .then((response)=>{
+             console.log(response.data);
+             setUser(response.data)
+         })
+         .catch((error)=>{
+             console.log(error);
+             
+         }) 
+         }
         fetchAccount()
-     },[])
+     },[axios, token])
 
     return (
         <div className="userInfo">

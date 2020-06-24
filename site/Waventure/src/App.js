@@ -35,6 +35,7 @@ function App() {
    setPlaying(false)
    setShowingPlayer(false)
    setSerieId(-1)
+   console.log(localStorage.getItem('token'));
  }
  const recevingReducer = () => {
   setLearnMore(false)
@@ -70,6 +71,7 @@ function App() {
   if (!localStorage.getItem('token')) {
     return <Redirect to="/home" />
   }
+  
   return (
     <Router>
       <div className="App" onClick={triggeringCategory}>
@@ -160,7 +162,7 @@ function App() {
                         transform: "matrix(1, 0, 0, 1, 0, 0)",
                       }
                     : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
+                        transform: "matrix(1, 0, 0, 1, 0, 0)",
                       }
                 }
               >
