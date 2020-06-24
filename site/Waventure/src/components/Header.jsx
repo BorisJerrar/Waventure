@@ -146,7 +146,11 @@ export default function Header({
               </div>
             </li>
             <li><Link to='/newest' className='newestLink'>Nouveautés</Link></li>
+<<<<<<< HEAD
             <li className='newestLink'>Coup de coeur</li>
+=======
+            <li><Link to='/favorite' className='newestLink'>Coup de coeur</Link></li>
+>>>>>>> userFavorite
           </ul>
         </nav>
       </div>
