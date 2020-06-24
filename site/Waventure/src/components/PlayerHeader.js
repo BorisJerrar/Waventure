@@ -26,15 +26,15 @@ export default function PlayerHeader({
   };
   let increm = 0;
   return (
-    <div className="playerHeader" style={reducer? {position: "absolute",margin: "auto", left: 0, top: 0}:{"":""}}>
-      <FontAwesomeIcon icon={["fas", "times"]} className='cancerler' size="4x" onClick={closingPlayer} style={reducer? {position: "absolute",margin: "auto", right: '-8vw', top: "10px"}:{"":""}}/>
-      <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '-6vw', top: "-10px", transform: "rotate(180deg)"}:{"":""}}/>
+    <div className="playerHeader" style={reducer? {position: "absolute",margin: "auto", left: 0, top: 0, width: "100%"}:{"":""}}>
+      <FontAwesomeIcon icon={["fas", "times"]} className='cancerler' size="4x"  onClick={closingPlayer} style={reducer? {position: "absolute",margin: "auto", right: '1vw', top: "10px", maxWidth:"15px"}:{"":""}}/>
+      <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '3vw', top: "-5px", transform: "rotate(180deg)", maxWidth:"15px"}:{"":""}}/>
       <p
         className="playerHeaderInfo"
         style={
           synopsis || learnMore || episodes
             ? { fontSize: "12px" }
-            :  reducer?{ fontSize: "17px"}
+            :  reducer?{ fontSize: "12px"}
             : { fontSize: "21px" }
         }
       >

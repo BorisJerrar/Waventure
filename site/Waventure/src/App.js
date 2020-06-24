@@ -85,15 +85,20 @@ function App() {
             setToggle={setToggle}
           />
           <div
-            className={playing?"playerTrigger fixing":"playerTrigger fixing"}
+            className={reducer ?"playerTriggerNoAnnim":"playerTrigger fixing"}
             style={
-              showingPlayer
+              showingPlayer && !reducer
                 ? {
                   zIndex: 200000,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
                     opacity: 1
                   }
-                : {
+                : showingPlayer && reducer?{zIndex: 200000, position: "fixed", bottom:"40px", right: "40px", width:"360px"}:
+                 reducer && !showingPlayer?{                  
+                   zIndex: -1,
+                   position: "fixed", bottom:"40px", right: "-25vw", width:"360px",
+                  opacity: 0}:
+                {
                   zIndex: -1,
                     transform: "matrix(1, 0, 0, 1, 0, -270)",
                     height: 0,
@@ -147,7 +152,7 @@ function App() {
             </Route>
             <Route path="/main">
               <div
-                className="playerTriggerNoAnnim" style={{marginTop:"0px"}}/* style={reducer && showingPlayer?{marginTop:"0px"}: showingPlayer?{marginTop:"0px"}:reducer && showingPlayer === false?{marginTop:"-100px"}:{marginTop:"-270px"}} */
+                className="playerTrigger" /* style={reducer && showingPlayer?{marginTop:"0px"}: showingPlayer?{marginTop:"0px"}:reducer && showingPlayer === false?{marginTop:"-100px"}:{marginTop:"-270px"}} */
               >
                 <Banner
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}

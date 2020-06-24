@@ -85,23 +85,39 @@ export default function Player({
     playerRef.current.container &&
     reducer
   ) {
+    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[0].style = "display: none"
+    for(let i = 1; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes.length; i++)
+    {
+    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[i].style = "height: 10px"
+  }
+
     playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].style =
-      "display: none;";
+      "position: absolute; right: 15vw; bottom: 5px";
     playerRef.current.container.current.childNodes[2].childNodes[1].style =
-      "position: absolute; right: 0vw; top: 0; bottom: 0;";
-    playerRef.current.container.current.childNodes[2].firstElementChild.style =
-      "display: none;";
+      "position: absolute; right: 10px; bottom: -55px; width: 50%";
+      for(let i = 0; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes.length; i++){
+ playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes[i].childNodes[0].style= "width: 12px; height: 12px"
+}
+ 
   } else if (
     playerRef &&
     playerRef.current &&
     playerRef.current.progressBar &&
     !reducer
   ) {
-    playerRef.current.container.current.childNodes[2].firstElementChild.style =
-      "";
+    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[0].style = ""
+    for(let i = 1; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes.length; i++)
+    {
+    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[i].style = ""
+  }
+
     playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].style =
       "";
-    playerRef.current.container.current.childNodes[2].childNodes[1].style = "";
+    playerRef.current.container.current.childNodes[2].childNodes[1].style =
+      "";
+      for(let i = 0; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes.length; i++){
+ playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes[i].childNodes[0].style= ""
+}
   }
 
   return (
@@ -111,7 +127,7 @@ export default function Player({
         episodes
           ? { minHeight: "370px", maxHeight: "370px" }
           : reducer
-          ? { minHeight: "100px", maxHeight: "100px"}
+          ? { minHeight: "200px", maxHeight: "200px"}
           : { minHeight: "270px", maxHeight: "270px" }
       }
     >
@@ -130,10 +146,10 @@ export default function Player({
         style={
           reducer
             ? {
-                minHeight: "100px",
-                minWidth: "100px",
-                maxHeight: "100px",
-                maxWidth: "100px",
+                minHeight: "120px",
+                minWidth: "120px",
+                maxHeight: "120px",
+                maxWidth: "120px",
               }
             : {}
         }
