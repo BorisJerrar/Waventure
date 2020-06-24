@@ -183,5 +183,16 @@
     height: 30px !important;
     margin: 20px;
     cursor: pointer;
+    filter:drop-shadow(3px 3px 3px rgb(0, 0, 0))
+  }
+  .reducer{
+    position: absolute;
+    top: 0;
+    right: 40px;
+    width: 50px !important;
+    height: 50px !important;
+    margin: 20px;
+    cursor: pointer;
+    filter:drop-shadow(3px 3px 3px rgb(0, 0, 0))
   }
   }

@@ -10,12 +10,12 @@ export default function Banner({ lunchingEpisode }) {
 
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
     const fetchWedette = async () => {
-        const response = await fetch(`http://localhost:4000/serie/6`)
+        const response = await fetch(`http://localhost:4000/serie/1`)
         const data = await response.json()
         setWedette(data[0])
     }
     const fetchSynopsis = async () => {
-        const response = await fetch(`http://localhost:4000/synopsis?serie_id=6`)
+        const response = await fetch(`http://localhost:4000/synopsis?serie_id=1`)
         const data = await response.json()
         setSynopsis(data[0])
     }

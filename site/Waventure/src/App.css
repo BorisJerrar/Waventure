@@ -22,6 +22,9 @@
   transition: all .3s ease;
   width: 100%;
 }
+.playerTriggerNoAnnim{
+  width: 100%;
+}
 .flexing{
   display: flex;
   flex-direction: column;
@@ -39,5 +42,5 @@
 .fixing{
   position: sticky !important;
   top: 0;
-  transition: .3s ease;
+  transition: all .3s ease;
 }

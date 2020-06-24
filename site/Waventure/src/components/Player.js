@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
@@ -15,18 +15,27 @@ export default function Player({
    setToggleWrapper,
    setSagaEpisodeSaisonInfo,
    sagaEpisodeSaisonInfo,
-   sending
+   sending,
+   sendingReducer,
+   reducer,
+   learnMore,
+   setLearnMore,
+   episodes,
+   setEpisodes,
+   synopsis,
+   setSynopsis
   }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
-  const [synopsis, setSynopsis] = useState(false);
-  const [episodes, setEpisodes] = useState(false);
-  const [learnMore, setLearnMore] = useState(false);
+
   const [urlAudio, setUrlAudio] = useState(``);
   const receving = () => {
-setUrlAudio("")
+    setUrlAudio(``)
     sending()
+  }
+  const recevingReducer = () => {
+    sendingReducer()
   }
   useEffect(() => {
     const fetchingEpisode = async () => {
@@ -62,13 +71,22 @@ setUrlAudio("")
       return index;
     }
   };
+  const testRef = useRef()
+  if(testRef && testRef.current && testRef.current.container){  console.log(testRef.current.container.current.childNodes[2].childNodes[1])}
+  
+  if(testRef && testRef.current && testRef.current.container && reducer){testRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].style = "display: none;"}
+  if(testRef && testRef.current && testRef.current.container && !reducer){testRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].style = ""}
+  
+if(testRef && testRef.current && testRef.current.progressBar && reducer){testRef.current.container.current.childNodes[2].firstElementChild.style = "display: none;"}
+if(testRef && testRef.current && testRef.current.progressBar && !reducer){testRef.current.container.current.childNodes[2].firstElementChild.style = ""}
+  
   return (
     <div
       className="playerWarper"
       style={
         episodes
           ? { minHeight: "370px", maxHeight: "370px" }
-          : { minHeight: "270px", maxHeight: "270px" }
+          : reducer?{ minHeight: "100px", maxHeight: "100px" }: {minHeight: "270px",maxHeight: "270px"}
       }
     >
       <img
@@ -82,6 +100,7 @@ setUrlAudio("")
             : "Cover Waventure"
         }
         className="mainCover"
+        style={reducer?{ minHeight: "100px",minWidth: "100px", maxHeight: "100px", maxWidth: "100px"}: {}}
       />
       <AudioPlayer
         customIcons={{
@@ -122,8 +141,10 @@ setUrlAudio("")
          sagaInfo={sagaInfo} 
          setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
          sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
-         setIndex={setIndex} 
+         setIndex={setIndex}
+         reducer={reducer}
          sending={()=>{receving()}}
+         sendingReducer={()=>{recevingReducer()}}
          />
         }
         footer={<PlayerFooter 
@@ -136,6 +157,7 @@ setUrlAudio("")
           toggleWrapper={toggleWrapper}
           setToggleWrapper={setToggleWrapper}
           sagaInfo={sagaInfo}
+          reducer={reducer}
           setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
           sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
           />}
@@ -147,7 +169,8 @@ setUrlAudio("")
         onClickNext={nextSaga}
         onClickPrevious={prevSaga}
         onEnded={nextSaga}
-
+        autoPlayAfterSrcChange={true}
+        ref={testRef}
       />    
     </div>
   );

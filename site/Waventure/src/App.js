@@ -24,15 +24,20 @@ function App() {
   const [uniqueSearch, setUniqueSearch] = useState({})
   const [toggle, setToggle] = useState(false)
   const [titleArray, setTitleArray] = useState([]);
-
-  console.log(localStorage.getItem('token'))
-
+  const [synopsis, setSynopsis] = useState(false);
+  const [episodes, setEpisodes] = useState(false);
+  const [learnMore, setLearnMore] = useState(false);
  const receving = () => {
    setPlaying(false)
    setShowingPlayer(false)
    setSerieId(-1)
-   setReducer(false)
  }
+ const recevingReducer = () => {
+  setLearnMore(false)
+  setEpisodes(false)
+  setSynopsis(false)
+  setReducer(!reducer)
+}
   const handleSearchApp = (result)=>{
       setUniqueSearch(result)
   }
@@ -77,9 +82,9 @@ function App() {
             setToggle={setToggle}
           />
           <div
-            className={playing?"playerTrigger fixing":"playerTrigger"}
+            className={playing?"playerTrigger fixing":"playerTrigger fixing"}
             style={
-              showingPlayer || reducer
+              showingPlayer
                 ? {
                   zIndex: 200000,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
@@ -104,6 +109,13 @@ function App() {
                 setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
                 sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
                 sending={()=>{receving()}}
+                sendingReducer={()=>{recevingReducer()}}
+                setSynopsis={setSynopsis}
+                synopsis={synopsis}
+                setEpisodes={setEpisodes}
+                episodes={episodes}
+                setLearnMore={setLearnMore}
+                learnMore={learnMore}
               />
           </div>
           <Switch>
@@ -123,15 +135,6 @@ function App() {
             <Route path="/newest">
               <div
                 className="playerTrigger"
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
-                      }
-                }
               >
                 <Newest
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
@@ -140,16 +143,7 @@ function App() {
             </Route>
             <Route path="/main">
               <div
-                className="playerTrigger improve"
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
-                      }
-                }
+                className="playerTriggerNoAnnim" style={reducer && showingPlayer?{marginTop:"0px"}: showingPlayer?{marginTop:"0px"}:reducer && showingPlayer === false?{marginTop:"-100px"}:{marginTop:"-270px"}}
               >
                 <Banner
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
@@ -157,15 +151,6 @@ function App() {
               </div>
               <div
                 className={"playerTrigger catalogApp"}
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
-                      }
-                }
               >
                 <Catalog
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
@@ -177,15 +162,6 @@ function App() {
                 <Route path={`/${item.name}`} key={index}>
                   <div
                     className="playerTrigger flexing"
-                    style={
-                      showingPlayer || reducer
-                        ? {
-                            transform: "matrix(1, 0, 0, 1, 0, 0)",
-                          }
-                        : {
-                            transform: "matrix(1, 0, 0, 1, 0, -270)",
-                          }
-                    }
                   >
                     <HeaderCategory
                       categoryName={item.name}

@@ -11,10 +11,10 @@
     height: 75px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.274);
     user-select: none;
-    z-index: 1000;
+    z-index: 9999999;
     font-size: 14px;
   }
-  h1{
+  h1 {
     visibility: hidden;
   }
   .leftHeaderSide {
@@ -38,7 +38,7 @@
     padding: 5px;
     border-radius: 4px;
   }
-  .buttonSearch{
+  .buttonSearch {
     background-color: #fff;
     border: none;
     width: 32px;
@@ -47,7 +47,7 @@
     right: 3%;
     transition: background-color 0.2s ease-in-out;
   }
-  .buttonSearch>button{
+  .buttonSearch > button {
     background-color: #fff;
     border: none;
     width: 32px;
@@ -70,11 +70,11 @@
     height: 40px;
   }
   .waventureLogoHeader img {
-margin: auto;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     position: absolute;
   }
   .LinkHome {
@@ -106,13 +106,15 @@ right: 0;
   nav {
     width: 60%;
   }
-  .newestLink, .category {
+  .newestLink,
+  .category {
     user-select: none;
     text-decoration: none;
     color: #fff;
     transition: color 0.2s ease-in-out;
   }
-.newestLink:hover, .category:hover{
+  .newestLink:hover,
+  .category:hover {
     color: rgb(160, 160, 160);
   }
   nav ul,
@@ -159,6 +161,7 @@ right: 0;
     left: -7vw;
     max-height: 30vh;
     overflow-y: scroll;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
   }
   .searchFetch {
     position: absolute;
@@ -194,7 +197,7 @@ right: 0;
     cursor: pointer;
     width: 6%;
   }
-  .firstArrow{
+  .firstArrow {
     display: none;
   }
   .avatarBox {
@@ -214,9 +217,10 @@ right: 0;
     width: 35vw;
     background-color: #1b1b1b;
     cursor: pointer;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
   }
 }
-@media (min-width:763px) and (max-width: 990px) {
+@media (min-width: 763px) and (max-width: 990px) {
   header {
     font-family: "Pontano Sans", sans-serif;
     background-color: #242424;
@@ -229,10 +233,10 @@ right: 0;
     height: 75px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.274);
     user-select: none;
-    z-index: 1000;
+    z-index: 9999999;
     font-size: 14px;
   }
-  h1{
+  h1 {
     visibility: hidden;
   }
   .leftHeaderSide {
@@ -256,7 +260,7 @@ right: 0;
     padding: 5px;
     border-radius: 4px;
   }
-  .buttonSearch>button {
+  .buttonSearch > button {
     height: 32px;
     background-color: #fff;
     border: none;
@@ -266,7 +270,7 @@ right: 0;
     right: 3%;
     transition: background-color 0.2s ease-in-out;
   }
-  .buttonSearch{
+  .buttonSearch {
     background-color: #fff;
     border: none;
     width: 32px;
@@ -276,10 +280,9 @@ right: 0;
     transition: background-color 0.2s ease-in-out;
   }
 
-  .butttonSearch img{
+  .butttonSearch img {
     opacity: 0;
   }
-
 
   .searchingBar button:active {
     background-color: rgb(214, 214, 214);
@@ -294,11 +297,11 @@ right: 0;
     height: 40px;
   }
   .waventureLogoHeader img {
-margin: auto;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     position: absolute;
   }
   .LinkHome {
@@ -330,13 +333,15 @@ right: 0;
   nav {
     width: 55%;
   }
-  .newestLink, .category {
+  .newestLink,
+  .category {
     user-select: none;
     text-decoration: none;
     color: #fff;
     transition: color 0.2s ease-in-out;
   }
-.newestLink:hover, .category:hover{
+  .newestLink:hover,
+  .category:hover {
     color: rgb(160, 160, 160);
   }
   nav ul,
@@ -349,7 +354,7 @@ right: 0;
   }
   .categoriesParagraph:hover {
     background-color: #4e4e4e;
-    transform: scale3d(1.1,1.1,1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
   }
   li,
   .newestLink {
@@ -380,7 +385,7 @@ right: 0;
     position: absolute;
     top: 58px;
     left: 0;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.274);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
   }
   .searchFetch {
     position: absolute;
@@ -433,17 +438,9 @@ right: 0;
     width: 300%;
     background-color: #1b1b1b;
     cursor: pointer;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
   }
 }
-
-/* 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... } */
-
-
 @media (min-width: 991px) {
   header {
     font-family: "Pontano Sans", sans-serif;
@@ -457,7 +454,7 @@ right: 0;
     height: 75px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.274);
     user-select: none;
-    z-index: 1000;
+    z-index: 9999999;
   }
   .leftHeaderSide {
     display: flex;
@@ -481,10 +478,10 @@ right: 0;
     border-radius: 4px;
   }
 
-  .searchingBar input:focus{
+  .searchingBar input:focus {
     outline-style: none;
   }
-  
+
   .searchingBar button {
     height: 32px;
     background-color: #fff;
@@ -499,7 +496,7 @@ right: 0;
   .searchingBar button:active {
     background-color: rgb(214, 214, 214);
   }
-  .buttonSearch{
+  .buttonSearch {
     background-color: #fff;
     border: none;
     width: 32px;
@@ -545,7 +542,8 @@ right: 0;
     color: #fff;
     transition: color 0.2s ease-in-out;
   }
-  .newestLink:hover, .category:hover{
+  .newestLink:hover,
+  .category:hover {
     color: rgb(160, 160, 160);
     transition: color 0.2s ease-in-out;
   }
@@ -559,7 +557,7 @@ right: 0;
   }
   .categoriesParagraph:hover {
     background-color: #4e4e4e;
-    transform: scale3d(1.1,1.1,1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
   }
   li,
   .newestLink {
@@ -591,7 +589,7 @@ right: 0;
     position: absolute;
     top: 58px;
     left: 0;
-    transition: 0.2s ease-in-out all;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
   }
   .searchFetch {
     position: absolute;
@@ -644,8 +642,9 @@ right: 0;
     width: 300%;
     background-color: #1b1b1b;
     cursor: pointer;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
   }
-  .amergment{
+  .amergment {
     margin-bottom: 270px;
-    }
+  }
 }
