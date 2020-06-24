@@ -10,7 +10,7 @@ function Favorite(props) {
     useEffect(() => {
         const getFavoriteInfo = () => {
             var config = {
-                method: 'POST',
+                method: 'get',
                 url: 'http://localhost:4000/favoriteInfo',
                 headers: {
                     'x-access-token': token
