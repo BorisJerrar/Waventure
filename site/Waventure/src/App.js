@@ -28,6 +28,9 @@ function App() {
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
  const receving = () => {
+  setLearnMore(false)
+  setEpisodes(false)
+  setSynopsis(false)
    setPlaying(false)
    setShowingPlayer(false)
    setSerieId(-1)
@@ -93,6 +96,7 @@ function App() {
                 : {
                   zIndex: -1,
                     transform: "matrix(1, 0, 0, 1, 0, -270)",
+                    height: 0,
                     opacity: 0
                   }
             }
@@ -143,7 +147,7 @@ function App() {
             </Route>
             <Route path="/main">
               <div
-                className="playerTriggerNoAnnim" style={reducer && showingPlayer?{marginTop:"0px"}: showingPlayer?{marginTop:"0px"}:reducer && showingPlayer === false?{marginTop:"-100px"}:{marginTop:"-270px"}}
+                className="playerTriggerNoAnnim" style={{marginTop:"0px"}}/* style={reducer && showingPlayer?{marginTop:"0px"}: showingPlayer?{marginTop:"0px"}:reducer && showingPlayer === false?{marginTop:"-100px"}:{marginTop:"-270px"}} */
               >
                 <Banner
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}

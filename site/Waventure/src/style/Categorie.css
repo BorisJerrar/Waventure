@@ -47,6 +47,7 @@
   .imageSlideShow {
     width: 100%;
     height: 100%;
+    will-change: filter;
     transition: ease-in 0.2s filter;
   }
   .hoverInformation:hover + .imageSlideShow {
@@ -66,6 +67,7 @@
     height: 18px !important;
     text-align: left;
     z-index: 110;
+    will-change: opacity;
     transition: opacity 0.3s ease-in-out;
   }
   .hoverInformation {
@@ -80,6 +82,7 @@
     height: 100%;
     transition: ease-in 0.2s opacity;
     opacity: 0;
+    will-change: opacity;
   }
   .hoverInformation:hover {
     opacity: 1;
@@ -104,6 +107,7 @@
     user-select: none;
     cursor: pointer;
     transition: transform 0.2s ease-in;
+    will-change: opacity;
   }
   .hoverInformationContainer:hover {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
@@ -122,6 +126,7 @@
     height: 18px;
     z-index: 999;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationEpisode {
     margin: auto;
@@ -134,6 +139,7 @@
     height: 25px;
     text-align: left;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationAuthor {
     margin: auto;
@@ -147,6 +153,7 @@
     height: 25px;
     text-align: left;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationTitle {
     position: absolute;
@@ -162,6 +169,7 @@
     height: 25px;
     width: 100%;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationSynopsis {
     display: flex;
@@ -179,6 +187,7 @@
     overflow-y: scroll;
     font-weight: 300;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .watchTime {
     width: 90%;
@@ -191,6 +200,7 @@
     right: 0px;
     z-index: 100;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .watchTime::after {
     content: "";
@@ -290,6 +300,7 @@ background: rgba(201, 201, 201, 0) !important;
     width: 100%;
     height: 100%;
     transition: ease-in 0.2s filter;
+    will-change: filter;
   }
   .hoverInformation:hover + .imageSlideShow {
     filter: blur(5px);
@@ -306,6 +317,7 @@ background: rgba(201, 201, 201, 0) !important;
     width: 100%;
     height: 100%;
     transition: ease-in 0.2s opacity;
+    will-change: opacity;
     opacity: 0;
   }
   .hoverInformation:hover {
@@ -331,6 +343,7 @@ background: rgba(201, 201, 201, 0) !important;
     user-select: none;
     cursor: pointer;
     transition: transform 0.2s ease-in;
+    will-change: transform;
   }
   .hoverInformationContainer:hover {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
@@ -355,6 +368,7 @@ background: rgba(201, 201, 201, 0) !important;
     text-align: left;
     z-index: 110;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .InformationCategory {
     position: absolute;
@@ -365,6 +379,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 18px;
     z-index: 999;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationEpisode {
     margin: auto;
@@ -377,6 +392,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 25px;
     text-align: left;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationAuthor {
     margin: auto;
@@ -390,6 +406,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 25px;
     text-align: left;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationTitle {
     position: absolute;
@@ -405,6 +422,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 25px;
     width: 100%;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationSynopsis {
     display: flex;
@@ -422,6 +440,7 @@ background: rgba(201, 201, 201, 0) !important;
     overflow-y: scroll;
     font-weight: 300;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .watchTime {
     width: 90%;
@@ -434,6 +453,7 @@ background: rgba(201, 201, 201, 0) !important;
     right: 0px;
     z-index: 100;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .watchTime::after {
     content: "";
@@ -529,6 +549,7 @@ background: rgba(201, 201, 201, 0) !important;
     width: 100%;
     height: 100%;
     transition: ease-in 0.2s filter;
+    will-change: filter;
   }
   .hoverInformation:hover + .imageSlideShow {
     filter: blur(5px);
@@ -545,6 +566,7 @@ background: rgba(201, 201, 201, 0) !important;
     width: 100%;
     height: 100%;
     transition: ease-in 0.2s opacity;
+    will-change: opacity;
     opacity: 0;
   }
   .hoverInformation:hover {
@@ -570,6 +592,7 @@ background: rgba(201, 201, 201, 0) !important;
     user-select: none;
     cursor: pointer;
     transition: transform 0.2s ease-in;
+    will-change: transform;
   }
   .hoverInformationContainer:hover {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.356);
@@ -591,6 +614,7 @@ background: rgba(201, 201, 201, 0) !important;
     font-size: 20px;
     z-index: 999;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationEpisode {
     margin: auto;
@@ -603,6 +627,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 25px;
     text-align: left;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationAuthor {
     margin: auto;
@@ -616,6 +641,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 25px;
     text-align: left;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationTitle {
     position: absolute;
@@ -631,6 +657,7 @@ background: rgba(201, 201, 201, 0) !important;
     height: 25px;
     width: 100%;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationSynopsis {
     display: flex;
@@ -647,6 +674,7 @@ background: rgba(201, 201, 201, 0) !important;
     font-size: small;
     font-weight: 300;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .hoverInformationHeart {
     display: flex;
@@ -661,6 +689,7 @@ background: rgba(201, 201, 201, 0) !important;
     text-align: left;
     z-index: 110;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .watchTime {
     width: 90%;
@@ -673,6 +702,7 @@ background: rgba(201, 201, 201, 0) !important;
     right: 0px;
     z-index: 100;
     transition: opacity 0.3s ease-in-out;
+    will-change: opacity;
   }
   .watchTime::after {
     content: "";
@@ -702,6 +732,7 @@ background: rgba(201, 201, 201, 0) !important;
     width: 4vw;
     border-radius: 0;
     transition: all .2s linear;
+
   }
   .react-slideshow-container .nav:last-of-type:hover, .react-slideshow-container .nav:first-of-type:hover {
 transform: scale3d(1.5,1.5,1.5);
