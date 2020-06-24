@@ -1576,6 +1576,19 @@ app.delete("/actor/:actor_id", actorQueries.deleteActor);
  */
 app.get("/avatar", avatarQueries.getAvatar);
 
+/**
+ * @swagger
+ * /avatar:
+ *  get:
+ *      tags:
+ *          - avatar
+ *      description: Use to request avatar with id_token
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get("/avatarByUser", avatarQueries.getAvatarByUser);
+
 
 app.listen(port, () => {
   console.log("Running on port " + port);
