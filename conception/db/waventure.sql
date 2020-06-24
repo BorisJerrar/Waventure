@@ -14,7 +14,7 @@ CREATE TABLE account
     last_name varchar(25),
     email varchar(100) UNIQUE NOT NULL,
     birth_date date,
-    avatar_id varchar(64),
+    avatar_id INT,
     password varchar(64)
 );
 

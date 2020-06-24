@@ -1171,6 +1171,19 @@ app.get("/favorite", Auth.verifyToken, favoriteQueries.getFavorites);
 
 /**
  * @swagger
+ * /favorite/:
+ *  get:
+ *      tags:
+ *          - favorite
+ *      description: Use to request favorite with serie information by id_token 
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get("/favoriteInfo", Auth.verifyToken, favoriteQueries.getFavoritesInfo);
+
+/**
+ * @swagger
  * /favorite/{serie_id}:
  *  get:
  *      tags:
@@ -1562,6 +1575,19 @@ app.delete("/actor/:actor_id", actorQueries.deleteActor);
  *              description: results rows
  */
 app.get("/avatar", avatarQueries.getAvatar);
+
+/**
+ * @swagger
+ * /avatar:
+ *  get:
+ *      tags:
+ *          - avatar
+ *      description: Use to request avatar with id_token
+ *      responses:
+ *          '200':
+ *              description: results rows
+ */
+app.get("/avatarByUser", avatarQueries.getAvatarByUser);
 
 
 app.listen(port, () => {

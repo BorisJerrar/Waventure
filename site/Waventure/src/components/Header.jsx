@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style/Header.css";
 import { Link, Redirect } from 'react-router-dom'
 import { useRef } from "react";
+import axios from "axios";
 
 export default function Header({
   categoriesTrigger,
@@ -19,11 +20,14 @@ export default function Header({
 
   const [search, setSearch] = useState('')
   const [resultSearch, setResultSearch] = useState([])
-  
+  const [userAvatar, setUserAvatar] = useState("");
+
   const refSearch = useRef(null)
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
   const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
+
+  const token = localStorage.getItem('token');
 
   const categories = () => {
     setCategoriesTrigger(!categoriesTrigger);
@@ -44,74 +48,96 @@ export default function Header({
     setAccountTriggerTrigger(!accountTrigger);
   };
 
-  const fetchSearchSeries = async(e) =>{
+  const fetchSearchSeries = async (e) => {
     let userSearch = refSearch.current.value
-    const response = await fetch (`${serveurPath}/serie?search=%${userSearch}%`)
-    const data = await response.json() 
+    const response = await fetch(`${serveurPath}/serie?search=%${userSearch}%`)
+    const data = await response.json()
     setResultSearch(data)
-      
-}
+  }
+
+  /**
+   * Fetch user avatar
+   * @param token 
+   */
+  const fetchUserAvatar = async () => {
+    var config = {
+      method: 'get',
+      url: `${serveurPath}/avatarByUser`,
+      headers: {
+        'x-access-token': token
+      }
+    };
+    axios(config)
+      .then(function (response) {
+        setUserAvatar(response.data[0].avatar_path)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  useEffect(() => {
+    fetchUserAvatar();
+  }, [])
+
 
   const getInput = (e) => {
-    if(e.target.value !== "" ){
+    if (e.target.value !== "") {
       setToggle(true)
-    }else{
+    } else {
       setToggle(false)
     }
-    setSearch(e.target.value)  
-    fetchSearchSeries(e)  
-  }  
-
-  
+    setSearch(e.target.value)
+    fetchSearchSeries(e)
+  }
 
   const showSearch = (e) => {
-    if(e.target.value !== ""){
+    if (e.target.value !== "") {
       setToggle(true)
     }
-    
+
   }
 
   const logout = () => {
     localStorage.clear('token');
     if (!localStorage.getItem('token')) {
-      return <Redirect to="/home"/>
+      return <Redirect to="/home" />
     }
   }
 
-  const handleSearch = (result)=>{    
+  const handleSearch = (result) => {
     handleSearchApp(result)
   }
-  
+
   return (
     <header>
       <div className="leftHeaderSide">
         <div className="waventureLogoHeader">
           <Link to="/main" className="LinkHome">Logo Cliquable</Link>
-          <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo"/>
+          <img src={`${pathImg}/waventureLogo.svg`} alt="Waventure Logo" />
           <h1>WAVENTURE</h1>
         </div>
         <div className="searchingBar">
           <input ref={refSearch} onClick={showSearch} placeholder="Recherche" onChange={getInput} value={search} />
-          <Link onClick={()=>handleSearch(search)} to="/search" className="buttonSearch">
+          <Link onClick={() => handleSearch(search)} to="/search" className="buttonSearch">
             <button>
-            <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
-          </button>
+              <img src={`${pathImg}/loupe.svg`} alt="Searching Logo" />
+            </button>
           </Link>
-          
-          <div className="searchFetch" style={toggle ? {display:"block"} : {display:"none"}}>
-            
-               {resultSearch.map((each, key) =>{
-                 return(
-                   <Link onClick={()=>handleSearch(each.lower)}  key={key} to="/search" style={{textDecoration: "none", color: "white"}}>
-                     <div className="eachSearch">
-                   <img className="eachImage" src={`${pathAvar}/${each.image}`} alt=""/>
-                   <p className="eachTitle">{each.lower}</p>
-                   </div>
-                   </Link>
-                   
-                 )
+
+          <div className="searchFetch" style={toggle ? { display: "block" } : { display: "none" }}>
+
+            {resultSearch.map((each, key) => {
+              return (
+                <Link onClick={() => handleSearch(each.lower)} key={key} to="/search" style={{ textDecoration: "none", color: "white" }}>
+                  <div className="eachSearch">
+                    <img className="eachImage" src={`${pathAvar}/${each.image}`} alt="" />
+                    <p className="eachTitle">{each.lower}</p>
+                  </div>
+                </Link>
+
+              )
             })}
-           
+
           </div>
         </div>
         <nav>
@@ -134,8 +160,8 @@ export default function Header({
                         className="categoriesParagraph"
                         style={
                           categoriesTrigger
-                            ? {opacity: 1, padding: "8px", visibility: "visible"}
-                            : { visibility: "hidden", opacity: 0}
+                            ? { opacity: 1, padding: "8px", visibility: "visible" }
+                            : { visibility: "hidden", opacity: 0 }
                         }
                       >
                         {each.name}
@@ -146,33 +172,32 @@ export default function Header({
               </div>
             </li>
             <li><Link to='/newest' className='newestLink'>Nouveautés</Link></li>
-            <li className='newestLink'>Coup de coeur</li>
+            <li><Link to='/favorite' className='newestLink'>Coup de coeur</Link></li>
           </ul>
         </nav>
       </div>
       <div className="profilIcon" onClick={avatar}>
         <img className="firstArrow" src={`${pathImg}/arrow.svg`} alt="Arrow Icon" />
         <div className="avatarBox">
-          <img src={`${pathAvar}/Avatar01.jpg`} alt="Profil Icon" />
+          <img src={`${pathAvar}/${userAvatar}`} alt="Profil Icon" />
           {accountTrigger ? (
             <div className="accountRolling">
-            <Link to="/profil" className="categoriesParagraph">
-              <p
-                className="categoriesParagraph"
-                style={{ padding: "8px", display: "block" }}
-              >
-                Profil
+              <Link to="/profil" className="categoriesParagraph">
+                <p
+                  className="categoriesParagraph"
+                  style={{ padding: "8px", display: "block" }}
+                >
+                  Profil
             </p>
-          </Link>
-          <Link to="/contact" className="categoriesParagraph">   
-              <p
-                className="categoriesParagraph"
-                style={{ padding: "8px", display: "block" }}
-              >
-                Contacter Waventure
+              </Link>
+              <Link to="/contact" className="categoriesParagraph">
+                <p
+                  className="categoriesParagraph"
+                  style={{ padding: "8px", display: "block" }}
+                >
+                  Contacter Waventure
             </p>
-            </Link>
-            
+              </Link>
               <p
                 className="categoriesParagraph"
                 style={{ padding: "8px", display: "block" }}
@@ -180,8 +205,6 @@ export default function Header({
               >
                 Se déconnecter
               </p>
-            
-              
             </div>
           ) : (
               ""

@@ -6,6 +6,7 @@ import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
+import Favorite from "./components/Favorite"
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Search from "./components/Search.jsx";
 import Contact from "./components/Contact.jsx";
@@ -149,6 +150,22 @@ function App() {
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
                 />
               </div>
+            </Route>
+            <Route path="/favorite">
+            <div
+                className="playerTrigger"
+                style={
+                  showingPlayer || reducer
+                    ? {
+                        transform: "matrix(1, 0, 0, 1, 0, 0)",
+                      }
+                    : {
+                        transform: "matrix(1, 0, 0, 1, 0, -270)",
+                      }
+                }
+              >
+                <Favorite />
+                </div>
             </Route>
             <Route path="/main">
               <div
