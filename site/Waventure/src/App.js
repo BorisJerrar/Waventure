@@ -61,10 +61,13 @@ function App() {
     }
 
   };
-  const lunchingEpisode = (serie_id) => {
+  const lunchingEpisode = (serie_id, episode) => {
+    console.log(serie_id);
+    console.log(episode);
+    
     setPlaying(true);
     setShowingPlayer(true);
-    setIndex(0);
+    setIndex(episode);
     setSerieId(serie_id);
   };
 
@@ -181,7 +184,7 @@ function App() {
                 className={"playerTrigger catalogApp"}
               >
                 <Catalog
-                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                  lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                 />
               </div>
             </Route>
