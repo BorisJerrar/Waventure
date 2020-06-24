@@ -18,23 +18,20 @@ function Favorite(props) {
             };
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
                     setFavoriteInfo(response.data)
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-
         getFavoriteInfo();
-    }, [])
-
+    }, [token])
 
     return (
-        <div>
+        <div className="tab-content">
             {favoriteInfo.map((item, index) => (
                 <FavoriteCard
-                    index={index}
+                    key={index}
                     item={item}
                     title={item.title}
                     image={item.image}
@@ -48,7 +45,6 @@ function Favorite(props) {
             ))}
         </div>
     )
-
 }
 
 export default Favorite;

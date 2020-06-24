@@ -91,16 +91,20 @@ export default function CategoryUnique({
         'x-access-token': token
       }
     };
+    let mounted = true;
     const fetchFavorite = async () => {
       axios(config)
         .then(function (response) {
+          if(mounted) {
           setFavorite(response.data[0].exists)
+          }
         })
         .catch(function (error) {
           console.log(error);
         });
     }
     fetchFavorite();
+    return () => mounted = false;
   }, [server, item, token])
 
 
