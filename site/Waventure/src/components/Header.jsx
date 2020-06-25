@@ -18,12 +18,14 @@ export default function Header({
 }) {
 
   const [search, setSearch] = useState('')
-  const [resultSearch, setResultSearch] = useState([])
-  
+  const [resultSearch, setResultSearch] = useState([])  
   const refSearch = useRef(null)
+  
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
   const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
+
+ 
 
   const categories = () => {
     setCategoriesTrigger(!categoriesTrigger);

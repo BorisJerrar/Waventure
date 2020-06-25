@@ -86,11 +86,12 @@ const loginAccount = (req, res) => {
 }
 
 const updateAccount = (request, response) => {
-  const account_id = parseInt(request.params.account_id)
-  const { username, first_name, last_name, email, birth_date, password } = request.body
-
+  const account_id = request.params.account_id
+  const { username, first_name, last_name, email, avatar_id, password } = request.body
+  console.log(request.body);
+  
   db.query(
-    'UPDATE account SET username = $1, first_name = $2, last_name = $3, email = $4, birth_date = $5, password = $6 WHERE account_id = $7', [username, first_name, last_name, email, birth_date, password, account_id],
+    'UPDATE account SET username = $1, first_name = $2, last_name = $3, email = $4, avatar_id = $5, password= $6 WHERE account_id = $7', [username, first_name, last_name, email, avatar_id, password, account_id,],
     (error, results) => {
       if (error) {
         throw error
@@ -101,7 +102,7 @@ const updateAccount = (request, response) => {
 }
 
 const deleteAccount = (request, response) => {
-  const account_id = parseInt(request.params.account_id)
+  const account_id = request.params.account_id
 
   db.query('DELETE FROM account WHERE account_id = $1', [account_id], (error, results) => {
     if (error) {
