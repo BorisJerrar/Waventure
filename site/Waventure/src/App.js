@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import React, { useState, useRef } from "react";
-=======
-import React, { useState, useEffect } from "react";
->>>>>>> 7ef40d9152ada2f4c08a6b550fef9b764c03697e
+
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Player from "./components/Player";
@@ -88,25 +85,6 @@ const fetchAccount = () => {
 useEffect(()=>{
     fetchAccount()
  },[validate])
-
- const receving = () => {
-  setLearnMore(false)
-  setEpisodes(false)
-  setSynopsis(false)
-   setPlaying(false)
-   setShowingPlayer(false)
-   setSerieId(-1)
-   console.log(localStorage.getItem('token'));
- }
- const recevingReducer = () => {
-  setLearnMore(false)
-  setEpisodes(false)
-  setSynopsis(false)
-  setReducer(!reducer)
-}
-  const handleSearchApp = (result)=>{
-      setUniqueSearch(result)
-  }
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
