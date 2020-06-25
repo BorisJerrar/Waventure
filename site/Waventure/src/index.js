@@ -6,6 +6,8 @@ import * as serviceWorker from "./serviceWorker";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import PwdReset from "./pages/PwdReset"
+import Reset from "./pages/Reset";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './fontawesome';
 
@@ -24,6 +26,15 @@ ReactDOM.render(
       <Route path="/signIn">
         <SignIn />
       </Route>
+
+      <Route path="/pwdReset">
+        <PwdReset />
+      </Route>
+
+      <Route path="/Reset">
+        <Reset />
+      </Route>
+
       <Route path="/main">
       <App />
       </Route>
