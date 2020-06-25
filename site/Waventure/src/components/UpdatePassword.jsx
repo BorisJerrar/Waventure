@@ -66,7 +66,7 @@ export default function UpdatePassword({user}) {
     
     return (
         <div className="containerUpdate">
-            <form>
+            <form className="formUpdate">
             <label>Mot de passe actuel</label>
             <input type="password" onChange={verifyPassword}/>
             <label>Nouveau mot de passe</label>

@@ -87,7 +87,7 @@ export default function UpdateProfil({ user, setValidate, validate}) {
                 })}
             </div>
             <div className='containerForm'>
-                <form action="">
+                <form className="formUpdate">
                     <label>Nom</label>
                     <input type="text" value={account.last_name} onChange={updateLastName} />
                     <label>Prénom</label>
