@@ -35,6 +35,7 @@ const jwt = require('jsonwebtoken');
     return token;
   }
 
+
 module.exports = {
     generateToken,
     isValidEmail,

@@ -4,7 +4,7 @@ IF NOT EXISTS pgcrypto;
 CREATE EXTENSION
 IF NOT EXISTS "uuid-ossp";
 SET client_encoding
-TO 'latin1';
+TO 'utf-8';
 
 CREATE TABLE account
 (
