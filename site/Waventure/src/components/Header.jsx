@@ -15,7 +15,8 @@ export default function Header({
   toggle,
   setToggle,
   playing,
-  scrolling
+  scrolling,
+  validate
 }) {
 
   const [search, setSearch] = useState('')
@@ -78,7 +79,7 @@ export default function Header({
         });
     }
     fetchUserAvatar();
-  }, [serveurPath, token])
+  }, [serveurPath, token, validate])
 
 
   const getInput = (e) => {

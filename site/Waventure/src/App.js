@@ -122,6 +122,7 @@ useEffect(()=>{
             handleSearchApp={(result)=>handleSearchApp(result)}
             toggle={toggle}
             setToggle={setToggle}
+            validate={validate}
           />
           <div
             className={reducer ?"playerTriggerNoAnnim":"playerTrigger fixing"}
