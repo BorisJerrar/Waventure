@@ -1,27 +1,18 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "../style/LoginForm.css"
 
-function SignIn(props) {
+function PwdReset(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
-
-
-    const [isLoggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [token, setToken] = useState();
 
-    function checkLogin() {
-        axios.post('http://localhost:4000/auth/signin', {
+    function SendEmail() {
+        axios.post('http://localhost:4000/auth/pwdReset', {
             email: email,
-            password: password
         })
             .then(function (response) {
                 console.log(JSON.stringify(response.data))
-                setToken(response.data.token)
-                setLoggedIn(true)
-                console.log(token)
             }
             )
             .catch(function (error) {
@@ -31,11 +22,6 @@ function SignIn(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-    }
-
-    if (isLoggedIn) {
-        localStorage.setItem('token', token)
-        return <Redirect to="/main" />;
     }
 
     return (
@@ -57,30 +43,17 @@ function SignIn(props) {
                                 setEmail(e.target.value);
                             }}
                         />
-                        <input type="password"
-                            id="password"
-                            placeholder="Mot de Passe"
-                            value={password}
-                            onChange={e => {
-                                setPassword(e.target.value);
-                            }}
-                        />
                         <button
                             className="btn-base"
                             type="submit"
-                            onClick={checkLogin}
+                            onClick={SendEmail}
                         >
-                            S'identifier
+                           Réinitialiser 
                     </button>
                         <div className="form-aside">
                             <p>Pas encore de compte ?</p>
                             <Link className="link-form" to="/signUp">S'inscrire</Link>
                         </div>
-                        <div className="form-aside">
-                            <p>mot de passe oulié ?</p>
-                            <Link className="link-form" to="/PwdReset">Réinitialiser</Link>
-                        </div>
-
                     </div>
                 </form>
             </main>
@@ -88,4 +61,4 @@ function SignIn(props) {
     )
 }
 
-export default SignIn;
+export default PwdReset; 

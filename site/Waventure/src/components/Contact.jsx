@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import "../style/Contact.css";
 import MainProfilInfo from './MainInfoProfil'
 

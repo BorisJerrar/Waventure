@@ -4,7 +4,7 @@ IF NOT EXISTS pgcrypto;
 CREATE EXTENSION
 IF NOT EXISTS "uuid-ossp";
 SET client_encoding
-TO 'latin1';
+TO 'UTF-8';
 
 CREATE TABLE account
 (
@@ -14,7 +14,7 @@ CREATE TABLE account
     last_name varchar(25),
     email varchar(100) UNIQUE NOT NULL,
     birth_date date,
-    avatar_id varchar(64),
+    avatar_id INT,
     password varchar(64)
 );
 
@@ -126,9 +126,11 @@ CREATE TABLE LISTEN
 (
     listen_id serial NOT NULL PRIMARY KEY,
     account_id UUID,
+    serie_id serial,
     episode_id serial,
     duration time,
     FOREIGN KEY (account_id) REFERENCES account (account_id),
+    FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
     FOREIGN KEY (episode_id) REFERENCES episode (episode_id)
 );
 

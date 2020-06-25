@@ -13,6 +13,7 @@ import { faPause as faPauseSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStepBackward as faBackwardSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStepForward as faForwardSolid } from '@fortawesome/free-solid-svg-icons';
 import { faTimes as faTimesSolid } from '@fortawesome/free-solid-svg-icons';
+import { faSortUp as faSortUpSolid } from '@fortawesome/free-solid-svg-icons';
 
 
 library.add(
@@ -27,5 +28,5 @@ library.add(
   faBackwardSolid,
   faForwardSolid,
   faTimesSolid,
-  // more icons go here
+  faSortUpSolid
 );

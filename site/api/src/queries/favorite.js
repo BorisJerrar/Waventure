@@ -5,13 +5,31 @@ const getFavorites = (request, response) => {
 
     const token = request.headers['x-access-token'];
     const decoded = jwt.verify(token, process.env.SECRET)
-  db.query('SELECT * FROM favorite WHERE account_id = $1', [decoded.account_id], (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
+    db.query('SELECT * FROM favorite WHERE account_id = $1', [decoded.account_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
 }
+const getFavoritesInfo = (request, response) => {
+
+    const token = request.headers['x-access-token'];
+    const decoded = jwt.verify(token, process.env.SECRET)
+    db.query(`SELECT * FROM favorite INNER JOIN serie
+    ON favorite.serie_id = serie.serie_id
+    INNER JOIN synopsis
+    ON serie.serie_id = synopsis.serie_id
+    WHERE account_id = $1
+    ;`
+    , [decoded.account_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
 
 const getFavoritesById = (request, response) => {
 
@@ -32,7 +50,7 @@ const createFavorites = (request, response) => {
     const token = request.headers['x-access-token'];
     const decoded = jwt.verify(token, process.env.SECRET)
 
-    db.query('INSERT INTO favorite ( account_id, serie_id ) VALUES ($1, $2)', [ decoded.account_id, serie_id ], (error, results) => {
+    db.query('INSERT INTO favorite ( account_id, serie_id ) VALUES ($1, $2)', [decoded.account_id, serie_id], (error, results) => {
         if (error) {
             throw error
         }
@@ -59,5 +77,6 @@ module.exports = {
     getFavorites,
     getFavoritesById,
     createFavorites,
-    deleteFavorites
+    deleteFavorites,
+    getFavoritesInfo,
 }

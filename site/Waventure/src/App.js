@@ -6,6 +6,7 @@ import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import HeaderCategory from "./components/HeaderCategory";
+import Favorite from "./components/Favorite"
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Search from "./components/Search.jsx";
 import Contact from "./components/Contact.jsx";
@@ -28,6 +29,7 @@ function App() {
   const [uniqueSearch, setUniqueSearch] = useState({})
   const [toggle, setToggle] = useState(false)
   const [titleArray, setTitleArray] = useState([]);
+<<<<<<< HEAD
   const [user, setUser] = useState([])
   const [validate, setValidate] = useState(false)
   const token =  localStorage.token
@@ -57,12 +59,26 @@ useEffect(()=>{
     fetchAccount()
  },[validate])
 
+=======
+  const [synopsis, setSynopsis] = useState(false);
+  const [episodes, setEpisodes] = useState(false);
+  const [learnMore, setLearnMore] = useState(false);
+>>>>>>> 614f5f5c3b0d0684012f5bae319ce1f18324be40
  const receving = () => {
+  setLearnMore(false)
+  setEpisodes(false)
+  setSynopsis(false)
    setPlaying(false)
    setShowingPlayer(false)
    setSerieId(-1)
-   setReducer(false)
+   console.log(localStorage.getItem('token'));
  }
+ const recevingReducer = () => {
+  setLearnMore(false)
+  setEpisodes(false)
+  setSynopsis(false)
+  setReducer(!reducer)
+}
   const handleSearchApp = (result)=>{
       setUniqueSearch(result)
   }
@@ -81,16 +97,20 @@ useEffect(()=>{
     }
 
   };
-  const lunchingEpisode = (serie_id) => {
+  const lunchingEpisode = (serie_id, episode) => {
+    console.log(serie_id);
+    console.log(episode);
+    
     setPlaying(true);
     setShowingPlayer(true);
-    setIndex(0);
+    setIndex(episode);
     setSerieId(serie_id);
   };
 
   if (!localStorage.getItem('token')) {
     return <Redirect to="/home" />
   }
+  
   return (
     <Router>
       <div className="App" onClick={triggeringCategory}>
@@ -107,17 +127,23 @@ useEffect(()=>{
             setToggle={setToggle}
           />
           <div
-            className={playing?"playerTrigger zIndexMax fixing":"playerTrigger zIndexMax"}
+            className={reducer ?"playerTriggerNoAnnim":"playerTrigger fixing"}
             style={
-              showingPlayer || reducer
+              showingPlayer && !reducer
                 ? {
                   zIndex: 200000,
                     transform: "matrix(1, 0, 0, 1, 0, 0)",
                     opacity: 1
                   }
-                : {
+                : showingPlayer && reducer?{zIndex: 200000, position: "fixed", bottom:"40px", right: "40px", width:"360px"}:
+                 reducer && !showingPlayer?{                  
+                   zIndex: -1,
+                   position: "fixed", bottom:"40px", right: "-25vw", width:"360px",
+                  opacity: 0}:
+                {
                   zIndex: -1,
                     transform: "matrix(1, 0, 0, 1, 0, -270)",
+                    height: 0,
                     opacity: 0
                   }
             }
@@ -134,6 +160,13 @@ useEffect(()=>{
                 setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
                 sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
                 sending={()=>{receving()}}
+                sendingReducer={()=>{recevingReducer()}}
+                setSynopsis={setSynopsis}
+                synopsis={synopsis}
+                setEpisodes={setEpisodes}
+                episodes={episodes}
+                setLearnMore={setLearnMore}
+                learnMore={learnMore}
               />
           </div>
           <Switch>
@@ -169,33 +202,31 @@ useEffect(()=>{
             <Route path="/newest">
               <div
                 className="playerTrigger"
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
-                      }
-                }
               >
                 <Newest
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
                 />
               </div>
             </Route>
-            <Route path="/main">
-              <div
-                className="playerTrigger improve"
+            <Route path="/favorite">
+            <div
+                className="playerTrigger"
                 style={
                   showingPlayer || reducer
                     ? {
                         transform: "matrix(1, 0, 0, 1, 0, 0)",
                       }
                     : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
+                        transform: "matrix(1, 0, 0, 1, 0, 0)",
                       }
                 }
+              >
+                <Favorite />
+                </div>
+            </Route>
+            <Route path="/main">
+              <div
+                className="playerTrigger" /* style={reducer && showingPlayer?{marginTop:"0px"}: showingPlayer?{marginTop:"0px"}:reducer && showingPlayer === false?{marginTop:"-100px"}:{marginTop:"-270px"}} */
               >
                 <Banner
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
@@ -203,18 +234,9 @@ useEffect(()=>{
               </div>
               <div
                 className={"playerTrigger catalogApp"}
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, -270)",
-                      }
-                }
               >
                 <Catalog
-                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                  lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                 />
               </div>
             </Route>
@@ -223,15 +245,6 @@ useEffect(()=>{
                 <Route path={`/${item.name}`} key={index}>
                   <div
                     className="playerTrigger flexing"
-                    style={
-                      showingPlayer || reducer
-                        ? {
-                            transform: "matrix(1, 0, 0, 1, 0, 0)",
-                          }
-                        : {
-                            transform: "matrix(1, 0, 0, 1, 0, -270)",
-                          }
-                    }
                   >
                     <HeaderCategory
                       categoryName={item.name}

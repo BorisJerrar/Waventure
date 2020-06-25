@@ -15,7 +15,8 @@ export default function PlayerFooter({
   setToggleWrapper,
   sagaInfo,
   setSagaEpisodeSaisonInfo,
-  sagaEpisodeSaisonInfo
+  sagaEpisodeSaisonInfo,
+  reducer
 }) {
   
 
@@ -25,7 +26,9 @@ export default function PlayerFooter({
   }
 
   return (
-    <div className="playerFooter">
+    <div className="playerFooter"
+    style={reducer?{visibility: "hidden"}:{"":""}}
+    >
 
 <PlayerEpisode
   title={"Episodes"}
