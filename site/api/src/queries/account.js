@@ -30,47 +30,60 @@ const getAccountById = (request, response) => {
 }
 
 const createAccount = (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    return res.status(400).send({ 'message': 'Some values are missing' });
+  if (!req.body.email || !req.body.password || !req.body.username || !req.body.last_name || !req.body.birth_date) {
+    return res.status(400).send({ error: 'Formulaire incomplet' });
   }
   if (!Helper.isValidEmail(req.body.email)) {
-    return res.status(400).json('Please enter a valid email address');
+    return res.status(400).send({ error: 'Adresse email invalide' });
   }
-  const hashPassword = Helper.hashPassword(req.body.password);
-
-  const createQuery = `INSERT INTO
+  if (!req.body.password) {
+    return res.status(400).send({ error: 'Veuillez saisir votre mot de passe' });
+  }
+  const checkEmail = 'SELECT * FROM account WHERE email = $1';
+  db.query(checkEmail, [req.body.email], (error, results) => {
+    if (results.rows[0]) {
+      return res.status(400).send({ error: 'Adresse e-mail déjà utilisée' })
+    }
+    if (error) {
+      console.log(error)
+      return res.status(400).send(error);
+    }
+    const hashPassword = Helper.hashPassword(req.body.password);
+    const createQuery = `INSERT INTO
       account(account_id, username, first_name, last_name, email, birth_date, avatar_id, password)
       VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       returning *`;
-  const values = [
-    uuid(),
-    req.body.username,
-    req.body.first_name,
-    req.body.last_name,
-    req.body.email,
-    req.body.birth_date,
-    req.body.avatar_id,
-    hashPassword
-  ];
+    const values = [
+      uuid(),
+      req.body.username,
+      req.body.first_name,
+      req.body.last_name,
+      req.body.email,
+      req.body.birth_date,
+      req.body.avatar_id,
+      hashPassword
+    ];
 
-  const rows = db.query(createQuery, values, (error, results) => {
-    if (error) {
-      return res.status(400).send(error);
-    }
-    const token = Helper.generateToken(results.rows[0].account_id)
-    return res.status(201).send({ token })
-  })
+    db.query(createQuery, values, (error, results) => {
+      if (error) {
+        return res.status(400).send(error);
+      }
+      const token = Helper.generateToken(results.rows[0].account_id)
+      return res.status(201).send({ token })
+    })
+  });
+
 }
 
 const loginAccount = (req, res) => {
   if (!req.body.password && !req.body.email) {
-     return res.status(400).send({error :'Veuillez saisir votre adresse email ainsi que votre mot de passe'});   
+    return res.status(400).send({ error: 'Veuillez saisir votre adresse email ainsi que votre mot de passe' });
   }
   if (!req.body.password) {
-    return res.status(400).send({error :'Veuillez saisir votre mot de passe'});
+    return res.status(400).send({ error: 'Veuillez saisir votre mot de passe' });
   }
   if (!req.body.email) {
-    return res.status(400).send({error :'Veuillez saisir une adresse électronique'})
+    return res.status(400).send({ error: 'Veuillez saisir une adresse électronique' })
   }
   if (!Helper.isValidEmail(req.body.email)) {
     return res.status(400).send({ error: 'Adresse email invalide' });
@@ -94,14 +107,13 @@ const loginAccount = (req, res) => {
 
 const resetPassword = (req, res) => {
   if (!req.body.email === '') {
-    res.status(400).send('email required');
+    res.status(400).send({error :'Veuillez renseigner votre adresse email'});
   }
-
   const getUser = 'SELECT * FROM account WHERE email = $1'
   const rows = db.query(getUser, [req.body.email], (error, results) => {
     if (!results.rows[0]) {
       console.log('email not in database')
-      return res.status(403).send('email not in db');
+      return res.status(403).send({error :'email not in db'});
     } else {
       console.log('result.rows:', results.rows)
       const token = Helper.generateToken(results.rows[0].account_id);
@@ -122,7 +134,7 @@ const resetPassword = (req, res) => {
           `Bonjour ${results.rows[0].username}\n\n`
           + 'Vous avez demandé à changer le mot de passe de votre compte waventure. Pour créer un nouveau mot de passe, cliquez sur le lien ci-dessous :'
           + `http://localhost:3000/reset/${token}\n\n`
-          + 'L\'équipe de waventure' 
+          + 'L\'équipe de waventure'
       };
       console.log('sending mail');
 
@@ -131,7 +143,7 @@ const resetPassword = (req, res) => {
           console.log('there was an error: ', error);
         } else {
           console.log('here is the res :', response);
-          res.status(200).json('recovery email send')
+          res.status(200).send({message :'recovery email send'})
         }
       })
     }
@@ -162,7 +174,7 @@ const updateAccount = (request, response) => {
   const account_id = request.params.account_id
   const { username, first_name, last_name, email, avatar_id, password } = request.body
   console.log(request.body);
-  
+
   db.query(
     'UPDATE account SET username = $1, first_name = $2, last_name = $3, email = $4, avatar_id = $5, password= $6 WHERE account_id = $7', [username, first_name, last_name, email, avatar_id, password, account_id,],
     (error, results) => {
