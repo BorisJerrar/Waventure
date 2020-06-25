@@ -27,12 +27,12 @@ export default function Categorie({ category, lunchingEpisode }) {
       };
       axios(config)
         .then(function (response) {
-          if(response.data.length === 0) {
+          if (response.data.length === 0) {
             fetchingEpisode();
-          } else{;
-            fetchingExsistingEpisode(...response.data); 
-          }         
-        
+          } else {
+            fetchingExsistingEpisode(...response.data);
+            
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -44,33 +44,33 @@ export default function Categorie({ category, lunchingEpisode }) {
       const dataInfo = await response;
       AddingNew(dataInfo);
     };
-    const fetchingExsistingEpisode = async (info) => {      
+    const fetchingExsistingEpisode = async (info) => {
       const fetching = await fetch(`${server}/sagaInfo/${item.serie_id}`);
       const response = await fetching.json();
-      
-    resume(info, response);
+      resume(info, response);
     };
     const AddingNew = (sagas) => {
-                   var  creatingNew= {
-                method: 'post',
-                url: `http://localhost:4000/listen?serie_id=${sagas[0].serie_id}&episode_id=${sagas[0].episode_id}`,
-                headers: {
-                    'x-access-token': token
-                }
-            };
-            axios(creatingNew)
-                .then(function (response) {
-                  lunchingEpisode(item.serie_id, 0)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+      var creatingNew = {
+        method: "post",
+        url: `http://localhost:4000/listen?serie_id=${sagas[0].serie_id}&episode_id=${sagas[0].episode_id}`,
+        headers: {
+          "x-access-token": token,
+        },
+      };
+      axios(creatingNew)
+        .then(function (response) {
+          lunchingEpisode(item.serie_id, 0);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     };
     const resume = (userInfo, dataInfo) => {
-      lunchingEpisode(item.serie_id, dataInfo.findIndex(item => item.episode_id === userInfo.episode_id))
-
-
-};
+      lunchingEpisode(
+        item.serie_id,
+        dataInfo.findIndex((item) => item.episode_id === userInfo.episode_id)
+      );
+    };
 
     didHeAlreadyBegin();
   };
@@ -106,7 +106,7 @@ export default function Categorie({ category, lunchingEpisode }) {
     const fetchSerieInformation = async () => {
       const response = await fetch(`${server}/sagaInfo/${hoverItem.serie_id}`);
       const data = await response.json();
-      setSynopsis(data[0].body);
+       setSynopsis(data[0].body);
     };
     if (hover) {
       fetchSerieInformation();
@@ -118,7 +118,6 @@ export default function Categorie({ category, lunchingEpisode }) {
     autoplay: false,
     transitionDuration: 500,
   };
-
   const settingHover = (item) => {
     setHover(true);
     setHoverItem(item);

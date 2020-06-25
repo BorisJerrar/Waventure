@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 export default function Player({
   serieId,
   index,
   setIndex,
-  playing,
   toggleWrapper,
   setToggleWrapper,
   setSagaEpisodeSaisonInfo,
@@ -23,14 +23,16 @@ export default function Player({
   setEpisodes,
   synopsis,
   setSynopsis,
+  playerRef,
 }) {
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
-
-  const [urlAudio, setUrlAudio] = useState(``);
+  const [urlAudio, setUrlAudio] = useState();
+  const [playinTrigger, setPlayinTrigger] = useState(``);
+  const token = localStorage.getItem("token");
   const receving = () => {
-    setUrlAudio(``);
+    playerRef.current.audio.current.pause();
     sending();
   };
   const recevingReducer = () => {
@@ -38,33 +40,60 @@ export default function Player({
   };
   useEffect(() => {
     const fetchingEpisode = async () => {
-      const fetching = await fetch(`${serverPath}/sagaInfo/${serieId}`);
-      const response = await fetching.json();
-      const dataInfo = await response;
-      setSagaInfo(dataInfo);
-      setEpisodeInfos(dataInfo[index]);
-      if (
-        dataInfo &&
-        dataInfo[index] &&
-        dataInfo[index].title &&
-        dataInfo[index].mp3_file &&
-        serverPath
-      ) {
-        setUrlAudio(
-          `${serverPath}/sound/?saga=${dataInfo[index].title
-            .split(" ")
-            .join("")}&sound=${dataInfo[index].mp3_file}`
-        );
-      }
+      var playingConfig = {
+        method: "get",
+        url: `${serverPath}/sagaInfo/${serieId}`,
+      };
+
+      axios(playingConfig)
+        .then(function (response) {
+          setSagaInfo(response.data);
+          setEpisodeInfos(response.data[index]);
+          if (
+            serverPath &&
+            response &&
+            response.data &&
+            response.data[index] &&
+            response.data[index].title &&
+            response.data[index].mp3_file
+          ) {
+            setUrlAudio(
+              `${response.data[index].title.split(" ").join("")}&sound=${
+                response.data[index].mp3_file
+              }`
+            );
+          }
+        })
+        .catch(function (error) {
+          Promise.reject(error);
+        });
     };
-    if (serieId !== -1) {
+    if (serieId && serieId !== -1) {
       fetchingEpisode();
     }
-  }, [index, serieId, serverPath]);
+  }, [index, serieId, serverPath, playerRef]);
+  const sendingEpisodeDurationInfo = (upadtedIndex) => {
+    var config = {
+      method: "put",
+      url: `${serverPath}/listen?serie_id=${serieId}&duration=00:00:00&episode_id=${sagaInfo[upadtedIndex].episode_id}`,
+      headers: {
+        "x-access-token": token,
+      },
+    };
+    axios(config)
+      .then(function (response) {})
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    setPlayinTrigger(urlAudio);
+  }, [urlAudio]);
 
   const nextSaga = () => {
     if (index < sagaInfo.length - 1) {
-      return setIndex(index + 1);
+      setIndex(index + 1);
+      sendingEpisodeDurationInfo(index + 1);
     } else {
       return index;
     }
@@ -77,47 +106,75 @@ export default function Player({
       return index;
     }
   };
-  const playerRef = useRef();
-
   if (
     playerRef &&
     playerRef.current &&
     playerRef.current.container &&
     reducer
   ) {
-    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[0].style = "display: none"
-    for(let i = 1; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes.length; i++)
-    {
-    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[i].style = "height: 10px"
-  }
+    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[0].style =
+      "display: none";
+    for (
+      let i = 1;
+      i <
+      playerRef.current.container.current.childNodes[2].childNodes[1]
+        .childNodes[2].childNodes[0].childNodes.length;
+      i++
+    ) {
+      playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[
+        i
+      ].style = "height: 10px";
+    }
 
     playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].style =
       "position: absolute; right: 15vw; bottom: 5px";
     playerRef.current.container.current.childNodes[2].childNodes[1].style =
       "position: absolute; right: 10px; bottom: -55px; width: 50%";
-      for(let i = 0; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes.length; i++){
- playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes[i].childNodes[0].style= "width: 12px; height: 12px"
-}
- 
+    for (
+      let i = 0;
+      i <
+      playerRef.current.container.current.childNodes[2].childNodes[1]
+        .childNodes[1].childNodes.length;
+      i++
+    ) {
+      playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes[
+        i
+      ].childNodes[0].style = "width: 12px; height: 12px";
+    }
   } else if (
     playerRef &&
     playerRef.current &&
     playerRef.current.progressBar &&
     !reducer
   ) {
-    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[0].style = ""
-    for(let i = 1; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes.length; i++)
-    {
-    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[i].style = ""
-  }
+    playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[0].style =
+      "";
+    for (
+      let i = 1;
+      i <
+      playerRef.current.container.current.childNodes[2].childNodes[1]
+        .childNodes[2].childNodes[0].childNodes.length;
+      i++
+    ) {
+      playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].childNodes[
+        i
+      ].style = "";
+    }
 
     playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[2].childNodes[0].style =
       "";
-    playerRef.current.container.current.childNodes[2].childNodes[1].style =
-      "";
-      for(let i = 0; i<playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes.length; i++){
- playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes[i].childNodes[0].style= ""
-}
+    playerRef.current.container.current.childNodes[2].childNodes[1].style = "";
+    for (
+      let i = 0;
+      i <
+      playerRef.current.container.current.childNodes[2].childNodes[1]
+        .childNodes[1].childNodes.length;
+      i++
+    ) {
+      playerRef.current.container.current.childNodes[2].childNodes[1].childNodes[1].childNodes[
+        i
+      ].childNodes[0].style = "";
+    }
   }
 
   return (
@@ -127,7 +184,7 @@ export default function Player({
         episodes
           ? { minHeight: "370px", maxHeight: "370px" }
           : reducer
-          ? { minHeight: "200px", maxHeight: "200px"}
+          ? { minHeight: "200px", maxHeight: "200px" }
           : { minHeight: "270px", maxHeight: "270px" }
       }
     >
@@ -223,15 +280,18 @@ export default function Player({
             sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
           />
         }
-        src={urlAudio ? urlAudio : ""}
-        preload={"none"}
-        autoPlay={playing ? true : false}
+        src={
+          playinTrigger
+            ? `${serverPath}/sound/?saga=` + playinTrigger
+            : undefined
+        }
+        preload={"false"}
         showSkipControls={true}
         showJumpControls={false}
         onClickNext={nextSaga}
         onClickPrevious={prevSaga}
         onEnded={nextSaga}
-        autoPlayAfterSrcChange={true}
+        autoPlay={true}
         ref={playerRef}
       />
     </div>

@@ -1,28 +1,26 @@
-import React, {useState, useEffect} from 'react'
-import Categorie from './Categorie'
+import React, { useState, useEffect } from "react";
+import Categorie from "./Categorie";
 
-export default function Catalog({lunchingEpisode}) {
-const [categories, setCategories] = useState([])
+export default function Catalog({ lunchingEpisode }) {
+  const [categories, setCategories] = useState([]);
 
-
-const fetchCategories = async() =>{
-    const response = await fetch (`http://localhost:4000/category`)
-    const data = await response.json()
-    setCategories(data)
-}
-useEffect(() => {
- fetchCategories()
-}, [])
+  const fetchCategories = async () => {
+    const response = await fetch(`http://localhost:4000/category`);
+    const data = await response.json();
+    setCategories(data);
+  };
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+  return categories.map((item, index) => {
     return (
-        categories.map((item, index)=>{
-            return(
-             <Categorie
-             key = {index}
-             category = {item.name}
-             lunchingEpisode={(serie_id, episode)=>lunchingEpisode(serie_id, episode)}
-             /> 
-            ) 
-        
-        })
-    )
+      <Categorie
+        key={index}
+        category={item.name}
+        lunchingEpisode={(serie_id, episode, listeningTime) =>
+          lunchingEpisode(serie_id, episode)
+        }
+      />
+    );
+  });
 }

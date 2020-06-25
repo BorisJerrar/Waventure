@@ -6,6 +6,8 @@ export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
     const [moreInfo, setMoreInfo] = useState([])
     const [author, setAuthor] = useState('')
     const [seriesByAuthor, setSeriesByAuthor]= useState([])
+    const [currentSerie, setCurrentSerie]= useState()
+
 
     
     useEffect(() => {
@@ -19,15 +21,18 @@ export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
         const fetchSerieAuthor = async() => {
             const response = await fetch (`http://localhost:4000/serie?author=${author}`)
             const data = await response.json()
-            let currentSerie = sagaInfo[0] && sagaInfo[0].serie_id
-            let dataFilter = data.filter(item => item.serie_id !== currentSerie)
-            setSeriesByAuthor(dataFilter)
+            if(sagaInfo && sagaInfo[0] &&sagaInfo[0].serie_id){
+            setCurrentSerie(sagaInfo[0] && sagaInfo[0].serie_id)
+            }
+            if (data && currentSerie){
+                setSeriesByAuthor(data.filter(item => item.serie_id !== currentSerie))
+            }
         }
         fetchSerieRole()
         if(author){ 
             fetchSerieAuthor()
         }
-       }, [serieId, author, sagaInfo])
+       }, [serieId, author, sagaInfo, currentSerie])
        
     return (
         <div  style={toggleWrapper? {transform: "translate(0,0)", visibility: "visible", opacity: 1}: {transform: "translate(0,-50px)", visibility: "hidden", opacity: 0}} className="moreInfoWrapper">

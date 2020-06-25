@@ -102,11 +102,11 @@ export default function CategoryUnique({
           console.log(error);
         });
     }
-    fetchFavorite();
-    return () => mounted = false;
+    fetchFavorite()
+  
+    return () =>  mounted = false
   }, [server, item, token])
-
-
+  
   return (
     <div
       className={"hoverInformationContainer"}
@@ -151,7 +151,7 @@ export default function CategoryUnique({
         <CategoryElement
           classname="hoverInformationEpisode"
           visibilityProps={hover}
-          ellement="S2 Ep 4"
+          ellement={""}
         />
         <CategoryElement
           classname="watchTime"

@@ -1310,7 +1310,7 @@ app.get("/listenVerificator/", Auth.verifyToken, listenQueries.getListenById);
  *          '200':
  *              description: results rows
  */
-app.put("/listen/:listen_id", listenQueries.updateListen);
+app.put("/listen", Auth.verifyToken, listenQueries.updateListen);
 
 /**
  * @swagger

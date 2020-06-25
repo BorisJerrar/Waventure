@@ -43,17 +43,18 @@ const createListen = (request, response) => {
 }
 
 const updateListen = (request, response) => {
-    const listen_id = parseInt(request.params.listen_id)
-    const account_id = request.query.account_id
-    const episodeid = request.query.episodeid
+    const token = request.headers['x-access-token'];
+    const serie_id = request.query.serie_id
+    const decoded = jwt.verify(token, process.env.SECRET)
+    const episodeid = request.query.episode_id
     const duration = request.query.duration
     db.query(
-        'UPDATE listen SET account_id = $1, episodeid = $2, duration = $3 WHERE listen_id = $4', [account_id, episodeid, duration, listen_id],
+        'UPDATE listen SET episode_id = $2, duration = $3 WHERE account_id = $1 and serie_id = $4', [decoded.account_id, episodeid, duration, serie_id],
         (error, results) => {
             if (error) {
                 throw error
             }
-            response.status(200).send(`listen modified with ID: ${listen_id}`)
+            response.status(200).send(`listen modified`)
         }
     )
 }
