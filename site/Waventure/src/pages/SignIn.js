@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom'
 import "../style/LoginForm.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SignIn(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
@@ -11,6 +12,8 @@ function SignIn(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState();
+    const [isError, setIsError] = useState(false);
+    const [messageError, setMessageError] = useState("");
 
     function checkLogin() {
         axios.post('http://localhost:4000/auth/signin', {
@@ -18,6 +21,7 @@ function SignIn(props) {
             password: password
         })
             .then(function (response) {
+                console.log(response)
                 console.log(JSON.stringify(response.data))
                 setToken(response.data.token)
                 setLoggedIn(true)
@@ -25,9 +29,12 @@ function SignIn(props) {
             }
             )
             .catch(function (error) {
-                console.log(error);
+                setIsError(true)
+                setMessageError(error.response.data.error)
             })
     }
+    console.log(messageError)
+    console.log(isError)
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -47,6 +54,17 @@ function SignIn(props) {
                 </div>
                 <form className="login-box"
                     onSubmit={handleSubmit}>
+                    {isError && (
+                        <div className="error-msg">
+                            <FontAwesomeIcon
+                                className="error-cross"
+                                icon={['fas', 'times-circle']} size="sm" />
+                            <div>
+                                {messageError}
+                            </div>
+
+                        </div>
+                    )}
                     <div className="user-box">
                         <input
                             type="email"

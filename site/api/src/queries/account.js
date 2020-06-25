@@ -63,25 +63,30 @@ const createAccount = (req, res) => {
 }
 
 const loginAccount = (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    return res.status(400).send('message Some values are missing');
+  if (!req.body.password && !req.body.email) {
+     return res.status(400).send({error :'Veuillez saisir votre adresse email ainsi que votre mot de passe'});   
+  }
+  if (!req.body.password) {
+    return res.status(400).send({error :'Veuillez saisir votre mot de passe'});
+  }
+  if (!req.body.email) {
+    return res.status(400).send({error :'Veuillez saisir une adresse électronique'})
   }
   if (!Helper.isValidEmail(req.body.email)) {
-    return res.status(400).send({ error: 'message Please enter a valid email address' });
+    return res.status(400).send({ error: 'Adresse email invalide' });
   }
   const text = 'SELECT * FROM account WHERE email = $1';
 
   const rows = db.query(text, [req.body.email], (error, results) => {
     if (!results.rows[0]) {
-      return res.status(400).send({ 'message': 'Pas d\'utilisateur enregistrer avec cette adresse email' })
+      return res.status(400).send({ error: 'Pas d\'utilisateur enregistrer pour cette adresse email' })
     }
     if (error) {
       return res.status(400).send(error);
     }
     if (!Helper.comparePassword(results.rows[0].password, req.body.password)) {
-      return res.status(400).send({ 'message': 'The credentials you provided is incorrect' });
+      return res.status(400).send({ error: 'Mot de passe incorrect' });
     }
-    console.log(results.rows)
     const token = Helper.generateToken(results.rows[0].account_id);
     return res.status(200).send({ token });
   });
