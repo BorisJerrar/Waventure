@@ -29,9 +29,11 @@ function App() {
   const [uniqueSearch, setUniqueSearch] = useState({})
   const [toggle, setToggle] = useState(false)
   const [titleArray, setTitleArray] = useState([]);
-<<<<<<< HEAD
   const [user, setUser] = useState([])
   const [validate, setValidate] = useState(false)
+  const [synopsis, setSynopsis] = useState(false);
+  const [episodes, setEpisodes] = useState(false);
+  const [learnMore, setLearnMore] = useState(false);
   const token =  localStorage.token
   console.log(localStorage.getItem('token'))
 
@@ -59,11 +61,6 @@ useEffect(()=>{
     fetchAccount()
  },[validate])
 
-=======
-  const [synopsis, setSynopsis] = useState(false);
-  const [episodes, setEpisodes] = useState(false);
-  const [learnMore, setLearnMore] = useState(false);
->>>>>>> 614f5f5c3b0d0684012f5bae319ce1f18324be40
  const receving = () => {
   setLearnMore(false)
   setEpisodes(false)

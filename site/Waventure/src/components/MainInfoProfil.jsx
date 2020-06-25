@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import "../style/mainInfoProfil.css";
 
-export default function MainInfoProfil({justify, user}) {
+export default function MainInfoProfil({justify, user, setUser}) {
     
-   
-    
+    const axios = require('axios')
+    const token =  localStorage.token
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
     useEffect(()=>{
