@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "../style/Contact.css";
 import MainProfilInfo from './MainInfoProfil'
 
-export default function Contact() {
+export default function Contact({user}) {
     const axios = require('axios')
     const [fileAudio, setFileAudio] = useState(null)
    
@@ -29,7 +29,10 @@ export default function Contact() {
     return (
         
         <div className="contact">
-            <MainProfilInfo/>
+            <MainProfilInfo
+            justify ={"center"}
+            user={user}
+            />
         <div className="favoriteSaga">
             <p className="favoriteSagaTitle">Pourquoi ma saga favorite n’est pas sur votre site?</p>
             <p className="favoriteSagaParagraph" >Lorem ipsum dolor sit amet consectetur adipisicing elit. In doloribus magni eius laudantium praesentium, 

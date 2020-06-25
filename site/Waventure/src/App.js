@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useRef } from "react";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> 7ef40d9152ada2f4c08a6b550fef9b764c03697e
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Player from "./components/Player";
@@ -16,8 +20,12 @@ import {
 import Search from "./components/Search.jsx";
 import Contact from "./components/Contact.jsx";
 import Profil from "./components/Profil.jsx";
+import UpdateProfil from "./components/UpdateProfil.jsx";
+import UpdatePassword from "./components/UpdatePassword.jsx";
 
 function App() {
+
+  const axios = require('axios')
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
   const [accountTrigger, setAccountTriggerTrigger] = useState(false);
   const [reducer, setReducer] = useState(false);
@@ -31,6 +39,8 @@ function App() {
   const [uniqueSearch, setUniqueSearch] = useState({});
   const [toggle, setToggle] = useState(false);
   const [titleArray, setTitleArray] = useState([]);
+  const [user, setUser] = useState([])
+  const [validate, setValidate] = useState(false)
   const [synopsis, setSynopsis] = useState(false);
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
@@ -52,6 +62,51 @@ function App() {
   const handleSearchApp = (result) => {
     setUniqueSearch(result);
   };
+  const token =  localStorage.token
+  console.log(localStorage.getItem('token'))
+
+  const config = {
+    method: 'get',
+    url: 'http://localhost:4000/account',
+    headers: {
+        'x-access-token': token
+    }
+}
+
+const fetchAccount = () => {
+   axios(config)
+.then((response)=>{
+    console.log(response.data);
+    setUser(response.data)
+})
+.catch((error)=>{
+    console.log(error);
+    
+}) 
+}
+
+useEffect(()=>{
+    fetchAccount()
+ },[validate])
+
+ const receving = () => {
+  setLearnMore(false)
+  setEpisodes(false)
+  setSynopsis(false)
+   setPlaying(false)
+   setShowingPlayer(false)
+   setSerieId(-1)
+   console.log(localStorage.getItem('token'));
+ }
+ const recevingReducer = () => {
+  setLearnMore(false)
+  setEpisodes(false)
+  setSynopsis(false)
+  setReducer(!reducer)
+}
+  const handleSearchApp = (result)=>{
+      setUniqueSearch(result)
+  }
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -92,6 +147,7 @@ function App() {
             handleSearchApp={(result) => handleSearchApp(result)}
             toggle={toggle}
             setToggle={setToggle}
+            validate={validate}
           />
           <div
             className={
@@ -156,11 +212,27 @@ function App() {
             />
           </div>
           <Switch>
-            <Route path="/profil">
-              <Profil />
+            <Route path='/passwordUpdate'>
+              <UpdatePassword
+              user={user}
+              />
             </Route>
-            <Route path="/contact">
-              <Contact />
+            <Route path='/profil'>
+              <Profil
+                user={user}
+              />
+            </Route>
+            <Route path="/profilUpdate">
+                <UpdateProfil
+                  user={user}
+                  setValidate={setValidate}
+                  validate={validate}
+                />
+            </Route>
+            <Route path='/contact'>
+              <Contact
+               user={user}
+              />
             </Route>
 
             <Route path="/search">

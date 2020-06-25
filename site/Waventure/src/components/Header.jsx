@@ -15,7 +15,8 @@ export default function Header({
   toggle,
   setToggle,
   playing,
-  scrolling
+  scrolling,
+  validate
 }) {
 
   const [search, setSearch] = useState('')
@@ -23,6 +24,7 @@ export default function Header({
   const [userAvatar, setUserAvatar] = useState("");
 
   const refSearch = useRef(null)
+  
   const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
   const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const serveurPath = process.env.REACT_APP_SERVER_PATH;
@@ -77,7 +79,7 @@ export default function Header({
         });
     }
     fetchUserAvatar();
-  }, [serveurPath, token])
+  }, [serveurPath, token, validate])
 
 
   const getInput = (e) => {

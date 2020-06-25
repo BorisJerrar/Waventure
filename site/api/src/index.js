@@ -173,6 +173,10 @@ app.post('/auth/signin', accountQueries.loginAccount)
  */
 app.post("/auth/signup", accountQueries.createAccount);
 
+app.post("/auth/pwdReset", accountQueries.resetPassword);
+
+app.put("/auth/reset", Auth.verifyToken, accountQueries.resetPasswordByEmail);
+
 app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 
 /**

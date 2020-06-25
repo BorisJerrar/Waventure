@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
+import "../style/mainInfoProfil.css";
 
-export default function MainInfoProfil() {
+export default function MainInfoProfil({justify, user, setUser}) {
+    
     const axios = require('axios')
-    const [user, setUser] = useState([])
     const token =  localStorage.token
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
@@ -29,7 +30,7 @@ export default function MainInfoProfil() {
      },[axios, token])
 
     return (
-        <div className="userInfo">
+        <div className="userInfo" style={{display: "flex", justifyContent: justify}}>
             <img src={user && user[0] && user[0].avatar_id ?`${urlimg}/Avatar0${user[0].avatar_id}.jpg`: ""} alt=""/>
             <div>
             <p>{user && user[0] && user[0].first_name? user[0].first_name + " " + user[0].last_name: ""}</p>
