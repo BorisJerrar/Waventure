@@ -21,11 +21,8 @@ function SignIn(props) {
             password: password
         })
             .then(function (response) {
-                console.log(response)
-                console.log(JSON.stringify(response.data))
                 setToken(response.data.token)
                 setLoggedIn(true)
-                console.log(token)
             }
             )
             .catch(function (error) {
@@ -33,8 +30,6 @@ function SignIn(props) {
                 setMessageError(error.response.data.error)
             })
     }
-    console.log(messageError)
-    console.log(isError)
 
     function handleSubmit(event) {
         event.preventDefault();
