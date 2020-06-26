@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Card from '../components/Card'
+import Card from "../components/Card";
 export default function Newest({ lunchingEpisode, fetchingurl }) {
   const [newest, setNewest] = useState([]);
   useEffect(() => {
@@ -10,11 +10,10 @@ export default function Newest({ lunchingEpisode, fetchingurl }) {
     };
     fetchNewest();
   }, [fetchingurl]);
-  
 
   return (
     <div className="tab-content">
-      <h3 className="newestTilte">Nouveautées</h3>
+      <h3 className="card-main-title">Nouveautées</h3>
       {newest.map((item, index) => {
         return (
           <Card

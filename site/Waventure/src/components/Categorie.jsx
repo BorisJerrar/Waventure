@@ -76,9 +76,9 @@ export default function Categorie({ category, lunchingEpisode }) {
   };
 
   window.addEventListener("resize", () => {
-    setTimeout(() => {
+    if(matches){setTimeout(() => {
       setMaches(window.innerWidth);
-    }, 300);
+    }, 300)}
   });
 
   useEffect(() => {
