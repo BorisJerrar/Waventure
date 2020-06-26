@@ -1,4 +1,0 @@
-account_id: af44dc9e-286b-41c2-814a-47b84b99a85d
-email: charles.decodin@outlook.fr
-title: le caca
-synopsis: l'histoire du caca
