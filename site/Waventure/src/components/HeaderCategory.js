@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react'
-import '../style/Newest.css'
+import React, { useState, useEffect } from 'react'
+import Card from '../components/Card'
 
-export default function HeaderCategory({categoryName, lunchingEpisode}) {
-const [category, setCategory] = useState([])
+export default function HeaderCategory({ categoryName, lunchingEpisode }) {
+    const [category, setCategory] = useState([])
     useEffect(() => {
-        const fetchCategory = async() =>{
-            const response = await fetch (`http://localhost:4000/serieCategory/${categoryName}`)
+        const fetchCategory = async () => {
+            const response = await fetch(`http://localhost:4000/serieCategory/${categoryName}`)
             const data = await response.json()
-            
+
             setCategory(data)
         }
         fetchCategory()
@@ -15,29 +15,28 @@ const [category, setCategory] = useState([])
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     const lunchingEpisodeCategorie = (item) => {
         lunchingEpisode(item.serie_id)
-    } 
-    
+    }
+
     console.log(categoryName);
     return (
         <>
-        <h3 className="newestTilte">{categoryName}</h3>
-       <div className='newestCardContainer'>
-       {category.map((item, index) => {
-           return (
-                <div key={index} className='newestCard' onClick={()=> lunchingEpisodeCategorie(item)}>
-                     <img
-                className="newestCover"
-                src={`${url}/${item.image_lg}`}
-                alt={item.image_lg}
-                />
-                                    <div className='newestCardText'>
-                    <h5>{item.title}</h5>
-                    <p>{item.body}</p>
-                    </div>
-                </div>
-                );
-            })}
+            <h3 className="card-main-title">{categoryName}</h3>
+            <div className='newestCardContainer'>
+                {category.map((item, index) => (
+                    <Card
+                        key={index}
+                        item={item}
+                        title={item.title}
+                        image={item.image}
+                        imageLg={item.image_lg}
+                        imageBg={item.image_bg}
+                        synopsis={item.body}
+                        duration={item.duration}
+                        season={item.season}
+                        author={item.author}
+                    />
+                ))}
             </div>
-            </>
+        </>
     )
 }

@@ -17,7 +17,7 @@ export default function Catalog({ lunchingEpisode }) {
       <Categorie
         key={index}
         category={item.name}
-        lunchingEpisode={(serie_id, episode, listeningTime) =>
+        lunchingEpisode={(serie_id, episode,) =>
           lunchingEpisode(serie_id, episode)
         }
       />

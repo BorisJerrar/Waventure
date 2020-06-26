@@ -1,7 +1,7 @@
 import React from 'react';
-import '../style/FavoriteCard.css'
+import '../style/Card.css'
 
-function FavoriteCard(item, index) {
+function Card(item, index) {
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     return (
         <div className="card">
@@ -28,4 +28,4 @@ function FavoriteCard(item, index) {
 
 }
 
-export default FavoriteCard;
+export default Card;
