@@ -17,10 +17,11 @@
     background: url("/img/background.jpg");
     background-position: center;
     background-repeat: repeat-y;
-    height:300vh;
+    height:100vh;
     background-size: 100%;
-
+/*
     animation: scrollBackground infinite alternate-reverse 60s linear;
+    */
 }
 
 body {
