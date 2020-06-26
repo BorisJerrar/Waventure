@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../components/Card'
 
-function Favorite(props) {
+function Favorite({lunchingEpisodeVerificator}) {
+
+const transitionLunchingEpisodeVerificator = (transition) => {
+lunchingEpisodeVerificator(transition)
+}
 
     const token = localStorage.getItem('token')
     const [favoriteInfo, setFavoriteInfo] = useState([]);
@@ -41,6 +45,7 @@ function Favorite(props) {
                     duration={item.duration}
                     season={item.season}
                     author={item.author}
+                    lunchingEpisodeVerificator={(item) => {transitionLunchingEpisodeVerificator(item)}}
                 />
             ))}
         </div>
