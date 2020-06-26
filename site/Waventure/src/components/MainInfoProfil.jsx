@@ -6,18 +6,17 @@ export default function MainInfoProfil({justify, user, setUser}) {
     const token =  localStorage.token
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
-    const config = {
-        method: 'get',
-        url: 'http://localhost:4000/account',
-        headers: {
-            'x-access-token': token
-        }
-    }
     useEffect(()=>{
+        const config = {
+            method: 'get',
+            url: 'http://localhost:4000/account',
+            headers: {
+                'x-access-token': token
+            }
+        }
         const fetchAccount = () => {
             axios(config)
          .then((response)=>{
-             console.log(response.data);
              setUser(response.data)
          })
          .catch((error)=>{
@@ -26,7 +25,7 @@ export default function MainInfoProfil({justify, user, setUser}) {
          }) 
          }
         fetchAccount()
-     },[ token, config, setUser])
+     },[ token, setUser])
 
     return (
         <div className="userInfo" style={{display: "flex", justifyContent: justify}}>

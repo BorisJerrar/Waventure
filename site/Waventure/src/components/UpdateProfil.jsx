@@ -18,7 +18,7 @@ export default function UpdateProfil({ user, setValidate, validate}) {
             setAvatar(data)
         }
         fetchAvatar()
-    }, [])
+    }, [server])
 
     const updateLastName = (e) => {
         setAccount({
@@ -79,7 +79,7 @@ export default function UpdateProfil({ user, setValidate, validate}) {
                             key={key}
                             className="avatar"
                             src={`${url}/${each.avatar_path}`}
-                            alt={`image avatar`}
+                            alt={`avatar`}
                         />
                     )
                 })}

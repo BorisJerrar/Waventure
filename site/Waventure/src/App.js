@@ -19,10 +19,10 @@ import Contact from "./components/Contact.jsx";
 import Profil from "./components/Profil.jsx";
 import UpdateProfil from "./components/UpdateProfil.jsx";
 import UpdatePassword from "./components/UpdatePassword.jsx";
+import axios from "axios"
 
 function App() {
 
-  const axios = require('axios')
   const [categoriesTrigger, setCategoriesTrigger] = useState(false);
   const [accountTrigger, setAccountTriggerTrigger] = useState(false);
   const [reducer, setReducer] = useState(false);
@@ -60,21 +60,20 @@ function App() {
     setUniqueSearch(result);
   };
   const token =  localStorage.token
-  const config = {
-    method: 'get',
-    url: 'http://localhost:4000/account',
-    headers: {
-        'x-access-token': token
-    }
-}
-
-
-useEffect(()=>{
   
+  
+  useEffect(()=>{
+    
+    const config = {
+      method: 'get',
+      url: 'http://localhost:4000/account',
+      headers: {
+          'x-access-token': token
+      }
+  }
 const fetchAccount = () => {
   axios(config)
 .then((response)=>{
-   console.log(response.data);
    setUser(response.data)
 })
 .catch((error)=>{
@@ -83,7 +82,7 @@ const fetchAccount = () => {
 }) 
 }
     fetchAccount()
- },[validate])
+ },[validate, token])
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -197,6 +196,7 @@ const fetchAccount = () => {
             <Route path='/profil'>
               <Profil
                 user={user}
+                setUser={setUser}
               />
             </Route>
             <Route path="/profilUpdate">
@@ -209,6 +209,7 @@ const fetchAccount = () => {
             <Route path='/contact'>
               <Contact
                user={user}
+               setUser={setUser}
               />
             </Route>
 

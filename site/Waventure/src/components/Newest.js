@@ -10,9 +10,7 @@ export default function Newest({ lunchingEpisode, fetchingurl }) {
     };
     fetchNewest();
   }, [fetchingurl]);
-  const lunchingEpisodeCategorie = (item) => {
-    lunchingEpisode(item.serie_id);
-  };
+  
 
   return (
     <div className="tab-content">

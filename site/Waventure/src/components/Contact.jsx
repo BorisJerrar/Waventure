@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "../style/Contact.css";
 import MainProfilInfo from './MainInfoProfil'
 
-export default function Contact({user}) {
+export default function Contact({user, setUser}) {
     const server = process.env.REACT_APP_SERVER_PATH;
     const [newSerie, setNewSerie] = useState({
         account: user[0].account_id,
@@ -43,6 +43,7 @@ export default function Contact({user}) {
             <MainProfilInfo
             justify ={"center"}
             user={user}
+            setUser={setUser}
             />
         <div className="favoriteSaga">
             <p className="favoriteSagaTitle">Pourquoi ma saga favorite n’est pas sur votre site?</p>

@@ -5,6 +5,7 @@ import { Slide } from "react-slideshow-image";
 import axios from "axios";
 
 export default function Categorie({ category, lunchingEpisode }) {
+  const token = localStorage.getItem("token");
   const [series, setSeries] = useState([]);
   const [hover, setHover] = useState(false);
   const [information, setInformation] = useState(false);
@@ -14,7 +15,6 @@ export default function Categorie({ category, lunchingEpisode }) {
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
 
-  const token = localStorage.getItem("token");
 
   const lunchingEpisodeCategorie = (item) => {
     const didHeAlreadyBegin = () => {

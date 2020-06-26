@@ -12,10 +12,7 @@ export default function HeaderCategory({ categoryName, lunchingEpisode }) {
         }
         fetchCategory()
     }, [categoryName])
-    const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-    const lunchingEpisodeCategorie = (item) => {
-        lunchingEpisode(item.serie_id)
-    }
+    
 
     return (
         <>

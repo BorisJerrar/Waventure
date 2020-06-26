@@ -3,7 +3,7 @@ import MainProfilInfo from './MainInfoProfil'
 import "../style/profil.css";
 import { Link } from 'react-router-dom'
 
-export default function Profil({ user, account }) {
+export default function Profil({ user, setUser}) {
     const [toggleDelete, setToggleDelete] = useState(false)
     const server = process.env.REACT_APP_SERVER_PATH;
 
@@ -24,6 +24,7 @@ export default function Profil({ user, account }) {
     return (
         <div className="bodyProfil">
             <MainProfilInfo
+                setUser={setUser}
                 user={user}
                 justify={"flex-start"}
             />
