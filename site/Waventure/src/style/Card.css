@@ -98,3 +98,18 @@ z-index: 1;
     position: relative;
     z-index: 2;
 }
+.card-main-title{
+    margin-top: .50em;
+    margin-bottom: .30em;
+    margin-left: 1em;
+    opacity: 1;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+    line-height: 1.5;
+    color: #7f6b8b;
+    font-weight: 300;
+    text-align: left;
+    font-size: 3rem;
+    z-index: 2;
+    width: 100%;
+}

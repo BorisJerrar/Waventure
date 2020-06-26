@@ -20,7 +20,7 @@ export default function HeaderCategory({ categoryName, lunchingEpisode }) {
     console.log(categoryName);
     return (
         <>
-            <h3 className="newestTilte">{categoryName}</h3>
+            <h3 className="card-main-title">{categoryName}</h3>
             <div className='newestCardContainer'>
                 {category.map((item, index) => (
                     <Card
