@@ -14,8 +14,6 @@ export default function Header({
   handleSearchApp,
   toggle,
   setToggle,
-  playing,
-  scrolling,
   validate
 }) {
 

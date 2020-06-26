@@ -18,7 +18,7 @@ export default function Newest({ lunchingEpisode, fetchingurl }) {
 
   return (
     <div className="tab-content">
-      <h3 className="card-main-title">Nouveautées</h3>
+      <h3 className="newestTilte">Nouveautées</h3>
       {newest.map((item, index) => {
         return (
           <Card
