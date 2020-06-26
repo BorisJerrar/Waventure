@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/FavoriteCard.css'
+import '../style/Card.css'
 
 function Card(item, index) {
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;

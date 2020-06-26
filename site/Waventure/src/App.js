@@ -221,15 +221,7 @@ useEffect(()=>{
             </Route>
             <Route path="/newest">
               <div className="playerTrigger"
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                }>
+            >
                 <Newest
                   lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
                 />
@@ -238,15 +230,6 @@ useEffect(()=>{
             <Route path="/favorite">
               <div
                 className="playerTrigger"
-                style={
-                  showingPlayer || reducer
-                    ? {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                    : {
-                        transform: "matrix(1, 0, 0, 1, 0, 0)",
-                      }
-                }
               >
                 <Favorite />
               </div>
