@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../style/Newest.css";
+import Card from '../components/Card'
 export default function Newest({ lunchingEpisode, fetchingurl }) {
   const [newest, setNewest] = useState([]);
   useEffect(() => {
@@ -17,29 +17,24 @@ export default function Newest({ lunchingEpisode, fetchingurl }) {
   };
 
   return (
-    <>
+    <div className="tab-content">
       <h3 className="newestTilte">Nouveautées</h3>
-      <div className="newestCardContainer">
-        {newest.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className="newestCard"
-              onClick={() => lunchingEpisodeCategorie(item)}
-            >
-              <img
-                className="newestCover"
-                src={`${url}/${item.image_lg}`}
-                alt={item.image_lg}
-              />
-              <div className="newestCardText">
-                <h5>{item.title}</h5>
-                <p>{item.body}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </>
+      {newest.map((item, index) => {
+        return (
+          <Card
+            key={index}
+            item={item}
+            title={item.title}
+            image={item.image}
+            imageLg={item.image_lg}
+            imageBg={item.image_bg}
+            synopsis={item.body}
+            duration={item.duration}
+            season={item.season}
+            author={item.author}
+          />
+        );
+      })}
+    </div>
   );
 }
