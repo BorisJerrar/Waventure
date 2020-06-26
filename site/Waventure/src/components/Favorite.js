@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import FavoriteCard from '../components/FavoriteCard'
+import Card from '../components/Card'
 
 function Favorite(props) {
 
@@ -30,7 +30,7 @@ function Favorite(props) {
     return (
         <div className="tab-content">
             {favoriteInfo.map((item, index) => (
-                <FavoriteCard
+                <Card
                     key={index}
                     item={item}
                     title={item.title}
