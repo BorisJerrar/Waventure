@@ -4,14 +4,13 @@ import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
 import axios from "axios";
 
-export default function Categorie({ category, lunchingEpisode }) {
+export default function Categorie({ category, lunchingEpisode, matches, setMaches }) {
   const token = localStorage.getItem("token");
   const [series, setSeries] = useState([]);
   const [hover, setHover] = useState(false);
   const [information, setInformation] = useState(false);
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
-  const [matches, setMaches] = useState(window.innerWidth);
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
   const server = process.env.REACT_APP_SERVER_PATH;
 
@@ -74,12 +73,16 @@ export default function Categorie({ category, lunchingEpisode }) {
 
     didHeAlreadyBegin();
   };
-
-  window.addEventListener("resize", () => {
-    if(matches){setTimeout(() => {
-      setMaches(window.innerWidth);
-    }, 300)}
+useEffect(() => {
+  let mounted = true
+  window.addEventListener("resize", () => {setTimeout(() => {
+      if (mounted){setMaches(window.innerWidth)}
+    }, 300)
   });
+  return () => {
+    mounted = false
+  }
+}, [setMaches])
 
   useEffect(() => {
     const fetchSeries = async () => {

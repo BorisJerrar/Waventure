@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Categorie from "./Categorie";
 
-export default function Catalog({ lunchingEpisode }) {
+export default function Catalog({ lunchingEpisode, matches, setMaches }) {
   const [categories, setCategories] = useState([]);
 
   const fetchCategories = async () => {
@@ -20,6 +20,8 @@ export default function Catalog({ lunchingEpisode }) {
         lunchingEpisode={(serie_id, episode,) =>
           lunchingEpisode(serie_id, episode)
         }
+        matches={matches}
+        setMaches={setMaches}
       />
     );
   });

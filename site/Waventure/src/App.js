@@ -41,6 +41,7 @@ function App() {
   const [synopsis, setSynopsis] = useState(false);
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
+  const [matches, setMaches] = useState(window.innerWidth);
   const playerRef = useRef();
   const receving = () => {
     setLearnMore(false);
@@ -247,6 +248,8 @@ const fetchAccount = () => {
                   lunchingEpisode={(serie_id, episode) =>
                     lunchingEpisode(serie_id, episode)
                   }
+                  matches={matches}
+                  setMaches={setMaches}
                 />
               </div>
             </Route>
