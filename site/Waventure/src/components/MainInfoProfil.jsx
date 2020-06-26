@@ -1,20 +1,19 @@
 import React, {useEffect} from 'react'
 import "../style/mainInfoProfil.css";
+import axios from 'axios'
 
 export default function MainInfoProfil({justify, user, setUser}) {
-    
-    const axios = require('axios')
     const token =  localStorage.token
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
-    useEffect(()=>{
-        const config = {
-            method: 'get',
-            url: 'http://localhost:4000/account',
-            headers: {
-                'x-access-token': token
-            }
+    const config = {
+        method: 'get',
+        url: 'http://localhost:4000/account',
+        headers: {
+            'x-access-token': token
         }
+    }
+    useEffect(()=>{
         const fetchAccount = () => {
             axios(config)
          .then((response)=>{
@@ -27,7 +26,7 @@ export default function MainInfoProfil({justify, user, setUser}) {
          }) 
          }
         fetchAccount()
-     },[axios, token])
+     },[ token, config, setUser])
 
     return (
         <div className="userInfo" style={{display: "flex", justifyContent: justify}}>

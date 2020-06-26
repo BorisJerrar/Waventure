@@ -6,7 +6,7 @@ export default function UpdatePassword({user}) {
     const server = process.env.REACT_APP_SERVER_PATH;
     
 
-    console.log(account);
+
     
     const config = {
         method: 'put',
@@ -18,17 +18,9 @@ export default function UpdatePassword({user}) {
     }
     
     const fetchPassword = async() => {
-        console.log(account);
-        
         if(passwordUpdate.new === passwordUpdate.confirm){
             fetch(config)
-        }
-            
-           
-            
-            
-    
-       
+        } 
     }
 
     const verifyPassword = (e) =>{
@@ -54,8 +46,6 @@ export default function UpdatePassword({user}) {
         })
 
     }
-
-    console.log(passwordUpdate);
     
     return (
         <div className="containerUpdate">

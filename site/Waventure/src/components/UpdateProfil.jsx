@@ -10,13 +10,13 @@ export default function UpdateProfil({ user, setValidate, validate}) {
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
 
-    const fetchAvatar = async () => {
-        const response = await fetch(`${server}/avatar`)
-        const data = await response.json()
-        setAvatar(data)
-    }
-
+    
     useEffect(() => {
+        const fetchAvatar = async () => {
+            const response = await fetch(`${server}/avatar`)
+            const data = await response.json()
+            setAvatar(data)
+        }
         fetchAvatar()
     }, [])
 
@@ -68,8 +68,6 @@ export default function UpdateProfil({ user, setValidate, validate}) {
         })
            
     }
-
-    console.log(account);
     
     return (
         <div className="containerUpdate">

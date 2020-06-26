@@ -17,7 +17,6 @@ export default function HeaderCategory({ categoryName, lunchingEpisode }) {
         lunchingEpisode(item.serie_id)
     }
 
-    console.log(categoryName);
     return (
         <>
             <h3 className="card-main-title">{categoryName}</h3>

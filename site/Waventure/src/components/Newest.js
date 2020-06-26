@@ -10,8 +10,6 @@ export default function Newest({ lunchingEpisode, fetchingurl }) {
     };
     fetchNewest();
   }, [fetchingurl]);
-  const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-  console.log(newest);
   const lunchingEpisodeCategorie = (item) => {
     lunchingEpisode(item.serie_id);
   };

@@ -60,8 +60,6 @@ function App() {
     setUniqueSearch(result);
   };
   const token =  localStorage.token
-  console.log(localStorage.getItem('token'))
-
   const config = {
     method: 'get',
     url: 'http://localhost:4000/account',

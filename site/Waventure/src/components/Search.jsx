@@ -6,9 +6,6 @@ const serverPath = process.env.REACT_APP_SERVER_PATH;
 const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 const [uniqueSerie, setUniqueSerie] = useState([])
 
-console.log(uniqueSearch);
-
-
 useEffect(() => {
     const fetchUniqueSerie = async() =>{
         const response = await fetch (`${serverPath}/serieSynopsis?search=%${uniqueSearch}%`)
