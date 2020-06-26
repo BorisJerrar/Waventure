@@ -30,36 +30,49 @@ const getAccountById = (request, response) => {
 }
 
 const createAccount = (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    return res.status(400).send({ 'message': 'Some values are missing' });
+  if (!req.body.email || !req.body.password || !req.body.username || !req.body.last_name || !req.body.birth_date) {
+    return res.status(400).send({ error: 'Formulaire incomplet' });
   }
   if (!Helper.isValidEmail(req.body.email)) {
-    return res.status(400).json('Please enter a valid email address');
+    return res.status(400).send({ error: 'Adresse email invalide' });
   }
-  const hashPassword = Helper.hashPassword(req.body.password);
-
-  const createQuery = `INSERT INTO
+  if (!req.body.password) {
+    return res.status(400).send({ error: 'Veuillez saisir votre mot de passe' });
+  }
+  const checkEmail = 'SELECT * FROM account WHERE email = $1';
+  db.query(checkEmail, [req.body.email], (error, results) => {
+    if (results.rows[0]) {
+      return res.status(400).send({ error: 'Adresse e-mail déjà utilisée' })
+    }
+    if (error) {
+      console.log(error)
+      return res.status(400).send(error);
+    }
+    const hashPassword = Helper.hashPassword(req.body.password);
+    const createQuery = `INSERT INTO
       account(account_id, username, first_name, last_name, email, birth_date, avatar_id, password)
       VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       returning *`;
-  const values = [
-    uuid(),
-    req.body.username,
-    req.body.first_name,
-    req.body.last_name,
-    req.body.email,
-    req.body.birth_date,
-    req.body.avatar_id,
-    hashPassword
-  ];
+    const values = [
+      uuid(),
+      req.body.username,
+      req.body.first_name,
+      req.body.last_name,
+      req.body.email,
+      req.body.birth_date,
+      req.body.avatar_id,
+      hashPassword
+    ];
 
-  const rows = db.query(createQuery, values, (error, results) => {
-    if (error) {
-      return res.status(400).send(error);
-    }
-    const token = Helper.generateToken(results.rows[0].account_id)
-    return res.status(201).send({ token })
-  })
+    db.query(createQuery, values, (error, results) => {
+      if (error) {
+        return res.status(400).send(error);
+      }
+      const token = Helper.generateToken(results.rows[0].account_id)
+      return res.status(201).send({ token })
+    })
+  });
+
 }
 
 const loginAccount = (req, res) => {
