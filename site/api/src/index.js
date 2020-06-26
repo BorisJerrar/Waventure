@@ -51,6 +51,7 @@ const accountQueries = require("./queries/account");
 const serieRoleQueries = require("./queries/serie_role");
 const avatarQueries = require("./queries/avatar");
 const serieSynopsisQueries = require("./queries/serie_synopsis")
+const sendSerie = require("./queries/sendSerie")
 const Auth = require('./middleware/Auth.js');
 
 
@@ -64,7 +65,7 @@ app.use(
 );
 
 /* add file */
-var storage = multer.diskStorage({
+/* var storage = multer.diskStorage({
   destination: function (req, file, cb) {
   cb(null, 'public')
 },
@@ -87,12 +88,14 @@ app.post('/upload',function(req, res) {
 
   })
 
-});
-/* End add file */
+}); */
+
 
 app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
+
+app.post("/sendSerie", sendSerie.sendSerie)
 
 app.get("/images/:image", (req, res) => {
   let image = req.params.image;

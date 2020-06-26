@@ -29,7 +29,7 @@ function PwdReset(props) {
             <main className="home sign-in">
                 <div className="waventureLogo">
                     <img src={`${pathLogo}/waventureLogo.svg`} alt="Waventure Logo" />
-                    <h1>WAVENTURE</h1>
+                    <h1 className="logo-txt">WAVENTURE</h1>
                 </div>
                 <form className="login-box"
                     onSubmit={handleSubmit}>

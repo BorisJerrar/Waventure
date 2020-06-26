@@ -70,19 +70,20 @@ function App() {
     }
 }
 
-const fetchAccount = () => {
-   axios(config)
-.then((response)=>{
-    console.log(response.data);
-    setUser(response.data)
-})
-.catch((error)=>{
-    console.log(error);
-    
-}) 
-}
 
 useEffect(()=>{
+  
+const fetchAccount = () => {
+  axios(config)
+.then((response)=>{
+   console.log(response.data);
+   setUser(response.data)
+})
+.catch((error)=>{
+   console.log(error);
+   
+}) 
+}
     fetchAccount()
  },[validate])
 

@@ -3,9 +3,8 @@ import React, { useState } from 'react'
 export default function UpdatePassword({user}) {
     const [passwordUpdate, setPasswordUpdate] = useState({})
     const [account, setAccount] = useState(user[0])
-    const axios = require('axios')
     const server = process.env.REACT_APP_SERVER_PATH;
-    const token =  localStorage.token
+    
 
     console.log(account);
     
@@ -22,13 +21,7 @@ export default function UpdatePassword({user}) {
         console.log(account);
         
         if(passwordUpdate.new === passwordUpdate.confirm){
-            fetch(`${server}/account/${account.account_id}`,{
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(account)
-            })
+            fetch(config)
         }
             
            
