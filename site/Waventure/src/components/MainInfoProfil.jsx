@@ -1,11 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
 import "../style/mainInfoProfil.css";
 import axios from 'axios'
+import Context from '../context/context'
 
-export default function MainInfoProfil({justify, user, setUser}) {
-    const token =  localStorage.token
+export default function MainInfoProfil({justify}) {
+    const token =  localStorage.token;
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-
+    const { user, setUser } = useContext(Context);
+    
     useEffect(()=>{
         const config = {
             method: 'get',
