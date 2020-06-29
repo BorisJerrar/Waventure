@@ -6,6 +6,7 @@ import Player from "./components/Player";
 import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
+import Context from "./context/context"
 import HeaderCategory from "./components/HeaderCategory";
 import Favorite from "./components/Favorite";
 import {
@@ -29,7 +30,6 @@ function App() {
   const [playing, setPlaying] = useState(false);
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
-
   const [index, setIndex] = useState(0);
   const [toggleWrapper, setToggleWrapper] = useState(false);
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
@@ -110,7 +110,48 @@ const fetchAccount = () => {
     return <Redirect to="/home" />;
   }
 
+  const context = {
+    categoriesTrigger,
+    accountTrigger,
+    reducer,
+    playing,
+    showingPlayer,
+    serieId,
+    index,
+    toggleWrapper,
+    sagaEpisodeSaisonInfo,
+    uniqueSearch,
+    toggle,
+    titleArray,
+    user,
+    validate,
+    synopsis,
+    episodes,
+    learnMore,
+    matches,
+    setCategoriesTrigger,
+    setAccountTriggerTrigger,
+    setReducer,
+    setPlaying,
+    setShowingPlayer,
+    setSerieId,
+    setIndex,
+    setToggleWrapper,
+    setSagaEpisodeSaisonInfo,
+    setUniqueSearch,
+    setToggle,
+    setTitleArray,
+    setUser,
+    setValidate,
+    setSynopsis,
+    setEpisodes,
+    setLearnMore,
+    setMaches
+  }
+
   return (
+    
+    <Context.Provider value={context}>
     <Router>
       <div className="App" onClick={triggeringCategory}>
         <>
@@ -124,7 +165,6 @@ const fetchAccount = () => {
             handleSearchApp={(result) => handleSearchApp(result)}
             toggle={toggle}
             setToggle={setToggle}
-            validate={validate}
           />
           <div
             className={
@@ -269,6 +309,7 @@ const fetchAccount = () => {
         </>
       </div>
     </Router>
+    </Context.Provider>
   );
 }
 
