@@ -3,9 +3,9 @@ import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
 import axios from "axios";
-import fetchingNewEpisode from "./fetchingNewEpisode";
-import fetchingExsistingEpisode from "./fetchingExsistingEpisode";
-import fetchSeries from "./fetchSeries";
+import fetchingNewEpisode from "../utiles/fetchingNewEpisode";
+import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
+import fetchSeries from "../utiles/fetchSeries";
 import didHeAlreadyBegin from "./didHeAlreadyBegin";
 import Context from "../context/context";
 
