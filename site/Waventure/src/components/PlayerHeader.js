@@ -1,19 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/PlayerHeader.css";
+import Context from '../context/context'
 
-export default function PlayerHeader({
-  synopsis,
-  learnMore,
-  episodes,
-  setEpisode,
-  episodeInfos,
-  setIndex,
-  sagaEpisodeSaisonInfo,
-  sending,
-  sendingReducer,
-  reducer
-}) {
+export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
+
+  const { 
+    synopsis,
+    learnMore,
+    episodes,
+    setEpisode,
+    reducer,
+    setIndex,
+    sagaEpisodeSaisonInfo
+  } = useContext(Context);
+
   const closingPlayer = () => {
     sending()
   }
