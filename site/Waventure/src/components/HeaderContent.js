@@ -16,6 +16,8 @@ export default function HeaderContent({refSearch,
     accountTrigger,
     logout}) {
       
+      console.log(categories);
+      
     const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
     const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     return (

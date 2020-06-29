@@ -274,7 +274,7 @@ const fetchAccount = () => {
                 />
               </div>
             </Route>
-            {titleArray.map((item, index) => {
+            {categories.map((item, index) => {
               return (
                 <Route path={`/${item.name}`} key={index}>
                   <div className="playerTrigger flexing">

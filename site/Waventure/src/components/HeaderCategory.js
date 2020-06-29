@@ -5,11 +5,14 @@ import Context from "../context/context";
 export default function HeaderCategory({ categoryName }) {
     const {serverPath} = useContext(Context)
     const [category, setCategory] = useState([])
+    console.log(categoryName);
+    
     useEffect(() => {
         const fetchCategory = async () => {
-            const response = await fetch(`${serverPath}serieCategory/${categoryName}`)
+            const response = await fetch(`${serverPath}/serieCategory/${categoryName}`)
             const data = await response.json()
-
+            console.log(data);
+            
             setCategory(data)
         }
         fetchCategory()
