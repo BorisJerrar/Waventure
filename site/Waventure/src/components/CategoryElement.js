@@ -1,7 +1,7 @@
 import React from 'react'
 import "../style/Categorie.css";
 
-export default function CategorySynopsis({ellement, visibilityProps, classname, addingClass}) {
+export default function CategorySynopsis({ellement, visibilityProps, classname }) {
     return (
         <p
         className={classname}

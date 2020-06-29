@@ -8,24 +8,23 @@ export default function Banner({ lunchingEpisode }) {
     const token = localStorage.getItem("token");
     const [wedette, setWedette] = useState([]);
     const [synopsis, setSynopsis] = useState([]);
-
     const server = process.env.REACT_APP_SERVER_PATH
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
-    const fetchWedette = async () => {
-        const response = await fetch(`http://localhost:4000/serie/1`)
-        const data = await response.json()
-        setWedette(data[0])
-    }
-    const fetchSynopsis = async () => {
-        const response = await fetch(`http://localhost:4000/synopsis?serie_id=1`)
-        const data = await response.json()
-        setSynopsis(data[0])
-    }
-
+    
     useEffect(() => {
+      const fetchWedette = async () => {
+          const response = await fetch(`${server}/serie/1`)
+          const data = await response.json()
+          setWedette(data[0])
+      }
+      const fetchSynopsis = async () => {
+          const response = await fetch(`${server}/synopsis?serie_id=1`)
+          const data = await response.json()
+          setSynopsis(data[0])
+      }
         fetchWedette()
         fetchSynopsis()
-    }, [])
+    }, [server])
     const lunchingEpisodeCategorie = (item) => {
         const didHeAlreadyBegin = () => {
           var config = {
@@ -63,7 +62,7 @@ export default function Banner({ lunchingEpisode }) {
         const AddingNew = (sagas) => {
           var creatingNew = {
             method: "post",
-            url: `http://localhost:4000/listen?serie_id=${sagas[0].serie_id}&episode_id=${sagas[0].episode_id}`,
+            url: `${server}/listen?serie_id=${sagas[0].serie_id}&episode_id=${sagas[0].episode_id}`,
             headers: {
               "x-access-token": token,
             },
