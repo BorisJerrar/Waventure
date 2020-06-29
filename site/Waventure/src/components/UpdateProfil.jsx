@@ -20,33 +20,7 @@ export default function UpdateProfil({ user, setValidate, validate}) {
         fetchAvatar()
     }, [server])
 
-    const updateLastName = (e) => {
-        setAccount({
-            ...account,
-            last_name: e.target.value
-        })
-    }
 
-    const updateFirstName = (e) => {
-        setAccount({
-            ...account,
-            first_name: e.target.value
-        })
-    }
-
-    const updateUsername = (e) => {
-        setAccount({
-            ...account,
-            username: e.target.value
-        })
-    }
-
-    const updateEmail = (e) => {
-        setAccount({
-            ...account,
-            email: e.target.value
-        })
-    }
     const updateAvatar = (key) => {
         setAccount({
             ...account,
@@ -67,8 +41,7 @@ export default function UpdateProfil({ user, setValidate, validate}) {
             }
         })
            
-    }
-    
+    } 
     return (
         <div className="containerUpdate">
             <div className="containerAvatar">
@@ -87,13 +60,13 @@ export default function UpdateProfil({ user, setValidate, validate}) {
             <div className='containerForm'>
                 <form className="formUpdate">
                     <label>Nom</label>
-                    <input type="text" value={account.last_name} onChange={updateLastName} />
+                    <input type="text" value={account.last_name} onChange={(e)=>{ setAccount({...account, last_name: e.target.value})}} />
                     <label>Prénom</label>
-                    <input type="text" value={account.first_name} onChange={updateFirstName} />
+                    <input type="text" value={account.first_name} onChange={(e)=>{ setAccount({...account, first_name: e.target.value})}} />
                     <label>Pseudo</label>
-                    <input type="text" value={account.username} onChange={updateUsername} />
+                    <input type="text" value={account.username} onChange={(e)=>{ setAccount({...account, username: e.target.value})}} />
                     <label>Email</label>
-                    <input type="text" value={account.email} onChange={updateEmail} />
+                    <input type="text" value={account.email} onChange={(e)=>{ setAccount({...account, email: e.target.value})}} />
                     <Link to="/profil" style={{textDecoration: "none"}}>
                     <input type="button" value="Valider" className="btnProfil" onClick={fetchAccount}/>
                     </Link>
