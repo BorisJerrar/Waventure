@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import Context from '../context/context';
 
 export default function UpdatePassword({user}) {
     const [passwordUpdate, setPasswordUpdate] = useState({})
     const [account, setAccount] = useState(user[0])
-    const server = process.env.REACT_APP_SERVER_PATH;
-    
-
-
-    
+    const {serverPath} = useContext(Context) 
     const config = {
         method: 'put',
-        url: `${server}/account/${account.account_id}`,
+        url: `${serverPath}/account/${account.account_id}`,
         headers: {
             "Content-Type":"application/json"
         },

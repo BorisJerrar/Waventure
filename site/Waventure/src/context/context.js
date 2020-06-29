@@ -20,6 +20,8 @@ export default React.createContext({
     learnMore: "",
     matches: "",
     categories: "",
+    token:"",
+    serverPath: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},

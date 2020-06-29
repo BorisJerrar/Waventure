@@ -18,7 +18,11 @@ const fetchinEpisodePlayer = async (index, serieId, setSagaInfo, setEpisodeInfos
             response.data[index].title &&
             response.data[index].mp3_file
           ) {
-            return callback(response.data)
+            callback(
+              `${response.data[index].title.split(" ").join("")}&sound=${
+                response.data[index].mp3_file
+              }`
+            );
           }
         })
         .catch(function (error) {

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CategoryElement from "./CategoryElement";
 import "../style/Categorie.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect } from "react";
+import Context from "../context/context";
 import axios from 'axios';
 
 export default function CategoryUnique({
@@ -16,16 +16,14 @@ export default function CategoryUnique({
   synopsis,
   hover,
 }) {
-
-  const server = process.env.REACT_APP_SERVER_PATH;
+  const {token, serverPath } = useContext(Context);
   const [favorite, setFavorite] = useState(false)
-  const token = localStorage.getItem('token')
 
   const handleFavorite = (e) => {
     e.stopPropagation();
     var addConfig = {
       method: 'POST',
-      url: `${server}/favorite/${item.serie_id}`,
+      url: `${serverPath}/favorite/${item.serie_id}`,
       headers: {
         'x-access-token': token
       }
@@ -33,7 +31,7 @@ export default function CategoryUnique({
     
     var removeConfig = {
       method: 'DELETE',
-      url: `${server}/favorite/${item.serie_id}`,
+      url: `${serverPath}/favorite/${item.serie_id}`,
       headers: {
         'x-access-token': token
       }
@@ -62,7 +60,7 @@ export default function CategoryUnique({
 
     var config = {
       method: 'get',
-      url: `${server}/favorite/${item.serie_id}`,
+      url: `${serverPath}/favorite/${item.serie_id}`,
       headers: {
         'x-access-token': token
       }
@@ -86,7 +84,7 @@ export default function CategoryUnique({
   useEffect(() => {
     var config = {
       method: 'get',
-      url: `${server}/favorite/${item.serie_id}`,
+      url: `${serverPath}/favorite/${item.serie_id}`,
       headers: {
         'x-access-token': token
       }
@@ -106,7 +104,7 @@ export default function CategoryUnique({
     fetchFavorite()
   
     return () =>  mounted = false
-  }, [server, item, token])
+  }, [serverPath, item, token])
   
   return (
     <div

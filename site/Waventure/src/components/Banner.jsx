@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../style/Banner.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import fetchingNewEpisode from "../utiles/fetchingNewEpisode";
+import Context from "../context/context";
 import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
 import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
 
 export default function Banner({ lunchingEpisode }) {
-  const token = localStorage.getItem("token");
-
   // data one serie star
   const [wedette, setWedette] = useState([]);
 
+  const {serverPath} = useContext(Context)
   //variable environnement
-  const server = process.env.REACT_APP_SERVER_PATH;
+
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
   useEffect(() => {
@@ -23,12 +23,12 @@ export default function Banner({ lunchingEpisode }) {
      * @param serverParams
      */
     const fetchWedette = async () => {
-      const response = await fetch(`${server}/serieSynopsis/1`);
+      const response = await fetch(`${serverPath}/serieSynopsis/1`);
       const data = await response.json();
       setWedette(data[0]);
     };
     fetchWedette();
-  }, [server]);
+  }, [serverPath]);
   /* First of all, cheking if user has already begun the audiodrama on click*/
   const lunchingEpisodeCategorie = (item) => {
     didHeAlreadyBegin(item, function (config) {

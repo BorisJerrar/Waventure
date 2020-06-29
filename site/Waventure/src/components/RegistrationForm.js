@@ -1,8 +1,10 @@
-import React, {useState} from "react"
+import React, {useState, useContext} from "react"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Context from "../context/context";
 
 function RegistrationForm(props) {
+    const {serverPath} = useContext(Context)
     const [state, setState] = useState({
         email : "",
         password : "",
@@ -42,7 +44,7 @@ function RegistrationForm(props) {
                 "password":state.password,
             }
             console.log(payload)
-            axios.post('http://localhost:4000/account', payload)
+            axios.post(`${serverPath}/account`, payload)
                 .then(function (response) {
                     if (response.data.code === 201) {
                         console.log(response)

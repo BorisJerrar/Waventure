@@ -1,10 +1,7 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-
 import '../style/Sticky.css';
-
-
 const  Sticky = ({child, top}) => {
   const [isSticky, setSticky] = useState(false);
   const ref = useRef(null);

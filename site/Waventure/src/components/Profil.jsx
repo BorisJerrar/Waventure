@@ -6,12 +6,11 @@ import Context from '../context/context'
 
 export default function Profil() {
 
-    const { user } = useContext(Context);
+    const { user, serverPath} = useContext(Context);
     const [toggleDelete, setToggleDelete] = useState(false);
-    const server = process.env.REACT_APP_SERVER_PATH;
 
     const deleteAccount = () => {
-        fetch(`${server}/account/${user[0].account_id}`, {
+        fetch(`${serverPath}/account/${user[0].account_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import Context from '../context/context'
 
 export default function MainPlayerImg({episodeInfos,reducer}) {
-    const serverPath = process.env.REACT_APP_SERVER_PATH;
+  const {serverPath} = useContext(Context)
     return (
         <img
         src={

@@ -10,15 +10,14 @@ import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
 import Context from "../context/context";
 
 export default function Categorie({ category, lunchingEpisode }) {
-  const { matches, setMaches } = useContext(Context);
-  const token = localStorage.getItem("token");
+  const { matches, setMaches, token, serverPath } = useContext(Context);
   const [series, setSeries] = useState([]);
   const [hover, setHover] = useState(false);
   const [information, setInformation] = useState(false);
   const [hoverItem, setHoverItem] = useState([]);
   const [synopsis, setSynopsis] = useState("");
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-  const server = process.env.REACT_APP_SERVER_PATH;
+
 
   /* First of all, cheking if user has already begun the audiodrama on click*/
   const lunchingEpisodeCategorie = (item) => {
@@ -74,14 +73,14 @@ export default function Categorie({ category, lunchingEpisode }) {
     });
     /* Fetching  audio informations on hover*/
     const fetchSerieInformation = async () => {
-      const response = await fetch(`${server}/sagaInfo/${hoverItem.serie_id}`);
+      const response = await fetch(`${serverPath}/sagaInfo/${hoverItem.serie_id}`);
       const data = await response.json();
       setSynopsis(data[0].body);
     };
     if (hover) {
       fetchSerieInformation();
     }
-  }, [category, hover, hoverItem.serie_id, server, token, matches]);
+  }, [category, hover, hoverItem.serie_id, serverPath, token, matches]);
 /*  properties for the npm <Slide />*/
   let properties = {
     indicators: true,

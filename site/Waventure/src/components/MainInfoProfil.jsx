@@ -4,14 +4,13 @@ import axios from 'axios'
 import Context from '../context/context'
 
 export default function MainInfoProfil({justify}) {
-    const token =  localStorage.token;
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-    const { user, setUser } = useContext(Context);
+    const { user, setUser, token, serverPath } = useContext(Context);
     
     useEffect(()=>{
         const config = {
             method: 'get',
-            url: 'http://localhost:4000/account',
+            url: `${serverPath}/account`,
             headers: {
                 'x-access-token': token
             }
@@ -27,7 +26,7 @@ export default function MainInfoProfil({justify}) {
          }) 
          }
         fetchAccount()
-     },[ token, setUser])
+     },[ token, setUser, serverPath])
 
     return (
         <div className="userInfo" style={{display: "flex", justifyContent: justify}}>
