@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Card from '../components/Card'
+import Context from "../context/context";
 
 function Favorite({lunchingEpisodeVerificator}) {
 
-    const token = localStorage.getItem('token')
+    const {token, serverPath } = useContext(Context);
     const [favoriteInfo, setFavoriteInfo] = useState([]);
-    
-    const serverPath = process.env.REACT_APP_SERVER_PATH;
     
     const transitionLunchingEpisodeVerificator = (transition) => {
     lunchingEpisodeVerificator(transition)

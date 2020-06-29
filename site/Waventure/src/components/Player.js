@@ -12,9 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Context from "../context/context";
 
 export default function Player({ sending, sendingReducer, playerRef }) {
-  const { serieId, index, setIndex, reducer, episodes } = useContext(Context);
-
-  const serverPath = process.env.REACT_APP_SERVER_PATH;
+  const { serieId, index, setIndex, reducer, episodes, serverPath} = useContext(Context);
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
   const [urlAudio, setUrlAudio] = useState();

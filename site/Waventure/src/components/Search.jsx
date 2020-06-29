@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import "../style/search.css";
+import Context from '../context/context';
 
 export default function Search({uniqueSearch, lunchingEpisode }) {
-    
+    const {serverPath} = useContext(Context)
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     const [uniqueSerie, setUniqueSerie] = useState([])
-    
-    const serverPath = process.env.REACT_APP_SERVER_PATH;
 
 useEffect(() => {
     const fetchUniqueSerie = async() =>{

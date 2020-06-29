@@ -1,15 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import "../style/Player.css";
+import Context from "../context/context";
 
 export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
-
+const {serverPath} = useContext(Context)
     const [moreInfo, setMoreInfo] = useState([])
     const [author, setAuthor] = useState('')
     const [seriesByAuthor, setSeriesByAuthor]= useState([])
     const [currentSerie, setCurrentSerie]= useState()
-
-    const serverPath = process.env.REACT_APP_SERVER_PATH;
-    
     useEffect(() => {
         const fetchSerieRole = async() =>{
             const response = await fetch (`${serverPath}/serieRole/${serieId}`)

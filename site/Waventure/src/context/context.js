@@ -19,6 +19,8 @@ export default React.createContext({
     episodes: "",
     learnMore: "",
     matches: "",
+    token:"",
+    serverPath: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},

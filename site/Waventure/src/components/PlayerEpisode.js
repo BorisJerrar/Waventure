@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import Context from "../context/context";
 
 export default function PlayerEpisode({
   serieId,
@@ -9,7 +10,7 @@ export default function PlayerEpisode({
   setLearnMore,
   setLastElement,
 }) {
-  const serverPath = process.env.REACT_APP_SERVER_PATH;
+  const {serverPath} = useContext(Context)
   useEffect(() => {
     const fetchingEpisodeBySeason = async () => {
       const fetching = await fetch(`${serverPath}/saisonAndEpisode/${serieId}`);

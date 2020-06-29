@@ -1,15 +1,16 @@
-import React, {useState} from "react"
+import React, {useState, useContext} from "react"
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-
+import Context from '../context/context'
 function LoginForm(props) {
+    const {serverPath} = useContext(Context)
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     function checkLogin() {
-        axios.post("http://localhost:4000/Auth/login", {
+        axios.post(`${serverPath}/Auth/login`, {
             email,
             password
         }).then(result => {

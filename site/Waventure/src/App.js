@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Player from "./components/Player";
@@ -43,6 +43,8 @@ function App() {
   const [learnMore, setLearnMore] = useState(false);
   const [matches, setMaches] = useState(window.innerWidth);
   const playerRef = useRef();
+  const token = localStorage.getItem("token");
+  const serverPath = process.env.REACT_APP_SERVER_PATH;
   
   const receving = () => {
     setLearnMore(false);
@@ -61,9 +63,10 @@ function App() {
   const handleSearchApp = (result) => {
     setUniqueSearch(result);
   };
-  const token =  localStorage.token
+
+
   
-  
+
   useEffect(()=>{
     
     const config = {
@@ -130,6 +133,8 @@ const fetchAccount = () => {
     episodes,
     learnMore,
     matches,
+    token,
+    serverPath,
     setCategoriesTrigger,
     setAccountTriggerTrigger,
     setReducer,

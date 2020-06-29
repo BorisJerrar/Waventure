@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "../components/Card";
+import Context from "../context/context";
 export default function Newest({ lunchingEpisode, fetchingurl }) {
   const [newest, setNewest] = useState([]);
+  const {serverPath} = useContext(Context)
   useEffect(() => {
     const fetchNewest = async () => {
-      const response = await fetch("http://localhost:4000/serieUploades");
+      const response = await fetch(`${serverPath}/serieUploades`);
       const data = await response.json();
       setNewest(data);
     };
     fetchNewest();
-  }, [fetchingurl]);
+  }, [fetchingurl, serverPath]);
 
   return (
     <div className="tab-content">

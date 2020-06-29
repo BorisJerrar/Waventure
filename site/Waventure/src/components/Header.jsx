@@ -14,6 +14,8 @@ export default function Header({handleSearchApp}) {
     accountTrigger, 
     titleArray, 
     toggle, 
+    serverPath,
+    token,
     setCategoriesTrigger, 
     setAccountTriggerTrigger, 
     setTitleArray, 
@@ -23,12 +25,7 @@ export default function Header({handleSearchApp}) {
   const [search, setSearch] = useState('')
   const [resultSearch, setResultSearch] = useState([])
   const [userAvatar, setUserAvatar] = useState("");
-
   const refSearch = useRef(null)
-  
-  const serveurPath = process.env.REACT_APP_SERVER_PATH;
-
-  const token = localStorage.getItem('token');
 
   const categories = () => {
     setCategoriesTrigger(!categoriesTrigger);
@@ -36,14 +33,14 @@ export default function Header({handleSearchApp}) {
 
   useEffect(() => {
     const fetching = async () => {
-      const data = await fetch(`${serveurPath}/category`);
+      const data = await fetch(`${serverPath}/category`);
       const json = await data.json();
       setTitleArray(json);
     }
     if (categoriesTrigger) {
       fetching()
     }
-  }, [categoriesTrigger, serveurPath, setTitleArray])
+  }, [categoriesTrigger, serverPath, setTitleArray])
 
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
@@ -51,7 +48,7 @@ export default function Header({handleSearchApp}) {
 
   const fetchSearchSeries = async (e) => {
     let userSearch = refSearch.current.value
-    const response = await fetch(`${serveurPath}/serie?search=%${userSearch}%`)
+    const response = await fetch(`${serverPath}/serie?search=%${userSearch}%`)
     const data = await response.json()
     setResultSearch(data)
   }
@@ -63,7 +60,7 @@ export default function Header({handleSearchApp}) {
   useEffect(() => {
 
     fetchUserAvatar(setUserAvatar);
-  }, [serveurPath, token, validate])
+  }, [serverPath, token, validate])
 
 
   const getInput = (e) => {

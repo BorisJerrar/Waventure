@@ -5,8 +5,7 @@ import Context from '../context/context'
 
 export default function Contact() {
 
-    const {user, setUser} = useContext(Context)
-    const server = process.env.REACT_APP_SERVER_PATH;
+    const {user, setUser, serverPath} = useContext(Context)
     const [newSerie, setNewSerie] = useState({
         account: user[0].account_id,
         email: user[0].email,
@@ -28,7 +27,7 @@ export default function Contact() {
     }
 
     const sendSerie = () =>{
-        fetch(`${server}/sendSerie`,{
+        fetch(`${serverPath}/sendSerie`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
