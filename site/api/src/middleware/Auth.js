@@ -13,8 +13,8 @@ const verifyToken = (req, res, next) => {
         return res.status(400).send({ 'message': 'Token is not provided' });
     }
     const decoded = jwt.verify(token, process.env.SECRET);
-    const text = 'SELECT * FROM account WHERE account_id = $1';
-    const rows = db.query(text, [decoded.account_id], (error, results) => {
+    const findAccount = 'SELECT * FROM account WHERE account_id = $1';
+    db.query(findAccount, [decoded.account_id], (error, results) => {
     if (!results.rows[0]) {
         return res.status(400).send({ 'message': 'The token you provided is invalid' });
     }

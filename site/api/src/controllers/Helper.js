@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const db = require('../../db/database')
 
   const hashPassword = (password) =>  {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
@@ -30,10 +31,24 @@ const jwt = require('jsonwebtoken');
     const token = jwt.sign({
       account_id: id
     },
-      process.env.SECRET, { expiresIn: '7d' }
+      process.env.SECRET, { expiresIn: '24h' }
     );
     return token;
   }
+    /**
+   * Generate Token 
+   * @param {string} id
+   * @returns {string} token
+   */
+  const generateTokenSmallDuration = (id) => {
+    const token = jwt.sign({
+      account_id: id
+    },
+      process.env.SECRET, { expiresIn: '300000ms' }
+    );
+    return token;
+  }
+
 
 
 module.exports = {
@@ -41,4 +56,5 @@ module.exports = {
     isValidEmail,
     comparePassword,
     hashPassword,
+    generateTokenSmallDuration
 };

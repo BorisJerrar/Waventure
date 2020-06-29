@@ -18,7 +18,6 @@ const getAccount = (request, response) => {
 }
 
 const getAccountById = (request, response) => {
-
   const account_id = parseInt(request.params.account_id)
   req.account = { account_id: decoded.account_id };
   db.query('SELECT * FROM account WHERE account_id = $1', [account_id], (error, results) => {
@@ -29,6 +28,11 @@ const getAccountById = (request, response) => {
   })
 }
 
+/**
+ * Create account returning token
+ * @param {Object} body
+ * @returns {string} token
+ */
 const createAccount = (req, res) => {
   if (!req.body.email || !req.body.password || !req.body.username || !req.body.last_name || !req.body.birth_date) {
     return res.status(400).send({ error: 'Formulaire incomplet' });
@@ -63,18 +67,23 @@ const createAccount = (req, res) => {
       req.body.avatar_id,
       hashPassword
     ];
-
     db.query(createQuery, values, (error, results) => {
       if (error) {
         return res.status(400).send(error);
       }
       const token = Helper.generateToken(results.rows[0].account_id)
+      Helper.updateAccountToken(token, results.rows[0].account_id)
       return res.status(201).send({ token })
     })
   });
-
 }
 
+/**
+ * Login account returning token 
+ * @param {String} email
+ * @param {string} password 
+ * @returns {String} token 
+ */
 const loginAccount = (req, res) => {
   if (!req.body.password && !req.body.email) {
      return res.status(400).send({error :'Veuillez saisir votre adresse email ainsi que votre mot de passe'});   
@@ -88,9 +97,8 @@ const loginAccount = (req, res) => {
   if (!Helper.isValidEmail(req.body.email)) {
     return res.status(400).send({ error: 'Adresse email invalide' });
   }
-  const text = 'SELECT * FROM account WHERE email = $1';
-
-  const rows = db.query(text, [req.body.email], (error, results) => {
+  const getAccount = 'SELECT * FROM account WHERE email = $1';
+  db.query(getAccount, [req.body.email], (error, results) => {
     if (!results.rows[0]) {
       return res.status(400).send({ error: 'Pas d\'utilisateur enregistrer pour cette adresse email' })
     }
@@ -105,19 +113,39 @@ const loginAccount = (req, res) => {
   });
 }
 
-const resetPassword = (req, res) => {
-  if (!req.body.email === '') {
-    res.status(400).send('email required');
-  }
+    /**
+   * Remove account token 
+   * @param {string} token 
+   */
+const logoutAccount = (req, res) => {
+  const token = req.headers['x-access-token']
+  const decoded = jwt.verify(token, process.env.SECRET)
+    db.query("UPDATE account SET token = '' WHERE account_id = $1 RETURNING account_id, username, token",
+    [decoded.account_id], (error, results) => {
+      if (error) {
+        return res.status(400).send(error);
+      }
+      return res.status(200).send({message: 'Deconnexion'})
+      console.log(res.rows[0]);
+    })
+}
 
-  const getUser = 'SELECT * FROM account WHERE email = $1'
-  const rows = db.query(getUser, [req.body.email], (error, results) => {
+
+/**
+ * Request email for updating account password 
+ * @param {string} email 
+ * @returns {string} link + token in email 
+ */
+const SendEmailresetPassword = (req, res) => {
+  if (!req.body.email === '') {
+    res.status(400).send({ error:'adresse email nécessaire'});
+  }
+  const getAccount = 'SELECT * FROM account WHERE email = $1'
+  db.query(getAccount, [req.body.email], (error, results) => {
     if (!results.rows[0]) {
-      console.log('email not in database')
-      return res.status(403).send('email not in db');
+      return res.status(403).send({error: 'Adresse email inconnu'});
     } else {
-      console.log('result.rows:', results.rows)
-      const token = Helper.generateToken(results.rows[0].account_id);
+      const token = Helper.generateTokenSmallDuration(results.rows[0].account_id);
 
       const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -126,7 +154,6 @@ const resetPassword = (req, res) => {
           pass: `${process.env.EMAIL_PASSWORD}`,
         },
       });
-
       const mailOptions = {
         from: 'valencedeveloppement@gmail.co',
         to: `${results.rows[0].email}`,
@@ -137,20 +164,22 @@ const resetPassword = (req, res) => {
           + `http://localhost:3000/reset/${token}\n\n`
           + 'L\'équipe de waventure' 
       };
-      console.log('sending mail');
-
       transporter.sendMail(mailOptions, (error, response) => {
         if (error) {
-          console.log('there was an error: ', error);
+          return res.status(400).send({error: 'Une erreur est survenue'})
         } else {
-          console.log('here is the res :', response);
-          res.status(200).json('recovery email send')
+          return res.status(200).send({message: 'Un email de réinitialisation à été envoyé'})
         }
       })
     }
   })
 }
 
+/**
+ * Reset password by decoded token 
+ * @param {string} password 
+ * @param {string} token
+ */
 const resetPasswordByEmail = (req, res) => {
   if (!req.body.password === '') {
     res.status(400).send('password required');
@@ -165,7 +194,7 @@ const resetPasswordByEmail = (req, res) => {
       if (err) {
         throw error
       } else {
-        res.status(200).send(`account modified`)
+        res.status(200).send({message: 'Mot de passe modifier avec success'})
       }
     }
   )
@@ -190,19 +219,21 @@ const updateAccount = (request, response) => {
 const deleteAccount = (request, response) => {
   const account_id = request.params.account_id
 
-  db.query('DELETE FROM account WHERE account_id = $1', [account_id], (error, results) => {
+  db.query('DELETE * FROM account WHERE account_id = $1', [account_id], (error, results) => {
     if (error) {
       throw error
     }
     response.status(200).send(`account deleted with ID: ${account_id}`)
   })
 }
+
 module.exports = {
   getAccount,
   getAccountById,
   createAccount,
   loginAccount,
-  resetPassword,
+  logoutAccount,
+  SendEmailresetPassword,
   resetPasswordByEmail,
   updateAccount,
   deleteAccount

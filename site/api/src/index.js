@@ -96,7 +96,7 @@ app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
 /* AUTH */
 app.post('/auth/signin', accountQueries.loginAccount)
 app.post("/auth/signup", accountQueries.createAccount);
-app.post("/auth/pwdReset", accountQueries.resetPassword);
+app.post("/auth/pwdReset", accountQueries.SendEmailresetPassword);
 app.put("/auth/reset", Auth.verifyToken, accountQueries.resetPasswordByEmail);
 app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 
