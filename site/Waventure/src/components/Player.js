@@ -15,18 +15,9 @@ export default function Player({sending, sendingReducer, playerRef}) {
     index, 
     setIndex, 
     reducer, 
-    toggleWrapper, 
-    setToggleWrapper,
-    setSagaEpisodeSaisonInfo,
-    sagaEpisodeSaisonInfo,
-    synopsis,
-    setSynopsis,
-    learnMore,
-    setLearnMore,
-    episodes,
-    setEpisodes,
+    episodes
   } = useContext(Context);
-  
+
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
@@ -241,16 +232,8 @@ export default function Player({sending, sendingReducer, playerRef}) {
         layout={"horizontal"}
         header={
           <PlayerHeader
-            synopsis={synopsis}
-            learnMore={learnMore}
-            episodes={episodes}
-            setEpisode={setEpisodes}
             episodeInfos={episodeInfos}
             sagaInfo={sagaInfo}
-            setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
-            sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
-            setIndex={setIndex}
-            reducer={reducer}
             sending={() => {
               receving();
             }}
@@ -261,18 +244,7 @@ export default function Player({sending, sendingReducer, playerRef}) {
         }
         footer={
           <PlayerFooter
-            setSynopsis={setSynopsis}
-            synopsis={synopsis}
-            setLearnMore={setLearnMore}
-            episodes={episodes}
-            setEpisodes={setEpisodes}
-            serieId={serieId}
-            toggleWrapper={toggleWrapper}
-            setToggleWrapper={setToggleWrapper}
             sagaInfo={sagaInfo}
-            reducer={reducer}
-            setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
-            sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
           />
         }
         src={

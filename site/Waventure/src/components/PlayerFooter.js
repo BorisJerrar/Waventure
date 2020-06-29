@@ -1,25 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
 import "../style/PlayerFooter.css";
 import PlayerFooterItem from "./PlayerFooterItem"
 import PlayerMoreInfo from "./PlayerMoreInfo"
 import PlayerEpisode from "./PlayerEpisode"
+import Context from "../context/context"
 
-export default function PlayerFooter({
-  setSynopsis,
-  synopsis,
-  episodes,
+export default function PlayerFooter({sagaInfo}) {
+  
+const { 
+  setSynopsis, 
+  synopsis, 
   setLearnMore,
+  episodes,
   setEpisodes,
   serieId,
   toggleWrapper,
   setToggleWrapper,
-  sagaInfo,
   setSagaEpisodeSaisonInfo,
   sagaEpisodeSaisonInfo,
   reducer
-}) {
-  
-
+} = useContext(Context)
  
   const showMoreInfo = () =>{
     setToggleWrapper(!toggleWrapper)
