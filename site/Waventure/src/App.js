@@ -195,28 +195,12 @@ const fetchAccount = () => {
             }
           >
             <Player
-              serieId={serieId}
-              index={index}
-              setIndex={setIndex}
-              reducer={reducer}
-              setReducer={setReducer}
-              playing={playing}
-              toggleWrapper={toggleWrapper}
-              setToggleWrapper={setToggleWrapper}
-              setSagaEpisodeSaisonInfo={setSagaEpisodeSaisonInfo}
-              sagaEpisodeSaisonInfo={sagaEpisodeSaisonInfo}
               sending={() => {
                 receving();
               }}
               sendingReducer={() => {
                 recevingReducer();
               }}
-              setSynopsis={setSynopsis}
-              synopsis={synopsis}
-              setEpisodes={setEpisodes}
-              episodes={episodes}
-              setLearnMore={setLearnMore}
-              learnMore={learnMore}
               playerRef={playerRef}
             />
           </div>

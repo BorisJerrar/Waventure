@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import Context from '../context/context'
 
-export default function Player({
-  serieId,
-  index,
-  setIndex,
-  toggleWrapper,
-  setToggleWrapper,
-  setSagaEpisodeSaisonInfo,
-  sagaEpisodeSaisonInfo,
-  sending,
-  sendingReducer,
-  reducer,
-  learnMore,
-  setLearnMore,
-  episodes,
-  setEpisodes,
-  synopsis,
-  setSynopsis,
-  playerRef,
-}) {
+export default function Player({sending, sendingReducer, playerRef}) {
+
+  const { 
+    serieId, 
+    index, 
+    setIndex, 
+    reducer, 
+    toggleWrapper, 
+    setToggleWrapper,
+    setSagaEpisodeSaisonInfo,
+    sagaEpisodeSaisonInfo,
+    synopsis,
+    setSynopsis,
+    learnMore,
+    setLearnMore,
+    episodes,
+    setEpisodes,
+  } = useContext(Context);
+  
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);

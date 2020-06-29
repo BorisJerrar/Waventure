@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import MainProfilInfo from './MainInfoProfil'
 import "../style/profil.css";
 import { Link } from 'react-router-dom'
+import Context from '../context/context'
 
-export default function Profil({ user, setUser}) {
-    const [toggleDelete, setToggleDelete] = useState(false)
+export default function Profil() {
+
+    const { user } = useContext(Context);
+    const [toggleDelete, setToggleDelete] = useState(false);
     const server = process.env.REACT_APP_SERVER_PATH;
 
     const deleteAccount = () => {
@@ -24,8 +27,6 @@ export default function Profil({ user, setUser}) {
     return (
         <div className="bodyProfil">
             <MainProfilInfo
-                setUser={setUser}
-                user={user}
                 justify={"flex-start"}
             />
             <Link to="/profilUpdate" style={{ textDecoration: "none" }}>

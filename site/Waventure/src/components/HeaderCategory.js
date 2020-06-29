@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
 
-export default function HeaderCategory({ categoryName, lunchingEpisode }) {
+export default function HeaderCategory({ categoryName }) {
     const [category, setCategory] = useState([])
     useEffect(() => {
         const fetchCategory = async () => {
