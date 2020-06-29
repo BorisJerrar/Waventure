@@ -30,6 +30,7 @@ export default function CategoryUnique({
         'x-access-token': token
       }
     };
+    
     var removeConfig = {
       method: 'DELETE',
       url: `${server}/favorite/${item.serie_id}`,

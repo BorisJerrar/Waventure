@@ -12,14 +12,14 @@ export default function Header({handleSearchApp}) {
     validate, 
     categoriesTrigger, 
     accountTrigger, 
-    titleArray, 
+    categories,
     toggle, 
     setCategoriesTrigger, 
     setAccountTriggerTrigger, 
-    setTitleArray, 
     setToggle 
   } = useContext(Context)
 
+  
   const [search, setSearch] = useState('')
   const [resultSearch, setResultSearch] = useState([])
   const [userAvatar, setUserAvatar] = useState("");
@@ -30,20 +30,9 @@ export default function Header({handleSearchApp}) {
 
   const token = localStorage.getItem('token');
 
-  const categories = () => {
+  const showCategories = () => {
     setCategoriesTrigger(!categoriesTrigger);
   };
-
-  useEffect(() => {
-    const fetching = async () => {
-      const data = await fetch(`${serveurPath}/category`);
-      const json = await data.json();
-      setTitleArray(json);
-    }
-    if (categoriesTrigger) {
-      fetching()
-    }
-  }, [categoriesTrigger, serveurPath, setTitleArray])
 
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
@@ -105,8 +94,8 @@ handleSearch={handleSearch}
 toggle={toggle}
 resultSearch={resultSearch}
 categories={categories}
+showCategories={showCategories}
 categoriesTrigger={categoriesTrigger}
-titleArray={titleArray}
 avatar={avatar}
 userAvatar={userAvatar}
 accountTrigger={accountTrigger}

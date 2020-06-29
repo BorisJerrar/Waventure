@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Categorie from "./Categorie";
+import getData from "../utiles/fetchData"
+import Context from "../context/context"
 
 export default function Catalog({ lunchingEpisode }) {
-  const [categories, setCategories] = useState([]);
-  const server = process.env.REACT_APP_SERVER_PATH;
 
+const {categories, setCategories}= useContext(Context)
   useEffect(() => {
-    const fetchCategories = async () => {
-      const response = await fetch(`${server}/category`);
-      const data = await response.json();
-      setCategories(data);
-    };
-    fetchCategories();
-  }, [server]);
+    getData("category", setCategories, "");
+  }, []);
+
   return categories.map((item, index) => {
     return (
       <Categorie

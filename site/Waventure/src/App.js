@@ -42,6 +42,7 @@ function App() {
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
   const [matches, setMaches] = useState(window.innerWidth);
+  const [categories, setCategories] = useState([]);
   const playerRef = useRef();
   
   const receving = () => {
@@ -130,6 +131,7 @@ const fetchAccount = () => {
     episodes,
     learnMore,
     matches,
+    categories,
     setCategoriesTrigger,
     setAccountTriggerTrigger,
     setReducer,
@@ -147,7 +149,7 @@ const fetchAccount = () => {
     setSynopsis,
     setEpisodes,
     setLearnMore,
-    setMaches
+    setMaches, setCategories
   }
 
   return (

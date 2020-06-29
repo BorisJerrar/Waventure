@@ -19,6 +19,7 @@ export default React.createContext({
     episodes: "",
     learnMore: "",
     matches: "",
+    categories: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},
@@ -37,4 +38,5 @@ export default React.createContext({
     setEpisodes: (name) => {},
     setLearnMore: (name) => {},
     setMaches: (name) => {},
+    setCategories: (name) => {}
 })
