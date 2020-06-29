@@ -3,6 +3,7 @@ import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
+import prevSaga from "./prevSaga";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Context from '../context/context'
@@ -91,13 +92,6 @@ export default function Player({sending, sendingReducer, playerRef}) {
     }
   };
 
-  const prevSaga = () => {
-    if (index > 0) {
-      return setIndex(index - 1);
-    } else {
-      return index;
-    }
-  };
   if (
     playerRef &&
     playerRef.current &&
@@ -262,7 +256,7 @@ export default function Player({sending, sendingReducer, playerRef}) {
         showSkipControls={true}
         showJumpControls={false}
         onClickNext={nextSaga}
-        onClickPrevious={prevSaga}
+        onClickPrevious={() => prevSaga(index, setIndex)}
         onEnded={nextSaga}
         autoPlay={true}
         ref={playerRef}
