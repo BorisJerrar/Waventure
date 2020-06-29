@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/Card.css'
 
-function Card(item, index) {
+function Card(item) {
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     return (
         <div className="card">

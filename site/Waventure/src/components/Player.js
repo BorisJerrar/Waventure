@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Component } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
@@ -9,23 +9,15 @@ import nextSaga from "../utiles/nextSaga";
 import fetchinEpisodePlayer from "../utiles/fetchinEpisodePlayer";
 import playerRefChecker from "../utiles/playerRefChecker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Context from '../context/context'
+import Context from "../context/context";
 
-export default function Player({sending, sendingReducer, playerRef}) {
-
-  const { 
-    serieId, 
-    index, 
-    setIndex, 
-    reducer, 
-    episodes
-  } = useContext(Context);
+export default function Player({ sending, sendingReducer, playerRef }) {
+  const { serieId, index, setIndex, reducer, episodes } = useContext(Context);
 
   const serverPath = process.env.REACT_APP_SERVER_PATH;
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
   const [urlAudio, setUrlAudio] = useState();
-  const [playinTrigger, setPlayinTrigger] = useState(``);
   const receving = () => {
     playerRef.current.audio.current.pause();
     sending();
@@ -35,21 +27,18 @@ export default function Player({sending, sendingReducer, playerRef}) {
   };
   useEffect(() => {
     if (serieId && serieId !== -1) {
-      fetchinEpisodePlayer(index, serieId, setSagaInfo, setEpisodeInfos, function(data){
-        setUrlAudio(
-          `${data[index].title.split(" ").join("")}&sound=${
-            data[index].mp3_file
-          }`
-        );
-      });
+      fetchinEpisodePlayer(
+        index,
+        serieId,
+        setSagaInfo,
+        setEpisodeInfos,
+        setUrlAudio
+      );
     }
   }, [index, serieId, serverPath, playerRef]);
-  useEffect(() => {
-    setPlayinTrigger(urlAudio);
-  }, [urlAudio]);
 
-playerRefChecker(playerRef, reducer)
-
+  playerRefChecker(playerRef, reducer);
+Component.MainPlayerImg = MainPlayerImg
   return (
     <div
       className="playerWarper"
@@ -61,16 +50,33 @@ playerRefChecker(playerRef, reducer)
           : { minHeight: "270px", maxHeight: "270px" }
       }
     >
-<MainPlayerImg 
-episodeInfos={episodeInfos}
-reducer={reducer}
-/>
+      <MainPlayerImg episodeInfos={episodeInfos} reducer={reducer} />
       <AudioPlayer
         customIcons={{
-          pause: (<FontAwesomeIcon className="btn-media-player" icon={["fas", "pause"]}/>),
-          play: (<FontAwesomeIcon className="btn-media-player" icon={["fas", "play"]}/>),
-          next: (<FontAwesomeIcon className="btn-media-player" icon={["fas", "step-forward"]}/>),
-          previous: (<FontAwesomeIcon className="btn-media-player" icon={["fas", "step-backward"]}/>),
+          pause: (
+            <FontAwesomeIcon
+              className="btn-media-player"
+              icon={["fas", "pause"]}
+            />
+          ),
+          play: (
+            <FontAwesomeIcon
+              className="btn-media-player"
+              icon={["fas", "play"]}
+            />
+          ),
+          next: (
+            <FontAwesomeIcon
+              className="btn-media-player"
+              icon={["fas", "step-forward"]}
+            />
+          ),
+          previous: (
+            <FontAwesomeIcon
+              className="btn-media-player"
+              icon={["fas", "step-backward"]}
+            />
+          ),
         }}
         defaultDuration={
           episodeInfos && episodeInfos.episode_duration
@@ -90,20 +96,12 @@ reducer={reducer}
             }}
           />
         }
-        footer={
-          <PlayerFooter
-            sagaInfo={sagaInfo}
-          />
-        }
-        src={
-          playinTrigger
-            ? `${serverPath}/sound/?saga=` + playinTrigger
-            : undefined
-        }
+        footer={<PlayerFooter sagaInfo={sagaInfo} />}
+        src={urlAudio ? `${serverPath}/sound/?saga=` + urlAudio : undefined}
         preload={"false"}
         showSkipControls={true}
         showJumpControls={false}
-        onClickNext={() => nextSaga(index, setIndex,serieId, sagaInfo)}
+        onClickNext={() => nextSaga(index, setIndex, serieId, sagaInfo)}
         onClickPrevious={() => prevSaga(index, setIndex)}
         onEnded={() => nextSaga(index, setIndex)}
         autoPlay={true}
