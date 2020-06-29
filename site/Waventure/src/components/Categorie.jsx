@@ -6,6 +6,7 @@ import axios from "axios";
 import fetchingNewEpisode from './fetchingNewEpisode'
 import fetchingExsistingEpisode from './fetchingExsistingEpisode'
 import fetchSeries from './fetchSeries'
+import didHeAlreadyBegin from './didHeAlreadyBegin'
 import Context from '../context/context'
 
 export default function Categorie({ category, lunchingEpisode }) {
@@ -22,14 +23,7 @@ export default function Categorie({ category, lunchingEpisode }) {
 
 
   const lunchingEpisodeCategorie = (item) => {
-    const didHeAlreadyBegin = () => {
-      var config = {
-        method: "get",
-        url: `${server}/listenVerificator?serie_id=${item.serie_id}`,
-        headers: {
-          "x-access-token": token,
-        },
-      };
+    didHeAlreadyBegin(item, function(config) {
       axios(config)
         .then(function (response) {
           if (response.data.length === 0) {
@@ -53,10 +47,8 @@ export default function Categorie({ category, lunchingEpisode }) {
         })
         .catch(function (error) {
           console.log(error);
-        });
-    };
-
-    didHeAlreadyBegin();
+        })
+    })
   };
 useEffect(() => {
   let mounted = true
