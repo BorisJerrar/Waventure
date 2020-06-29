@@ -9,7 +9,6 @@ const getSerieSynopsis = (request, response) => {
     const search = request.query.search.replace(/%20|%27|%C3%A9/gi,(item)=>{
       return map[item]
     })
-    console.log(search);
     
     db.query(
       "SELECT * FROM search_serie_synopsis WHERE title LIKE $1;",

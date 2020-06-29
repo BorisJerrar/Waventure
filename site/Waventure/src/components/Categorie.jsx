@@ -3,6 +3,9 @@ import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
 import axios from "axios";
+import fetchingNewEpisode from './fetchingNewEpisode'
+import fetchingExsistingEpisode from './fetchingExsistingEpisode'
+import fetchSeries from './fetchSeries'
 import Context from '../context/context'
 
 export default function Categorie({ category, lunchingEpisode }) {
@@ -30,48 +33,27 @@ export default function Categorie({ category, lunchingEpisode }) {
       axios(config)
         .then(function (response) {
           if (response.data.length === 0) {
-            fetchingEpisode();
+            fetchingNewEpisode(item, function(fetchconfig){
+              axios(fetchconfig)
+               .then(function (response) {
+                 return lunchingEpisode(item.serie_id, 0);
+               })
+               .catch(function (error) {
+                 console.log(error);
+               }); 
+           })
           } else {
-            fetchingExsistingEpisode(...response.data);
-            
+            fetchingExsistingEpisode(...response.data, function(item, response){
+              lunchingEpisode(
+                item.serie_id,
+                response.findIndex((UniqueItem) => UniqueItem.episode_id === item.episode_id)
+              );
+            });  
           }
         })
         .catch(function (error) {
           console.log(error);
         });
-    };
-    const fetchingEpisode = async () => {
-      const fetching = await fetch(`${server}/sagaInfo/${item.serie_id}`);
-      const response = await fetching.json();
-      const dataInfo = await response;
-      AddingNew(dataInfo);
-    };
-    const fetchingExsistingEpisode = async (info) => {
-      const fetching = await fetch(`${server}/sagaInfo/${item.serie_id}`);
-      const response = await fetching.json();
-      resume(info, response);
-    };
-    const AddingNew = (sagas) => {
-      var creatingNew = {
-        method: "post",
-        url: `http://localhost:4000/listen?serie_id=${sagas[0].serie_id}&episode_id=${sagas[0].episode_id}`,
-        headers: {
-          "x-access-token": token,
-        },
-      };
-      axios(creatingNew)
-        .then(function (response) {
-          lunchingEpisode(item.serie_id, 0);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    const resume = (userInfo, dataInfo) => {
-      lunchingEpisode(
-        item.serie_id,
-        dataInfo.findIndex((item) => item.episode_id === userInfo.episode_id)
-      );
     };
 
     didHeAlreadyBegin();
@@ -82,33 +64,10 @@ useEffect(() => {
       if (mounted){setMaches(window.innerWidth)}
     }, 300)
   });
-  return () => {
-    mounted = false
-  }
-}, [setMaches])
-
-  useEffect(() => {
-    const fetchSeries = async () => {
-      const response = await fetch(`${server}/serieCategory/${category}`);
-      const data = await response.json();
-      let temp = [];
-      if (matches > 762 && matches < 990) {
-        for (let i = 0; i < Math.ceil(data.length / 4); i++) {
-          temp.push(data.slice(i * 4, i * 4 + 4));
-        }
-      } else if (matches < 762) {
-        for (let i = 0; i < Math.ceil(data.length / 2); i++) {
-          temp.push(data.slice(i * 2, i * 2 + 2));
-        }
-      } else {
-        for (let i = 0; i < Math.ceil(data.length / 5); i++) {
-          temp.push(data.slice(i * 5, i * 5 + 5));
-        }
-      }
-      setSeries(temp);
-    };
-    fetchSeries();
-
+})
+useEffect(() => {
+  fetchSeries(category, matches, function(temp){
+    setSeries(temp)})
     const fetchSerieInformation = async () => {
       const response = await fetch(`${server}/sagaInfo/${hoverItem.serie_id}`);
       const data = await response.json();

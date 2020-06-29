@@ -8,7 +8,6 @@ const nodemailer = require('nodemailer')
 const getAccount = (request, response) => {
   const token = request.headers['x-access-token'];
   const decoded = jwt.verify(token, process.env.SECRET)
-  console.log(token)
   db.query('SELECT * FROM account WHERE account_id = $1', [decoded.account_id], (error, results) => {
     if (error) {
       throw error
@@ -173,8 +172,7 @@ const resetPasswordByEmail = (req, res) => {
 
 const updateAccount = (request, response) => {
   const account_id = request.params.account_id
-  const { username, first_name, last_name, email, avatar_id, password } = request.body
-  console.log(request.body);
+  const { username, first_name, last_name, email, avatar_id, password } = request.bodyx
   
   db.query(
     'UPDATE account SET username = $1, first_name = $2, last_name = $3, email = $4, avatar_id = $5, password= $6 WHERE account_id = $7', [username, first_name, last_name, email, avatar_id, password, account_id,],
