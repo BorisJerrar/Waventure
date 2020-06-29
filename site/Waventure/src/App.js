@@ -43,6 +43,7 @@ function App() {
   const [learnMore, setLearnMore] = useState(false);
   const [matches, setMaches] = useState(window.innerWidth);
   const playerRef = useRef();
+  
   const receving = () => {
     setLearnMore(false);
     setEpisodes(false);

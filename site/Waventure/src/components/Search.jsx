@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react'
 import "../style/search.css";
 
 export default function Search({uniqueSearch, lunchingEpisode }) {
-const serverPath = process.env.REACT_APP_SERVER_PATH;
-const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-const [uniqueSerie, setUniqueSerie] = useState([])
+    
+    const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
+    const [uniqueSerie, setUniqueSerie] = useState([])
+    
+    const serverPath = process.env.REACT_APP_SERVER_PATH;
 
 useEffect(() => {
     const fetchUniqueSerie = async() =>{
@@ -15,9 +17,6 @@ useEffect(() => {
 
     fetchUniqueSerie()
 }, [uniqueSearch, serverPath])
-
-
-
 
     return (
         <div className="bodySearch">
@@ -33,11 +32,6 @@ useEffect(() => {
                 )
             
             })}
-           
-            
-        
-        </div>
-        
-        
+        </div>    
     )
 }

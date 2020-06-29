@@ -4,18 +4,20 @@ import Card from '../components/Card'
 
 function Favorite({lunchingEpisodeVerificator}) {
 
-const transitionLunchingEpisodeVerificator = (transition) => {
-lunchingEpisodeVerificator(transition)
-}
-
     const token = localStorage.getItem('token')
     const [favoriteInfo, setFavoriteInfo] = useState([]);
+    
+    const serverPath = process.env.REACT_APP_SERVER_PATH;
+    
+    const transitionLunchingEpisodeVerificator = (transition) => {
+    lunchingEpisodeVerificator(transition)
+    }
 
     useEffect(() => {
         const getFavoriteInfo = () => {
             var config = {
                 method: 'get',
-                url: 'http://localhost:4000/favoriteInfo',
+                url: `${serverPath}/favoriteInfo`,
                 headers: {
                     'x-access-token': token
                 }
@@ -29,7 +31,7 @@ lunchingEpisodeVerificator(transition)
                 });
         }
         getFavoriteInfo();
-    }, [token])
+    }, [token, serverPath])
 
     return (
         <div className="tab-content">

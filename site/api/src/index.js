@@ -31,6 +31,7 @@ const accountQueries = require("./queries/account");
 const serieRoleQueries = require("./queries/serie_role");
 const avatarQueries = require("./queries/avatar");
 const serieSynopsisQueries = require("./queries/serie_synopsis")
+const serieSynopsisSerieId = require ("./queries/serie_synopsis_serie_id")
 const Auth = require('./middleware/Auth.js');
 
 
@@ -92,6 +93,7 @@ app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
 
 app.get("/serieSynopsis", serieSynopsisQueries.getSerieSynopsis)
 app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
+app.get("/serieSynopsis/:id", serieSynopsisSerieId.getSerieSynopsisBySerieId)
 
 /* AUTH */
 app.post('/auth/signin', accountQueries.loginAccount)

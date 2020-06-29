@@ -6,24 +6,26 @@ import axios from 'axios'
 
 export default function Banner({ lunchingEpisode }) {
     const token = localStorage.getItem("token");
+
+    // data one serie star
     const [wedette, setWedette] = useState([]);
-    const [synopsis, setSynopsis] = useState([]);
+
+    //variable environnement 
     const server = process.env.REACT_APP_SERVER_PATH
     const url = process.env.REACT_APP_DYNAMIC_IMG_PATH
     
     useEffect(() => {
+      /**
+       * @param serverPath path server stack in .env
+       * @param setState  hook useState 
+       * @param serverParams
+       */
       const fetchWedette = async () => {
-          const response = await fetch(`${server}/serie/1`)
+          const response = await fetch(`${server}/serieSynopsis/1`)
           const data = await response.json()
           setWedette(data[0])
       }
-      const fetchSynopsis = async () => {
-          const response = await fetch(`${server}/synopsis?serie_id=1`)
-          const data = await response.json()
-          setSynopsis(data[0])
-      }
         fetchWedette()
-        fetchSynopsis()
     }, [server])
     const lunchingEpisodeCategorie = (item) => {
         const didHeAlreadyBegin = () => {
@@ -105,7 +107,7 @@ export default function Banner({ lunchingEpisode }) {
 
                 <h3 className="wedetteTitle">{wedette.title}</h3>
                 <p className="wedetteSynopsis">
-                    {synopsis.body}
+                    {wedette.body}
                 </p>
             </div>
             <img className="backgroundImg" src={`${url}/${wedette && wedette.image_bg ? wedette.image_bg : ''}`} alt={`Bg_image ${wedette && wedette.title ? wedette.title : ''}`} />

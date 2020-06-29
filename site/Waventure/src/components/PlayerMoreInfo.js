@@ -8,18 +8,18 @@ export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
     const [seriesByAuthor, setSeriesByAuthor]= useState([])
     const [currentSerie, setCurrentSerie]= useState()
 
-
+    const serverPath = process.env.REACT_APP_SERVER_PATH;
     
     useEffect(() => {
         const fetchSerieRole = async() =>{
-            const response = await fetch (`http://localhost:4000/serieRole/${serieId}`)
+            const response = await fetch (`${serverPath}/serieRole/${serieId}`)
             const data = await response.json() 
             setMoreInfo(data) 
             setAuthor(data[0] && data[0].author) 
         }
     
         const fetchSerieAuthor = async() => {
-            const response = await fetch (`http://localhost:4000/serie?author=${author}`)
+            const response = await fetch (`${serverPath}/serie?author=${author}`)
             const data = await response.json()
             if(sagaInfo && sagaInfo[0] &&sagaInfo[0].serie_id){
             setCurrentSerie(sagaInfo[0] && sagaInfo[0].serie_id)
@@ -32,7 +32,7 @@ export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
         if(author){ 
             fetchSerieAuthor()
         }
-       }, [serieId, author, sagaInfo, currentSerie])
+       }, [serieId, author, sagaInfo, currentSerie, serverPath])
        
     return (
         <div  style={toggleWrapper? {transform: "translate(0,0)", visibility: "visible", opacity: 1}: {transform: "translate(0,-50px)", visibility: "hidden", opacity: 0}} className="moreInfoWrapper">
@@ -51,7 +51,7 @@ export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
            })
         } 
             </div>
-    <p className="otherSeries">{seriesByAuthor.length !== 0? "Par les créateurs de": ""     }
+            <p className="otherSeries">{seriesByAuthor.length !== 0? "Par les créateurs de": ""     }
             {seriesByAuthor.map((item, index)=>{
                 return(
                 <span key={index}> {item.title}{index === seriesByAuthor.length-1? ".": ", "}</span>
