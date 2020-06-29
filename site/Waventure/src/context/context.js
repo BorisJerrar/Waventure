@@ -36,5 +36,5 @@ export default React.createContext({
     setSynopsis: (name) => {},
     setEpisodes: (name) => {},
     setLearnMore: (name) => {},
-    setMaches: (name) => {}
+    setMaches: (name) => {},
 })

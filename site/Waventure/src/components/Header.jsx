@@ -5,19 +5,20 @@ import { useRef } from "react";
 import axios from "axios";
 import Context from '../context/context'
 
-export default function Header({
-  categoriesTrigger,
-  setCategoriesTrigger,
-  accountTrigger,
-  setAccountTriggerTrigger,
-  titleArray,
-  setTitleArray,
-  handleSearchApp,
-  toggle,
-  setToggle,
-}) {
+export default function Header({handleSearchApp}) {
 
-  const { validate } = useContext(Context)
+  const { 
+    validate, 
+    categoriesTrigger, 
+    accountTrigger, 
+    titleArray, 
+    toggle, 
+    setCategoriesTrigger, 
+    setAccountTriggerTrigger, 
+    setTitleArray, 
+    setToggle 
+  } = useContext(Context)
+
   const [search, setSearch] = useState('')
   const [resultSearch, setResultSearch] = useState([])
   const [userAvatar, setUserAvatar] = useState("");

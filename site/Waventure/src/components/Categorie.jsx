@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
 import axios from "axios";
+import Context from '../context/context'
 
-export default function Categorie({ category, lunchingEpisode, matches, setMaches }) {
+export default function Categorie({ category, lunchingEpisode }) {
+
+  const { matches, setMaches} = useContext(Context)
   const token = localStorage.getItem("token");
   const [series, setSeries] = useState([]);
   const [hover, setHover] = useState(false);

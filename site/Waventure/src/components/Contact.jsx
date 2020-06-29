@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import "../style/Contact.css";
 import MainProfilInfo from './MainInfoProfil'
+import Context from '../context/context'
 
-export default function Contact({user, setUser}) {
+export default function Contact() {
+
+    const {user, setUser} = useContext(Context)
     const server = process.env.REACT_APP_SERVER_PATH;
     const [newSerie, setNewSerie] = useState({
         account: user[0].account_id,

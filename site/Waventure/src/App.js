@@ -156,15 +156,7 @@ const fetchAccount = () => {
       <div className="App" onClick={triggeringCategory}>
         <>
           <Header
-            categoriesTrigger={categoriesTrigger}
-            setCategoriesTrigger={setCategoriesTrigger}
-            accountTrigger={accountTrigger}
-            setAccountTriggerTrigger={setAccountTriggerTrigger}
-            titleArray={titleArray}
-            setTitleArray={setTitleArray}
             handleSearchApp={(result) => handleSearchApp(result)}
-            toggle={toggle}
-            setToggle={setToggle}
           />
           <div
             className={
@@ -248,10 +240,7 @@ const fetchAccount = () => {
                 />
             </Route>
             <Route path='/contact'>
-              <Contact
-               user={user}
-               setUser={setUser}
-              />
+              <Contact/>
             </Route>
 
             <Route path="/search">
