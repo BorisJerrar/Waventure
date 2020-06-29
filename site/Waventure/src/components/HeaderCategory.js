@@ -7,7 +7,7 @@ export default function HeaderCategory({ categoryName }) {
     const [category, setCategory] = useState([])
     useEffect(() => {
         const fetchCategory = async () => {
-            const response = await fetch(`${serverPath}serieCategory/${categoryName}`)
+            const response = await fetch(`${serverPath}/serieCategory/${categoryName}`)
             const data = await response.json()
 
             setCategory(data)
