@@ -295,7 +295,6 @@
     width: 438px;
     height: 438px;
     transition: ease-in 0.2s transform;
-    will-change: transform;
   }
   .wedetteCover:hover .wedetteCoverImage {
     transform: matrix(1.1, 0, 0, 1.1, 0, 0);
