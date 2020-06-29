@@ -6,7 +6,7 @@ import axios from "axios";
 import fetchingNewEpisode from "../utiles/fetchingNewEpisode";
 import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
 import fetchSeries from "../utiles/fetchSeries";
-import didHeAlreadyBegin from "./didHeAlreadyBegin";
+import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
 import Context from "../context/context";
 
 export default function Categorie({ category, lunchingEpisode }) {
