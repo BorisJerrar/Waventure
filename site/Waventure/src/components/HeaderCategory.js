@@ -1,22 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Card from '../components/Card'
-import Context from "../context/context";
+import getData from "../utiles/getData"
 
 export default function HeaderCategory({ categoryName }) {
-    const {serverPath} = useContext(Context)
     const [category, setCategory] = useState([])
     console.log(categoryName);
     
     useEffect(() => {
-        const fetchCategory = async () => {
-            const response = await fetch(`${serverPath}/serieCategory/${categoryName}`)
-            const data = await response.json()
-            console.log(data);
-            
-            setCategory(data)
-        }
-        fetchCategory()
-    }, [categoryName, serverPath])
+        getData("serieCategory", setCategory, categoryName)
+    }, [])
     
 
     return (

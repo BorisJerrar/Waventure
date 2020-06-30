@@ -32,6 +32,7 @@ export default function Header({handleSearchApp}) {
   };
 
 
+
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
   };
