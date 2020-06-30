@@ -25,10 +25,9 @@ function Home(props) {
             </header>
             <main className="wrap">
                 <div className="center-title">
-                    <h1>Ecoutez vos sagas mp3 préférées,<br />
-                    Découvrez-en des nouvelles.</h1>
-                    <h1><strong>Gratuitement</strong></h1>
-                    <div className="bg-container"></div>
+                    <h2>Ecoutez vos sagas mp3 préférées.<br />
+                    Découvrez-en des nouvelles.</h2>
+                    <h3><strong>Gratuitement</strong></h3>
                </div>
             </main>
         </main>

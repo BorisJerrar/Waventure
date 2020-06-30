@@ -13,12 +13,6 @@ export default function PlayerEpisode({
 }) {
   const {serverPath} = useContext(Context)
   useEffect(() => {
-    /* const fetchingEpisodeBySeason = async () => {
-      const fetching = await fetch(`${serverPath}/saisonAndEpisode/${serieId}`);
-      const response = await fetching.json();
-      setSagaEpisodeSaisonInfo(response);
-    };
-    fetchingEpisodeBySeason(); */
     getData("saisonAndEpisode", setSagaEpisodeSaisonInfo, serieId )
   }, [setSagaEpisodeSaisonInfo, serieId, serverPath]);
 

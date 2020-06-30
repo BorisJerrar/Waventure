@@ -2,9 +2,9 @@ import React, {useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/PlayerHeader.css";
 import Context from '../context/context'
+import nextSaga from "../utiles/nextSaga";
 
 export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
-
   const { 
     synopsis,
     learnMore,
@@ -12,7 +12,8 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
     setEpisodes,
     reducer,
     setIndex,
-    sagaEpisodeSaisonInfo
+    sagaEpisodeSaisonInfo,
+    serieId
   } = useContext(Context);
 
   const closingPlayer = () => {
@@ -21,9 +22,11 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
   const reducingPlayer = () => {
     sendingReducer()
   }
-  const changingEpisode = (e) => {
-    setIndex(e.target.attributes[0].value - 1);
+  const changingEpisode = (e,each) => {
     setEpisodes(false);
+    setIndex(e.target.attributes[0].value -1)
+    let indexOnClick = e.target.attributes[0].value -1
+     nextSaga(indexOnClick, serieId, each.episode_id)
   };
   let increm = 0;
   return (
@@ -81,10 +84,10 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
                 increm += 1;
                 return (
                   <p
+                    onClick={(e) => changingEpisode(e,each)}
                     key={increm}
                     src-key={increm}
                     className={"episodeUnique "}
-                    onClick={(e) => changingEpisode(e)}
                     
                   >
                     Episode {item}{" "}

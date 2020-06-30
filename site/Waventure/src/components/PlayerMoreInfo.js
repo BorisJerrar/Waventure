@@ -1,36 +1,35 @@
 import React, {useEffect, useState, useContext} from 'react'
 import "../style/Player.css";
 import Context from "../context/context";
+import getData from "../utiles/getData"
 
 export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
 const {serverPath} = useContext(Context)
     const [moreInfo, setMoreInfo] = useState([])
-    const [author, setAuthor] = useState('')
     const [seriesByAuthor, setSeriesByAuthor]= useState([])
     const [currentSerie, setCurrentSerie]= useState()
+
     useEffect(() => {
-        const fetchSerieRole = async() =>{
-            const response = await fetch (`${serverPath}/serieRole/${serieId}`)
-            const data = await response.json() 
-            setMoreInfo(data) 
-            setAuthor(data[0] && data[0].author) 
-        }
-    
+        
         const fetchSerieAuthor = async() => {
-            const response = await fetch (`${serverPath}/serie?author=${author}`)
+            const response = await fetch (`${serverPath}/serie?author=${moreInfo[0].author}`)
             const data = await response.json()
             if(sagaInfo && sagaInfo[0] &&sagaInfo[0].serie_id){
-            setCurrentSerie(sagaInfo[0] && sagaInfo[0].serie_id)
+                setCurrentSerie(sagaInfo[0] && sagaInfo[0].serie_id)
             }
             if (data && currentSerie){
                 setSeriesByAuthor(data.filter(item => item.serie_id !== currentSerie))
             }
         }
-        fetchSerieRole()
-        if(author){ 
+        if(moreInfo[0] && moreInfo[0].author){ 
             fetchSerieAuthor()
         }
-       }, [serieId, author, sagaInfo, currentSerie, serverPath])
+       }, [serieId, sagaInfo, currentSerie, serverPath, moreInfo])
+
+       useEffect(() => {
+        getData("serieRole", setMoreInfo, serieId)
+
+       }, [serieId])
        
     return (
         <div  style={toggleWrapper? {transform: "translate(0,0)", visibility: "visible", opacity: 1}: {transform: "translate(0,-50px)", visibility: "hidden", opacity: 0}} className="moreInfoWrapper">

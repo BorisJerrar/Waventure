@@ -101,7 +101,7 @@ Component.MainPlayerImg = MainPlayerImg
         showJumpControls={false}
         onClickNext={() => nextSaga(index, setIndex, serieId, sagaInfo)}
         onClickPrevious={() => prevSaga(index, setIndex)}
-        onEnded={() => nextSaga(index, setIndex)}
+        onEnded={() => nextSaga(index, setIndex, serieId, sagaInfo)}
         autoPlay={true}
         ref={playerRef}
       />

@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import getData from "../utiles/getData"
 
 
-export default function Newest() {
+export default function Newest({lunchingEpisode}) {
   const [newest, setNewest] = useState([]);
 
   useEffect(() => {
@@ -26,6 +26,7 @@ export default function Newest() {
             duration={item.duration}
             season={item.season}
             author={item.author}
+            lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
           />
         );
       })}

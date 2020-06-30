@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect} from 'react'
 import Card from '../components/Card'
 import getData from "../utiles/getData"
 
 export default function HeaderCategory({ categoryName }) {
     const [category, setCategory] = useState([])
-    console.log(categoryName);
-    
     useEffect(() => {
         getData("serieCategory", setCategory, categoryName)
-    }, [])
+    }, [categoryName])
     
 
     return (

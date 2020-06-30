@@ -34,7 +34,6 @@ function RegistrationForm(props) {
 
     const sendToServer = () => {
         if(state.email.length && state.password.length && state.username.length && state.first_name.length && state.last_name.length && state.birth_date.length ) {
-            console.log("password match");
             const payload={
                 "username":state.username,
                 "first_name":state.first_name,
@@ -43,7 +42,6 @@ function RegistrationForm(props) {
                 "birth_date":state.birth_date,
                 "password":state.password,
             }
-            console.log(payload)
             axios.post(`${serverPath}/account`, payload)
                 .then(function (response) {
                     if (response.data.code === 201) {
