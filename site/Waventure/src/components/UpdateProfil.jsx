@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../context/context";
+import getData from "../utiles/getData"
 
 export default function UpdateProfil({ user, setValidate, validate }) {
   const { serverPath } = useContext(Context);
@@ -10,13 +11,8 @@ export default function UpdateProfil({ user, setValidate, validate }) {
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
   useEffect(() => {
-    const fetchAvatar = async () => {
-      const response = await fetch(`${serverPath}/avatar`);
-      const data = await response.json();
-      setAvatar(data);
-    };
-    fetchAvatar();
-  }, [serverPath]);
+    getData("avatar", setAvatar, "")
+  }, []);
 
   const updateAvatar = (key) => {
     setAccount({
