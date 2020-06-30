@@ -227,7 +227,7 @@ function App() {
               <div className="playerTrigger"
             >
                 <Newest
-                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                  lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                 />
               </div>
             </Route>
