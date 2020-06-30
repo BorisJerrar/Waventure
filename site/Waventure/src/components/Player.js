@@ -15,9 +15,7 @@ export default function Player({ sending, sendingReducer, playerRef }) {
   const { serieId, index, setIndex, reducer, episodes, serverPath} = useContext(Context);
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
-  const [urlAudio, setUrlAudio] = useState();
-  console.log(sagaInfo);
-  
+  const [urlAudio, setUrlAudio] = useState();  
   const receving = () => {
     playerRef.current.audio.current.pause();
     sending();
