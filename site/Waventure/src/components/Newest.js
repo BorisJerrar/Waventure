@@ -9,7 +9,7 @@ export default function Newest({lunchingEpisode}) {
   useEffect(() => {
     getData("serieUploades", setNewest, "" )
   }, []);
-
+  
   return (
     <div className="tab-content">
       <h3 className="card-main-title">Nouveautées</h3>
