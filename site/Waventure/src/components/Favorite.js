@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Card from '../components/Card'
 import getDataToken from "../utiles/getDataWithToken"
 
-function Favorite({lunchingEpisodeVerificator}) {
-
+function Favorite({lunchingEpisode}){
     const [favoriteInfo, setFavoriteInfo] = useState([]);
-    
-    const transitionLunchingEpisodeVerificator = (transition) => {
-    lunchingEpisodeVerificator(transition)
-    }
-
     useEffect(() => {
         getDataToken("favoriteInfo", setFavoriteInfo, "")
     }, [])
-
+    if(favoriteInfo.length !== 0){
     return (
         <div className="tab-content">
             {favoriteInfo.map((item, index) => (
@@ -28,11 +22,17 @@ function Favorite({lunchingEpisodeVerificator}) {
                     duration={item.duration}
                     season={item.season}
                     author={item.author}
-                    lunchingEpisodeVerificator={(item) => {transitionLunchingEpisodeVerificator(item)}}
+                    lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                 />
             ))}
         </div>
-    )
+    )} else{
+        return(
+            <div className="tab-content">
+        <p className="card-favorite-title centering">Vous n'avez pas encore de coup de coeur</p>
+        </div>
+        )
+    }
 }
 
 export default Favorite;

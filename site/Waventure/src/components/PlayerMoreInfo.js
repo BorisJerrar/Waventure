@@ -27,7 +27,7 @@ const {serverPath} = useContext(Context)
        }, [serieId, sagaInfo, currentSerie, serverPath, moreInfo])
 
        useEffect(() => {
-        getData("serieRole", setMoreInfo, serieId)
+        getData("serieRole", setMoreInfo, `/${serieId}`)
 
        }, [serieId])
        

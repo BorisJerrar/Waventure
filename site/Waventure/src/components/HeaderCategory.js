@@ -2,10 +2,10 @@ import React, { useState, useEffect} from 'react'
 import Card from '../components/Card'
 import getData from "../utiles/getData"
 
-export default function HeaderCategory({ categoryName }) {
+export default function HeaderCategory({ categoryName, lunchingEpisode}) {
     const [category, setCategory] = useState([])
     useEffect(() => {
-        getData("serieCategory", setCategory, categoryName)
+        getData("serieCategory", setCategory, `/${categoryName}`)
     }, [categoryName])
     
 
@@ -25,6 +25,7 @@ export default function HeaderCategory({ categoryName }) {
                         duration={item.duration}
                         season={item.season}
                         author={item.author}
+                        lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                     />
                 ))}
             </div>

@@ -1,36 +1,38 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, { useEffect, useState, useContext } from "react";
 import "../style/search.css";
-import Context from '../context/context';
+import Context from "../context/context";
+import Card from "../components/Card";
+import getData from "../utiles/getData";
 
-export default function Search({uniqueSearch, lunchingEpisode }) {
-    const {serverPath} = useContext(Context)
-    const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-    const [uniqueSerie, setUniqueSerie] = useState([])
+export default function Search({ uniqueSearch, lunchingEpisode }) {
+  const { serverPath } = useContext(Context);
+  const [uniqueSerie, setUniqueSerie] = useState([]);
+  useEffect(() => {
+      getData(`serieSynopsis?search=%${uniqueSearch}%`,setUniqueSerie, "")
 
-useEffect(() => {
-    const fetchUniqueSerie = async() =>{
-        const response = await fetch (`${serverPath}/serieSynopsis?search=%${uniqueSearch}%`)
-        const data = await response.json()
-        setUniqueSerie(data)
-    }
+  }, [uniqueSearch, serverPath]);
 
-    fetchUniqueSerie()
-}, [uniqueSearch, serverPath])
-
-    return (
-        <div className="bodySearch">
-            {uniqueSerie.map((each, key)=>{
-                return(
-                   <div onClick={()=>lunchingEpisode(each.serie_id)} className="uniqueCard" key={key}>
-            <img src={`${urlimg}/${each.image}`} alt=""/>
-            <div>
-                <h5>{each.title}</h5>
-                <p>{each.body}</p>
-            </div>
-            </div> 
-                )
-            
-            })}
-        </div>    
-    )
+  return (
+    <div className="bodySearch">
+      {uniqueSerie.map((item, index) => {
+        return (
+          <Card
+            key={index}
+            item={item}
+            title={item.title}
+            image={item.image}
+            imageLg={item.image_lg}
+            imageBg={item.image_bg}
+            synopsis={item.body}
+            duration={item.duration}
+            season={item.season}
+            author={item.author}
+            lunchingEpisode={(serie_id, episode) =>
+              lunchingEpisode(serie_id, episode)
+            }
+          />
+        );
+      })}
+    </div>
+  );
 }

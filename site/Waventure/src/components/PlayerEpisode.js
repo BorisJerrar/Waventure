@@ -13,7 +13,7 @@ export default function PlayerEpisode({
 }) {
   const {serverPath} = useContext(Context)
   useEffect(() => {
-    getData("saisonAndEpisode", setSagaEpisodeSaisonInfo, serieId )
+    getData("saisonAndEpisode", setSagaEpisodeSaisonInfo, `/${serieId}` )
   }, [setSagaEpisodeSaisonInfo, serieId, serverPath]);
 
   const showElement = () => {

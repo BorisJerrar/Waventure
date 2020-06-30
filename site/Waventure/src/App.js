@@ -220,7 +220,7 @@ function App() {
             <Route path="/search">
               <Search
                 uniqueSearch={uniqueSearch}
-                lunchingEpisode={lunchingEpisode}
+                lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
               />
             </Route>
             <Route path="/newest">
@@ -235,7 +235,9 @@ function App() {
               <div
                 className="playerTrigger"
               >
-                <Favorite />
+                <Favorite 
+                            lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
+                />
               </div>
             </Route>
             <Route path="/main">
@@ -262,7 +264,7 @@ function App() {
                   <div className="playerTrigger flexing">
                     <HeaderCategory
                       categoryName={item.name}
-                      lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                      lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                     />
                   </div>
                 </Route>
