@@ -1,12 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/PlayerHeader.css";
 import Context from '../context/context'
 import nextSaga from "../utiles/nextSaga";
-import getData from "../utiles/getData";
 
 export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
-const [allSerie, setAllSerie] = useState([])
   const { 
     synopsis,
     learnMore,
@@ -15,7 +13,6 @@ const [allSerie, setAllSerie] = useState([])
     reducer,
     setIndex,
     sagaEpisodeSaisonInfo,
-    setSerieId,
     serieId
   } = useContext(Context);
 
@@ -29,7 +26,6 @@ const [allSerie, setAllSerie] = useState([])
     setEpisodes(false);
     setIndex(e.target.attributes[0].value -1)
     let indexOnClick = e.target.attributes[0].value -1
-    getData('serie', setAllSerie, '')
      nextSaga(indexOnClick, serieId, each.episode_id)
   };
   let increm = 0;
