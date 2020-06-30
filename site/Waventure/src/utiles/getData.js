@@ -7,8 +7,8 @@ import axios from 'axios';
  * @returns {array} 
  */
     const getData = ( path, setState, params) => {
-        const server = process.env.REACT_APP_SERVER_PATH;
-        axios(`${server}/${path}/${params}`,{
+        const serverPath = process.env.REACT_APP_SERVER_PATH;
+        axios(`${serverPath}/${path}/${params}`,{
             method: 'get',
         }).then((res)=>{
             setState(res.data)

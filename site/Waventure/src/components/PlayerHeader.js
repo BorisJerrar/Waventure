@@ -9,7 +9,7 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
     synopsis,
     learnMore,
     episodes,
-    setEpisode,
+    setEpisodes,
     reducer,
     setIndex,
     sagaEpisodeSaisonInfo
@@ -23,7 +23,7 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
   }
   const changingEpisode = (e) => {
     setIndex(e.target.attributes[0].value - 1);
-    setEpisode(false);
+    setEpisodes(false);
   };
   let increm = 0;
   return (
