@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 /**
  * use to request all favorite for user
- * @param {string} token 
+ * @param {headers} token 
  * @return {object} favorite 
  */
 const getFavorites = (request, response) => {
@@ -19,7 +19,7 @@ const getFavorites = (request, response) => {
 
 /**
  * use to request serie info by user
- * @param {string} token 
+ * @param {headers} token 
  * @returns {object} favorite, serie, synopsis 
  */
 const getFavoritesInfo = (request, response) => {
@@ -42,8 +42,8 @@ const getFavoritesInfo = (request, response) => {
 
 /**
  * use to request response if relation favorite/account exists
- * @param {string} token 
- * @param {string} serie_id
+ * @param {headers} token 
+ * @param {params} serie_id
  * @returns {boolean} true false
  */
 const getFavoritesById = (request, response) => {
@@ -60,8 +60,8 @@ const getFavoritesById = (request, response) => {
 
 /**
  * use to create favorite for user
- * @param {string} token 
- * @param {string} serie_id 
+ * @param {headers} token 
+ * @param {params} serie_id 
  * @returns {string} response
  */
 const createFavorites = (request, response) => {
@@ -79,8 +79,8 @@ const createFavorites = (request, response) => {
 
 /**
  * 
- * @param {string} token 
- * @param {string} serie_id
+ * @param {headers} token 
+ * @param {params} serie_id
  * @returns {string} response 
  */
 const deleteFavorites = (request, response) => {

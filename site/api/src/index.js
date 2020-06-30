@@ -165,10 +165,11 @@ app.post("/favorite/:serie_id", Auth.verifyToken, favoriteQueries.createFavorite
 app.delete("/favorite/:serie_id", Auth.verifyToken, favoriteQueries.deleteFavorites);
 
 /* LISTEN */
-app.post("/listen", Auth.verifyToken, listenQueries.getListen);
+app.get("/listen", listenQueries.getListen)
+app.post("/listen", Auth.verifyToken, listenQueries.addListen);
 app.get("/listenVerificator/", Auth.verifyToken, listenQueries.getListenById);
 app.put("/listen", Auth.verifyToken, listenQueries.updateListen);
-app.delete("/listen/:listen_id", listenQueries.deleteListen);
+app.delete("/listen", listenQueries.deleteListen);
 
 /* ROLE */
 app.get("/role", roleQueries.getRole);

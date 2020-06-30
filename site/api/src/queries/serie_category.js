@@ -1,6 +1,10 @@
 const db = require('../../db/database')
 
 
+/**
+ * use to request all serie_category
+ * @returns {object} serie_category 
+ */
 const getSerieCategory = (request, response) => {
   db.query('SELECT * FROM serie_category', (error, results) => {
     if (error) {
@@ -10,6 +14,11 @@ const getSerieCategory = (request, response) => {
   })
 }
 
+/**
+ * use to request serie_category by id
+ * @param {params} serie_category_id 
+ * @returns {object} serie_category by id 
+ */
 const getSerieCategoryById = (request, response) => {
   const serie_category_id = parseInt(request.params.serie_category_id)
   db.query('SELECT * FROM serie_category WHERE serie_id = $1', [serie_category_id], (error, results) => {
@@ -20,6 +29,12 @@ const getSerieCategoryById = (request, response) => {
   })
 }
 
+/**
+ * use to add serie_category 
+ * @param {query} serie_id 
+ * @param {query} category_id 
+ * @returns {string} response
+ */
 const createSerieCategory = (request, response) => {
     const serie_id = request.query.serie_id
     const category_id = request.query.category_id
@@ -32,6 +47,13 @@ const createSerieCategory = (request, response) => {
     })
 }
 
+/**
+ * use to add serie_category 
+ * @param {query} serie_id 
+ * @param {query} category_id 
+ * @param {params} serie_category_id
+ * @returns {string} response
+ */
 const updateSerieCategory = (request, response) => {
     const serie_category_id = parseInt(request.params.serie_category_id)
     const serie_id = request.query.serie_id
@@ -48,6 +70,11 @@ const updateSerieCategory = (request, response) => {
     )
 }
 
+/**
+ * use to delete serie_category
+ * @param {params} serie_category_id 
+ * @return {string} response 
+ */
 const deleteSerieCategory = (request, response) => {
     const serie_category_id = parseInt(request.params.serie_category_id)
 

@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer')
 
 /**
  * use to request account by decoded token
- * @param {string} token 
+ * @param {headers} token 
  * @returns {object} account 
  */
 const getAccount = (request, response) => {
@@ -23,7 +23,7 @@ const getAccount = (request, response) => {
 
 /**
  * use to request account by account_id
- * @param {string} account_id 
+ * @param {params} account_id 
  * @returns {object} account 
  */
 const getAccountById = (request, response) => {
@@ -38,7 +38,7 @@ const getAccountById = (request, response) => {
 
 /**
  * Create account returning token
- * @param {Object} body
+ * @param {body} request 
  * @returns {string} token
  */
 const createAccount = (req, res) => {
@@ -87,8 +87,8 @@ const createAccount = (req, res) => {
 
 /**
  * Login account returning token 
- * @param {String} email
- * @param {string} password 
+ * @param {body} email
+ * @param {body} password 
  * @returns {String} token 
  */
 const loginAccount = (req, res) => {
@@ -122,7 +122,7 @@ const loginAccount = (req, res) => {
 
     /**
    * Remove account token 
-   * @param {string} token 
+   * @param {headers} token 
    */
 const logoutAccount = (req, res) => {
   const token = req.headers['x-access-token']
@@ -133,14 +133,13 @@ const logoutAccount = (req, res) => {
         return res.status(400).send(error);
       }
       return res.status(200).send({message: 'Deconnexion'})
-      console.log(res.rows[0]);
     })
 }
 
 
 /**
  * Request email for updating account password 
- * @param {string} email 
+ * @param {body} email 
  * @returns {string} link + token in email 
  */
 const SendEmailresetPassword = (req, res) => {
@@ -184,8 +183,9 @@ const SendEmailresetPassword = (req, res) => {
 
 /**
  * Reset password by decoded token 
- * @param {string} password 
- * @param {string} token
+ * @param {body} password 
+ * @param {headers} token
+ * @returns {string} response
  */
 const resetPasswordByEmail = (req, res) => {
   if (!req.body.password === '') {
@@ -207,6 +207,12 @@ const resetPasswordByEmail = (req, res) => {
   )
 }
 
+/**
+ * use to update account by id
+ * @param {params} account_id 
+ * @param {body} body
+ * @returns {string} response
+ */
 const updateAccount = (request, response) => {
   const account_id = request.params.account_id
   const { username, first_name, last_name, email, avatar_id, password } = request.body
@@ -222,6 +228,11 @@ const updateAccount = (request, response) => {
   )
 }
 
+/**
+ * 
+ * @param {params} account_id
+ * @returns {string} response 
+ */
 const deleteAccount = (request, response) => {
   const account_id = request.params.account_id
 

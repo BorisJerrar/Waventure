@@ -2,7 +2,7 @@ const db = require('../../db/database')
 
 /**
  * use to request saga infos by serie_id
- * @param {string} serie_id 
+ * @param {params} serie_id 
  * @return {object} episode, season, serie, synopsis 
  */
 const getSagaInfosBySerieId = (request, response) => {
@@ -21,7 +21,7 @@ const getSagaInfosBySerieId = (request, response) => {
 
 /**
  * use to request serie and synopsis by id
- * @param {string} serie_id 
+ * @param {params} serie_id 
  * @returns {object} serie, synopsis 
  */
 const getSerieSynopsisBySerieId = (req, res) => {
@@ -37,7 +37,7 @@ const getSerieSynopsisBySerieId = (req, res) => {
 
 /**
  * use to request serie by search
- * @param {string} search 
+ * @param {query} search 
  * @returns {object} serie 
  */
 const getSerieSynopsis = (request, response) => {
@@ -65,7 +65,7 @@ const getSerieSynopsis = (request, response) => {
 
 /**
  * use to request actor by serie
- * @param {string} serie_id 
+ * @param {params} serie_id 
  * @returns {object} actor, serie 
  */
 const getSerieRole = (request, response) => {

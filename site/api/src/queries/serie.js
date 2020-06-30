@@ -40,7 +40,7 @@ const getSerie = (request, response) => {
 
 /**
  * use to request serie by serie_id
- * @param {string} serie_id 
+ * @param {params} serie_id 
  * @return {object} serie 
  */
 const getSerieById = (request, response) => {
@@ -76,7 +76,7 @@ const getSerieByUploadDate = (request, response) => {
 
 /**
  * use to create serie
- * @param {object} request 
+ * @param {body} request 
  * @returns {string} response 
  */
 const createSerie = (request, response) => {
@@ -104,8 +104,8 @@ const createSerie = (request, response) => {
 
 /**
  * use to update serie by serie_id 
- * @param {string} serie_id
- * @param {object} serie 
+ * @param {params} serie_id
+ * @param {body} serie 
  * @returns {string} response 
  */
 const updateSerie = (request, response) => {
@@ -143,7 +143,7 @@ const updateSerie = (request, response) => {
 
 /**
  * use to delete serie by serie_id 
- * @param {string} serie_id 
+ * @param {params} serie_id 
  * @returns {string} response 
  */
 const deleteSerie = (request, response) => {
