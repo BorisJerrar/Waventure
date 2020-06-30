@@ -35,7 +35,6 @@ function App() {
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({});
   const [toggle, setToggle] = useState(false);
-  const [titleArray, setTitleArray] = useState([]);
   const [user, setUser] = useState([])
   const [validate, setValidate] = useState(false)
   const [synopsis, setSynopsis] = useState(false);
@@ -109,7 +108,6 @@ function App() {
     sagaEpisodeSaisonInfo,
     uniqueSearch,
     toggle,
-    titleArray,
     user,
     validate,
     synopsis,
@@ -130,7 +128,6 @@ function App() {
     setSagaEpisodeSaisonInfo,
     setUniqueSearch,
     setToggle,
-    setTitleArray,
     setUser,
     setValidate,
     setSynopsis,
