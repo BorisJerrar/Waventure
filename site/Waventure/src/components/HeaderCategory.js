@@ -4,22 +4,9 @@ import getData from "../utiles/getData"
 
 export default function HeaderCategory({ categoryName }) {
     const [category, setCategory] = useState([])
-    console.log(categoryName);
-    
     useEffect(() => {
-<<<<<<< HEAD
-        const fetchCategory = async () => {
-            const response = await fetch(`${serverPath}/serieCategory/${categoryName}`)
-            const data = await response.json()
-
-            setCategory(data)
-        }
-        fetchCategory()
-    }, [categoryName, serverPath])
-=======
         getData("serieCategory", setCategory, categoryName)
     }, [])
->>>>>>> b60d3fe30ead9925c3281a4622bbbb79bb243a97
     
 
     return (
