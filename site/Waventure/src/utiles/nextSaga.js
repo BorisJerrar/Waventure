@@ -1,8 +1,5 @@
 import axios from 'axios'
 const nextSaga = (index, serieId, sagaInfo, setIndex) => {
-  console.log(index);
-  console.log(serieId);
-  console.log(sagaInfo);
     const token = localStorage.getItem("token");
     const server = process.env.REACT_APP_SERVER_PATH;
     if (index < sagaInfo.length - 1) {
