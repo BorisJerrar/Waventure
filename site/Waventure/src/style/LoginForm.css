@@ -165,3 +165,15 @@ body {
     margin-right: 3px;
     font-size: 20px;
 }
+
+.success-msg {
+    color: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.success-circle {
+    margin-right: 3px;
+    font-size: 20px;
+}

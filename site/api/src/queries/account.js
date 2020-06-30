@@ -72,7 +72,6 @@ const createAccount = (req, res) => {
         return res.status(400).send(error);
       }
       const token = Helper.generateToken(results.rows[0].account_id)
-      Helper.updateAccountToken(token, results.rows[0].account_id)
       return res.status(201).send({ token })
     })
   });

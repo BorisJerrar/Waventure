@@ -2,22 +2,32 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import "../style/LoginForm.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function PwdReset(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH;
     const [email, setEmail] = useState("");
+    const [isError, setIsError] = useState(false);
+    const [messageError, setMessageError] = useState("")
+    const [success, setSuccess] = useState(false);
+    const [messageSuccess, setMessageSuccess] = useState("")
 
     function SendEmail() {
+        if (!success){
         axios.post('http://localhost:4000/auth/pwdReset', {
             email: email,
         })
             .then(function (response) {
-                console.log(JSON.stringify(response.data))
+                setSuccess(true)
+                setIsError(false)
+                setMessageSuccess(response.data.message)
             }
             )
             .catch(function (error) {
-                console.log(error);
+                setIsError(true)
+                setMessageError(error.response.data.error)
             })
+        }
     }
 
     function handleSubmit(event) {
@@ -33,6 +43,26 @@ function PwdReset(props) {
                 </div>
                 <form className="login-box"
                     onSubmit={handleSubmit}>
+                    {isError && (
+                        <div className="error-msg">
+                            <FontAwesomeIcon
+                                className="error-circle"
+                                icon={['fas', 'exclamation-circle']} size="sm" />
+                            <div>
+                                {messageError}
+                            </div>
+                        </div>
+                    )}
+                    {success && (
+                        <div className="success-msg">
+                            <FontAwesomeIcon
+                                className="success-circle"
+                                icon={['fas', 'check-circle']} size="sm" />
+                            <div>
+                                {messageSuccess}
+                            </div>
+                        </div>
+                    )}
                     <div className="user-box">
                         <input
                             type="email"
@@ -48,7 +78,7 @@ function PwdReset(props) {
                             type="submit"
                             onClick={SendEmail}
                         >
-                           Réinitialiser 
+                            Réinitialiser
                     </button>
                         <div className="form-aside">
                             <p>Pas encore de compte ?</p>
