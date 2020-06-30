@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
+import Context from '../context/context'
 
 export default function HeaderContent({refSearch,
     showSearch,
@@ -12,9 +13,9 @@ export default function HeaderContent({refSearch,
     categories,
     categoriesTrigger,
     avatar,
-    userAvatar,
     accountTrigger,
-    logout}) {      
+    logout}) {
+    const { user } = useContext(Context)       
     const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
     const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     return (
@@ -88,7 +89,7 @@ export default function HeaderContent({refSearch,
         <div className="profilIcon" onClick={avatar}>
           <img className="firstArrow" src={`${pathImg}/arrow.svg`} alt="Arrow Icon" />
           <div className="avatarBox">
-            <img src={`${pathAvar}/${userAvatar}`} alt="Profil Icon" />
+            <img src={`${pathAvar}/Avatar0${user && user[0] && user[0].avatar_id? user[0].avatar_id : "1"}.jpg`} alt="Profil Icon" />
             {accountTrigger ? (
               <div className="accountRolling">
                 <Link to="/profil" className="categoriesParagraph">
