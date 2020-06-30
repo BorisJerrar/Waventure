@@ -3,35 +3,38 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../context/context";
 import getData from "../utiles/getData"
+import getDataToken from "../utiles/getDataWithToken"
 
-export default function UpdateProfil({ user, setValidate, validate }) {
-  const { serverPath } = useContext(Context);
+export default function UpdateProfil() {
+  const { serverPath, setUser, user } = useContext(Context);
   const [avatar, setAvatar] = useState([]);
-  const [account, setAccount] = useState(user[0]);
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
   useEffect(() => {
     getData("avatar", setAvatar, "")
-  }, []);
+    if(user.length){
+      setUser(user[0])
+    }
+  }, [setUser, user]);
 
+  
   const updateAvatar = (key) => {
-    setAccount({
-      ...account,
+    setUser({
+      ...user,
       avatar_id: key + 1,
     });
   };
 
-  const fetchAccount = async () => {
-    fetch(`${serverPath}/account/${account.account_id}`, {
+  const fetchuser = async () => {
+    
+    fetch(`${serverPath}/account/${user.account_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(account),
+      body: JSON.stringify(user),
     }).then((res) => {
-      if (res.status === 200) {
-        setValidate(!validate);
-      }
+      getDataToken('account', setUser, '')
     });
   };
   return (
@@ -54,33 +57,33 @@ export default function UpdateProfil({ user, setValidate, validate }) {
           <label>Nom</label>
           <input
             type="text"
-            value={account.last_name}
+            value={ user.last_name || ""}
             onChange={(e) => {
-              setAccount({ ...account, last_name: e.target.value });
+              setUser({ ...user, last_name: e.target.value });
             }}
           />
           <label>Prénom</label>
           <input
             type="text"
-            value={account.first_name}
+            value={user.first_name || ""}
             onChange={(e) => {
-              setAccount({ ...account, first_name: e.target.value });
+              setUser({ ...user, first_name: e.target.value });
             }}
           />
           <label>Pseudo</label>
           <input
             type="text"
-            value={account.username}
+            value={user.username || ""}
             onChange={(e) => {
-              setAccount({ ...account, username: e.target.value });
+              setUser({ ...user, username: e.target.value });
             }}
           />
           <label>Email</label>
           <input
             type="text"
-            value={account.email}
+            value={user.email || ""}
             onChange={(e) => {
-              setAccount({ ...account, email: e.target.value });
+              setUser({ ...user, email: e.target.value });
             }}
           />
           <Link to="/profil" style={{ textDecoration: "none" }}>
@@ -88,7 +91,7 @@ export default function UpdateProfil({ user, setValidate, validate }) {
               type="button"
               value="Valider"
               className="btnProfil"
-              onClick={fetchAccount}
+              onClick={fetchuser}
             />
           </Link>
         </form>

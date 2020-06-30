@@ -35,9 +35,7 @@ function App() {
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({});
   const [toggle, setToggle] = useState(false);
-  const [titleArray, setTitleArray] = useState([]);
   const [user, setUser] = useState([])
-  const [validate, setValidate] = useState(false)
   const [synopsis, setSynopsis] = useState(false);
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
@@ -70,7 +68,7 @@ function App() {
 
   useEffect(()=>{
     getDataToken('account', setUser, '')
- },[validate])
+ },[])
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -109,9 +107,7 @@ function App() {
     sagaEpisodeSaisonInfo,
     uniqueSearch,
     toggle,
-    titleArray,
     user,
-    validate,
     synopsis,
     episodes,
     learnMore,
@@ -130,13 +126,12 @@ function App() {
     setSagaEpisodeSaisonInfo,
     setUniqueSearch,
     setToggle,
-    setTitleArray,
     setUser,
-    setValidate,
     setSynopsis,
     setEpisodes,
     setLearnMore,
-    setMaches, setCategories
+    setMaches, 
+    setCategories
   }
 
   return (
@@ -207,11 +202,7 @@ function App() {
               />
             </Route>
             <Route path="/profilUpdate">
-                <UpdateProfil
-                  user={user}
-                  setValidate={setValidate}
-                  validate={validate}
-                />
+                <UpdateProfil/>
             </Route>
             <Route path='/contact'>
               <Contact/>

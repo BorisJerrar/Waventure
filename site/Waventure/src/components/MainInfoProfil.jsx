@@ -6,7 +6,7 @@ import Context from '../context/context'
 export default function MainInfoProfil({justify}) {
     const urlimg = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     const { user } = useContext(Context);
-    console.log(user);
+
     
     return (
         <div className="userInfo" style={{display: "flex", justifyContent: justify}}>
