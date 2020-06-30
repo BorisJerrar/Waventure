@@ -142,8 +142,8 @@ function SignUp(props) {
                         {isError && (
                             <div className="error-msg">
                                 <FontAwesomeIcon
-                                    className="error-cross"
-                                    icon={['fas', 'times-circle']} size="sm" />
+                                    className="error-circle"
+                                    icon={['fas', 'exclamation-circle']} size="sm" />
                                 <div>
                                     {messageError}
                                 </div>

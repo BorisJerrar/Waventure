@@ -1,17 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Reset(props) {
     const pathLogo = process.env.REACT_APP_STATIC_IMG_PATH
     const url = window.location.pathname.split('/')
     const token = url[2]
+    localStorage.setItem('token', token)
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
+    const [isError, setIsError] = useState(false);
+    const [messageError, setMessageError] = useState("")
+    const [success, setSuccess] = useState(false);
+    const [messageSuccess, setMessageSuccess] = useState("")
+
 
     const sendNewPassword = () => {
-        if (password.length && passwordConfirmation.length) {
+        if (password.length && passwordConfirmation.length && !success) {
 
-            var data = JSON.stringify({"password": password});
+            var data = JSON.stringify({ "password": password });
             var config = {
                 method: 'put',
                 url: 'http://localhost:4000/auth/reset',
@@ -23,11 +30,16 @@ function Reset(props) {
             };
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    window.location.href="/signIn" 
+                    setSuccess(true)
+                    setIsError(false)
+                    setMessageSuccess(response.data.message)
+                    localStorage.clear('token')
+                    window.location.href = "/signIn"
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    setIsError(true)
+                    setSuccess(false)
+                    setMessageError(error.response.data.error)
                 });
         }
     }
@@ -37,10 +49,13 @@ function Reset(props) {
         if (password === passwordConfirmation) {
             sendNewPassword()
         } else {
-            console.log('Passwords do not match');
+            setIsError(true)
+            setMessageError('Mot de passe incorect')
         }
     }
 
+    if (!localStorage.token) {
+    }
 
     return (
         <div className="bg-container">
@@ -50,8 +65,29 @@ function Reset(props) {
                     <h1 className="logo-txt">WAVENTURE</h1>
                 </div>
                 <form className="login-box"
-                    >
-                    <div className="user-box">
+                >
+                    {isError && (
+                        <div className="error-msg">
+                            <FontAwesomeIcon
+                                className="error-circle"
+                                icon={['fas', 'exclamation-circle']} size="sm" />
+                            <div>
+                                {messageError}
+                            </div>
+                        </div>
+
+                    )}
+                    {success && (
+                        <div className="success-msg">
+                            <FontAwesomeIcon
+                                className="success-circle"
+                                icon={['fas', 'check-circle']} size="sm" />
+                            <div>
+                                {messageSuccess}
+                            </div>
+                        </div>
+                    )}
+                    < div className="user-box">
                         <input type="password"
                             id="password"
                             placeholder="Mot de Passe"
@@ -74,12 +110,12 @@ function Reset(props) {
                             type="submit"
                             onClick={handleSubmit}
                         >
-                           Valider 
+                            Valider
                     </button>
                     </div>
                 </form>
             </main>
-        </div>
+        </div >
     )
 }
 
