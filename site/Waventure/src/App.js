@@ -36,7 +36,6 @@ function App() {
   const [uniqueSearch, setUniqueSearch] = useState({});
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState([])
-  const [validate, setValidate] = useState(false)
   const [synopsis, setSynopsis] = useState(false);
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
@@ -69,7 +68,7 @@ function App() {
 
   useEffect(()=>{
     getDataToken('account', setUser, '')
- },[validate])
+ },[])
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -109,7 +108,6 @@ function App() {
     uniqueSearch,
     toggle,
     user,
-    validate,
     synopsis,
     episodes,
     learnMore,
@@ -129,11 +127,11 @@ function App() {
     setUniqueSearch,
     setToggle,
     setUser,
-    setValidate,
     setSynopsis,
     setEpisodes,
     setLearnMore,
-    setMaches, setCategories
+    setMaches, 
+    setCategories
   }
 
   return (
@@ -204,11 +202,7 @@ function App() {
               />
             </Route>
             <Route path="/profilUpdate">
-                <UpdateProfil
-                  user={user}
-                  setValidate={setValidate}
-                  validate={validate}
-                />
+                <UpdateProfil/>
             </Route>
             <Route path='/contact'>
               <Contact/>

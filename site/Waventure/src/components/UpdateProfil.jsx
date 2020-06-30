@@ -3,9 +3,10 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../context/context";
 import getData from "../utiles/getData"
+import getDataToken from "../utiles/getDataWithToken"
 
-export default function UpdateProfil({ user, setValidate, validate }) {
-  const { serverPath, setUser } = useContext(Context);
+export default function UpdateProfil() {
+  const { serverPath, setUser, user } = useContext(Context);
   const [avatar, setAvatar] = useState([]);
   const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
 
@@ -33,10 +34,7 @@ export default function UpdateProfil({ user, setValidate, validate }) {
       },
       body: JSON.stringify(user),
     }).then((res) => {
-      
-      if (res.status === 200) {
-        setValidate(!validate);
-      }
+      getDataToken('account', setUser, '')
     });
   };
   return (
