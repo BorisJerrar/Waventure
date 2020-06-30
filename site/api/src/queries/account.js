@@ -5,6 +5,11 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const nodemailer = require('nodemailer')
 
+/**
+ * use to request account by decoded token
+ * @param {string} token 
+ * @returns {object} account 
+ */
 const getAccount = (request, response) => {
   const token = request.headers['x-access-token'];
   const decoded = jwt.verify(token, process.env.SECRET)
@@ -16,9 +21,13 @@ const getAccount = (request, response) => {
   })
 }
 
+/**
+ * use to request account by account_id
+ * @param {string} account_id 
+ * @returns {object} account 
+ */
 const getAccountById = (request, response) => {
   const account_id = parseInt(request.params.account_id)
-  req.account = { account_id: decoded.account_id };
   db.query('SELECT * FROM account WHERE account_id = $1', [account_id], (error, results) => {
     if (error) {
       throw error

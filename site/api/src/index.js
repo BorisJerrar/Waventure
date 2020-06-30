@@ -28,10 +28,7 @@ const serieActorQueries = require("./queries/serie_actor");
 const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
-const serieRoleQueries = require("./queries/serie_role");
 const avatarQueries = require("./queries/avatar");
-const serieSynopsisQueries = require("./queries/serie_synopsis")
-const serieSynopsisSerieId = require ("./queries/serie_synopsis_serie_id")
 const Auth = require('./middleware/Auth.js');
 
 
@@ -89,11 +86,11 @@ app.get('/sound/', function(req, res){
   ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
 });
 
+/* MAIN */
 app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
-
-app.get("/serieSynopsis", serieSynopsisQueries.getSerieSynopsis)
-app.get("/serieRole/:id", serieRoleQueries.getSerieRole )
-app.get("/serieSynopsis/:id", serieSynopsisSerieId.getSerieSynopsisBySerieId)
+app.get("/serieSynopsis", mainQueries.getSerieSynopsis)
+app.get("/serieRole/:id", mainQueries.getSerieRole )
+app.get("/serieSynopsis/:id", mainQueries.getSerieSynopsisBySerieId)
 
 /* AUTH */
 app.post('/auth/signin', accountQueries.loginAccount)
@@ -104,7 +101,7 @@ app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 
 /* ACCOUNT */ 
 app.get("/account", Auth.verifyToken, accountQueries.getAccount);
-app.get("/account/:account_id", Auth.verifyToken, accountQueries.getAccountById);
+app.get("/account/:account_id", accountQueries.getAccountById);
 app.put("/account/:account_id", accountQueries.updateAccount);
 app.delete("/account/:account_id", accountQueries.deleteAccount);
 

@@ -1,5 +1,9 @@
 const db = require("../../db/database");
 
+/**
+ * use to request all serie
+ * @returns {object} serie 
+ */
 const getSerie = (request, response) => {
   if(Object.keys(request.query).length === 0){
      db.query("SELECT * FROM serie ORDER BY serie_id ASC", (error, results) => {
@@ -17,8 +21,6 @@ const getSerie = (request, response) => {
     const search = request.query.search.replace(/%20|%27|%C3%A9/gi,(item)=>{
       return map[item]
     })
-    
-    
     db.query(`SELECT * FROM search_serie WHERE lower LIKE $1` ,[search], (error, results) => {
       if (error) {
         throw error
@@ -34,12 +36,15 @@ const getSerie = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
- 
 };
 
+/**
+ * use to request serie by serie_id
+ * @param {string} serie_id 
+ * @return {object} serie 
+ */
 const getSerieById = (request, response) => {
   const serie_id = parseInt(request.params.serie_id);
-
   db.query(
     "SELECT * FROM serie WHERE serie_id = $1",
     [serie_id],
@@ -52,6 +57,10 @@ const getSerieById = (request, response) => {
   );
 };
 
+/**
+ * use to request serie by upload date
+ * @returns {object} serie 
+ */
 const getSerieByUploadDate = (request, response) => {
   db.query(
     "SELECT * FROM serie INNER JOIN synopsis ON synopsis.serie_id = serie.serie_id ORDER BY upload_date DESC LIMIT 10",
@@ -64,6 +73,12 @@ const getSerieByUploadDate = (request, response) => {
   );
 };
 
+
+/**
+ * use to create serie
+ * @param {object} request 
+ * @returns {string} response 
+ */
 const createSerie = (request, response) => {
   const {
     title,
@@ -87,6 +102,12 @@ const createSerie = (request, response) => {
   );
 };
 
+/**
+ * use to update serie by serie_id 
+ * @param {string} serie_id
+ * @param {object} serie 
+ * @returns {string} response 
+ */
 const updateSerie = (request, response) => {
   const serie_id = parseInt(request.params.serie_id);
   const {
@@ -120,6 +141,11 @@ const updateSerie = (request, response) => {
   );
 };
 
+/**
+ * use to delete serie by serie_id 
+ * @param {string} serie_id 
+ * @returns {string} response 
+ */
 const deleteSerie = (request, response) => {
   const serie_id = parseInt(request.params.serie_id);
 

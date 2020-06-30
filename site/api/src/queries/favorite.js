@@ -1,8 +1,12 @@
 const db = require('../../db/database')
 const jwt = require('jsonwebtoken')
 
+/**
+ * use to request all favorite for user
+ * @param {string} token 
+ * @return {object} favorite 
+ */
 const getFavorites = (request, response) => {
-
     const token = request.headers['x-access-token'];
     const decoded = jwt.verify(token, process.env.SECRET)
     db.query('SELECT * FROM favorite WHERE account_id = $1', [decoded.account_id], (error, results) => {
@@ -12,8 +16,13 @@ const getFavorites = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
-const getFavoritesInfo = (request, response) => {
 
+/**
+ * use to request serie info by user
+ * @param {string} token 
+ * @returns {object} favorite, serie, synopsis 
+ */
+const getFavoritesInfo = (request, response) => {
     const token = request.headers['x-access-token'];
     const decoded = jwt.verify(token, process.env.SECRET)
     db.query(`SELECT * FROM favorite INNER JOIN serie
@@ -31,8 +40,13 @@ const getFavoritesInfo = (request, response) => {
 }
 
 
+/**
+ * use to request response if relation favorite/account exists
+ * @param {string} token 
+ * @param {string} serie_id
+ * @returns {boolean} true false
+ */
 const getFavoritesById = (request, response) => {
-
     const serie_id = parseInt(request.params.serie_id)
     const token = request.headers['x-access-token'];
     const decoded = jwt.verify(token, process.env.SECRET)
@@ -40,11 +54,16 @@ const getFavoritesById = (request, response) => {
         if (error) {
             throw error
         }
-
         response.status(200).send(results.rows)
     })
 }
 
+/**
+ * use to create favorite for user
+ * @param {string} token 
+ * @param {string} serie_id 
+ * @returns {string} response
+ */
 const createFavorites = (request, response) => {
     const serie_id = parseInt(request.params.serie_id)
     const token = request.headers['x-access-token'];
@@ -54,22 +73,25 @@ const createFavorites = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`favorite added with ID: ${results.insertId}`)
+        response.status(201).send({message: `favori ajouter à votre liste`})
     })
 }
 
-
-
+/**
+ * 
+ * @param {string} token 
+ * @param {string} serie_id
+ * @returns {string} response 
+ */
 const deleteFavorites = (request, response) => {
     const serie_id = parseInt(request.params.serie_id)
     const token = request.headers['x-access-token'];
     const decoded = jwt.verify(token, process.env.SECRET)
-
     db.query('DELETE FROM favorite WHERE serie_id = $1 AND account_id = $2', [serie_id, decoded.account_id], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).send(`favorite deleted with ID: ${serie_id}`)
+        response.status(200).send({message: `favori supprimer de votre liste`})
     })
 }
 
