@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import Context from "../context/context";
+import getData from "../utiles/getData"
 
 export default function PlayerEpisode({
   serieId,
@@ -12,12 +13,13 @@ export default function PlayerEpisode({
 }) {
   const {serverPath} = useContext(Context)
   useEffect(() => {
-    const fetchingEpisodeBySeason = async () => {
+    /* const fetchingEpisodeBySeason = async () => {
       const fetching = await fetch(`${serverPath}/saisonAndEpisode/${serieId}`);
       const response = await fetching.json();
       setSagaEpisodeSaisonInfo(response);
     };
-    fetchingEpisodeBySeason();
+    fetchingEpisodeBySeason(); */
+    getData("saisonAndEpisode", setSagaEpisodeSaisonInfo, serieId )
   }, [setSagaEpisodeSaisonInfo, serieId, serverPath]);
 
   const showElement = () => {
