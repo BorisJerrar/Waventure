@@ -21,13 +21,15 @@ const {serverPath} = useContext(Context)
                 setSeriesByAuthor(data.filter(item => item.serie_id !== currentSerie))
             }
         }
-
-        getData("serieRole", setMoreInfo, serieId)
-        
         if(moreInfo[0] && moreInfo[0].author){ 
             fetchSerieAuthor()
         }
        }, [serieId, sagaInfo, currentSerie, serverPath, moreInfo])
+
+       useEffect(() => {
+        getData("serieRole", setMoreInfo, serieId)
+
+       }, [serieId])
        
     return (
         <div  style={toggleWrapper? {transform: "translate(0,0)", visibility: "visible", opacity: 1}: {transform: "translate(0,-50px)", visibility: "hidden", opacity: 0}} className="moreInfoWrapper">
