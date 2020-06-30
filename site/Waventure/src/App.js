@@ -20,7 +20,7 @@ import Contact from "./components/Contact.jsx";
 import Profil from "./components/Profil.jsx";
 import UpdateProfil from "./components/UpdateProfil.jsx";
 import UpdatePassword from "./components/UpdatePassword.jsx";
-import axios from "axios"
+import getDataToken from './utiles/getDataWithToken'
 
 function App() {
 
@@ -69,26 +69,8 @@ function App() {
   
 
   useEffect(()=>{
-    
-    const config = {
-      method: 'get',
-      url: 'http://localhost:4000/account',
-      headers: {
-          'x-access-token': token
-      }
-  }
-const fetchAccount = () => {
-  axios(config)
-.then((response)=>{
-   setUser(response.data)
-})
-.catch((error)=>{
-   console.log(error);
-   
-}) 
-}
-    fetchAccount()
- },[validate, token])
+    getDataToken('account', setUser, '')
+ },[validate])
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {

@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Card from '../components/Card'
-import Context from "../context/context";
+import getDataToken from "../utiles/getDataWithToken"
 
 function Favorite({lunchingEpisodeVerificator}) {
 
-    const {token, serverPath } = useContext(Context);
     const [favoriteInfo, setFavoriteInfo] = useState([]);
     
     const transitionLunchingEpisodeVerificator = (transition) => {
@@ -13,24 +11,8 @@ function Favorite({lunchingEpisodeVerificator}) {
     }
 
     useEffect(() => {
-        const getFavoriteInfo = () => {
-            var config = {
-                method: 'get',
-                url: `${serverPath}/favoriteInfo`,
-                headers: {
-                    'x-access-token': token
-                }
-            };
-            axios(config)
-                .then(function (response) {
-                    setFavoriteInfo(response.data)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-        getFavoriteInfo();
-    }, [token, serverPath])
+        getDataToken("favoriteInfo", setFavoriteInfo, "")
+    }, [])
 
     return (
         <div className="tab-content">
