@@ -12,35 +12,26 @@ export default function Header({handleSearchApp}) {
     validate, 
     categoriesTrigger, 
     accountTrigger, 
-    titleArray, 
+    categories,
     toggle, 
     serverPath,
     token,
     setCategoriesTrigger, 
     setAccountTriggerTrigger, 
-    setTitleArray, 
     setToggle 
   } = useContext(Context)
 
+  
   const [search, setSearch] = useState('')
   const [resultSearch, setResultSearch] = useState([])
   const [userAvatar, setUserAvatar] = useState("");
   const refSearch = useRef(null)
 
-  const categories = () => {
+  const showCategories = () => {
     setCategoriesTrigger(!categoriesTrigger);
   };
 
-  useEffect(() => {
-    const fetching = async () => {
-      const data = await fetch(`${serverPath}/category`);
-      const json = await data.json();
-      setTitleArray(json);
-    }
-    if (categoriesTrigger) {
-      fetching()
-    }
-  }, [categoriesTrigger, serverPath, setTitleArray])
+
 
   const avatar = async () => {
     setAccountTriggerTrigger(!accountTrigger);
@@ -102,8 +93,8 @@ handleSearch={handleSearch}
 toggle={toggle}
 resultSearch={resultSearch}
 categories={categories}
+showCategories={showCategories}
 categoriesTrigger={categoriesTrigger}
-titleArray={titleArray}
 avatar={avatar}
 userAvatar={userAvatar}
 accountTrigger={accountTrigger}

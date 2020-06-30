@@ -19,6 +19,7 @@ export default React.createContext({
     episodes: "",
     learnMore: "",
     matches: "",
+    categories: "",
     token:"",
     serverPath: "",
     setCategoriesTrigger: (name) => {},
@@ -39,4 +40,5 @@ export default React.createContext({
     setEpisodes: (name) => {},
     setLearnMore: (name) => {},
     setMaches: (name) => {},
+    setCategories: (name) => {}
 })

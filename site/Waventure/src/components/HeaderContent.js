@@ -8,13 +8,16 @@ export default function HeaderContent({refSearch,
     handleSearch,
     toggle,
     resultSearch,
+    showCategories,
     categories,
     categoriesTrigger,
-    titleArray,
     avatar,
     userAvatar,
     accountTrigger,
     logout}) {
+      
+      console.log(categories);
+      
     const pathImg = process.env.REACT_APP_STATIC_IMG_PATH;
     const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     return (
@@ -51,7 +54,7 @@ export default function HeaderContent({refSearch,
           </div>
           <nav>
             <ul>
-              <li className="category" onClick={categories}>
+              <li className="category" onClick={showCategories}>
                 Categories
                 <i>
                   <img
@@ -62,7 +65,7 @@ export default function HeaderContent({refSearch,
                 </i>
                 <div className="categoriesFetch">
                   {categoriesTrigger
-                    ? titleArray.map((each, key) => {
+                    ? categories.map((each, key) => {
                       return (
                         <Link to={`/${each.name}`}
                           key={key}

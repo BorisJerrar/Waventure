@@ -1,6 +1,11 @@
   .home {
       overflow-y: hidden ;
-      height: 100vh
+      height: 100vh;
+      background: url(/img/background.jpg);
+      background-size: contain;
+      background-position-y: -60px;
+      display: flex;
+      flex-direction: column;
   }
 
   .btn-txt {
@@ -9,6 +14,7 @@
       font-family: "Pontano Sans", sans-serif;
       font-weight: bold;
       font-size: 1.3em;
+      border: none;
   }
 
   .btn-variant {
@@ -16,6 +22,18 @@
     height: 34px;
     background: #C4C4C4;
     border-radius: 7px;
+    border: none;
+    margin-right: 20px;
+    transition: background-color .2s ease-in;
+  }
+  .btn-variant:hover {
+    width: 134px;
+    height: 34px;
+    background: #C4C4C4;
+    border-radius: 7px;
+    border: none;
+    margin-right: 20px;
+    transition: background-color .2s ease-in;
   }
 
   .btn-base {
@@ -27,32 +45,25 @@
   }
 
   .wrap {
-      background-color: #242424;
       height: 100vh;
-      padding-top: 15%;
-  }
-
-  .wrap-img img {
-      width: 150px;;
-      opacity: 0.5;
-      margin: 15px;
-      margin-top: 50px;
-  }
-
-  .wrap-img {
       display: flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
   }
-
   .center-title {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       text-align: center;
+      background-color: #242424;
+      filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.26));
+      border-radius: 4px;
+      padding: 70px;
   }
 
-  h1 {
+  .center-title h2, .center-title h3{
+      font-size: 30px;
       color: #C4C4C4;
   }
 

@@ -17,6 +17,6 @@ const fetchSeries = async (category, matches, callback) => {
         temp.push(data.slice(i * 5, i * 5 + 5));
       }
     }
-    return callback(temp);
+    callback(temp)
   }
   export default fetchSeries
