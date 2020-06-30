@@ -6,38 +6,50 @@ import * as serviceWorker from "./serviceWorker";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import PwdReset from "./pages/PwdReset"
+import PwdReset from "./pages/PwdReset";
 import Reset from "./pages/Reset";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import './fontawesome';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import "./fontawesome";
+const token = localStorage.getItem("token");
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+        <Route path="/">
+          {token ? (
+            <Redirect to={{ pathname: "/main" }} />
+          ) : (
+            <Redirect to={{ pathname: "/home" }} />
+          )}
+        </Route>
       <Switch>
-      <Route path="/home">
-        <Home />
-      </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
 
-      <Route path="/signUp">
-        <SignUp />
-      </Route>
+        <Route path="/signUp">
+          <SignUp />
+        </Route>
 
-      <Route path="/signIn">
-        <SignIn />
-      </Route>
+        <Route path="/signIn">
+          <SignIn />
+        </Route>
 
-      <Route path="/pwdReset">
-        <PwdReset />
-      </Route>
+        <Route path="/pwdReset">
+          <PwdReset />
+        </Route>
 
-      <Route path="/Reset">
-        <Reset />
-      </Route>
+        <Route path="/Reset">
+          <Reset />
+        </Route>
 
-      <Route path="/main">
-      <App />
-      </Route>
+        <Route path="/main">
+          <App />
+        </Route>
       </Switch>
     </Router>
   </React.StrictMode>,

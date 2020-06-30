@@ -74,8 +74,8 @@ export default function Banner({ lunchingEpisode }) {
       >
         <img
           className="wedetteCoverImage"
-          src={`${url}/${wedette && wedette.image_lg ? wedette.image_lg : ""}`}
-          alt=""
+          src={wedette && wedette.image_lg ?`${url}/${wedette.image_lg}`:""}
+          alt={wedette.title}
         />
         <FontAwesomeIcon
           className="btnPlay"
@@ -96,7 +96,7 @@ export default function Banner({ lunchingEpisode }) {
       </div>
       <img
         className="backgroundImg"
-        src={`${url}/${wedette && wedette.image_bg ? wedette.image_bg : ""}`}
+        src={wedette && wedette.image_bg ?`${url}/${wedette.image_bg}`:""}
         alt={`Bg_image ${wedette && wedette.title ? wedette.title : ""}`}
       />
     </div>

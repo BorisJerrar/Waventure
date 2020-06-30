@@ -14,8 +14,6 @@ function Card({item, lunchingEpisode, imageLg, season, duration, title, synopsis
         lunchinEpisodeCategorie(item, (serie_id, episode) => lunchingEpisode(serie_id, episode))
       }
       useEffect(() => {
-          console.log('pipi');
-          
         fetchFavorite(serverPath, item.serie_id, token, setFavorite);
       }, [serverPath, item, token, setFavorite]);
       const handleFavorite = (e) => {

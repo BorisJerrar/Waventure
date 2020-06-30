@@ -33,10 +33,11 @@ export default function Categorie({ category, lunchingEpisode }) {
     });
   });
   useEffect(() => {
-        /* Fetching  audiodrama to displaying it*/
-    fetchSeries(category, matches, function (temp) {
-      setSeries(temp);
-    });
+    /* Fetching  audiodrama to displaying it*/
+fetchSeries(category, matches, function (temp) {
+  setSeries(temp);
+})},[category, matches])
+  useEffect(() => {
     /* Fetching  audio informations on hover*/
     const fetchSerieInformation = async () => {
       const response = await fetch(`${serverPath}/sagaInfo/${hoverItem.serie_id}`);

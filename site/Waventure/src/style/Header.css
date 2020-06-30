@@ -630,9 +630,14 @@
     position: relative;
     cursor: pointer;
   }
+  .profilIcon:hover img {
+    transform: scale(1.07,1.07);
+  }
   .avatarBox img {
     width: 80%;
     border-radius: 200px;
+    transition: ease-in .1s transform;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.164);
   }
   .accountRolling {
     z-index: 10000;

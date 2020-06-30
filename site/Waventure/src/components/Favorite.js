@@ -6,7 +6,7 @@ function Favorite({lunchingEpisode}){
     const [favoriteInfo, setFavoriteInfo] = useState([]);
     useEffect(() => {
         getDataToken("favoriteInfo", setFavoriteInfo, "")
-    }, [favoriteInfo])
+    }, [setFavoriteInfo])
     if(favoriteInfo.length !== 0){
     return (
         <div className="tab-content">
