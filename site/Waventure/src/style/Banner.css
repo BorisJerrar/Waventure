@@ -249,6 +249,7 @@
   .wedetteLogoContainer {
     display: flex;
     padding: 2%;
+    width: 30px;
     overflow: visible;
     margin-top: 10px;
   }
