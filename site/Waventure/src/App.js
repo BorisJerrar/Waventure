@@ -209,10 +209,12 @@ function App() {
             </Route>
 
             <Route path="/search">
+              <div className="playerTrigger">
               <Search
                 uniqueSearch={uniqueSearch}
                 lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
               />
+              </div>
             </Route>
             <Route path="/newest">
               <div className="playerTrigger"
@@ -252,7 +254,7 @@ function App() {
             {categories.map((item, index) => {
               return (
                 <Route path={`/${item.name}`} key={index}>
-                  <div className="playerTrigger flexing">
+                  <div className="playerTrigger">
                     <HeaderCategory
                       categoryName={item.name}
                       lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}

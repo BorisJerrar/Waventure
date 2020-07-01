@@ -13,7 +13,7 @@ export default function Search({ uniqueSearch, lunchingEpisode }) {
   }, [uniqueSearch, serverPath]);
 
   return (
-    <div className="bodySearch">
+    <div className="tab-content">
       {uniqueSerie.map((item, index) => {
         return (
           <Card
