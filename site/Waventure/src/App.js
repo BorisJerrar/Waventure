@@ -41,6 +41,7 @@ function App() {
   const [learnMore, setLearnMore] = useState(false);
   const [matches, setMaches] = useState(window.innerWidth);
   const [categories, setCategories] = useState([]);
+  const [favorite, setFavorite] = useState(false);
   const [favoriteInfo, setFavoriteInfo] = useState([]);
   const playerRef = useRef();
   const token = localStorage.getItem("token");
@@ -119,6 +120,7 @@ function App() {
     serverPath,
     imagePath,
     favoriteInfo,
+    favorite,
     setCategoriesTrigger,
     setAccountTriggerTrigger,
     setReducer,
@@ -137,6 +139,7 @@ function App() {
     setMaches, 
     setCategories,
     setFavoriteInfo,
+    setFavorite
   }
 
   return (
@@ -214,10 +217,12 @@ function App() {
             </Route>
 
             <Route path="/search">
+              <div className="playerTrigger">
               <Search
                 uniqueSearch={uniqueSearch}
                 lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
               />
+              </div>
             </Route>
             <Route path="/newest">
               <div className="playerTrigger"
@@ -257,7 +262,7 @@ function App() {
             {categories.map((item, index) => {
               return (
                 <Route path={`/${item.name}`} key={index}>
-                  <div className="playerTrigger flexing">
+                  <div className="playerTrigger">
                     <Categories
                       categoryName={item.name}
                       lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}

@@ -11,8 +11,8 @@ export default function Categories({ categoryName, lunchingEpisode}) {
 
     return (
         <>
+        <div className="tab-content">
             <h3 className="card-main-title">{categoryName}</h3>
-            <div className='newestCardContainer'>
                 {category.map((item, index) => (
                     <Card
                         key={index}
@@ -28,7 +28,7 @@ export default function Categories({ categoryName, lunchingEpisode}) {
                         lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                     />
                 ))}
-            </div>
+        </div>
         </>
     )
 }

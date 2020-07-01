@@ -23,6 +23,7 @@ export default React.createContext({
     serverPath: "",
     imagePath: "",
     favoriteInfo: "",
+    favorite: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},
@@ -42,4 +43,5 @@ export default React.createContext({
     setMaches: (name) => {},
     setCategories: (name) => {},
     setFavoriteInfo: (name) => {},
+    setFavorite: (name) => {},
 })
