@@ -28,13 +28,10 @@ const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
 const avatarQueries = require("./queries/avatar");
-<<<<<<< HEAD
-=======
 const serieSynopsisQueries = require("./queries/serie_synopsis")
 const serieSynopsisSerieId = require ("./queries/serie_synopsis_serie_id")
 const imageQueries = require("./queries/image")
 const soundQueries = require("./queries/sound")
->>>>>>> 97d0b244fb0fe10870701f87921948546a510ebc
 const Auth = require('./middleware/Auth.js');
 const sound = require("./queries/sound");
 
