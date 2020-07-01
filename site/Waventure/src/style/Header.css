@@ -147,6 +147,7 @@
     width: 100%;
     transition: 0.2s ease-in-out all;
     z-index: 900;
+    padding: "8px" !important
   }
   .categoriesFetch {
     z-index: 1000;
@@ -374,6 +375,8 @@
     transition: 0.2s ease-in-out all;
     z-index: 900;
   }
+
+
   .categoriesFetch {
     z-index: 1000;
     width: 100%;
