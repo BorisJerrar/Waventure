@@ -91,7 +91,7 @@ function SignUp(props) {
         setAvatarFormTrigger(!avatarFormTrigger)
     }
     const handleToggle = (key) => {
-        setSelectedAvatar("Avatar0" + (key + 1) + ".jpg")
+        setSelectedAvatar("Avatar" + (key + 1) + ".jpg")
         setAvatarFormTrigger(false)
         setState({
             ...state,
