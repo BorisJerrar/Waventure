@@ -3,7 +3,7 @@ import Context from '../context/context'
 import {Link} from 'react-router-dom'
 import {Redirect} from 'react-router-dom'
 
-export default function HeaderMenu({pathAvar}) {
+export default function HeaderMenu({ pathAvar}) {
         const { user, accountTrigger, setAccountTriggerTrigger, imagePath} = useContext(Context)   
 
         const avatar = async () => {
@@ -17,6 +17,11 @@ export default function HeaderMenu({pathAvar}) {
           }
         }
 
+        const styleItem = {
+          padding: "8px",
+          display: "block"
+        }
+
     return (
         <div className="profilIcon" onClick={avatar}>
         <img className="firstArrow" src={`${imagePath}/arrow.svg`} alt="Arrow Icon" />
@@ -27,7 +32,7 @@ export default function HeaderMenu({pathAvar}) {
               <Link to="/profil" className="categoriesParagraph">
                 <p
                   className="categoriesParagraph"
-                  style={{ padding: "8px", display: "block" }}
+                  style={styleItem}
                 >
                   Profil
             </p>
@@ -35,14 +40,14 @@ export default function HeaderMenu({pathAvar}) {
               <Link to="/contact" className="categoriesParagraph">
                 <p
                   className="categoriesParagraph"
-                  style={{ padding: "8px", display: "block" }}
+                  style={styleItem}
                 >
                   Contacter Waventure
             </p>
               </Link>
               <p
                 className="categoriesParagraph"
-                style={{ padding: "8px", display: "block" }}
+                style={styleItem}
                 onClick={logout}
               >
                 Se déconnecter

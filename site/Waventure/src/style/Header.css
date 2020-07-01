@@ -134,6 +134,8 @@
     z-index: 900;
     display: flex;
   }
+
+
   .categoriesFetch {
     z-index: 1000;
     width: 100%;
