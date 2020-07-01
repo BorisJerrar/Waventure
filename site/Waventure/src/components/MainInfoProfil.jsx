@@ -10,7 +10,7 @@ export default function MainInfoProfil({justify}) {
     
     return (
         <div className="userInfo" style={{display: "flex", justifyContent: justify}}>
-            <img src={user && user[0] && user[0].avatar_id ?`${urlimg}/Avatar0${user[0].avatar_id}.jpg`: ""} alt=""/>
+            <img src={user && user[0] && user[0].avatar_id ?`${urlimg}/Avatar${user[0].avatar_id}.jpg`: ""} alt=""/>
             <div>
             <p>{user && user[0] && user[0].first_name? user[0].first_name + " " + user[0].last_name: ""}</p>
             <p>{user && user[0] && user[0].username? user[0].username:""}</p>
