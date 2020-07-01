@@ -21,6 +21,7 @@ export default React.createContext({
     categories: "",
     token:"",
     serverPath: "",
+    imagePath: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},

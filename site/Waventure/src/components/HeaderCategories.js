@@ -1,18 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
+import Context from '../context/context'
 
-export default function HeaderCategories({
-  showCategories,
-    categories,
-    categoriesTrigger,
-    pathImg
-}) {
+export default function HeaderCategories() {
+
+  const { 
+    categoriesTrigger, 
+    setCategoriesTrigger, 
+    categories, 
+    imagePath
+  } = useContext(Context)
+
+  const showCategories = () => {
+    setCategoriesTrigger(!categoriesTrigger);
+  };
+
     return (
         <li className="category" onClick={showCategories}>
         Categories
         <i>
           <img
-            src={`${pathImg}/arrow.svg`}
+            src={`${imagePath}/arrow.svg`}
             alt="Arrow Icon"
             className="arrowCategories"
           />

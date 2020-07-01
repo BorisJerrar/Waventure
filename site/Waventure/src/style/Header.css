@@ -166,7 +166,7 @@
   .searchFetch {
     position: absolute;
     padding-right: 10px;
-    min-width: 45vw;
+    min-width: 370px;
     max-height: 30vh;
     overflow-y: scroll;
     top: 53px;
@@ -390,7 +390,7 @@
   .searchFetch {
     position: absolute;
     padding-right: 10px;
-    min-width: 25vw;
+    min-width: 370px;
     max-height: 30vh;
     overflow-y: scroll;
     top: 53px;
@@ -468,6 +468,7 @@
     justify-content: center;
     align-items: center;
     width: 38%;
+    
   }
   .searchingBar input {
     height: 32px;
@@ -594,7 +595,7 @@
   .searchFetch {
     position: absolute;
     padding-right: 10px;
-    min-width: 25vw;
+    min-width: 350px;
     max-height: 30vh;
     overflow-y: scroll;
     top: 53px;

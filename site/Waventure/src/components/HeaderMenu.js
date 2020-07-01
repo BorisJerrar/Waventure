@@ -1,13 +1,25 @@
 import React, { useContext } from 'react'
 import Context from '../context/context'
 import {Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
-export default function HeaderMenu({avatar, accountTrigger, logout, pathImg, pathAvar}) {
-        const { user } = useContext(Context)   
+export default function HeaderMenu({pathAvar}) {
+        const { user, accountTrigger, setAccountTriggerTrigger, imagePath} = useContext(Context)   
+
+        const avatar = async () => {
+          setAccountTriggerTrigger(!accountTrigger);
+        };
+
+        const logout = () => {
+          localStorage.clear('token');
+          if (!localStorage.getItem('token')) {
+            return <Redirect to="/home" />
+          }
+        }
 
     return (
         <div className="profilIcon" onClick={avatar}>
-        <img className="firstArrow" src={`${pathImg}/arrow.svg`} alt="Arrow Icon" />
+        <img className="firstArrow" src={`${imagePath}/arrow.svg`} alt="Arrow Icon" />
         <div className="avatarBox">
           <img src={`${pathAvar}/Avatar${user && user[0] && user[0].avatar_id? user[0].avatar_id : "1"}.jpg`} alt="Profil Icon" />
           {accountTrigger ? (
