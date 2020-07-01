@@ -193,7 +193,6 @@
   }
   .watchTime::after {
     content: "";
-    width: 20%;
     height: 3px;
     background-color: rgb(185, 121, 204);
     margin: auto;
@@ -436,7 +435,6 @@ background: rgba(201, 201, 201, 0) !important;
   }
   .watchTime::after {
     content: "";
-    width: 20%;
     height: 3px;
     background-color: rgb(185, 121, 204);
     margin: auto;
@@ -676,7 +674,6 @@ background: rgba(201, 201, 201, 0) !important;
   }
   .watchTime::after {
     content: "";
-    width: 20%;
     height: 3px;
     background-color: rgb(185, 121, 204);
     margin: auto;
