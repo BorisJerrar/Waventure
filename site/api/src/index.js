@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 4000;
-const fs = require("fs");
 const ms = require('mediaserver');
 const http = require('http');
 const dotenv = require('dotenv');
@@ -32,8 +31,10 @@ const serieRoleQueries = require("./queries/serie_role");
 const avatarQueries = require("./queries/avatar");
 const serieSynopsisQueries = require("./queries/serie_synopsis")
 const serieSynopsisSerieId = require ("./queries/serie_synopsis_serie_id")
+const imageQueries = require("./queries/image")
+const soundQueries = require("./queries/sound")
 const Auth = require('./middleware/Auth.js');
-
+const sound = require("./queries/sound");
 
 app.use(bodyParser.json());
 app.use(
@@ -43,7 +44,7 @@ app.use(
 );
 
 /* add file */
-var storage = multer.diskStorage({
+/* var storage = multer.diskStorage({
   destination: function (req, file, cb) {
   cb(null, 'public')
 },
@@ -66,28 +67,16 @@ app.post('/upload',function(req, res) {
 
   })
 
-});
+}); */
 /* End add file */
 
 app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
 
-app.get("/images/:image", (req, res) => {
-  let image = req.params.image;
+app.get("/images/:image", imageQueries.getImage);
 
-  let read = fs.createReadStream(`./src/img/${image}`);
-  read.on("open", () => {
-    res.set("Content-Type", "image/jpeg");
-    read.pipe(res);
-  });
-});
-
-app.get('/sound/', function(req, res){
-  let sound = req.query.sound;
-  let saga = req.query.saga;
-  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
-});
+app.get('/sound/', soundQueries.getSound);
 
 app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
 
