@@ -69,10 +69,6 @@ app.post('/upload',function(req, res) {
 });
 /* End add file */
 
-app.get("/", (request, response) => {
-  response.json({ info: "Node.js, Express, and Postgres API" });
-});
-
 app.get("/images/:image", (req, res) => {
   let image = req.params.image;
 
@@ -190,8 +186,6 @@ app.delete("/actor/:actor_id", actorQueries.deleteActor);
 /* AVATAR */
 app.get("/avatar", avatarQueries.getAvatar);
 app.get("/avatarByUser", avatarQueries.getAvatarByUser);
-
-
 app.listen(port, () => {
   console.log("Running on port " + port);
 });
