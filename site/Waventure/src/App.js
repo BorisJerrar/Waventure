@@ -41,6 +41,7 @@ function App() {
   const [learnMore, setLearnMore] = useState(false);
   const [matches, setMaches] = useState(window.innerWidth);
   const [categories, setCategories] = useState([]);
+  const [favoriteInfo, setFavoriteInfo] = useState([]);
   const playerRef = useRef();
   const token = localStorage.getItem("token");
   const serverPath = process.env.REACT_APP_SERVER_PATH;
@@ -117,6 +118,7 @@ function App() {
     token,
     serverPath,
     imagePath,
+    favoriteInfo,
     setCategoriesTrigger,
     setAccountTriggerTrigger,
     setReducer,
@@ -133,7 +135,8 @@ function App() {
     setEpisodes,
     setLearnMore,
     setMaches, 
-    setCategories
+    setCategories,
+    setFavoriteInfo,
   }
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios'
-const addFavorite = async (serverPath, item, token,callback) => {
+const addFavorite = async (serverPath, item, token, callback) => {
     var addConfig = {
         method: 'POST',
         url: `${serverPath}/favorite/${item}`,
@@ -9,7 +9,6 @@ const addFavorite = async (serverPath, item, token,callback) => {
       };
     axios(addConfig)
       .then(function (response) {
-        console.log(response.data)
        return callback()
       })
       .catch(function (error) {

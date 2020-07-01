@@ -22,6 +22,7 @@ export default React.createContext({
     token:"",
     serverPath: "",
     imagePath: "",
+    favoriteInfo: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},
@@ -39,5 +40,6 @@ export default React.createContext({
     setEpisodes: (name) => {},
     setLearnMore: (name) => {},
     setMaches: (name) => {},
-    setCategories: (name) => {}
+    setCategories: (name) => {},
+    setFavoriteInfo: (name) => {},
 })

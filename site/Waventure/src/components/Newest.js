@@ -1,14 +1,15 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext} from "react";
 import Card from "../components/Card";
 import getData from "../utiles/getData"
+import Context from "../context/context";
 
 
 export default function Newest({lunchingEpisode}) {
   const [newest, setNewest] = useState([]);
-
+  const {favoriteInfo} = useContext(Context)
   useEffect(() => {
     getData("serieUploades", setNewest, "" )
-  }, []);
+  }, [favoriteInfo]);
   
   return (
     <div className="tab-content">

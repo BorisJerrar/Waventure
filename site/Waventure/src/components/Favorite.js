@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Card from '../components/Card'
 import getDataToken from "../utiles/getDataWithToken"
+import Context from "../context/context";
+
 
 function Favorite({lunchingEpisode}){
-    const [favoriteInfo, setFavoriteInfo] = useState([]);
+    const {setFavoriteInfo, favoriteInfo} = useContext(Context)
     useEffect(() => {
         getDataToken("favoriteInfo", setFavoriteInfo, "")
     }, [setFavoriteInfo])
+
     if(favoriteInfo.length !== 0){
     return (
         <div className="tab-content">
