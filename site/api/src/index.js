@@ -28,8 +28,8 @@ const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
 const avatarQueries = require("./queries/avatar");
-
 const imageQueries = require("./queries/image")
+const soundQueries = require("./queries/sound")
 const Auth = require('./middleware/Auth.js');
 
 app.use(bodyParser.json());
@@ -72,11 +72,7 @@ app.get("/", (request, response) => {
 
 app.get("/images/:image", imageQueries.getImage);
 
-app.get('/sound/', function(req, res){
-  let sound = req.query.sound;
-  let saga = req.query.saga;
-  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
-});
+app.get('/sound/', soundQueries.getSound );
 
 /* MAIN */
 app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
