@@ -41,6 +41,7 @@ function App() {
   const [learnMore, setLearnMore] = useState(false);
   const [matches, setMaches] = useState(window.innerWidth);
   const [categories, setCategories] = useState([]);
+  const [favorite, setFavorite] = useState(false);
   const [favoriteInfo, setFavoriteInfo] = useState([]);
   const playerRef = useRef();
   const token = localStorage.getItem("token");
@@ -119,6 +120,7 @@ function App() {
     serverPath,
     imagePath,
     favoriteInfo,
+    favorite,
     setCategoriesTrigger,
     setAccountTriggerTrigger,
     setReducer,
@@ -137,6 +139,7 @@ function App() {
     setMaches, 
     setCategories,
     setFavoriteInfo,
+    setFavorite
   }
 
   return (

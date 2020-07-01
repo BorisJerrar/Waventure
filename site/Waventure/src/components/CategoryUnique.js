@@ -24,13 +24,13 @@ export default function CategoryUnique({
   synopsis,
   hover,
 }) {
-  const { token, serverPath } = useContext(Context);
-  const [favorite, setFavorite] = useState(false);
+  const { token, serverPath, favorite, setFavorite } = useContext(Context);
+
   const [
     episodeEpisodeandSeasonInfo,
     setEpisodeEpisodeandSeasonInfo,
-  ] = useState("");
-  const [indexWithSeason, setIndexWithSeason] = useState();
+  ] = useState("S1 : E1");
+  const [indexWithSeason, setIndexWithSeason] = useState(0);
   const [viewPercentage, setViewPercentage] = useState(0);
 
   const handleFavorite = (e) => {
@@ -79,8 +79,11 @@ export default function CategoryUnique({
           });
       });
     };
-    advancmentChecker(item);
-  }, [serverPath, item, token, indexWithSeason]);
+    if(token && serverPath && setFavorite && indexWithSeason ){
+      advancmentChecker(item);
+    }
+
+  }, [serverPath, item, token, indexWithSeason, setFavorite]);
   return (
     <div
       className={"hoverInformationContainer"}
