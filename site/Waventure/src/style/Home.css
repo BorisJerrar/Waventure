@@ -1,62 +1,74 @@
-  .home {
-      overflow-y: hidden ;
-      height: 100vh
-  }
+.home {
+  overflow-y: hidden;
+  height: 100vh;
+  background: url(/img/background.jpg);
+  background-size: contain;
+  background-color: #242424;
+  background-position-y: 500px;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
 
-  .btn-txt {
-      text-decoration: none;
-      color: #fff;
-      font-family: "Pontano Sans", sans-serif;
-      font-weight: bold;
-      font-size: 1.3em;
-  }
+.btn-txt {
+  text-decoration: none;
+  color: #fff;
+  font-family: "Pontano Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1.3em;
+  border: none;
+}
 
-  .btn-variant {
-    width: 134px;
-    height: 34px;
-    background: #C4C4C4;
-    border-radius: 7px;
-  }
+.btn-variant {
+  cursor: pointer;
+  width: 134px;
+  height: 34px;
+  background: #c4c4c4;
+  border-radius: 7px;
+  border: none;
+  margin-right: 20px;
+  transition: background-color 0.2s ease-in;
+}
+.btn-variant:hover {
+  background: #a487b3;
+}
 
-  .btn-base {
-    background: #A487B3;
-    border: none;
-    border-radius: 7px;
-    width: 134px;
-    height: 34px;
-  }
+.btn-base {
+  cursor: pointer;
+  background-color: #a487b3;
+  border: none;
+  border-radius: 7px;
+  width: 134px;
+  height: 34px;
+  transition: background-color 0.2s ease-in;
+}
+.btn-base:hover {
+  background-color: #7c6588;
+}
 
-  .wrap {
-      background-color: #242424;
-      height: 100vh;
-      padding-top: 15%;
-  }
+.wrap {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 4px;
+  margin-bottom: 35vh;
+}
 
-  .wrap-img img {
-      width: 150px;;
-      opacity: 0.5;
-      margin: 15px;
-      margin-top: 50px;
-  }
+.center-title h2,
+.center-title h3 {
+  font-size: 30px;
+  color: #c4c4c4;
+}
 
-  .wrap-img {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-  }
-
-  .center-title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-  }
-
-  h1 {
-      color: #C4C4C4;
-  }
-
-  strong {
-      color: #A487B3;
-      font-size: 1.5em;
-  }
+strong {
+  color: #a487b3;
+  font-size: 1.5em;
+}

@@ -3,13 +3,13 @@ import Card from "../components/Card";
 import getData from "../utiles/getData"
 
 
-export default function Newest() {
+export default function Newest({lunchingEpisode}) {
   const [newest, setNewest] = useState([]);
 
   useEffect(() => {
     getData("serieUploades", setNewest, "" )
   }, []);
-
+  
   return (
     <div className="tab-content">
       <h3 className="card-main-title">Nouveautées</h3>
@@ -26,6 +26,7 @@ export default function Newest() {
             duration={item.duration}
             season={item.season}
             author={item.author}
+            lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
           />
         );
       })}

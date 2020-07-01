@@ -2,14 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import CategoryUnique from "./CategoryUnique";
 import "../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
-import axios from "axios";
-import fetchingNewEpisode from "../utiles/fetchingNewEpisode";
-import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
 import fetchSeries from "../utiles/fetchSeries";
-import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
+import lunchinEpisodeCategorie from "../utiles/lunchinEpisodeCategorie";
 import Context from "../context/context";
 
 export default function Categorie({ category, lunchingEpisode }) {
+  
   const { matches, setMaches, token, serverPath } = useContext(Context);
   const [series, setSeries] = useState([]);
   const [hover, setHover] = useState(false);
@@ -20,41 +18,9 @@ export default function Categorie({ category, lunchingEpisode }) {
 
 
   /* First of all, cheking if user has already begun the audiodrama on click*/
-  const lunchingEpisodeCategorie = (item) => {
-    didHeAlreadyBegin(item, function (config) {
-      axios(config)
-        .then(function (response) {
-          /* If not, lunching first episode of the audiodrama cliked*/
-          if (response.data.length === 0) {
-            fetchingNewEpisode(item, function (fetchconfig) {
-              axios(fetchconfig)
-                .then(function (response) {
-                  return lunchingEpisode(item.serie_id, 0);
-                })
-                .catch(function (error) {
-                  console.log(error);
-                });
-            });
-                      /*  If yes, fetching datas, and resuming episode*/
-          } else {
-            fetchingExsistingEpisode(...response.data, function (
-              item,
-              response
-            ) {
-              lunchingEpisode(
-                item.serie_id,
-                response.findIndex(
-                  (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                )
-              );
-            });
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    });
-  };
+  const lunchingEpisodeCategorieUtils = (item) => {
+    lunchinEpisodeCategorie(item, (serie_id, episode) => lunchingEpisode(serie_id, episode))
+  }
   /* Listening to windows resize to display audiodrama in fuction of width */
   useEffect(() => {
     let mounted = true;
@@ -67,10 +33,11 @@ export default function Categorie({ category, lunchingEpisode }) {
     });
   });
   useEffect(() => {
-        /* Fetching  audiodrama to displaying it*/
-    fetchSeries(category, matches, function (temp) {
-      setSeries(temp);
-    });
+    /* Fetching  audiodrama to displaying it*/
+fetchSeries(category, matches, function (temp) {
+  setSeries(temp);
+})},[category, matches])
+  useEffect(() => {
     /* Fetching  audio informations on hover*/
     const fetchSerieInformation = async () => {
       const response = await fetch(`${serverPath}/sagaInfo/${hoverItem.serie_id}`);
@@ -119,7 +86,7 @@ export default function Categorie({ category, lunchingEpisode }) {
                       key={index}
                       settingHover={(item) => settingHover(item)}
                       unsettingHover={() => unsettingHover()}
-                      lunchingEpisodeCategorie={lunchingEpisodeCategorie}
+                      lunchingEpisodeCategorie={lunchingEpisodeCategorieUtils}
                       information={information}
                       synopsis={synopsis}
                       hover={hover}

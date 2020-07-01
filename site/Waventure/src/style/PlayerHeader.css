@@ -183,7 +183,9 @@
     height: 30px !important;
     margin: 20px;
     cursor: pointer;
-    filter:drop-shadow(3px 3px 3px rgb(0, 0, 0))
+    color: #cdcdcd;
+    filter:drop-shadow(3px 3px 3px rgb(0, 0, 0));
+    transition: color 0.2s ease;
   }
   .reducer{
     position: absolute;
@@ -194,6 +196,11 @@
     margin: 20px;
     cursor: pointer;
     filter:drop-shadow(3px 3px 3px rgb(0, 0, 0));
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
+    color: #cdcdcd;
   }
+  .reducer:hover, .cancerler:hover{
+    color: rgba(205, 205, 205, 0.603);
+  }
+
   }

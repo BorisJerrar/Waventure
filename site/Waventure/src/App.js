@@ -20,7 +20,7 @@ import Contact from "./components/Contact.jsx";
 import Profil from "./components/Profil.jsx";
 import UpdateProfil from "./components/UpdateProfil.jsx";
 import UpdatePassword from "./components/UpdatePassword.jsx";
-import axios from "axios"
+import getDataToken from './utiles/getDataWithToken'
 
 function App() {
 
@@ -35,9 +35,7 @@ function App() {
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({});
   const [toggle, setToggle] = useState(false);
-  const [titleArray, setTitleArray] = useState([]);
   const [user, setUser] = useState([])
-  const [validate, setValidate] = useState(false)
   const [synopsis, setSynopsis] = useState(false);
   const [episodes, setEpisodes] = useState(false);
   const [learnMore, setLearnMore] = useState(false);
@@ -69,26 +67,8 @@ function App() {
   
 
   useEffect(()=>{
-    
-    const config = {
-      method: 'get',
-      url: 'http://localhost:4000/account',
-      headers: {
-          'x-access-token': token
-      }
-  }
-const fetchAccount = () => {
-  axios(config)
-.then((response)=>{
-   setUser(response.data)
-})
-.catch((error)=>{
-   console.log(error);
-   
-}) 
-}
-    fetchAccount()
- },[validate, token])
+    getDataToken('account', setUser, '')
+ },[])
 
   const triggeringCategory = () => {
     if (categoriesTrigger) {
@@ -127,9 +107,7 @@ const fetchAccount = () => {
     sagaEpisodeSaisonInfo,
     uniqueSearch,
     toggle,
-    titleArray,
     user,
-    validate,
     synopsis,
     episodes,
     learnMore,
@@ -148,13 +126,12 @@ const fetchAccount = () => {
     setSagaEpisodeSaisonInfo,
     setUniqueSearch,
     setToggle,
-    setTitleArray,
     setUser,
-    setValidate,
     setSynopsis,
     setEpisodes,
     setLearnMore,
-    setMaches, setCategories
+    setMaches, 
+    setCategories
   }
 
   return (
@@ -225,11 +202,7 @@ const fetchAccount = () => {
               />
             </Route>
             <Route path="/profilUpdate">
-                <UpdateProfil
-                  user={user}
-                  setValidate={setValidate}
-                  validate={validate}
-                />
+                <UpdateProfil/>
             </Route>
             <Route path='/contact'>
               <Contact/>
@@ -238,14 +211,14 @@ const fetchAccount = () => {
             <Route path="/search">
               <Search
                 uniqueSearch={uniqueSearch}
-                lunchingEpisode={lunchingEpisode}
+                lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
               />
             </Route>
             <Route path="/newest">
               <div className="playerTrigger"
             >
                 <Newest
-                  lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                  lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                 />
               </div>
             </Route>
@@ -253,7 +226,9 @@ const fetchAccount = () => {
               <div
                 className="playerTrigger"
               >
-                <Favorite />
+                <Favorite 
+                            lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
+                />
               </div>
             </Route>
             <Route path="/main">
@@ -280,7 +255,7 @@ const fetchAccount = () => {
                   <div className="playerTrigger flexing">
                     <HeaderCategory
                       categoryName={item.name}
-                      lunchingEpisode={(serie_id) => lunchingEpisode(serie_id)}
+                      lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                     />
                   </div>
                 </Route>

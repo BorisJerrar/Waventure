@@ -15,7 +15,7 @@ export default function Player({ sending, sendingReducer, playerRef }) {
   const { serieId, index, setIndex, reducer, episodes, serverPath} = useContext(Context);
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
-  const [urlAudio, setUrlAudio] = useState();
+  const [urlAudio, setUrlAudio] = useState();  
   const receving = () => {
     playerRef.current.audio.current.pause();
     sending();
@@ -99,9 +99,9 @@ Component.MainPlayerImg = MainPlayerImg
         preload={"false"}
         showSkipControls={true}
         showJumpControls={false}
-        onClickNext={() => nextSaga(index, setIndex, serieId, sagaInfo)}
+        onClickNext={() => nextSaga(index, serieId, sagaInfo, setIndex)}
         onClickPrevious={() => prevSaga(index, setIndex)}
-        onEnded={() => nextSaga(index, setIndex)}
+        onEnded={() => nextSaga(index, serieId, sagaInfo, setIndex)}
         autoPlay={true}
         ref={playerRef}
       />

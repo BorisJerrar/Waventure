@@ -217,6 +217,7 @@ const updateAccount = (request, response) => {
   const account_id = request.params.account_id
   const { username, first_name, last_name, email, avatar_id, password } = request.body
   
+  
   db.query(
     'UPDATE account SET username = $1, first_name = $2, last_name = $3, email = $4, avatar_id = $5, password= $6 WHERE account_id = $7', [username, first_name, last_name, email, avatar_id, password, account_id,],
     (error, results) => {

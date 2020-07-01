@@ -2,9 +2,9 @@ import React, {useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/PlayerHeader.css";
 import Context from '../context/context'
+import nextSaga from "../utiles/nextSaga";
 
 export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
-
   const { 
     synopsis,
     learnMore,
@@ -12,7 +12,8 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
     setEpisodes,
     reducer,
     setIndex,
-    sagaEpisodeSaisonInfo
+    sagaEpisodeSaisonInfo,
+    serieId
   } = useContext(Context);
 
   const closingPlayer = () => {
@@ -21,15 +22,17 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
   const reducingPlayer = () => {
     sendingReducer()
   }
-  const changingEpisode = (e) => {
-    setIndex(e.target.attributes[0].value - 1);
+  const changingEpisode = (e,each) => {
     setEpisodes(false);
+    setIndex(e.target.attributes[0].value -1)
+    let indexOnClick = e.target.attributes[0].value -1
+     nextSaga(indexOnClick, serieId, each.episode_id)
   };
   let increm = 0;
   return (
     <div className="playerHeader" style={reducer? {position: "absolute",margin: "auto", left: 0, top: 0, width: "100%"}:{"":""}}>
       <FontAwesomeIcon icon={["fas", "times"]} className='cancerler' size="4x"  onClick={closingPlayer} style={reducer? {position: "absolute",margin: "auto", right: '1vw', top: "10px", maxWidth:"15px"}:{"":""}}/>
-      <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '3vw', top: "-5px", transform: "rotate(180deg)", maxWidth:"15px"}:{"":""}}/>
+      <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '3vw', top: "7px", transform: "rotate(0deg)", maxWidth:"18px"}:{top: "-22px", transform: "rotate(180deg)"}}/>
       <p
         className="playerHeaderInfo"
         style={
@@ -81,10 +84,10 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
                 increm += 1;
                 return (
                   <p
+                    onClick={(e) => changingEpisode(e,each)}
                     key={increm}
                     src-key={increm}
                     className={"episodeUnique "}
-                    onClick={(e) => changingEpisode(e)}
                     
                   >
                     Episode {item}{" "}

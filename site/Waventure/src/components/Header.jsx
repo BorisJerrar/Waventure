@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "../style/Header.css";
 import {Redirect} from 'react-router-dom'
 import { useRef } from "react";
 import Context from '../context/context'
-import fetchUserAvatar from "../utiles/fetchUserAvatar";
+
 import HeaderContent from "./HeaderContent";
 
 export default function Header({handleSearchApp}) {
 
   const { 
-    validate, 
     categoriesTrigger, 
     accountTrigger, 
     categories,
     toggle, 
     serverPath,
-    token,
     setCategoriesTrigger, 
     setAccountTriggerTrigger, 
     setToggle 
@@ -24,7 +22,6 @@ export default function Header({handleSearchApp}) {
   
   const [search, setSearch] = useState('')
   const [resultSearch, setResultSearch] = useState([])
-  const [userAvatar, setUserAvatar] = useState("");
   const refSearch = useRef(null)
 
   const showCategories = () => {
@@ -44,14 +41,7 @@ export default function Header({handleSearchApp}) {
     setResultSearch(data)
   }
 
-  /**
-   * Fetch user avatar
-   * @param token 
-   */
-  useEffect(() => {
-
-    fetchUserAvatar(setUserAvatar);
-  }, [serverPath, token, validate])
+ 
 
 
   const getInput = (e) => {
@@ -96,7 +86,6 @@ categories={categories}
 showCategories={showCategories}
 categoriesTrigger={categoriesTrigger}
 avatar={avatar}
-userAvatar={userAvatar}
 accountTrigger={accountTrigger}
 logout={logout}
 />

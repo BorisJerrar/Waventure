@@ -1,37 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Card from '../components/Card'
-import Context from "../context/context";
+import getDataToken from "../utiles/getDataWithToken"
 
-function Favorite({lunchingEpisodeVerificator}) {
-
-    const {token, serverPath } = useContext(Context);
+function Favorite({lunchingEpisode}){
     const [favoriteInfo, setFavoriteInfo] = useState([]);
-    
-    const transitionLunchingEpisodeVerificator = (transition) => {
-    lunchingEpisodeVerificator(transition)
-    }
-
     useEffect(() => {
-        const getFavoriteInfo = () => {
-            var config = {
-                method: 'get',
-                url: `${serverPath}/favoriteInfo`,
-                headers: {
-                    'x-access-token': token
-                }
-            };
-            axios(config)
-                .then(function (response) {
-                    setFavoriteInfo(response.data)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-        getFavoriteInfo();
-    }, [token, serverPath])
-
+        getDataToken("favoriteInfo", setFavoriteInfo, "")
+    }, [setFavoriteInfo])
+    if(favoriteInfo.length !== 0){
     return (
         <div className="tab-content">
             {favoriteInfo.map((item, index) => (
@@ -46,11 +22,17 @@ function Favorite({lunchingEpisodeVerificator}) {
                     duration={item.duration}
                     season={item.season}
                     author={item.author}
-                    lunchingEpisodeVerificator={(item) => {transitionLunchingEpisodeVerificator(item)}}
+                    lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                 />
             ))}
         </div>
-    )
+    )} else{
+        return(
+            <div className="tab-content">
+        <p className="card-favorite-title centering">Vous n'avez pas encore de coup de coeur</p>
+        </div>
+        )
+    }
 }
 
 export default Favorite;
