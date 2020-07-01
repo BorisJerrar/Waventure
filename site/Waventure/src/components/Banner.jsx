@@ -23,7 +23,7 @@ export default function Banner({ lunchingEpisode }) {
      * @param serverParams
      */
     const fetchWedette = async () => {
-      const response = await fetch(`${serverPath}/serieSynopsis/1`);
+      const response = await fetch(`${serverPath}/serieSynopsis/2`);
       const data = await response.json();
       setWedette(data[0]);
     };
