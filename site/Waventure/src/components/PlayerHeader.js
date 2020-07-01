@@ -32,7 +32,7 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
   return (
     <div className="playerHeader" style={reducer? {position: "absolute",margin: "auto", left: 0, top: 0, width: "100%"}:{"":""}}>
       <FontAwesomeIcon icon={["fas", "times"]} className='cancerler' size="4x"  onClick={closingPlayer} style={reducer? {position: "absolute",margin: "auto", right: '1vw', top: "10px", maxWidth:"15px"}:{"":""}}/>
-      <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '3vw', top: "-5px", transform: "rotate(180deg)", maxWidth:"15px"}:{"":""}}/>
+      <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '3vw', top: "7px", transform: "rotate(0deg)", maxWidth:"18px"}:{top: "-22px", transform: "rotate(180deg)"}}/>
       <p
         className="playerHeaderInfo"
         style={

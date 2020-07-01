@@ -23,7 +23,7 @@ export default function Banner({ lunchingEpisode }) {
      * @param serverParams
      */
     const fetchWedette = async () => {
-      const response = await fetch(`${serverPath}/serieSynopsis/1`);
+      const response = await fetch(`${serverPath}/serieSynopsis/2`);
       const data = await response.json();
       setWedette(data[0]);
     };
@@ -88,11 +88,11 @@ export default function Banner({ lunchingEpisode }) {
           <img src="./img/logoWedette.svg" alt="W" />
         </span>
         <h2 className="wedetteIndicator">edette</h2>
-      </div>
 
       <div className="wedetteDescription">
         <h3 className="wedetteTitle">{wedette.title}</h3>
         <p className="wedetteSynopsis">{wedette.body}</p>
+      </div>
       </div>
       <img
         className="backgroundImg"
