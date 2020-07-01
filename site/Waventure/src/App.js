@@ -7,7 +7,7 @@ import Catalog from "./components/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import Context from "./context/context"
-import HeaderCategory from "./components/HeaderCategory";
+import Categories from "./components/Categories";
 import Favorite from "./components/Favorite";
 import {
   BrowserRouter as Router,
@@ -255,7 +255,7 @@ function App() {
               return (
                 <Route path={`/${item.name}`} key={index}>
                   <div className="playerTrigger flexing">
-                    <HeaderCategory
+                    <Categories
                       categoryName={item.name}
                       lunchingEpisode={(serie_id, episode) => lunchingEpisode(serie_id, episode)}
                     />

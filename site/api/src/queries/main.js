@@ -51,7 +51,7 @@ const getSerieSynopsis = (request, response) => {
     })
 
     db.query(
-        "SELECT * FROM search_serie_synopsis WHERE title LIKE $1;",
+        "SELECT * FROM search_serie_synopsis WHERE title_lower LIKE $1;",
         [search],
         (error, results) => {
             if (error) {

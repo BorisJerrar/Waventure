@@ -1,5 +1,5 @@
 CREATE VIEW search_serie AS 
-SELECT LOWER(title), serie_id, author, image
+SELECT LOWER(title), serie_id, author, image, title
 FROM serie;
 
 CREATE VIEW search_serie_synopsis AS

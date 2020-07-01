@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react'
-import Card from '../components/Card'
+import Card from './Card'
 import getData from "../utiles/getData"
 
-export default function HeaderCategory({ categoryName, lunchingEpisode}) {
+export default function Categories({ categoryName, lunchingEpisode}) {
     const [category, setCategory] = useState([])
     useEffect(() => {
         getData("serieCategory", setCategory, `/${categoryName}`)
