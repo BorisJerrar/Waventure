@@ -1,4 +1,0 @@
-account_id: ca855b7f-ffcd-4cad-9919-2fe0213edae4
-email: charles.decodin@outlook.fr
-title: titre
-synopsis: synopsis

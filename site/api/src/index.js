@@ -30,6 +30,7 @@ const accountQueries = require("./queries/account");
 const avatarQueries = require("./queries/avatar");
 const imageQueries = require("./queries/image")
 const soundQueries = require("./queries/sound")
+const sendSerieQueries = require("./queries/sendSerie")
 const Auth = require('./middleware/Auth.js');
 
 app.use(bodyParser.json());
@@ -73,6 +74,8 @@ app.get("/", (request, response) => {
 app.get("/images/:image", imageQueries.getImage);
 
 app.get('/sound/', soundQueries.getSound );
+
+app.post('/sendSerie', sendSerieQueries.sendSerie)
 
 /* MAIN */
 app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
