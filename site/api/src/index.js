@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 4000;
-const fs = require("fs");
 const ms = require('mediaserver');
 const http = require('http');
 const dotenv = require('dotenv');
@@ -29,8 +28,15 @@ const serieCategoryQueries = require("./queries/serie_category");
 const synopsisQueries = require("./queries/synopsis");
 const accountQueries = require("./queries/account");
 const avatarQueries = require("./queries/avatar");
+<<<<<<< HEAD
+=======
+const serieSynopsisQueries = require("./queries/serie_synopsis")
+const serieSynopsisSerieId = require ("./queries/serie_synopsis_serie_id")
+const imageQueries = require("./queries/image")
+const soundQueries = require("./queries/sound")
+>>>>>>> 97d0b244fb0fe10870701f87921948546a510ebc
 const Auth = require('./middleware/Auth.js');
-
+const sound = require("./queries/sound");
 
 app.use(bodyParser.json());
 app.use(
@@ -40,7 +46,7 @@ app.use(
 );
 
 /* add file */
-var storage = multer.diskStorage({
+/* var storage = multer.diskStorage({
   destination: function (req, file, cb) {
   cb(null, 'public')
 },
@@ -63,28 +69,16 @@ app.post('/upload',function(req, res) {
 
   })
 
-});
+}); */
 /* End add file */
 
 app.get("/", (request, response) => {
-  response.json({ info: "Node.js, Express, and Postgres API" });
+  response.json({});
 });
 
-app.get("/images/:image", (req, res) => {
-  let image = req.params.image;
+app.get("/images/:image", imageQueries.getImage);
 
-  let read = fs.createReadStream(`./src/img/${image}`);
-  read.on("open", () => {
-    res.set("Content-Type", "image/jpeg");
-    read.pipe(res);
-  });
-});
-
-app.get('/sound/', function(req, res){
-  let sound = req.query.sound;
-  let saga = req.query.saga;
-  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
-});
+app.get('/sound/', soundQueries.getSound);
 
 /* MAIN */
 app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
@@ -188,8 +182,6 @@ app.delete("/actor/:actor_id", actorQueries.deleteActor);
 /* AVATAR */
 app.get("/avatar", avatarQueries.getAvatar);
 app.get("/avatarByUser", avatarQueries.getAvatarByUser);
-
-
 app.listen(port, () => {
   console.log("Running on port " + port);
 });

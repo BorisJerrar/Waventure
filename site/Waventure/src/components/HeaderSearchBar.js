@@ -29,7 +29,6 @@ export default function HeaderSearchBar({refSearch,
                       <p className="eachTitle">{each.lower}</p>
                     </div>
                   </Link>
-  
                 )
               })}
   
