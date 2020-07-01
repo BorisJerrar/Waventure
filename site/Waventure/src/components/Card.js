@@ -5,10 +5,11 @@ import lunchinEpisodeCategorie from "../utiles/lunchinEpisodeCategorie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import removeFavorite from "../utiles/removeFavorite";
 import addFavorite from "../utiles/addFavorite";
+import getDataToken from "../utiles/getDataWithToken";
 import fetchFavorite from "../utiles/fetchFavorite";
 
 function Card({item, lunchingEpisode, imageLg, season, duration, title, synopsis, author}) {
-    const { token, serverPath } = useContext(Context);
+    const { token, serverPath, setFavoriteInfo } = useContext(Context);
     const [ favorite, setFavorite ] = useState(false);
     const lunchingEpisodeCategorieUtils = (item) => {
         lunchinEpisodeCategorie(item, (serie_id, episode) => lunchingEpisode(serie_id, episode))
@@ -18,14 +19,13 @@ function Card({item, lunchingEpisode, imageLg, season, duration, title, synopsis
       }, [serverPath, item, token, setFavorite]);
       const handleFavorite = (e) => {
           e.stopPropagation();
-          console.log('pipi');
           if (favorite === false) {
             addFavorite(serverPath, item.serie_id, token,() => {
-                fetchFavorite(serverPath, item.serie_id, token, setFavorite);
+              getDataToken("favoriteInfo", setFavoriteInfo, "")
             });
           } else {
-            removeFavorite(serverPath, item.serie_id, token, () => {
-                fetchFavorite(serverPath, item.serie_id, token, setFavorite);
+            removeFavorite(serverPath, item.serie_id, token,() => {
+              getDataToken("favoriteInfo", setFavoriteInfo, "")
             });
           }
     };

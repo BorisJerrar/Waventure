@@ -139,11 +139,15 @@ export default function CategoryUnique({
         />
         <p
           className="watchTime"
-          css={css`
+          css={viewPercentage?css`
           &:after {
             width: ${viewPercentage}%;
           }
-        `}
+        `:css`
+        &:after {
+          width: 0%;
+        }
+      `}
           style={
             hover
               ? { visibility: "visible", opacity: 1 }
