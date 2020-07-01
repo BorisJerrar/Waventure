@@ -44,6 +44,7 @@ function App() {
   const playerRef = useRef();
   const token = localStorage.getItem("token");
   const serverPath = process.env.REACT_APP_SERVER_PATH;
+  const imagePath = process.env.REACT_APP_STATIC_IMG_PATH;
   
   const receving = () => {
     setLearnMore(false);
@@ -115,6 +116,7 @@ function App() {
     categories,
     token,
     serverPath,
+    imagePath,
     setCategoriesTrigger,
     setAccountTriggerTrigger,
     setReducer,
