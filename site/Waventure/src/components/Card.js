@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Context from "../context/context";
 import '../style/Card.css'
 import lunchinEpisodeCategorie from "../utiles/lunchinEpisodeCategorie";
@@ -31,14 +31,16 @@ function Card({item, lunchingEpisode, imageLg, season, duration, title, synopsis
     };
     
 
-    const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
-    return (
-        <div className="card" onClick={() => lunchingEpisodeCategorieUtils(item)}>
-            <img
-                className="card-bg"
-                src={`${url}/${imageLg}`}
-                alt={imageLg}
-            />
+
+  const url = process.env.REACT_APP_DYNAMIC_IMG_PATH;
+  return (
+    <div className="card" onClick={() => lunchingEpisodeCategorieUtils(item)}>
+      <div className="card-overlay">
+        <img
+          className="card-bg"
+          src={`${url}/${imageLg}`}
+          alt={imageLg}
+        />
         {favorite === false ? (
           <FontAwesomeIcon
             className="hoverInformationHeart"
@@ -47,28 +49,29 @@ function Card({item, lunchingEpisode, imageLg, season, duration, title, synopsis
             size="sm"
           />
         ) : (
-          <FontAwesomeIcon
-            className="hoverInformationHeart"
-            onClick={(e) => handleFavorite(e)}
-            icon={["fas", "heart"]}
-            size="sm"
-          />
-        )}
-<div className="card-body">
-                <h1 className="card-favorite-title">{title}</h1>
-                <div className="card-info">
-                    <p><span className="season-nb">saison: {season}</span></p>
-                    <p><span className="duration">durée: {duration}</span></p>
-                    <p><span className="author">{author}</span></p>
-                </div>
-                <div className="card-synopsis">
-                    <p>{synopsis}</p>
-                </div>
-                <div className="card-footer">
-                </div>
-            </div>
+            <FontAwesomeIcon
+              className="hoverInformationHeart"
+              onClick={(e) => handleFavorite(e)}
+              icon={["fas", "heart"]}
+              size="sm"
+            />
+          )}
+        <div className="card-content">
+          <h3 className="card-favorite-title">{title}</h3>
+          <div className="card-info">
+            <p><span className="season-nb">saison: {season}</span></p>
+            <p><span className="duration">durée: {duration}</span></p>
+            <p><span className="author">{author}</span></p>
+          </div>
+          <div className="card-synopsis">
+            <p>{synopsis}</p>
+          </div>
+          <div className="card-footer">
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default Card;
