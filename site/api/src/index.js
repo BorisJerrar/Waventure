@@ -32,9 +32,7 @@ const avatarQueries = require("./queries/avatar");
 const serieSynopsisQueries = require("./queries/serie_synopsis")
 const serieSynopsisSerieId = require ("./queries/serie_synopsis_serie_id")
 const imageQueries = require("./queries/image")
-const soundQueries = require("./queries/sound")
 const Auth = require('./middleware/Auth.js');
-const sound = require("./queries/sound");
 
 app.use(bodyParser.json());
 app.use(
@@ -76,7 +74,11 @@ app.get("/", (request, response) => {
 
 app.get("/images/:image", imageQueries.getImage);
 
-app.get('/sound/', soundQueries.getSound);
+app.get('/sound/', function(req, res){
+  let sound = req.query.sound;
+  let saga = req.query.saga;
+  ms.pipe(req, res, `./src/sound/${saga}/${sound}`);
+});
 
 app.get("/sagaInfo/:serie_id", mainQueries.getSagaInfosBySerieId);
 
