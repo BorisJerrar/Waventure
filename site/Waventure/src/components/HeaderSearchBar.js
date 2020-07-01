@@ -26,7 +26,7 @@ export default function HeaderSearchBar({refSearch,
                   <Link onClick={() => handleSearch(each.lower)} key={key} to="/search" style={{ textDecoration: "none", color: "white" }}>
                     <div className="eachSearch">
                       <img className="eachImage" src={`${pathAvar}/${each.image}`} alt="" />
-                      <p className="eachTitle">{each.lower}</p>
+                      <p className="eachTitle">{each.title}</p>
                     </div>
                   </Link>
                 )
