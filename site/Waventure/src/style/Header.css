@@ -1,447 +1,3 @@
-@media (max-width: 762px) {
-  header {
-    font-family: "Pontano Sans", sans-serif;
-    background-color: #242424;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    color: #fff;
-    width: 100%;
-    height: 75px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.274);
-    user-select: none;
-    z-index: 9999999;
-    font-size: 14px;
-  }
-  h1 {
-    visibility: hidden;
-  }
-  .leftHeaderSide {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-  }
-  .searchingBar {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-  }
-  .searchingBar input {
-    height: 32px;
-    width: 80%;
-    border: none;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.253);
-    padding: 5px;
-    border-radius: 4px;
-  }
-  .buttonSearch {
-    background-color: #fff;
-    border: none;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 3%;
-    transition: background-color 0.2s ease-in-out;
-  }
-  .buttonSearch > button {
-    background-color: #fff;
-    border: none;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 0%;
-    top: 0;
-    transition: background-color 0.2s ease-in-out;
-  }
-  .searchingBar button:active {
-    background-color: rgb(214, 214, 214);
-  }
-  .waventureLogoHeader {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    width: 40px;
-    height: 40px;
-  }
-  .waventureLogoHeader img {
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-  }
-  .LinkHome {
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    z-index: 10000;
-  }
-  .waventureLogoHeader h1 {
-    font-weight: 400;
-    font-size: 9px;
-  }
-
-  nav,
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style-type: none;
-    text-align: center;
-    z-index: 1000;
-  }
-  nav {
-    width: 60%;
-  }
-  .newestLink,
-  .category {
-    user-select: none;
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.2s ease-in-out;
-  }
-  .newestLink:hover,
-  .category:hover {
-    color: rgb(160, 160, 160);
-  }
-  nav ul,
-  nav ul li,
-  .newestLink {
-    width: 100%;
-    cursor: pointer;
-    padding: 10px 0px;
-    transition: 0.2s ease-in-out background-color;
-    font-size: 10px;
-  }
-  .categoriesParagraph:hover {
-    background-color: #4e4e4e;
-  }
-  li,
-  .newestLink {
-    text-align: center;
-  }
-  .arrowCategories {
-    padding-left: 5px;
-    width: 11px;
-  }
-  .category {
-    position: relative;
-    text-align: center;
-  }
-  .categoriesParagraph {
-    color: #fff;
-    text-decoration: none;
-    width: 100%;
-    transition: 0.2s ease-in-out all;
-    z-index: 900;
-  }
-  .categoriesFetch {
-    z-index: 1000;
-    width: 25vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #1b1b1b;
-    position: absolute;
-    top: 53px;
-    left: -7vw;
-    max-height: 30vh;
-    overflow-y: scroll;
-    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
-  }
-  .searchFetch {
-    position: absolute;
-    padding-right: 10px;
-    min-width: 370px;
-    max-height: 30vh;
-    overflow-y: scroll;
-    top: 53px;
-    left: 0px;
-    background-color: #1b1b1b;
-  }
-
-  .eachSearch {
-    display: flex;
-    padding: 10px 0px 10px 0px;
-    transition: 0.2s ease-in-out background-color;
-  }
-
-  .eachSearch:hover {
-    background-color: #4e4e4e;
-  }
-
-  .eachImage {
-    width: 30px;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-
-  .profilIcon {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    width: 6%;
-  }
-  .firstArrow {
-    display: none;
-  }
-  .avatarBox {
-    width: 100%;
-    position: relative;
-    cursor: pointer;
-  }
-  .avatarBox img {
-    width: 100%;
-    border-radius: 200px;
-  }
-  .accountRolling {
-    z-index: 10000;
-    position: absolute;
-    top: 53px;
-    right: -10px;
-    width: 35vw;
-    background-color: #1b1b1b;
-    cursor: pointer;
-    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
-  }
-}
-@media (min-width: 763px) and (max-width: 990px) {
-  header {
-    font-family: "Pontano Sans", sans-serif;
-    background-color: #242424;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    color: #fff;
-    width: 100%;
-    height: 75px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.274);
-    user-select: none;
-    z-index: 9999999;
-    font-size: 14px;
-  }
-  h1 {
-    visibility: hidden;
-  }
-  .leftHeaderSide {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-  }
-  .searchingBar {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-  }
-  .searchingBar input {
-    height: 32px;
-    width: 85%;
-    border: none;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.253);
-    padding: 5px;
-    border-radius: 4px;
-  }
-  .buttonSearch > button {
-    height: 32px;
-    background-color: #fff;
-    border: none;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 3%;
-    transition: background-color 0.2s ease-in-out;
-  }
-  .buttonSearch {
-    background-color: #fff;
-    border: none;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 3%;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  .butttonSearch img {
-    opacity: 0;
-  }
-
-  .searchingBar button:active {
-    background-color: rgb(214, 214, 214);
-  }
-  .waventureLogoHeader {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    width: 40px;
-    height: 40px;
-  }
-  .waventureLogoHeader img {
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-  }
-  .LinkHome {
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    z-index: 10000;
-  }
-  .waventureLogoHeader h1 {
-    font-weight: 400;
-    font-size: 9px;
-  }
-
-  nav,
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style-type: none;
-    text-align: center;
-    z-index: 1000;
-  }
-  nav {
-    width: 55%;
-  }
-  .newestLink,
-  .category {
-    user-select: none;
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.2s ease-in-out;
-  }
-  .newestLink:hover,
-  .category:hover {
-    color: rgb(160, 160, 160);
-  }
-  nav ul,
-  nav ul li,
-  .newestLink {
-    width: 100%;
-    cursor: pointer;
-    padding: 10px 0px;
-    transition: 0.2s ease-in-out background-color;
-  }
-  .categoriesParagraph:hover {
-    background-color: #4e4e4e;
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
-  li,
-  .newestLink {
-    text-align: center;
-  }
-  .arrowCategories {
-    padding-left: 5px;
-  }
-  .category {
-    position: relative;
-    text-align: center;
-  }
-  .categoriesParagraph {
-    color: #fff;
-    text-decoration: none;
-    width: 100%;
-    transition: 0.2s ease-in-out all;
-    z-index: 900;
-  }
-  .categoriesFetch {
-    z-index: 1000;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #1b1b1b;
-    position: absolute;
-    top: 58px;
-    left: 0;
-    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
-  }
-  .searchFetch {
-    position: absolute;
-    padding-right: 10px;
-    min-width: 370px;
-    max-height: 30vh;
-    overflow-y: scroll;
-    top: 53px;
-    left: 40px;
-    background-color: #1b1b1b;
-  }
-
-  .eachSearch {
-    display: flex;
-    padding: 10px 0px 10px 0px;
-    transition: 0.2s ease-in-out background-color;
-  }
-
-  .eachSearch:hover {
-    background-color: #4e4e4e;
-  }
-
-  .eachImage {
-    width: 30px;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-
-  .profilIcon {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    cursor: pointer;
-    width: 20%;
-  }
-  .avatarBox {
-    width: 30%;
-    position: relative;
-    cursor: pointer;
-  }
-  .avatarBox img {
-    width: 90%;
-    border-radius: 200px;
-  }
-  .accountRolling {
-    z-index: 10000;
-    position: absolute;
-    top: 69px;
-    right: 0px;
-    width: 300%;
-    background-color: #1b1b1b;
-    cursor: pointer;
-    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.356);
-  }
-}
-@media (min-width: 991px) {
   header {
     font-family: "Pontano Sans", sans-serif;
     background-color: #242424;
@@ -468,7 +24,6 @@
     justify-content: center;
     align-items: center;
     width: 38%;
-    
   }
   .searchingBar input {
     height: 32px;
@@ -632,12 +187,12 @@
     cursor: pointer;
   }
   .profilIcon:hover img {
-    transform: scale(1.07,1.07);
+    transform: scale(1.07, 1.07);
   }
   .avatarBox img {
     width: 80%;
     border-radius: 200px;
-    transition: ease-in .1s transform;
+    transition: ease-in 0.1s transform;
     box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.164);
   }
   .accountRolling {
@@ -652,5 +207,60 @@
   }
   .amergment {
     margin-bottom: 270px;
+  }
+@media (max-width: 576px) {
+  .leftHeaderSide {
+    width: 90%;
+  }
+  header {
+    padding: 0px 5px;
+  }
+  .waventureLogoHeader h1 {
+    display: none;
+  }
+  .searchingBar {
+    width: 30%;
+  }
+  .searchingBar input {
+    width: 70%;
+  }
+  nav {
+    width: 60%;
+  }
+  nav ul,
+  nav ul li,
+  .newestLink, .accountRolling, .eachSearch{
+    padding: 0px 0px;
+    font-size: 10px;
+  }
+  .arrowCategories {
+    display: none;
+  }
+  .categoriesFetch {
+    width: 200px;
+    top: 44px;
+  }
+  .profilIcon img:not(.avatarImg)  {
+    display: none;
+  }
+  .searchFetch {
+    position: absolute;
+    padding-right: 10px;
+    min-width: 350px;
+    max-height: 30vh;
+    overflow-y: scroll;
+    top: 52px;
+    left: 0px;
+    background-color: #1b1b1b;
+  }
+
+  .profilIcon {
+    width: 15%;
+    justify-content: center;
+  }
+  .accountRolling {
+    top: 44px;
+    right: -21px;
+    width: 200px;
   }
 }

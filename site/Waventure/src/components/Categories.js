@@ -1,12 +1,14 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import Card from './Card'
 import getData from "../utiles/getData"
+import Context from "../context/context";
 
 export default function Categories({ categoryName, lunchingEpisode}) {
     const [category, setCategory] = useState([])
+    const {favoriteInfo} = useContext(Context)
     useEffect(() => {
         getData("serieCategory", setCategory, `/${categoryName}`)
-    }, [categoryName])
+    }, [categoryName, favoriteInfo])
     
 
     return (
