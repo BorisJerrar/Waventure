@@ -1,19 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import CategoryElement from "./CategoryElement";
-import "../style/Categorie.css";
+import SlideShowElement from "./SlideShowElement";
+import "../../style/Categorie.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Context from "../context/context";
-import addFavorite from "../utiles/addFavorite";
-import removeFavorite from "../utiles/removeFavorite";
-import fetchFavorite from "../utiles/fetchFavorite";
-import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
-import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
+import Context from "../../context/context";
+import addFavorite from "../../utiles/addFavorite";
+import removeFavorite from "../../utiles/removeFavorite";
+import fetchFavorite from "../../utiles/fetchFavorite";
+import fetchingExsistingEpisode from "../../utiles/fetchingExsistingEpisode";
+import didHeAlreadyBegin from "../../utiles/didHeAlreadyBegin";
 import axios from "axios";
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
-export default function CategoryUnique({
+export default function SlideShowUnique({
   item,
   settingHover,
   unsettingHover,
@@ -114,7 +114,7 @@ export default function CategoryUnique({
           />
         )}
 
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationSynopsis"
           visibilityProps={information}
           ellement={synopsis}
@@ -125,17 +125,17 @@ export default function CategoryUnique({
           icon={["far", "question-circle"]}
           size="sm"
         />
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationTitle"
           visibilityProps={hover}
           ellement={item.title}
         />
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationAuthor"
           visibilityProps={hover}
           ellement={item.author}
         />
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationEpisode"
           visibilityProps={hover}
           ellement={episodeEpisodeandSeasonInfo}

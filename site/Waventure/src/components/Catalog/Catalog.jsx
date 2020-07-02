@@ -1,7 +1,7 @@
 import React, { useContext, useEffect} from "react";
-import Categorie from "./Categorie";
-import getData from "../utiles/getData"
-import Context from "../context/context"
+import SlideShow from "./SlideShow";
+import getData from "../../utiles/getData"
+import Context from "../../context/context"
 
 export default function Catalog({ lunchingEpisode }) {
   const {categories, setCategories}= useContext(Context)
@@ -12,7 +12,7 @@ export default function Catalog({ lunchingEpisode }) {
 
   return categories.map((item, index) => {
     return (
-      <Categorie
+      <SlideShow
         key={index}
         category={item.name}
         lunchingEpisode={(serie_id, episode,) =>

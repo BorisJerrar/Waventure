@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 import "../style/Contact.css";
 import MainProfilInfo from './MainInfoProfil'
 import Context from '../context/context'
+import axios from 'axios';
 
 export default function Contact() {
 
@@ -27,12 +28,14 @@ export default function Contact() {
     }
 
     const sendSerie = () =>{
-        fetch(`${serverPath}/sendSerie`,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newSerie)
+        axios(`${serverPath}/sendSerie`,{
+            method: 'POST', 
+            data: newSerie
+        }).then((res)=>{
+            console.log(res);
+        }).catch((err)=>{
+            console.log(err);
+            
         })
     }
 

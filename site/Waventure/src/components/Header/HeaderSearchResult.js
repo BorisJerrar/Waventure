@@ -1,13 +1,13 @@
 import React, {useContext} from 'react'
-import Context from '../context/context'
+import Context from '../../context/context'
 import {Link} from 'react-router-dom'
 
 export default function HeaderSearchResult({handleSearch, resultSearch}) {
-    const { toggle } = useContext(Context)  
+    const { headerTrigger } = useContext(Context)  
     const pathAvar = process.env.REACT_APP_DYNAMIC_IMG_PATH;
     
     return (
-        <div className="searchFetch" style={toggle ? { display: "block" } : { display: "none" }}>
+        <div className="searchFetch" style={headerTrigger.search ? { display: "block" } : { display: "none" }}>
   
         {resultSearch.map((each, key) => {
           return (

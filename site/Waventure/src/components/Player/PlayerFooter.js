@@ -1,9 +1,9 @@
 import React, {useContext} from "react";
-import "../style/PlayerFooter.css";
+import "../../style/PlayerFooter.css";
 import PlayerFooterItem from "./PlayerFooterItem"
 import PlayerMoreInfo from "./PlayerMoreInfo"
 import PlayerEpisode from "./PlayerEpisode"
-import Context from "../context/context"
+import Context from '../../context/context'
 
 export default function PlayerFooter({sagaInfo}) {
   

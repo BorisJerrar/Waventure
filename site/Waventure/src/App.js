@@ -1,9 +1,9 @@
 
 import React, { useState, useRef, useEffect} from "react";
 import "./App.css";
-import Header from "./components/Header.jsx";
-import Player from "./components/Player";
-import Catalog from "./components/Catalog";
+import Header from "./components/Header/Header.jsx";
+import Player from "./components/Player/Player";
+import Catalog from "./components/Catalog/Catalog";
 import Banner from "./components/Banner";
 import Newest from "./components/Newest";
 import Context from "./context/context"
@@ -24,8 +24,11 @@ import getDataToken from './utiles/getDataWithToken'
 
 function App() {
 
-  const [categoriesTrigger, setCategoriesTrigger] = useState(false);
-  const [accountTrigger, setAccountTriggerTrigger] = useState(false);
+  const [headerTrigger, setHeaderTrigger] = useState({
+    categories: false,
+    menu: false,
+    search: false
+  })
   const [reducer, setReducer] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [showingPlayer, setShowingPlayer] = useState(false);
@@ -34,7 +37,6 @@ function App() {
   const [toggleWrapper, setToggleWrapper] = useState(false);
   const [sagaEpisodeSaisonInfo, setSagaEpisodeSaisonInfo] = useState([]);
   const [uniqueSearch, setUniqueSearch] = useState({});
-  const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState([])
   const [synopsis, setSynopsis] = useState(false);
   const [episodes, setEpisodes] = useState(false);
@@ -74,18 +76,17 @@ function App() {
  },[])
 
   const triggeringCategory = () => {
-    if (categoriesTrigger) {
-      setCategoriesTrigger(!categoriesTrigger);
-    } else if (accountTrigger) {
-      setAccountTriggerTrigger(!accountTrigger);
-    } else if (toggleWrapper) {
+    if (headerTrigger.categories || headerTrigger.menu || headerTrigger.search) {
+      setHeaderTrigger({
+        menu: false,
+        categories: false, 
+        search: false
+      });
+    }else if (toggleWrapper) {
       setToggleWrapper(!toggleWrapper);
     }
-
-    if (toggle) {
-      setToggle(false);
-    }
   };
+
   const lunchingEpisode = (serie_id, episode) => {
     playerRef.current.audio.current.pause();
     setPlaying(true);
@@ -99,8 +100,6 @@ function App() {
   }
 
   const context = {
-    categoriesTrigger,
-    accountTrigger,
     reducer,
     playing,
     showingPlayer,
@@ -109,7 +108,6 @@ function App() {
     toggleWrapper,
     sagaEpisodeSaisonInfo,
     uniqueSearch,
-    toggle,
     user,
     synopsis,
     episodes,
@@ -121,8 +119,7 @@ function App() {
     imagePath,
     favoriteInfo,
     favorite,
-    setCategoriesTrigger,
-    setAccountTriggerTrigger,
+    headerTrigger,
     setReducer,
     setPlaying,
     setShowingPlayer,
@@ -131,7 +128,6 @@ function App() {
     setToggleWrapper,
     setSagaEpisodeSaisonInfo,
     setUniqueSearch,
-    setToggle,
     setUser,
     setSynopsis,
     setEpisodes,
@@ -139,7 +135,8 @@ function App() {
     setMaches, 
     setCategories,
     setFavoriteInfo,
-    setFavorite
+    setFavorite,
+    setHeaderTrigger
   }
 
   return (
