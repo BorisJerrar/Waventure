@@ -5,14 +5,14 @@ import Card from "../components/Card";
 import getData from "../utiles/getData";
 
 export default function Search({ uniqueSearch, lunchingEpisode }) {
-  console.log(uniqueSearch);
+  console.log(uniqueSearch)
   
-  const { serverPath, favoriteInfo } = useContext(Context);
+  const { serverPath, favoriteInfo } = useContext(Context)
   const [uniqueSerie, setUniqueSerie] = useState([]);
   useEffect(() => {
       getData(`serieSynopsis?search=%${uniqueSearch}%`,setUniqueSerie, "")
 
-  }, [uniqueSearch, serverPath, favoriteInfo]);
+  }, [uniqueSearch, serverPath, favoriteInfo])
 
   return (
     <div className="tab-content">
