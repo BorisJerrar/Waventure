@@ -29,8 +29,8 @@ export default function HeaderMenu({ pathAvar}) {
         <div className="profilIcon" onClick={avatar}>
         <img className="firstArrow" src={`${imagePath}/arrow.svg`} alt="Arrow Icon" />
         <div className="avatarBox">
-          <img src={`${pathAvar}/Avatar${user && user[0] && user[0].avatar_id? user[0].avatar_id : "1"}.jpg`} alt="Profil Icon" />
-          {headerTrigger.menu ? (
+          <img className="avatarImg" src={`${pathAvar}/Avatar${user && user[0] && user[0].avatar_id? user[0].avatar_id : "1"}.jpg`} alt="Profil Icon" />
+          {accountTrigger ? (
             <div className="accountRolling">
               <Link to="/profil" className="categoriesParagraph">
                 <p

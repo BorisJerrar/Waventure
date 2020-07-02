@@ -34,10 +34,12 @@ export default function Banner({ lunchingEpisode }) {
         </span>
         <h2 className="wedetteIndicator">edette</h2>
       </div>
+<div className="wedetteSecondPart">
 
       <div className="wedetteDescription">
         <h3 className="wedetteTitle">{wedette && wedette[0] && wedette[0].title}</h3>
         <p className="wedetteSynopsis">{wedette && wedette[0] && wedette[0].body}</p>
+      </div>
       </div>
       <img
         className="backgroundImg"

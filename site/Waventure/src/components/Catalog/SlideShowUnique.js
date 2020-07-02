@@ -11,7 +11,7 @@ import didHeAlreadyBegin from "../../utiles/didHeAlreadyBegin";
 import axios from "axios";
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core";
 
 export default function SlideShowUnique({
   item,
@@ -24,12 +24,12 @@ export default function SlideShowUnique({
   synopsis,
   hover,
 }) {
-  const { token, serverPath, favorite, setFavorite } = useContext(Context);
+  const { token, serverPath, favorite, setFavorite, index} = useContext(Context);
 
   const [
     episodeEpisodeandSeasonInfo,
     setEpisodeEpisodeandSeasonInfo,
-  ] = useState("S1 : E1");
+  ] = useState("Chargement...");
   const [indexWithSeason, setIndexWithSeason] = useState(0);
   const [viewPercentage, setViewPercentage] = useState(0);
 
@@ -47,31 +47,59 @@ export default function SlideShowUnique({
   };
 
   useEffect(() => {
-    fetchFavorite(serverPath, item.serie_id, token, setFavorite);
+    let unmounted = false;
+    if (!unmounted) {
+      fetchFavorite(serverPath, item.serie_id, token, setFavorite);
+    }
     const advancmentChecker = (item) => {
       didHeAlreadyBegin(item, function (config) {
         axios(config)
           .then(function (response) {
             /* If not, lunching first episode of the audiodrama cliked*/
             if (response.data.length === 0) {
-              setEpisodeEpisodeandSeasonInfo("S1 : E1");
+              if (!unmounted) {
+                setEpisodeEpisodeandSeasonInfo("S1 : E1");
+              }
             } else {
-              fetchingExsistingEpisode(...response.data, function (
-                item,
-                response
-              ) {
-                setIndexWithSeason(
-                  response.findIndex(
-                    (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                  )
-                );
-                setViewPercentage((indexWithSeason * 100) / response.length);
-                  setEpisodeEpisodeandSeasonInfo(`S${response[response.findIndex(
-                    (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                  )].season_nb} : E${response[response.findIndex(
-                    (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                  )].episode_nb}`)
-              });
+              if (!unmounted) {
+                fetchingExsistingEpisode(...response.data, function (
+                  item,
+                  response
+                ) {
+                  if (!unmounted) {
+                    setIndexWithSeason(
+                      response.findIndex(
+                        (UniqueItem) =>
+                          UniqueItem.episode_id === item.episode_id
+                      )
+                    );
+                    if (!unmounted) {
+                      setViewPercentage(
+                        (indexWithSeason * 100) / response.length
+                      );
+                    }
+                    if (!unmounted) {
+                      setEpisodeEpisodeandSeasonInfo(
+                        `S${
+                          response[
+                            response.findIndex(
+                              (UniqueItem) =>
+                                UniqueItem.episode_id === item.episode_id
+                            )
+                          ].season_nb
+                        } : E${
+                          response[
+                            response.findIndex(
+                              (UniqueItem) =>
+                                UniqueItem.episode_id === item.episode_id
+                            )
+                          ].episode_nb
+                        }`
+                      );
+                    }
+                  }
+                });
+              }
             }
           })
           .catch(function (error) {
@@ -79,11 +107,11 @@ export default function SlideShowUnique({
           });
       });
     };
-    if(token && serverPath && setFavorite && indexWithSeason ){
-      advancmentChecker(item);
-    }
-
-  }, [serverPath, item, token, indexWithSeason, setFavorite]);
+    advancmentChecker(item);
+    return () => {
+      unmounted = true;
+    };
+  }, [serverPath, item, token, indexWithSeason, setFavorite, index]);
   return (
     <div
       className={"hoverInformationContainer"}
@@ -142,15 +170,19 @@ export default function SlideShowUnique({
         />
         <p
           className="watchTime"
-          css={viewPercentage?css`
-          &:after {
-            width: ${viewPercentage}%;
+          css={
+            viewPercentage
+              ? css`
+                  &:after {
+                    width: ${viewPercentage}%;
+                  }
+                `
+              : css`
+                  &:after {
+                    width: 0%;
+                  }
+                `
           }
-        `:css`
-        &:after {
-          width: 0%;
-        }
-      `}
           style={
             hover
               ? { visibility: "visible", opacity: 1 }
