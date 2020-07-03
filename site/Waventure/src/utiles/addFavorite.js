@@ -9,7 +9,7 @@ const addFavorite = async (serverPath, item, token, callback) => {
       };
     axios(addConfig)
       .then(function (response) {
-       return callback()
+       return callback(response)
       })
       .catch(function (error) {
         console.log(error);

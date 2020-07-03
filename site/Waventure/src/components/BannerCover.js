@@ -46,7 +46,7 @@ export default function BannerCover({wedette, lunchingEpisode, url}) {
     return (
         <div
         className="wedetteCover"
-        onClick={() => lunchingEpisodeCategorie(wedette)}
+        onClick={() => lunchingEpisodeCategorie(wedette[0])}
       >
         <img
           className="wedetteCoverImage"

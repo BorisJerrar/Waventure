@@ -24,7 +24,8 @@ export default function SlideShowUnique({
   synopsis,
   hover,
 }) {
-  const { token, serverPath, favorite, setFavorite, index} = useContext(Context);
+  const { token, serverPath} = useContext(Context);
+  const [favorite, setFavorite] = useState(false);
 
   const [
     episodeEpisodeandSeasonInfo,
@@ -111,7 +112,7 @@ export default function SlideShowUnique({
     return () => {
       unmounted = true;
     };
-  }, [serverPath, item, token, indexWithSeason, setFavorite, index]);
+  }, [serverPath, item, token, indexWithSeason, setFavorite]);
   return (
     <div
       className={"hoverInformationContainer"}
