@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
-import Context from '../context/context'
+import Context from '../../context/context'
 
 export default function HeaderLogo({pathImg}) {
     const { imagePath } = useContext(Context)  

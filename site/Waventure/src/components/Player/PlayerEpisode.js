@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
-import Context from "../context/context";
-import getData from "../utiles/getData"
+import Context from '../../context/context';
+import getData from "../../utiles/getData"
 
 export default function PlayerEpisode({
   serieId,

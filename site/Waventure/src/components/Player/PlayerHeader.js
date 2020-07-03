@@ -1,8 +1,8 @@
 import React, {useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../style/PlayerHeader.css";
-import Context from '../context/context'
-import nextSaga from "../utiles/nextSaga";
+import "../../style/PlayerHeader.css";
+import Context from '../../context/context';
+import nextSaga from "../../utiles/nextSaga";
 
 export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
   const { 

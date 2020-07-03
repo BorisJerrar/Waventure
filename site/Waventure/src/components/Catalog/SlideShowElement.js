@@ -1,7 +1,7 @@
 import React from 'react'
-import "../style/Categorie.css";
+import "../../style/Categorie.css";
 
-export default function CategorySynopsis({ellement, visibilityProps, classname }) {
+export default function SlideShowElement({ellement, visibilityProps, classname }) {
     return (
         <p
         className={classname}

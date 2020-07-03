@@ -24,6 +24,7 @@ export default React.createContext({
     imagePath: "",
     favoriteInfo: "",
     favorite: "",
+    headerTrigger: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},
@@ -44,4 +45,5 @@ export default React.createContext({
     setCategories: (name) => {},
     setFavoriteInfo: (name) => {},
     setFavorite: (name) => {},
+    setHeaderTrigger: (name) => {}
 })

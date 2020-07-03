@@ -1,18 +1,21 @@
 import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
-import Context from '../context/context'
+import Context from '../../context/context'
 
 export default function HeaderCategories() {
 
-  const { 
-    categoriesTrigger, 
-    setCategoriesTrigger, 
+  const {  
     categories, 
-    imagePath
+    imagePath, 
+    headerTrigger,
+    setHeaderTrigger
   } = useContext(Context)
 
   const showCategories = () => {
-    setCategoriesTrigger(!categoriesTrigger);
+    setHeaderTrigger({
+      ...headerTrigger,
+      categories: !headerTrigger.categories
+    })
   };
 
     return (
@@ -26,14 +29,14 @@ export default function HeaderCategories() {
           />
         </i>
         <div className="categoriesFetch">
-          {categoriesTrigger
+          {headerTrigger.categories
             ? categories.map((each, key) => {
               return (
                 <Link to={`/${each.name}`}
                   key={key}
                   className="categoriesParagraph"
                   style={
-                    categoriesTrigger
+                    headerTrigger.categories
                       ? { opacity: 1, padding: "8px", visibility: "visible" }
                       : { visibility: "hidden", opacity: 0 }
                   }

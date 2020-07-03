@@ -1,11 +1,11 @@
 import React, {useContext, useState, useRef} from 'react'
 import {Link} from 'react-router-dom'
-import Context from '../context/context'
+import Context from '../../context/context'
 import HeaderSearchResult from './HeaderSearchResult'
 
 export default function HeaderSearchBar({handleSearch}) {
 
-      const { serverPath, imagePath, setToggle } = useContext(Context)
+      const { serverPath, imagePath, headerTrigger, setHeaderTrigger } = useContext(Context)
       const [search, setSearch] = useState('')
       const [resultSearch, setResultSearch] = useState([])
       const refSearch = useRef(null)
@@ -20,15 +20,25 @@ export default function HeaderSearchBar({handleSearch}) {
 
       const showSearch = (e) => {
         if (e.target.value !== "") {
-          setToggle(true)
+         setHeaderTrigger({
+           ...headerTrigger,
+           search: true
+         })
         }
       }
     
       const getInput = (e) => {
         if (e.target.value !== "") {
-          setToggle(true)
+          setHeaderTrigger({
+            ...headerTrigger,
+            search: true
+          })
+          
         } else {
-          setToggle(false)
+          setHeaderTrigger({
+            ...headerTrigger,
+            search: false
+          })
         }
         setSearch(e.target.value)
         fetchSearchSeries(e)

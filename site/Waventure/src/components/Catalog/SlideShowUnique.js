@@ -1,19 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import CategoryElement from "./CategoryElement";
-import "../style/Categorie.css";
+import SlideShowElement from "./SlideShowElement";
+import "../../style/Categorie.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Context from "../context/context";
-import addFavorite from "../utiles/addFavorite";
-import removeFavorite from "../utiles/removeFavorite";
-import fetchFavorite from "../utiles/fetchFavorite";
-import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
-import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
+import Context from "../../context/context";
+import addFavorite from "../../utiles/addFavorite";
+import removeFavorite from "../../utiles/removeFavorite";
+import fetchFavorite from "../../utiles/fetchFavorite";
+import fetchingExsistingEpisode from "../../utiles/fetchingExsistingEpisode";
+import didHeAlreadyBegin from "../../utiles/didHeAlreadyBegin";
 import axios from "axios";
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core";
 
-export default function CategoryUnique({
+export default function SlideShowUnique({
   item,
   settingHover,
   unsettingHover,
@@ -24,12 +24,13 @@ export default function CategoryUnique({
   synopsis,
   hover,
 }) {
-  const { token, serverPath, favorite, setFavorite } = useContext(Context);
+  const { token, serverPath} = useContext(Context);
+  const [favorite, setFavorite] = useState(false);
 
   const [
     episodeEpisodeandSeasonInfo,
     setEpisodeEpisodeandSeasonInfo,
-  ] = useState("S1 : E1");
+  ] = useState("Chargement...");
   const [indexWithSeason, setIndexWithSeason] = useState(0);
   const [viewPercentage, setViewPercentage] = useState(0);
 
@@ -47,31 +48,59 @@ export default function CategoryUnique({
   };
 
   useEffect(() => {
-    fetchFavorite(serverPath, item.serie_id, token, setFavorite);
+    let unmounted = false;
+    if (!unmounted) {
+      fetchFavorite(serverPath, item.serie_id, token, setFavorite);
+    }
     const advancmentChecker = (item) => {
       didHeAlreadyBegin(item, function (config) {
         axios(config)
           .then(function (response) {
             /* If not, lunching first episode of the audiodrama cliked*/
             if (response.data.length === 0) {
-              setEpisodeEpisodeandSeasonInfo("S1 : E1");
+              if (!unmounted) {
+                setEpisodeEpisodeandSeasonInfo("S1 : E1");
+              }
             } else {
-              fetchingExsistingEpisode(...response.data, function (
-                item,
-                response
-              ) {
-                setIndexWithSeason(
-                  response.findIndex(
-                    (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                  )
-                );
-                setViewPercentage((indexWithSeason * 100) / response.length);
-                  setEpisodeEpisodeandSeasonInfo(`S${response[response.findIndex(
-                    (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                  )].season_nb} : E${response[response.findIndex(
-                    (UniqueItem) => UniqueItem.episode_id === item.episode_id
-                  )].episode_nb}`)
-              });
+              if (!unmounted) {
+                fetchingExsistingEpisode(...response.data, function (
+                  item,
+                  response
+                ) {
+                  if (!unmounted) {
+                    setIndexWithSeason(
+                      response.findIndex(
+                        (UniqueItem) =>
+                          UniqueItem.episode_id === item.episode_id
+                      )
+                    );
+                    if (!unmounted) {
+                      setViewPercentage(
+                        (indexWithSeason * 100) / response.length
+                      );
+                    }
+                    if (!unmounted) {
+                      setEpisodeEpisodeandSeasonInfo(
+                        `S${
+                          response[
+                            response.findIndex(
+                              (UniqueItem) =>
+                                UniqueItem.episode_id === item.episode_id
+                            )
+                          ].season_nb
+                        } : E${
+                          response[
+                            response.findIndex(
+                              (UniqueItem) =>
+                                UniqueItem.episode_id === item.episode_id
+                            )
+                          ].episode_nb
+                        }`
+                      );
+                    }
+                  }
+                });
+              }
             }
           })
           .catch(function (error) {
@@ -79,10 +108,10 @@ export default function CategoryUnique({
           });
       });
     };
-    if(token && serverPath && setFavorite && indexWithSeason ){
-      advancmentChecker(item);
-    }
-
+    advancmentChecker(item);
+    return () => {
+      unmounted = true;
+    };
   }, [serverPath, item, token, indexWithSeason, setFavorite]);
   return (
     <div
@@ -114,7 +143,7 @@ export default function CategoryUnique({
           />
         )}
 
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationSynopsis"
           visibilityProps={information}
           ellement={synopsis}
@@ -125,32 +154,36 @@ export default function CategoryUnique({
           icon={["far", "question-circle"]}
           size="sm"
         />
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationTitle"
           visibilityProps={hover}
           ellement={item.title}
         />
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationAuthor"
           visibilityProps={hover}
           ellement={item.author}
         />
-        <CategoryElement
+        <SlideShowElement
           classname="hoverInformationEpisode"
           visibilityProps={hover}
           ellement={episodeEpisodeandSeasonInfo}
         />
         <p
           className="watchTime"
-          css={viewPercentage?css`
-          &:after {
-            width: ${viewPercentage}%;
+          css={
+            viewPercentage
+              ? css`
+                  &:after {
+                    width: ${viewPercentage}%;
+                  }
+                `
+              : css`
+                  &:after {
+                    width: 0%;
+                  }
+                `
           }
-        `:css`
-        &:after {
-          width: 0%;
-        }
-      `}
           style={
             hover
               ? { visibility: "visible", opacity: 1 }

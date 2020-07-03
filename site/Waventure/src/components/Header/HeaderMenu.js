@@ -1,13 +1,16 @@
 import React, { useContext } from 'react'
-import Context from '../context/context'
+import Context from '../../context/context'
 import {Link} from 'react-router-dom'
 import {Redirect} from 'react-router-dom'
 
 export default function HeaderMenu({ pathAvar}) {
-        const { user, accountTrigger, setAccountTriggerTrigger, imagePath} = useContext(Context)   
+        const { user, imagePath, headerTrigger, setHeaderTrigger} = useContext(Context)   
 
         const avatar = async () => {
-          setAccountTriggerTrigger(!accountTrigger);
+          setHeaderTrigger({
+            ...headerTrigger,
+            menu: !headerTrigger.menu
+          })
         };
 
         const logout = () => {
@@ -26,8 +29,8 @@ export default function HeaderMenu({ pathAvar}) {
         <div className="profilIcon" onClick={avatar}>
         <img className="firstArrow" src={`${imagePath}/arrow.svg`} alt="Arrow Icon" />
         <div className="avatarBox">
-          <img src={`${pathAvar}/Avatar${user && user[0] && user[0].avatar_id? user[0].avatar_id : "1"}.jpg`} alt="Profil Icon" />
-          {accountTrigger ? (
+          <img className="avatarImg" src={`${pathAvar}/Avatar${user && user[0] && user[0].avatar_id? user[0].avatar_id : "1"}.jpg`} alt="Profil Icon" />
+          {headerTrigger.menu ? (
             <div className="accountRolling">
               <Link to="/profil" className="categoriesParagraph">
                 <p

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import CategoryUnique from "./CategoryUnique";
-import "../style/Categorie.css";
+import SlideShowUnique from "./SlideShowUnique";
+import "../../style/Categorie.css";
 import { Slide } from "react-slideshow-image";
-import fetchSeries from "../utiles/fetchSeries";
-import lunchinEpisodeCategorie from "../utiles/lunchinEpisodeCategorie";
-import Context from "../context/context";
+import fetchSeries from "../../utiles/fetchSeries";
+import lunchinEpisodeCategorie from "../../utiles/lunchinEpisodeCategorie";
+import Context from "../../context/context";
 
-export default function Categorie({ category, lunchingEpisode }) {
+export default function SlideShow({ category, lunchingEpisode }) {
   
   const { matches, setMaches, token, serverPath } = useContext(Context);
   const [series, setSeries] = useState([]);
@@ -81,7 +81,7 @@ fetchSeries(category, matches, function (temp) {
               <div className="categoryContainer" key={arrIndex}>
                 {array.map((item, index) => {
                   return (
-                    <CategoryUnique
+                    <SlideShowUnique
                       item={item}
                       key={index}
                       settingHover={(item) => settingHover(item)}

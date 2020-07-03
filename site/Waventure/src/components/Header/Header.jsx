@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
-import Context from '../context/context'
+import Context from '../../context/context'
 import HeaderLogo from './HeaderLogo'
 import HeaderSearchBar from './HeaderSearchBar'
 import HeaderCategories from './HeaderCategories'
 import HeaderMenu from './HeaderMenu'
-import "../style/Header.css";
+import "../../style/Header.css";
 
 
 export default function HeaderContent({ handleSearchApp}) {

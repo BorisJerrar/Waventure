@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext, Component } from "react";
 import AudioPlayer from "react-h5-audio-player";
-import "../style/Player.css";
+import "../../style/Player.css";
 import PlayerHeader from "./PlayerHeader";
 import PlayerFooter from "./PlayerFooter";
-import MainPlayerImg from "./MainPlayerImg";
-import prevSaga from "../utiles/prevSaga";
-import nextSaga from "../utiles/nextSaga";
-import fetchinEpisodePlayer from "../utiles/fetchinEpisodePlayer";
-import playerRefChecker from "../utiles/playerRefChecker";
+import MainPlayerImg from "../MainPlayerImg";
+import prevSaga from "../../utiles/prevSaga";
+import nextSaga from "../../utiles/nextSaga";
+import fetchinEpisodePlayer from "../../utiles/fetchinEpisodePlayer";
+import playerRefChecker from "../../utiles/playerRefChecker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Context from "../context/context";
+import Context from '../../context/context';
 
 export default function Player({ sending, sendingReducer, playerRef }) {
   const { serieId, index, setIndex, reducer, episodes, serverPath} = useContext(Context);

@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
-import "../style/Player.css";
-import Context from "../context/context";
-import getData from "../utiles/getData"
+
+import Context from "../../context/context";
+import getData from "../../utiles/getData"
 
 export default function PlayerMoreInfo({serieId, toggleWrapper, sagaInfo}) {
 const {serverPath} = useContext(Context)

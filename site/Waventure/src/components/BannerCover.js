@@ -46,12 +46,12 @@ export default function BannerCover({wedette, lunchingEpisode, url}) {
     return (
         <div
         className="wedetteCover"
-        onClick={() => lunchingEpisodeCategorie(wedette)}
+        onClick={() => lunchingEpisodeCategorie(wedette[0])}
       >
         <img
           className="wedetteCoverImage"
-          src={wedette && wedette.image_lg ?`${url}/${wedette.image_lg}`:""}
-          alt={wedette.title}
+          src={wedette && wedette[0] && wedette[0].image_lg ?`${url}/${wedette[0].image_lg}`:""}
+          alt={wedette && wedette[0] && wedette[0].title}
         />
         <FontAwesomeIcon
           className="btnPlay"
