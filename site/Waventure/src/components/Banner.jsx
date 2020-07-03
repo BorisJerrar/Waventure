@@ -32,13 +32,14 @@ export default function Banner({ lunchingEpisode }) {
   return (
     <div className={"wedetteContainer"}>
       <BannerCover
+        className="wedetteCoverImage"
         wedette={wedette}
         lunchingEpisode={lunchingEpisode}
         url={url}
       />
       <div className="wedetteLogoContainer">
         <span>
-          <img src="./img/logoWedette.svg" alt="W" />
+          <img className="wedetteLogo" src="./img/logoWedette.svg" alt="W" />
         </span>
         <h2 className="wedetteIndicator">edette</h2>
       </div>

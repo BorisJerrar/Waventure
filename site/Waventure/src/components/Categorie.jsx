@@ -36,7 +36,8 @@ export default function Categorie({ category, lunchingEpisode }) {
     /* Fetching  audiodrama to displaying it*/
 fetchSeries(category, matches, function (temp) {
   setSeries(temp);
-})},[category, matches])
+  }
+)},[category, matches])
   useEffect(() => {
     /* Fetching  audio informations on hover*/
     const fetchSerieInformation = async () => {

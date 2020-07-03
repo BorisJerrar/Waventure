@@ -4,6 +4,7 @@ import axios from "axios";
 import fetchingNewEpisode from "../utiles/fetchingNewEpisode";
 import fetchingExsistingEpisode from "../utiles/fetchingExsistingEpisode";
 import didHeAlreadyBegin from "../utiles/didHeAlreadyBegin";
+import "../style/Banner.css"
 
 export default function BannerCover({wedette, lunchingEpisode, url}) {
     

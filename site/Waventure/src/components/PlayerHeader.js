@@ -34,6 +34,7 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
       <FontAwesomeIcon icon={["fas", "times"]} className='cancerler' size="4x"  onClick={closingPlayer} style={reducer? {position: "absolute",margin: "auto", right: '1vw', top: "10px", maxWidth:"15px"}:{"":""}}/>
       <FontAwesomeIcon icon={["fas", "sort-up"]} className='reducer' size="4x" onClick={reducingPlayer} style={reducer? {position: "absolute",margin: "auto",  right: '3vw', top: "7px", transform: "rotate(0deg)", maxWidth:"18px"}:{top: "-22px", transform: "rotate(180deg)"}}/>
       <p
+      /*
         className="playerHeaderInfo"
         style={
           synopsis || learnMore || episodes
@@ -41,6 +42,7 @@ export default function PlayerHeader({episodeInfos, sending, sendingReducer}) {
             :  reducer?{ fontSize: "12px"}
             : { fontSize: "21px" }
         }
+        */
       >
         Episode{" "}
         {episodeInfos && episodeInfos.episode_nb

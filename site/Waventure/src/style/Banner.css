@@ -18,22 +18,18 @@
     background-color: #0f0f0f;
   }
 
-  .wedetteCoverImage {
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.8;
-  }
+  
 
   .btnPlay {
     cursor: pointer;
     position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    margin: auto;
-    width: 150px !important;
-    height: 150px !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 10px;
+    width: 50px !important;
+    height: 50px !important;
     opacity: 0;
     transition: ease-in-out opacity 0.1s;
   }
@@ -43,24 +39,32 @@
   }
 
   .wedetteLogoContainer {
-    display: flex;
     position: absolute;
-    left: 10px;
-    top: 30px;
+    display: flex;
+    width: 28%;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    background: rgba(36, 36, 36, 0.71);
+  }
+
+  .wedetteLogo {
+   height: 40px; 
   }
 
   .wedetteIndicator {
     margin-left: -12px;
+    font-size: 1.5em;
   }
 
   .wedetteDescription {
-    width: 100%;
+    width: 80%;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    height: 400px;
+    height: 200px;
     padding: 10px;
   }
 
@@ -79,26 +83,17 @@
     right: 0;
     bottom: 0;
     opacity: 0.2;
-    width: 400px;
+    width: 50%;
   }
   .wedetteCover {
-    position: relative;
-    overflow: hidden;
-  }
-  .wedetteCover,
-  .wedetteCoverImage {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-width: 100vw;
-    max-width: 100vw;
-    height: 100vw;
+  }
+  .wedetteCoverImage {
+    width: 100%;
     transition: ease-in 0.2s transform;
   }
-  .wedetteCover:hover .wedetteCoverImage {
-    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
-  }
-
   .marginScroll {
     margin-top: 270px;
   }

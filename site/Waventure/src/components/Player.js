@@ -40,6 +40,7 @@ Component.MainPlayerImg = MainPlayerImg
   return (
     <div
       className="playerWarper"
+      /*
       style={
         episodes
           ? { minHeight: "370px", maxHeight: "370px" }
@@ -47,6 +48,7 @@ Component.MainPlayerImg = MainPlayerImg
           ? { minHeight: "200px", maxHeight: "200px" }
           : { minHeight: "270px", maxHeight: "270px" }
       }
+      */
     >
       <MainPlayerImg episodeInfos={episodeInfos} reducer={reducer} />
       <AudioPlayer
