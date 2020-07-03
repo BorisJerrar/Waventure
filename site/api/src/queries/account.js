@@ -235,13 +235,15 @@ const updateAccount = (request, response) => {
  * @returns {string} response 
  */
 const deleteAccount = (request, response) => {
-  const account_id = request.params.account_id
-
-  db.query('DELETE * FROM account WHERE account_id = $1', [account_id], (error, results) => {
+  const token = request.headers['x-access-token'];    
+    const decoded = jwt.verify(token, process.env.SECRET)
+    console.log(decoded);
+    
+  db.query('DELETE FROM account WHERE account_id = $1', [decoded.account_id], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`account deleted with ID: ${account_id}`)
+    response.status(200).send(`account deleted with ID: ${decoded.account_id}`)
   })
 }
 

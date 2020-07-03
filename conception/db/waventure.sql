@@ -48,7 +48,7 @@ CREATE TABLE favorite
     serie_id serial,
     account_id UUID,
     FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
-    FOREIGN KEY (account_id) REFERENCES account (account_id)
+    FOREIGN KEY (account_id) REFERENCES account (account_id) ON DELETE CASCADE
 );
 
 
@@ -130,7 +130,7 @@ CREATE TABLE LISTEN
     serie_id serial,
     episode_id serial,
     duration time,
-    FOREIGN KEY (account_id) REFERENCES account (account_id),
+    FOREIGN KEY (account_id) REFERENCES account (account_id) ON DELETE CASCADE,
     FOREIGN KEY (serie_id) REFERENCES serie (serie_id),
     FOREIGN KEY (episode_id) REFERENCES episode (episode_id)
 );

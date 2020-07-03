@@ -3,24 +3,30 @@ import MainProfilInfo from './MainInfoProfil'
 import "../style/profil.css";
 import { Link } from 'react-router-dom'
 import Context from '../context/context'
+import axios from 'axios'
 
 export default function Profil() {
 
-    const { user, serverPath} = useContext(Context);
+    const { user, serverPath, token} = useContext(Context);
     const [toggleDelete, setToggleDelete] = useState(false);
 
+    const config = {
+        method: 'DELETE',
+        url: `${serverPath}/account`,
+        headers: {
+            'x-access-token': token
+        },
+
+    }
+
     const deleteAccount = () => {
-        fetch(`${serverPath}/account/${user[0].account_id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then((res) => {
+        axios(config).then((res) => {
             if (res.status === 200) {
                 localStorage.removeItem('token')
                window.location.href = "/signUp"
             }
         })
+
     }
 
     return (

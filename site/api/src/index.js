@@ -91,7 +91,7 @@ app.get("/serieCategory/:categoryName", serieByCategory.getSerieByCategory )
 app.get("/account", Auth.verifyToken, accountQueries.getAccount);
 app.get("/account/:account_id", accountQueries.getAccountById);
 app.put("/account/:account_id", accountQueries.updateAccount);
-app.delete("/account/:account_id", accountQueries.deleteAccount);
+app.delete("/account", Auth.verifyToken, accountQueries.deleteAccount);
 
 /* SERIE */ 
 app.get("/serie", serieQueries.getSerie);

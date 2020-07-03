@@ -1,4 +1,5 @@
 const db = require('../../db/database')
+const jwt = require('jsonwebtoken');
 
 /**
  * use to request saga infos by serie_id
@@ -84,10 +85,11 @@ const getSerieRole = (request, response) => {
 }
 
 
+
 module.exports = {
     getSagaInfosBySerieId,
     getSerieSynopsisBySerieId,
     getSerieSynopsis,
-    getSerieRole
+    getSerieRole,
 }
 
