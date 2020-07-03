@@ -30,6 +30,7 @@ function App() {
     search: false
   })
   const [reducer, setReducer] = useState(false);
+  const [activating, setActivating] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [showingPlayer, setShowingPlayer] = useState(false);
   const [serieId, setSerieId] = useState(-1);
@@ -120,6 +121,7 @@ function App() {
     favoriteInfo,
     favorite,
     headerTrigger,
+    activating,
     setReducer,
     setPlaying,
     setShowingPlayer,
@@ -136,7 +138,8 @@ function App() {
     setCategories,
     setFavoriteInfo,
     setFavorite,
-    setHeaderTrigger
+    setHeaderTrigger,
+    setActivating
   }
 
   return (

@@ -25,6 +25,7 @@ export default React.createContext({
     favoriteInfo: "",
     favorite: "",
     headerTrigger: "",
+    activating: "",
     setCategoriesTrigger: (name) => {},
     setAccountTriggerTrigger: (name) => {},
     setReducer: (name) => {},
@@ -45,5 +46,6 @@ export default React.createContext({
     setCategories: (name) => {},
     setFavoriteInfo: (name) => {},
     setFavorite: (name) => {},
-    setHeaderTrigger: (name) => {}
+    setHeaderTrigger: (name) => {},
+    setActivating: (name) => {}
 })

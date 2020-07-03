@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Context from '../../context/context';
 
 export default function Player({ sending, sendingReducer, playerRef }) {
-  const { serieId, index, setIndex, reducer, episodes, serverPath} = useContext(Context);
+  const { serieId, index, setIndex, reducer, episodes, serverPath, activating, setActivating} = useContext(Context);
   const [episodeInfos, setEpisodeInfos] = useState({});
   const [sagaInfo, setSagaInfo] = useState([]);
   const [urlAudio, setUrlAudio] = useState();  
@@ -99,9 +99,9 @@ Component.MainPlayerImg = MainPlayerImg
         preload={"false"}
         showSkipControls={true}
         showJumpControls={false}
-        onClickNext={() => nextSaga(index, serieId, sagaInfo, setIndex)}
+        onClickNext={() => nextSaga(index, serieId, sagaInfo, setIndex, setActivating, activating)}
         onClickPrevious={() => prevSaga(index, setIndex)}
-        onEnded={() => nextSaga(index, serieId, sagaInfo, setIndex)}
+        onEnded={() => nextSaga(index, serieId, sagaInfo, setIndex, setActivating, activating)}
         autoPlay={true}
         ref={playerRef}
       />

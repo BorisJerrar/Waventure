@@ -1,5 +1,5 @@
 import axios from 'axios'
-const nextSaga = (index, serieId, sagaInfo, setIndex) => {
+const nextSaga = (index, serieId, sagaInfo, setIndex, setActivating, activating) => {
     const token = localStorage.getItem("token");
     const server = process.env.REACT_APP_SERVER_PATH;
     if (index < sagaInfo.length - 1) {
@@ -14,7 +14,9 @@ const nextSaga = (index, serieId, sagaInfo, setIndex) => {
         setIndex(index+1)
       }
       axios(config)
-        .then(function (response) {})
+        .then(function (response) {
+setActivating(!activating)
+        })
         .catch(function (error) {
           console.log(error);
         });

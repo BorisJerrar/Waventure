@@ -24,7 +24,7 @@ export default function SlideShowUnique({
   synopsis,
   hover,
 }) {
-  const { token, serverPath} = useContext(Context);
+  const { token, serverPath, activating} = useContext(Context);
   const [favorite, setFavorite] = useState(false);
 
   const [
@@ -112,7 +112,7 @@ export default function SlideShowUnique({
     return () => {
       unmounted = true;
     };
-  }, [serverPath, item, token, indexWithSeason, setFavorite]);
+  }, [serverPath, item, token, indexWithSeason, setFavorite, activating]);
   return (
     <div
       className={"hoverInformationContainer"}

@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export default function Profil() {
 
-    const { user, serverPath, token} = useContext(Context);
+    const {serverPath, token} = useContext(Context);
     const [toggleDelete, setToggleDelete] = useState(false);
 
     const config = {
