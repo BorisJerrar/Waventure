@@ -4,9 +4,7 @@ import Context from "../context/context";
 import Card from "../components/Card";
 import getData from "../utiles/getData";
 
-export default function Search({ uniqueSearch, lunchingEpisode }) {
-  console.log(uniqueSearch);
-  
+export default function Search({ uniqueSearch, lunchingEpisode }) {  
   const { serverPath, favoriteInfo } = useContext(Context);
   const [uniqueSerie, setUniqueSerie] = useState([]);
   useEffect(() => {

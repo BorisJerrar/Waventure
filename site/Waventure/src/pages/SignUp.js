@@ -55,7 +55,6 @@ function SignUp(props) {
     if (state.password === state.passwordConfirmation) {
       sendToServer();
     } else {
-      console.log("Passwords do not match");
     }
   };
 
